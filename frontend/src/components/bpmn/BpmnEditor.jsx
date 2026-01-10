@@ -10,6 +10,7 @@ import "../../styles/bpmn-style/bpmn.css";
 
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
+import { extractElements } from "../../services/bpmn/extractElements.js";
 
 export function BpmnEditor() {
   const containerRef = useRef(null);
@@ -28,7 +29,7 @@ export function BpmnEditor() {
 
     modeler
       .importXML(initialDiagram)
-      .then(() => console.log("BPMN diagram loaded"))
+      .then(() => console.log(modeler.get("elementRegistry").getAll()))
       .catch((err) => console.error("Error loading BPMN diagram", err));
 
     modelerRef.current = modeler;
@@ -43,10 +44,21 @@ export function BpmnEditor() {
       setError("");
       await modelerRef.current.importXML(xml);
       console.log("Import erfolgreich");
+      console.log(modelerRef.current.get("elementRegistry").getAll());
     } catch (e) {
       console.error(e);
       setError("Import fehlgeschlagen");
       await modelerRef.current.importXML(initialDiagram);
+    }
+  }, []);
+
+  const handleExtract = useCallback(async () => {
+    if (!modelerRef.current) return;
+    try {
+      const elements = extractElements(modelerRef.current);
+      console.table("Extracted BPMN Elements:", elements);
+    } catch (e) {
+      console.error("Extract failed", e);
     }
   }, []);
 
@@ -86,6 +98,7 @@ export function BpmnEditor() {
       fileInputRef={fileInputRef}
       onFileSelected={handleFileSelected}
       onDownload={handleDownload}
+      onExtract={handleExtract}
       error={error}
     />
   );

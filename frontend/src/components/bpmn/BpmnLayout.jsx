@@ -5,6 +5,7 @@ export function BpmnLayout({
   fileInputRef, // from BpmnToolbar
   onFileSelected, // from BpmnToolbar
   onDownload, // from BpmnToolbar
+  onExtract, // from BpmnToolbar
   error,
 }) {
   return (
@@ -13,6 +14,7 @@ export function BpmnLayout({
         fileInputRef={fileInputRef}
         onFileSelected={onFileSelected}
         onDownload={onDownload}
+        onExtract={onExtract}
       />
 
       {error && (
