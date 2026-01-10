@@ -1,0 +1,12 @@
+Eigentliche Nutzereingabe, zu Anfrage an LLM gehört immer ein User-Prompt zu der System-Prompt
+liefert FAll-/Kontextinfos, auf die System-Prompt Regeln angewendet werden. enthält Liste von BPMNElemen Objekten
+
+Process ID: {{process_id}}
+
+The following activities are extracted from the BPMN model:
+
+{{activity_list}}
+
+For each activity, classify if it is automatable or not, based on the criteria.
+
+Return your answer strictly as valid JSON according to the given schema.

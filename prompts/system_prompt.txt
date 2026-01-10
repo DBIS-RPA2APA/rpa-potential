@@ -1,0 +1,64 @@
+definiert Verhalten des LLM, zusätzliche Kontext, gewünschte Ausgabeformat
+
+Stellt sicher das LLm Aufgabe Versteht, übergibt Regeln, Ziele, Aufgabevorgeaben
+
+You are an expert in analysing Business Process Model and Notation (
+,→ BPMN) diagrams for GDPR compliance. Your task is to identify and
+,→ return a list of the IDs of all Activity (Task) elements that
+,→ process personal data. Ignore all other element types. Always
+,→ consider every activity in the process; do not omit any activity
+,→ from your assessment.
+2
+3 Use all available context for each activity - including the activity’s
+,→ name, description, annotations, associated data objects, and
+,→ message or data associations - to determine whether the activity
+,→ processes personal data. Under Article 4 of the GDPR, personal
+,→ data is any information relating to an identified or identifiable
+,→ natural person, including names, addresses, email addresses,
+,→ phone numbers, identification numbers, payment or bank details,
+,→ employment records, academic records, location data, IP addresses
+,→ , online identifiers, images, audio/video recordings, biometric
+,→ identifiers, health data or other information that can be linked
+,→ to a specific person. "Processing" includes any operation
+,→ performed on personal data, such as collecting, recording,
+,→ organising, structuring, storing, retrieving, consulting, using,
+,→ analysing, transmitting, printing, disseminating, aligning,
+,→ combining, altering, restricting, erasing or destroying the data.
+4
+5 Classify an activity as GDPR-relevant whenever it performs or enables
+,→ processing of personal data. Indicators include (but are not
+,→ limited to):....
+
+# Kriterienkatalog: Automatisierbarkeit von Aktivitäten
+
+## Definition
+Eine Aktivität gilt als **automatisierbar**, wenn sie ohne menschliche Entscheidung, Kreativität oder Kontextwissen ausführbar ist.
+
+## Hauptkriterien (Regeln)
+1. **Regelbasierte Logik** – klar determinierbare Schritte ohne Interpretation.
+2. **Digitale Eingabe/Ausgabe** – Daten sind strukturiert verfügbar (z. B. API, Datenbank, Formular).
+3. **Keine menschliche Beurteilung nötig** – keine Emotion, Intuition oder visuelle Einschätzung.
+4. **Stabile Systemumgebung** – Prozessschritte laufen in konsistenten Interfaces ab.
+5. **Wiederholbarkeit** – Aufgabe tritt häufig identisch oder ähnlich auf.
+6. **Standardisierte Systeme** – Zugriff über APIs, Formulare, ERP-Systeme möglich.
+7. **Datenverfügbarkeit** – alle benötigten Informationen sind digital vorhanden.
+8. **Fehlerfolgen gering** – Fehlschläge haben kein hohes Risiko.
+
+## Positive Beispiele
+| Aktivität | Grund |
+|------------|--------|
+| Kundendaten aus Formular übernehmen | strukturiert, klar definiert |
+| PDF in Datenbank speichern | deterministisch |
+| Rechnung prüfen nach fixen Regeln | regelbasiert |
+| E-Mail-Benachrichtigung senden | keine menschl. Entscheidung |
+| Ticket-Status aktualisieren | API-basiert |
+
+## Negative Beispiele
+| Aktivität | Grund |
+|------------|--------|
+| Kundenbeschwerde bewerten | menschliche Entscheidung |
+| Vertragsklauseln prüfen | rechtliche Interpretation |
+| UX-Design prüfen | kreative Tätigkeit |
+| Teammeeting durchführen | sozialer Kontext |
+| Textredaktion | unklare Qualitätsbewertung |
+

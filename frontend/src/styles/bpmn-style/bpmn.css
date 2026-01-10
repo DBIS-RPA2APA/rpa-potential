@@ -1,0 +1,23 @@
+/* BPMN.io Editor specific styles */
+.djs-context-pad {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.djs-context-pad .entry:hover {
+  background: #b9b9b94a !important;
+}
+
+.djs-label {
+  fill: #000 !important;
+}
+
+/* Text beim Editieren (Inline-Editor) */
+.djs-direct-editing-content {
+  color: #000 !important;
+}
+
+/* Sicherheit: auch SVG-Text */
+.djs-label tspan {
+  fill: #000 !important;
+}
