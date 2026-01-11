@@ -13,6 +13,6 @@ export async function sendChatMessageMock(messageHistory) {
 
   return {
     role: "assistant",
-    content: `Mock-Antwort! \n\nDu hast geschrieben:\n"${lastUser}"\n\n(Später wird das durch echtes LLM ersetzt.)`,
+    content: `Antwort! \n\nDu hast geschrieben:\n"${lastUser}"\n\n(Später wird das durch echtes LLM ersetzt.)`,
   };
 }

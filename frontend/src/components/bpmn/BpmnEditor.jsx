@@ -11,6 +11,7 @@ import "../../styles/bpmn-style/bpmn.css";
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 import { extractElements } from "../../services/bpmn/extractElements.js";
+import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
 
 export function BpmnEditor() {
   const containerRef = useRef(null);
@@ -55,10 +56,14 @@ export function BpmnEditor() {
   const handleExtract = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
-      const elements = extractElements(modelerRef.current);
-      console.table("Extracted BPMN Elements:", elements);
+      const { xml } = await modelerRef.current.saveXML({ format: true });
+      const elements = extractFromXml(xml);
+
+      console.log("Tasks found:", elements.length);
+      console.table(elements);
     } catch (e) {
       console.error("Extract failed", e);
+      setError("Extract fehlgeschlagen: " + (e?.message ?? ""));
     }
   }, []);
 

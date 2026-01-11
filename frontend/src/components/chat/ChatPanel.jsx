@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useState } from "react";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import { sendChatMessageMock } from "../../components/llm/llmClient";
+import { sendChatMessageMock } from "../../components/llm/LlmClient";
 
 export default function ChatPanel() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hi! Ich bin dein Chatbot (Mock). Schreib mir was",
+      content: "Hi! Ich bin dein Chatbot. Schreib mir was",
     },
   ]);
   const [isSending, setIsSending] = useState(false);

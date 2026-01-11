@@ -7,7 +7,6 @@
 // { id, type, name }
 
 export function extractElements(modeler) {
-  // TODO alle Elemente aus dem BPMN Modeler extrahieren und in einem Array zurückgeben
   const elements = modeler.get('elementRegistry').getAll();
   const bpmnElements = [];
 
