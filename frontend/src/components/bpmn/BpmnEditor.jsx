@@ -10,8 +10,8 @@ import "../../styles/bpmn-style/bpmn.css";
 
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
-import { extractElements } from "../../services/bpmn/extractElements.js";
 import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
+import { analyzeElements } from "../../services/api/analyzeApi.js";
 
 export function BpmnEditor() {
   const containerRef = useRef(null);
@@ -56,11 +56,24 @@ export function BpmnEditor() {
   const handleExtract = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
+      // get current BPMN XML as string
       const { xml } = await modelerRef.current.saveXML({ format: true });
       const elements = extractFromXml(xml);
 
+      const response = await analyzeElements(elements);
+
       console.log("Tasks found:", elements.length);
       console.table(elements);
+      console.log("ANALYSIS RESULT:", response);
+
+      const res = await fetch("http://localhost:8080/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ elements }),
+      });
+
+      const data = await res.json();
+      console.log("Analysis result:", data);
     } catch (e) {
       console.error("Extract failed", e);
       setError("Extract fehlgeschlagen: " + (e?.message ?? ""));
