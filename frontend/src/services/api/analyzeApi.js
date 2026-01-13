@@ -3,27 +3,21 @@
 // task ist es, die BPMN-Elemente zur Analyse an das Backend zu schicken, 
 // antwort holen und ergebnis zurückgeben an das Frontend
 
+const API_BASE = "http://localhost:8080";
+
 export async function analyzeElements(elements) {
-  const res = await fetch("http://localhost:8080/api/analyze", { // Route: exakt wie in Express definiert
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ elements }),
-  }); // frontend und backend verbunden über fetch API
-
-  const text = await res.text(); // roher Text der Antwort
-
-  if (!res.ok) { // http Status prüfen
-    throw new Error(`Backend error ${res.status}: ${text}`);
-  }
-
-  return JSON.parse(text); 
+  return postJson("/api/analyze", { elements });
 }
 
-export async function preparePrompt(elements){
-  const res = await fetch("http://localhost:8080/api/preview", {
+export async function getPromptPreview(elements){
+  return postJson("/api/preview", { elements });
+}
+
+async function postJson(path, body){
+   const res = await fetch(`${API_BASE}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ elements }),
+    body: JSON.stringify(body),
   });   
 
   const text = await res.text();

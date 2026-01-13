@@ -11,9 +11,13 @@ import "../../styles/bpmn-style/bpmn.css";
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
-import { preparePromptPreview } from "../../services/bpmn/preparePromptPreview.js";
+import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
 
-export function BpmnEditor({ setChatText }) {
+export function BpmnEditor({
+  setChatText,
+  setPreparedRequest,
+  analysisResult,
+}) {
   const containerRef = useRef(null);
   const modelerRef = useRef(null);
   const fileInputRef = useRef(null); // ref um den Datei-Input zu referenzieren also
@@ -40,6 +44,47 @@ export function BpmnEditor({ setChatText }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!modelerRef.current) return;
+    if (!analysisResult?.criticalElements) return;
+
+    const modeler = modelerRef.current;
+    const registry = modeler.get("elementRegistry");
+    const modeling = modeler.get("modeling");
+
+    // ---  Reset: alte Farben entfernen ---
+    const all = registry.getAll();
+    const tasks = all.filter((el) => isTask(el));
+
+    tasks.forEach((el) => {
+      // bpmn-js setzt default style wieder
+      modeling.setColor(el, { fill: null, stroke: null });
+    });
+
+    // --- Kritische Elemente einfärben ---
+    analysisResult.criticalElements.forEach((crit) => {
+      const el = registry.get(crit.id);
+      if (!el) {
+        console.warn("Element nicht im Diagramm gefunden:", crit.id);
+        return;
+      }
+
+      // Farben setzen
+      modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
+    });
+    console.log(
+      "critical:",
+      analysisResult.criticalElements.map((x) => x.id)
+    );
+    console.log(
+      "registry ids:",
+      modelerRef.current
+        .get("elementRegistry")
+        .getAll()
+        .map((x) => x.id)
+    );
+  }, [analysisResult]);
+
   const importXmlString = useCallback(async (xml) => {
     try {
       setError("");
@@ -58,14 +103,18 @@ export function BpmnEditor({ setChatText }) {
     try {
       setError("");
 
-      const { preview } = await preparePromptPreview(modelerRef.current);
+      const { previewText, elements } = await preparePromptPreview(
+        modelerRef.current
+      );
+      setChatText(previewText); // schreibt direkt ins Chat-Input
+      setPreparedRequest({ elements });
 
-      setChatText(preview); // schreibt direkt ins Chat-Input
+      console.log("Extracted elements:", elements);
     } catch (e) {
       console.error("Extract failed", e);
       setError("Extract fehlgeschlagen: " + (e?.message ?? ""));
     }
-  }, [setChatText]);
+  }, [setChatText, setPreparedRequest]);
 
   const handleFileSelected = useCallback(
     async (file) => {
@@ -106,5 +155,18 @@ export function BpmnEditor({ setChatText }) {
       onExtract={handleExtract}
       error={error}
     />
+  );
+}
+
+function isTask(el) {
+  // deckt Task-Typen ab (bpmn:Task, bpmn:UserTask, bpmn:ServiceTask, ...)
+  return (
+    el?.type === "bpmn:Task" ||
+    el?.type === "bpmn:UserTask" ||
+    el?.type === "bpmn:ServiceTask" ||
+    el?.type === "bpmn:ManualTask" ||
+    el?.type === "bpmn:ScriptTask" ||
+    el?.type === "bpmn:SendTask" ||
+    el?.type === "bpmn:ReceiveTask"
   );
 }

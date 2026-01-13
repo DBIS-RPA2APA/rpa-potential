@@ -1,9 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import { sendChatMessageMock } from "../../components/llm/LlmClient";
+import { analyzeElements } from "../../services/api/analyzeApi.js";
 
-export default function ChatPanel({ chatText, setChatText }) {
+export default function ChatPanel({
+  chatText,
+  setChatText,
+  preparedRequest,
+  setPreparedRequest,
+  onAnalysisResult,
+}) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -25,13 +31,39 @@ export default function ChatPanel({ chatText, setChatText }) {
       setIsSending(true);
 
       try {
-        const reply = await sendChatMessageMock(next); // später: sendChatMessageReal, API call
-        setMessages([...next, reply]);
+        if (preparedRequest?.elements?.length) {
+          const result = await analyzeElements(preparedRequest.elements);
+
+          setMessages([
+            ...next,
+            { role: "assistant", content: result.uiMessage ?? "Done." },
+          ]);
+
+          onAnalysisResult?.({ criticalElements: result.criticalElements });
+          setPreparedRequest(null);
+          return;
+        } else {
+          setMessages([
+            ...next,
+            {
+              role: "assistant",
+              content:
+                'Bitte den Button "Extract Tasks" zu nutzen, um eine Analyse durchzuführen.',
+            },
+          ]);
+        }
       } finally {
         setIsSending(false);
       }
     },
-    [messages, isSending, setChatText]
+    [
+      messages,
+      isSending,
+      setChatText,
+      preparedRequest,
+      setPreparedRequest,
+      onAnalysisResult,
+    ]
   );
 
   const handleClear = useCallback(() => {
