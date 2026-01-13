@@ -1,13 +1,11 @@
 import { useCallback, useState } from "react";
 import Button from "../../ui/button";
 
-export default function ChatInput({ onSend, disabled }) {
-  const [text, setText] = useState("");
-
+export default function ChatInput({ value, onChange, onSend, disabled }) {
   const handleSend = useCallback(() => {
-    onSend(text);
-    setText("");
-  }, [onSend, text]);
+    onSend?.(value);
+    onChange("");
+  }, [onSend, value, onChange]);
 
   const onKeyDown = useCallback(
     (e) => {
@@ -23,19 +21,19 @@ export default function ChatInput({ onSend, disabled }) {
     <div className="border-t bg-white p-3">
       <div className="flex gap-2 items-end">
         <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="Nachricht schreiben… (Enter = senden, Shift+Enter = neue Zeile)"
+          placeholder="Nachricht schreiben…"
           className="flex-1 text-black resize-none rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
-          rows={3}
+          rows={4}
         />
 
         <Button
           color="primary"
           size="small"
           onClick={handleSend}
-          disabled={disabled || !text.trim()}
+          disabled={disabled || !value.trim()}
         >
           Send
         </Button>

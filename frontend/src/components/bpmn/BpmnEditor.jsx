@@ -11,9 +11,9 @@ import "../../styles/bpmn-style/bpmn.css";
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
-import { analyzeElements } from "../../services/api/analyzeApi.js";
+import { preparePromptPreview } from "../../services/bpmn/preparePromptPreview.js";
 
-export function BpmnEditor() {
+export function BpmnEditor({ setChatText }) {
   const containerRef = useRef(null);
   const modelerRef = useRef(null);
   const fileInputRef = useRef(null); // ref um den Datei-Input zu referenzieren also
@@ -56,29 +56,16 @@ export function BpmnEditor() {
   const handleExtract = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
-      // get current BPMN XML as string
-      const { xml } = await modelerRef.current.saveXML({ format: true });
-      const elements = extractFromXml(xml);
+      setError("");
 
-      const response = await analyzeElements(elements);
+      const { preview } = await preparePromptPreview(modelerRef.current);
 
-      console.log("Tasks found:", elements.length);
-      console.table(elements);
-      console.log("ANALYSIS RESULT:", response);
-
-      const res = await fetch("http://localhost:8080/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ elements }),
-      });
-
-      const data = await res.json();
-      console.log("Analysis result:", data);
+      setChatText(preview); // schreibt direkt ins Chat-Input
     } catch (e) {
       console.error("Extract failed", e);
       setError("Extract fehlgeschlagen: " + (e?.message ?? ""));
     }
-  }, []);
+  }, [setChatText]);
 
   const handleFileSelected = useCallback(
     async (file) => {

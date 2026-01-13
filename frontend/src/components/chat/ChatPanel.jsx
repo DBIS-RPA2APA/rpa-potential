@@ -3,7 +3,7 @@ import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 import { sendChatMessageMock } from "../../components/llm/LlmClient";
 
-export default function ChatPanel() {
+export default function ChatPanel({ chatText, setChatText }) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -21,16 +21,17 @@ export default function ChatPanel() {
 
       const next = [...messages, { role: "user", content: trimmed }];
       setMessages(next);
+      setChatText("");
       setIsSending(true);
 
       try {
-        const reply = await sendChatMessageMock(next);
+        const reply = await sendChatMessageMock(next); // später: sendChatMessageReal, API call
         setMessages([...next, reply]);
       } finally {
         setIsSending(false);
       }
     },
-    [messages, isSending]
+    [messages, isSending, setChatText]
   );
 
   const handleClear = useCallback(() => {
@@ -57,7 +58,12 @@ export default function ChatPanel() {
 
       <ChatMessages messages={messages} />
 
-      <ChatInput onSend={handleSend} disabled={!canSend} />
+      <ChatInput
+        value={chatText}
+        onChange={setChatText}
+        onSend={handleSend}
+        disabled={!canSend}
+      />
     </div>
   );
 }

@@ -13,11 +13,14 @@ export async function analyze(elements) {
   console.log("SYSTEM PROMPT:\n", systemPrompt);
   console.log("USER PROMPT:\n", userPrompt);
 
+  
   // 2) "Send request to LLM"
-  const rawLlmResponse = await callLlmMock(elements);
+  const rawLlmResponse = await callLlmMock(elements); // simulate LLM call
+  // später callLLMReal(userPrompt, systemPrompt);
+  console.log("RAW LLM RESPONSE:\n", rawLlmResponse);
 
   // 3) Deserialize JSON response
-  const parsed = JSON.parse(rawLlmResponse);
+  const parsed = JSON.parse(rawLlmResponse); // throws if invalid JSON
 
   // 4) Minimal validation
   if (!Array.isArray(parsed.criticalElements)) {
@@ -25,6 +28,7 @@ export async function analyze(elements) {
   }
 
   return {
+    // später: Modellname ändern, Temperatur loggen, Prompt-Version ergänzen
     meta: {
       model: "mock",
       note: "LLM mocked for now",

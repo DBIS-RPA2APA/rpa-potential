@@ -1,4 +1,5 @@
 import { BpmnToolbar } from "./BpmnToolbar";
+import ChatInput from "../chat/ChatInput";
 
 export function BpmnLayout({
   containerRef, // ref for the BPMN modeler container
@@ -7,6 +8,9 @@ export function BpmnLayout({
   onDownload, // from BpmnToolbar
   onExtract, // from BpmnToolbar
   error,
+  chatText,
+  setChatText,
+  onSendChat,
 }) {
   return (
     <div className="h-full flex flex-col">
