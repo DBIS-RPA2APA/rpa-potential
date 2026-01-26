@@ -1,14 +1,14 @@
 // nimmt BPMN-Element, 
-// baut Prompt für LLM auf,
+// baut Prompt für User als Preview auf,
 // gibt String zurück
-export function buildSystemPrompt() {
+export function buildSystemPromptPreview() {
   return `
 You are an assistant that analyzes BPMN activities.
 Return ONLY valid JSON.
 `.trim(); // trim() entfernt Leerzeichen
 }
 
-export function buildUserPrompt(elements) {
+export function buildUserPromptPreview(elements) {
 
   return JSON.stringify(
     {
@@ -25,7 +25,8 @@ export function buildUserPrompt(elements) {
 }
 
 export async function buildPreviewPrompt(elements) {
-  const systemPrompt = buildSystemPrompt();
-  const userPrompt = buildUserPrompt(elements);
+  const systemPrompt = buildSystemPromptPreview();
+  const userPrompt = buildUserPromptPreview(elements);
   return { systemPrompt, userPrompt };
 }
+

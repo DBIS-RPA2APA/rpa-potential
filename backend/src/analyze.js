@@ -2,54 +2,60 @@
 // LLM call
 // parse JSON
 // return result
+import { buildSystemPrompt, buildUserPrompt } from "./LlmPrompt.js";
+import { callLlm } from "./LlmClient.js";
 
-import { buildSystemPrompt, buildUserPrompt } from "./prompt.js";
+// main function that analyzes BPMN elements
 
 export async function analyze(elements) {
-  // 1) Build prompts 
+  // 1) Build prompts zunächst nur preview prompt
   const systemPrompt = buildSystemPrompt();
   const userPrompt = buildUserPrompt(elements);
 
-  console.log("SYSTEM PROMPT:\n", systemPrompt);
-  console.log("USER PROMPT:\n", userPrompt);
-
-  
-  // 2) "Send request to LLM"
-  const rawLlmResponse = await callLlmMock(elements); // simulate LLM call
+  // 2) Call LLM, get raw response
   // später callLLMReal(userPrompt, systemPrompt);
+  const rawLlmResponse = await callLlm({ systemPrompt, userPrompt, elements });
+  
+  // 3) Parse LLM response
+  // normalize and validate response
+  //const parsed = normalizeAndValidate(rawLlmResponse);
+
+  // 4) Format for UI, for user in Chat
+  const uiMessage = formatForChat(rawLlmResponse);
+
   console.log("RAW LLM RESPONSE:\n", rawLlmResponse);
 
-  // 3) Deserialize JSON response
-  const parsed = JSON.parse(rawLlmResponse); // throws if invalid JSON
+  const criticalElements = rawLlmResponse.criticalElements;
 
-  // 4) Minimal validation
-  if (!Array.isArray(parsed.criticalElements)) {
+  if (!Array.isArray(rawLlmResponse.criticalElements)) {
     throw new Error("Invalid LLM response format");
   }
 
   return {
-    // später: Modellname ändern, Temperatur loggen, Prompt-Version ergänzen
     meta: {
       model: "mock",
       note: "LLM mocked for now",
     },
-    result: parsed,
+    uiMessage,
+    criticalElements,
   };
 }
 
-// ===== MOCK LLM =====
-async function callLlmMock(elements) {
- 
-  await new Promise((r) => setTimeout(r, 200));
+function normalizeAndValidate(llmResponse) {
+  // ensure structure, types, etc.
+  return llmResponse;
+}
 
-  // Demo-Logik
-  const criticalElements = elements.map((e, idx) => ({
-    activityId: e.id,
-    isCritical: idx % 2 === 0,
-    reason: idx % 2 === 0
-      ? "Mock: flagged as critical for demo"
-      : "Mock: not critical",
-  }));
 
-  return JSON.stringify({ criticalElements });
+
+function formatForChat(parsed) {
+  if (parsed.criticalElements.length === 0) {
+    return "No critical BPMN elements were identified.";
+  }
+
+  const lines = parsed.criticalElements.map((el) => {
+    return `- Element ID: ${el.id}\n  Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
+  });
+
+  return `Kritische Aktivitäten (${parsed.criticalElements.length}):\n${lines.join("\n")}`;
 }

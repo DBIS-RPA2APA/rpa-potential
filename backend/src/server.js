@@ -1,7 +1,7 @@
 import express from "express"; 
 import cors from "cors";
 import { analyze } from "./analyze.js";
-import { buildPreviewPrompt } from "./prompt.js";
+import { buildPreviewPrompt } from "./PreviewPrompt.js";
 
 const app = express(); // Express-Server initialisieren
 
@@ -31,7 +31,7 @@ app.post("/api/analyze", async (req, res) => {
   }
 });
 
-// ------ for extract tasks Button preview -------
+// ------ for extract tasks Button preview for user -------
 app.post("/api/preview", async (req, res) => { 
   try {
     const { elements } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
@@ -48,6 +48,8 @@ app.post("/api/preview", async (req, res) => {
     res.status(500).json({ error: err.message || "Server error" });
   }
 });
+
+
 
 const PORT = 8080;
 app.listen(PORT, () => {
