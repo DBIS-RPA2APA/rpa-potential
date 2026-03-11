@@ -5,8 +5,8 @@
 
 const API_BASE = "http://localhost:8080";
 
-export async function analyzeElements(elements) {
-  return postJson("/api/analyze", { elements });
+export async function analyzeElements(elements, llmProps = {}) {
+  return postJson("/api/analyze", { elements, llmProps });
 }
 
 export async function getPromptPreview(elements){

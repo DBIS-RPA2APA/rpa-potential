@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express"; 
 import cors from "cors";
 import { analyze } from "./analyze.js";
@@ -17,17 +18,20 @@ app.get("/health", (req, res) => {
 // ------- Analyse-Endpoint mit logischem API pfad -------
 app.post("/api/analyze", async (req, res) => { 
   try {
-    const { elements } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
+    const { elements, llmProps } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
 
     if (!Array.isArray(elements)) {
-      return res.status(400).json({ error: "elements must be an array" });
+      return res.status(400).json({ 
+        error: "elements must be an array", 
+        code: "INVALID_INPUT", 
+      });
     }
 
-    const result = await analyze(elements); // baut prompt, ruft LLM auf, parst Antwort, await server wartet auf Ergebnis
+    const result = await analyze(elements, llmProps || {}); // baut prompt, ruft LLM auf, parst Antwort, await server wartet auf Ergebnis
     res.json(result); // Ergebnis als JSON zurückgeben an Frontend
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message || "Server error" });
+    res.status(500).json({ error: err.message || "Server error", code: "SERVER_ERROR" });
   }
 });
 
@@ -37,7 +41,7 @@ app.post("/api/preview", async (req, res) => {
     const { elements } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
 
     if (!Array.isArray(elements)) {
-      return res.status(400).json({ error: "elements must be an array" });
+      return res.status(400).json({ error: "elements must be an array", code: "INVALID_INPUT" });
     }
 
     const result = await buildPreviewPrompt(elements);
@@ -45,7 +49,7 @@ app.post("/api/preview", async (req, res) => {
     res.json(result); // Ergebnis als JSON zurückgeben an Frontend
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message || "Server error" });
+    res.status(500).json({ error: err.message || "Server error", code: "SERVER_ERROR" });
   }
 });
 

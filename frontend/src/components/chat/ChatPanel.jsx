@@ -32,7 +32,12 @@ export default function ChatPanel({
 
       try {
         if (preparedRequest?.elements?.length) {
-          const result = await analyzeElements(preparedRequest.elements);
+          const result = analyzeElements(preparedRequest.elements, {
+                baseUrl: "https://openrouter.ai/api/v1",
+                modelName: "openai/gpt-4o-mini",
+                temperature: 0.1,
+                topP: 1,
+              });
 
           setMessages([
             ...next,
@@ -52,7 +57,17 @@ export default function ChatPanel({
             },
           ]);
         }
-      } finally {
+      } catch (err) {
+        console.error("Error during analysis:", err);
+        setMessages([
+          ...next,
+          {
+            role: "assistant",
+            content: `Fehler bei der Analyse: ${err.message}`,
+          },
+        ]);
+        onAnalysisResult?.({ criticalElements: [] });
+      }finally {
         setIsSending(false);
       }
     },
