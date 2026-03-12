@@ -1,3 +1,17 @@
+## Next Steps
+
+- in-/ outcoming -> user/system prompt & result
+- Prompt & Pipe mit LangChain bauen
+- ChatMessages verbessern (mit LangChain?)
+- UI um LLm zu änder -> einzustellen (zwischen 4 bestimmten LLm wählen, seed, temp... einstellen)
+  -> wenn llm eingestellt kann man Chat sehen und per Upload Button BPMN hochladen und durchlaufen lassen
+- Result Fehler abfangen
+- BPMN Analyse nicht mehr mit send Button abschicken -> UI/UX änder -> "Extract tasks" Button wegn von oberer Zeile -> Wie wurde das im Master umgesetzt mit BPMN Tasks extrahieren und dann an llm schicken in UI?
+- makierte Tasks per hover Reason anzeigen lassen
+- Ergebnisse speichern mit reason …
+- Evalation der verschiedenen LLMs !!!
+-
+
 ## Goal:
 
 Input: BPMN as XML in BpmnElementList as JSON-Array umgewandelt an SystemPrompt angehängt
@@ -84,12 +98,8 @@ seed: 123
 
 ## LangChain
 
-- LLM Layer
 - orchestriert Prompts / structured output
-- Prompts verwalten
-- LLMs ansprechen
 - Output parsen
-- Modelle austauschbar machen
 - Pipelines bauen
 - LangChain sitzt zw Backend und LLMs
 

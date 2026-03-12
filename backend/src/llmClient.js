@@ -26,11 +26,10 @@ const BpmnAnalysisResult = z.object({
   criticalElements: z.array(
     z.object({
       id: z.string(),
-      name: z.string().nullable().optional(),
-      reason: z.string().nullable().optional(),
+      name: z.string().nullable(),
+      reason: z.string().nullable(),
     }),
   ),
-  ammountOfRetries: z.number().optional(),
 });
 
 export async function callLlm({ systemPrompt, userPrompt, llmProps = {} }) {
@@ -39,12 +38,12 @@ export async function callLlm({ systemPrompt, userPrompt, llmProps = {} }) {
       llmProps.modelName || process.env.DEFAULT_MODEL || "openai/gpt-4o-mini",
     temperature: llmProps.temperature ?? 0.7,
     topP: llmProps.topP ?? 1,
-    apiKey: llmProps.apiKey || process.env.OPENAI_API_KEY,
+    apiKey: llmProps.apiKey || process.env.OPENROUTER_API_KEY,
     configuration: {
       baseURL:
         llmProps.baseURL ||
         process.env.OPENROUTER_BASE_URL ||
-        "https://api.openai.com/v1",
+        "https://openrouter.ai/api/v1",
     },
   });
   const structuredModel = model.withStructuredOutput(BpmnAnalysisResult);

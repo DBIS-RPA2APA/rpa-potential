@@ -32,16 +32,21 @@ export default function ChatPanel({
 
       try {
         if (preparedRequest?.elements?.length) {
-          const result = analyzeElements(preparedRequest.elements, {
+          const result = await analyzeElements(preparedRequest.elements, {
                 baseUrl: "https://openrouter.ai/api/v1",
                 modelName: "openai/gpt-4o-mini",
-                temperature: 0.1,
+                temperature: 0.7,
                 topP: 1,
               });
 
           setMessages([
             ...next,
-            { role: "assistant", content: result.uiMessage ?? "Done." },
+            {
+              role: "assistant",
+              content:
+                result.uiMessage ||
+                `Analysis finished with model: ${result?.meta?.model ?? "unknown"}`,
+            },
           ]);
 
           onAnalysisResult?.({ criticalElements: result.criticalElements });
@@ -66,6 +71,7 @@ export default function ChatPanel({
             content: `Fehler bei der Analyse: ${err.message}`,
           },
         ]);
+
         onAnalysisResult?.({ criticalElements: [] });
       }finally {
         setIsSending(false);

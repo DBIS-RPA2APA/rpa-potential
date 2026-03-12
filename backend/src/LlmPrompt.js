@@ -1,4 +1,4 @@
-// nimmt BPMN-Element, 
+// nimmt BPMN-Element,
 // baut Prompt für LLM auf,
 // gibt String zurück
 
@@ -81,24 +81,14 @@ Return ONLY valid JSON. Do not output markdown. Do not add any extra text before
 The API response must conform to this JSON Schema:
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "BpmnAnalysisResult",
-  "type": "object",
-  "properties": {
-    "criticalElements": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "reason": { "type": "string" }
-        },
-        "required": ["id"]
-      }
-    },
-    "amountOfRetries": { "type": "number" }
-  },
-  "required": ["criticalElements"]
+  
+  "criticalElements": [
+    {
+      "id": "string",
+      "name": "string or null",
+      "reason": "string or null"
+    }
+  ]
 }
 `.trim();
 }
@@ -114,6 +104,6 @@ export function buildUserPrompt(elements) {
       })),
     },
     null,
-    2
+    2,
   );
 }
