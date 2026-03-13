@@ -32,7 +32,7 @@ app.post("/api/analyze", async (req, res) => {
     }
 
     const result = await analyze(elements, llmProps || {}); // baut prompt, ruft LLM auf, parst Antwort, await server wartet auf Ergebnis
-    res.json(result); // Ergebnis als JSON zurückgeben an Frontend
+    res.json(result);
   } catch (err) {
     console.error(err);
     res
@@ -54,7 +54,7 @@ app.post("/api/preview", async (req, res) => {
 
     const result = await buildPreviewPrompt(elements);
     console.log("Preview result:", result.systemPrompt, result.userPrompt);
-    res.json(result); // Ergebnis als JSON zurückgeben an Frontend
+    res.json(result);
   } catch (err) {
     console.error(err);
     res

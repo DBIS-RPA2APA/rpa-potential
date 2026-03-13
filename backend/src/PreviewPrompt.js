@@ -1,4 +1,4 @@
-// nimmt BPMN-Element, 
+// nimmt BPMN-Element,
 // baut Prompt für User als Preview auf,
 // gibt String zurück
 export function buildSystemPromptPreview() {
@@ -9,7 +9,6 @@ Return ONLY valid JSON.
 }
 
 export function buildUserPromptPreview(elements) {
-
   return JSON.stringify(
     {
       activities: elements.map((e) => ({
@@ -17,10 +16,21 @@ export function buildUserPromptPreview(elements) {
         type: e.type,
         name: e.name,
         documentation: e.documentation ?? null,
+        poolName: e.poolName ?? null,
+        laneName: e.laneName ?? null,
+        incomingFlowElementIds: e.incomingFlowElementIds ?? [],
+        outgoingFlowElementIds: e.outgoingFlowElementIds ?? [],
+        outgoingMessageFlowsToElementIds:
+          e.outgoingMessageFlowsToElementIds ?? [],
+        incomingMessageFlowsFromElementIds:
+          e.incomingMessageFlowsFromElementIds ?? [],
+        incomingDataFromElementIds: e.incomingDataFromElementIds ?? [],
+        outgoingDataToElementIds: e.outgoingDataToElementIds ?? [],
+        associatedElementIds: e.associatedElementIds ?? [],
       })),
     },
     null,
-    2
+    2,
   );
 }
 
@@ -29,4 +39,3 @@ export async function buildPreviewPrompt(elements) {
   const userPrompt = buildUserPromptPreview(elements);
   return { systemPrompt, userPrompt };
 }
-

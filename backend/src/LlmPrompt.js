@@ -101,6 +101,17 @@ export function buildUserPrompt(elements) {
         type: e.type,
         name: e.name ?? null,
         documentation: e.documentation ?? null,
+        poolName: e.poolName ?? null,
+        laneName: e.laneName ?? null,
+        incomingFlowElementIds: e.incomingFlowElementIds ?? [],
+        outgoingFlowElementIds: e.outgoingFlowElementIds ?? [],
+        outgoingMessageFlowsToElementIds:
+          e.outgoingMessageFlowsToElementIds ?? [],
+        incomingMessageFlowsFromElementIds:
+          e.incomingMessageFlowsFromElementIds ?? [],
+        incomingDataFromElementIds: e.incomingDataFromElementIds ?? [],
+        outgoingDataToElementIds: e.outgoingDataToElementIds ?? [],
+        associatedElementIds: e.associatedElementIds ?? [],
       })),
     },
     null,

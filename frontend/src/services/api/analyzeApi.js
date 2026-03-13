@@ -1,7 +1,5 @@
-// hier wird die API-Funktion definiert, die das Frontend nutzt,
-// um mit dem Backend zu kommunizieren
-// task ist es, die BPMN-Elemente zur Analyse an das Backend zu schicken,
-// antwort holen und ergebnis zurückgeben an das Frontend
+// Service function who communicates with the backend API
+// task is to send the BPMN elements for analysis to the backend
 
 const API_BASE = "http://localhost:8080";
 

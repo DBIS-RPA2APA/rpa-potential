@@ -1,16 +1,14 @@
 import { BpmnToolbar } from "./BpmnToolbar";
-import ChatInput from "../chat/ChatInput";
 
+// rendering BPMN modeler container and toolbar
+// receives refs and callbacks from the parent component (BpmnEditor) to manage file input, downloading, and error handling.
 export function BpmnLayout({
   containerRef, // ref for the BPMN modeler container
   fileInputRef, // from BpmnToolbar
   onFileSelected, // from BpmnToolbar
   onDownload, // from BpmnToolbar
   onExtract, // from BpmnToolbar
-  error,
-  chatText,
-  setChatText,
-  onSendChat,
+  error
 }) {
   return (
     <div className="h-full flex flex-col">

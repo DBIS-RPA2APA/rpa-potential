@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback} from "react";
 import Button from "../../ui/button";
 
 export default function ChatInput({ value, onChange, onSend, disabled }) {

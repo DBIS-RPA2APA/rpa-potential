@@ -1,7 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 
 import BpmnModeler from "bpmn-js/lib/Modeler";
-
 import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
@@ -12,6 +11,9 @@ import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
 
+
+// main component for the BPMN editor, responsible for initializing the BPMN modeler, handling file imports, 
+// managing state for errors and analysis results, and passing necessary refs and callbacks to the BpmnLayout component for rendering the UI.
 export function BpmnEditor({
   setChatText,
   setPreparedRequest,
@@ -19,8 +21,7 @@ export function BpmnEditor({
 }) {
   const containerRef = useRef(null);
   const modelerRef = useRef(null);
-  const fileInputRef = useRef(null); // ref um den Datei-Input zu referenzieren also
-  // wenn man auf "Upload BPMN" klickt
+  const fileInputRef = useRef(null); 
 
   const [error, setError] = useState("");
 
@@ -43,6 +44,7 @@ export function BpmnEditor({
     };
   }, []);
 
+
   useEffect(() => {
     if (!modelerRef.current) return;
     if (!analysisResult?.criticalElements) return;
@@ -51,12 +53,12 @@ export function BpmnEditor({
     const registry = modeler.get("elementRegistry");
     const modeling = modeler.get("modeling");
 
-    // ---  Reset: alte Farben entfernen ---
+    // ---  Reset: remove old colors ---
     const all = registry.getAll();
     const tasks = all.filter((el) => isTask(el));
 
     tasks.forEach((el) => {
-      // bpmn-js setzt default style wieder
+      // bpmn-js set default style 
       modeling.setColor(el, { fill: null, stroke: null });
     });
 
@@ -64,11 +66,11 @@ export function BpmnEditor({
     analysisResult.criticalElements.forEach((crit) => {
       const el = registry.get(crit.id);
       if (!el) {
-        console.warn("Element nicht im Diagramm gefunden:", crit.id);
+        console.warn("No element found for ID:", crit.id);
         return;
       }
 
-      // Farben setzen
+      // set color for critical elements, red fill and stroke
       modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
     });
     console.log(
@@ -84,6 +86,7 @@ export function BpmnEditor({
     );
   }, [analysisResult]);
 
+  // --- Import function: imports BPMN XML string into modeler ---
   const importXmlString = useCallback(async (xml) => {
     try {
       setError("");
@@ -97,16 +100,17 @@ export function BpmnEditor({
     }
   }, []);
 
+  // --- Extract function: prepares and extracts elements ---
   const handleExtract = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
-      setError("");
+      setError(""); // delete any previous error 
 
       const { previewText, elements } = await preparePromptPreview(
         modelerRef.current
       );
-      setChatText(previewText); // schreibt direkt ins Chat-Input
-      setPreparedRequest({ elements });
+      setChatText(previewText); // preview Prompt teext for ChatInput
+      setPreparedRequest({ elements }); // saves the extracted elements when sending to backend for analysis
 
       console.log("Extracted elements:", elements);
     } catch (e) {
@@ -115,6 +119,9 @@ export function BpmnEditor({
     }
   }, [setChatText, setPreparedRequest]);
 
+
+
+  // --- File import handler: reads selected BPMN file, checks extension, and imports it into the modeler ---
   const handleFileSelected = useCallback(
     async (file) => {
       if (!file) return;
@@ -130,14 +137,15 @@ export function BpmnEditor({
     [importXmlString]
   );
 
+  // --- Download function: saves the BPMN diagram as an XML file ---
   const handleDownload = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
-      const { xml } = await modelerRef.current.saveXML({ format: true }); // BPMN XML als String speichern
-      const blob = new Blob([xml], { type: "application/xml" }); // Binärobjekt, erzeugst eine virtuelle Datei im Speicher, erzeugst eine temporäre URL dafür
+      const { xml } = await modelerRef.current.saveXML({ format: true }); // BPMN XML save as string
+      const blob = new Blob([xml], { type: "application/xml" }); // Binärobjekt, virtual file in memory
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob); // temporäre URL
-      a.download = "diagram.bpmn"; // Dateiname
+      a.download = "diagram.bpmn"; 
       a.click();
       URL.revokeObjectURL(a.href);
     } catch (e) {

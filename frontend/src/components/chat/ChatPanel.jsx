@@ -20,6 +20,8 @@ export default function ChatPanel({
 
   const canSend = useMemo(() => !isSending, [isSending]);
 
+  // --- Send handler: sends user message, calls analysis API if preparedRequest is set, 
+  // and updates chat messages with response ---
   const handleSend = useCallback(
     async (text) => {
       const trimmed = text.trim();
@@ -58,7 +60,7 @@ export default function ChatPanel({
             {
               role: "assistant",
               content:
-                'Bitte den Button "Extract Tasks" zu nutzen, um eine Analyse durchzuführen.',
+                'Please use the "Extract" button to analyze the BPMN diagram first. Then send your message again.',
             },
           ]);
         }
@@ -68,7 +70,7 @@ export default function ChatPanel({
           ...next,
           {
             role: "assistant",
-            content: `Fehler bei der Analyse: ${err.message}`,
+            content: `Error during analysis: ${err.message}`,
           },
         ]);
 
