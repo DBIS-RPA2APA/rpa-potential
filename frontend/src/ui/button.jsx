@@ -17,6 +17,7 @@ const Button = ({
     small: "px-3 py-1 text-sm",
     medium: "px-4 py-2 text-base",
     large: "px-6 py-3 text-lg",
+    width: "px-6 py-2 text-lg w-full",
   };
   const baseClasses =
     "cursor-pointer rounded transition-all duration-150 ease-in-out hover:scale-[1.02] hover:shadow-md";

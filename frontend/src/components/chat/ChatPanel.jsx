@@ -9,6 +9,7 @@ export default function ChatPanel({
   preparedRequest,
   setPreparedRequest,
   onAnalysisResult,
+  llmProps,
 }) {
   const [messages, setMessages] = useState([
     {
@@ -34,12 +35,7 @@ export default function ChatPanel({
 
       try {
         if (preparedRequest?.elements?.length) {
-          const result = await analyzeElements(preparedRequest.elements, {
-                baseUrl: "https://openrouter.ai/api/v1",
-                modelName: "openai/gpt-4o-mini",
-                temperature: 0.7,
-                topP: 1,
-              });
+          const result = await analyzeElements(preparedRequest.elements, llmProps);
 
           setMessages([
             ...next,

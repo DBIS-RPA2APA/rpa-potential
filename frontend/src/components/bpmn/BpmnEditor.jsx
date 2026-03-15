@@ -50,8 +50,8 @@ export function BpmnEditor({
     if (!analysisResult?.criticalElements) return;
 
     const modeler = modelerRef.current;
-    const registry = modeler.get("elementRegistry");
-    const modeling = modeler.get("modeling");
+    const registry = modeler.get("elementRegistry"); // all elements in diagram, by ID to color them
+    const modeling = modeler.get("modeling"); // modeling API to change element styles, colors, etc.
 
     // ---  Reset: remove old colors ---
     const all = registry.getAll();
@@ -73,17 +73,7 @@ export function BpmnEditor({
       // set color for critical elements, red fill and stroke
       modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
     });
-    console.log(
-      "critical:",
-      analysisResult.criticalElements.map((x) => x.id)
-    );
-    console.log(
-      "registry ids:",
-      modelerRef.current
-        .get("elementRegistry")
-        .getAll()
-        .map((x) => x.id)
-    );
+    //console.log("critical:",analysisResult.criticalElements.map((x) => x.id));
   }, [analysisResult]);
 
   // --- Import function: imports BPMN XML string into modeler ---
