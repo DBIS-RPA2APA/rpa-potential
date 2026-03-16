@@ -7,8 +7,8 @@ export default function ChatPanel({
   chatText,
   setChatText,
   preparedRequest,
-  setPreparedRequest,
-  onAnalysisResult,
+  setPreparedRequest, 
+  onAnalysisResult, 
   llmProps,
 }) {
   const [messages, setMessages] = useState([
@@ -75,6 +75,7 @@ export default function ChatPanel({
         setIsSending(false);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       messages,
       isSending,
@@ -95,8 +96,8 @@ export default function ChatPanel({
     <div className="h-full flex flex-col bg-white rounded-xl shadow border overflow-hidden">
       <div className="px-4 py-3 border-b flex items-center justify-between">
         <div>
-          <div className="font-semibold text-slate-900">Chat</div>
-          <div className="text-xs text-slate-500">Mock – später LLM/API</div>
+          <h2 className="text-lg font-semibold text-slate-900">LLM</h2>
+          <div className="text-xs text-slate-500">{llmProps?.modelName || "Unknown Model"}</div>
         </div>
 
         <button

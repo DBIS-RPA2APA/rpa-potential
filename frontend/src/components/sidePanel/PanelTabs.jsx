@@ -1,7 +1,7 @@
 
-const PanelTabs = ({ activeTab, setActiveTab, chatEnabled }) => {
+const PanelTabs = ({ activeTab, setActiveTab }) => {
 
-    const baseClasses = "px-4 py-2 text-sm font-medium rounded-tl-md rounded-tr-md";
+    const baseClasses = "px-4 py-2 text-sm text-slate-300  font-medium rounded-tl-md rounded-tr-md";
     const activeClasses = "bg-white text-slate-900";
     const inactiveClasses = "bg-slate-15 text-slate-500 hover:bg-slate-200 cursor-pointer";
 
@@ -20,14 +20,24 @@ const PanelTabs = ({ activeTab, setActiveTab, chatEnabled }) => {
       <button
         type="button"
         onClick={() => {
-          if (chatEnabled) setActiveTab("chat");
+          setActiveTab("chat")
         }}
-        disabled={!chatEnabled}
         className={`${baseClasses} ${
           activeTab === "chat" ? activeClasses : inactiveClasses
-        } ${!chatEnabled ? "opacity-40 cursor-not-allowed" : ""}`}
+        } `}
       >
         Chat
+      </button>
+       <button
+        type="button"
+        onClick={() => {
+          setActiveTab("evaluation")
+        }}
+        className={`${baseClasses} ${
+          activeTab === "evaluation" ? activeClasses : baseClasses
+        } `}
+      >
+        Evaluation
       </button>
     </div>
 

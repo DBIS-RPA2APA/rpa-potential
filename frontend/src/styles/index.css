@@ -50,7 +50,6 @@ h1 {
   }
 }
 
-
-select{
-  padding: 10px;
+input[type="number"] {
+  appearance: textfield;
 }

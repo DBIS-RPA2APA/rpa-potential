@@ -1,12 +1,14 @@
 import PanelTabs from "./PanelTabs.jsx";
 import ChatPanel from "../chat/ChatPanel.jsx";
 import LLMSettingsPanel from "../llmSettings/LLMSettingPanel.jsx";
+import EvaluationPanel from "../evaluation/EvaluationPanel.jsx";
 
 const SidePanel = ({
   activeTab,
   setActiveTab,
   llmPropsDraft,
   setLlmPropsDraft,
+  defaultLlmProps,
   llmProps,
   setLlmProps,
   chatText,
@@ -16,42 +18,47 @@ const SidePanel = ({
   onAnalysisResult,
 }) => {
 
-    const chatEnabled = !!llmProps; // Enable chat only if a model is selected
+  const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default
+
 
   return (
     <div className="h-full flex flex-col bg-white rounded-md shadow border overflow-hidden">
       <PanelTabs
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        chatEnabled={chatEnabled}
       />
     {/* LLM Settings Tab */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 min-h-0 overflow-hidden">
         {activeTab === "settings" && (
           <LLMSettingsPanel
-            llmPropsDraft={llmPropsDraft}
+            llmPropsDraft={llmPropsDraft} // draft state for settings form, these are just temporary values that are applied to the main llmProps when the user clicks "Apply"
             setLlmPropsDraft={setLlmPropsDraft}
             setLlmProps={setLlmProps}
             setActiveTab={setActiveTab}
           />
         )}
         {/*  ChatPanel Tab */}
-        {activeTab === "chat" && chatEnabled && (
+        {activeTab === "chat" && effectiveLlmProps && (
           <ChatPanel
             chatText={chatText}
             setChatText={setChatText}
             preparedRequest={preparedRequest}
             setPreparedRequest={setPreparedRequest}
             onAnalysisResult={onAnalysisResult}
-            llmProps={llmProps}
+            llmProps={effectiveLlmProps}
           />
         )}
-
-        {activeTab === "chat" && !chatEnabled && (
-          <div className="h-full flex items-center justify-center p-6 text-sm text-slate-500">
-            Bitte zuerst ein LLM in den Einstellungen konfigurieren.
-          </div>
-        )}
+        { activeTab === "evaluation" && (
+          <EvaluationPanel
+            numRepetitions={effectiveLlmProps.numRepetitions}
+            setNumRepetitions={(value) => setLlmProps((prev) => ({ ...prev, numRepetitions: value }))}
+            maxConcurrentRequests={effectiveLlmProps.maxConcurrentRequests}
+            setMaxConcurrentRequests={(value) => setLlmProps((prev) => ({ ...prev, maxConcurrentRequests: value }))}
+            dataset={effectiveLlmProps.dataset}
+            setDataset={(value) => setLlmProps((prev) => ({ ...prev, dataset: value }))}
+          />
+        )
+        }
       </div>
     </div>
   );

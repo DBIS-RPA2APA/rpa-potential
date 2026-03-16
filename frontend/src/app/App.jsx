@@ -11,15 +11,17 @@ function App() {
 
   const [activeTab, setActiveTab] = useState("settings");
 
-  const [llmPropsDraft, setLlmPropsDraft] = useState({
+  const defaultLlmProps = {
     modelName: "openai/gpt-4o-mini",
     baseUrl: "https://openrouter.ai/api/v1",
     apiKey: "",
     temperature: 0.7,
     topP: 1,
-    seed: 42,
-  });
+    seed: "",
+    responseTimeout: 20,
+  };
 
+  const [llmPropsDraft, setLlmPropsDraft] = useState(defaultLlmProps);
   const [llmProps, setLlmProps] = useState(null);
 
   return (
@@ -43,6 +45,7 @@ function App() {
                 setLlmPropsDraft={setLlmPropsDraft}
                 llmProps={llmProps}
                 setLlmProps={setLlmProps}
+                defaultLlmProps={defaultLlmProps}
                 chatText={chatText}
                 setChatText={setChatText}
                 preparedRequest={preparedRequest}
