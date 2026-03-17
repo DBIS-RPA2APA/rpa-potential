@@ -8,6 +8,9 @@ export function BpmnLayout({
   onFileSelected, // from BpmnToolbar
   onDownload, // from BpmnToolbar
   onExtract, // from BpmnToolbar
+  onCreateNew, // from BpmnToolbar
+  onClear, // from BpmnToolbar
+  onReport, // from BpmnToolbar
   error
 }) {
   return (
@@ -17,6 +20,9 @@ export function BpmnLayout({
         onFileSelected={onFileSelected}
         onDownload={onDownload}
         onExtract={onExtract}
+        onCreateNew={onCreateNew}
+        onClear={onClear}
+        onReport={onReport}
       />
 
       {error && (

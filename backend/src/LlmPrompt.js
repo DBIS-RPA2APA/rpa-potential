@@ -2,9 +2,6 @@
 // baut Prompt für LLM auf,
 // gibt String zurück
 
-// /backend/LlmPrompt.js (oder bei dir: /mnt/data/LlmPrompt.js)
-// Real prompt: strikt JSON, klare Felder, easy zu validieren
-
 export function buildSystemPrompt() {
   return `
 You are an expert in analysing Business Process Model and Notation (BPMN) dia-
@@ -96,23 +93,7 @@ The API response must conform to this JSON Schema:
 export function buildUserPrompt(elements) {
   return JSON.stringify(
     {
-      activities: elements.map((e) => ({
-        id: e.id,
-        type: e.type,
-        name: e.name ?? null,
-        documentation: e.documentation ?? null,
-        poolName: e.poolName ?? null,
-        laneName: e.laneName ?? null,
-        incomingFlowElementIds: e.incomingFlowElementIds ?? [],
-        outgoingFlowElementIds: e.outgoingFlowElementIds ?? [],
-        outgoingMessageFlowsToElementIds:
-          e.outgoingMessageFlowsToElementIds ?? [],
-        incomingMessageFlowsFromElementIds:
-          e.incomingMessageFlowsFromElementIds ?? [],
-        incomingDataFromElementIds: e.incomingDataFromElementIds ?? [],
-        outgoingDataToElementIds: e.outgoingDataToElementIds ?? [],
-        associatedElementIds: e.associatedElementIds ?? [],
-      })),
+      bpmnElements: elements,
     },
     null,
     2,

@@ -1,16 +1,19 @@
 ## Next Steps
 
-- in-/ outcoming -> user/system prompt & result
-- Prompt & Pipe mit LangChain bauen
-- ChatMessages verbessern (mit LangChain?)
-- UI um LLm zu änder -> einzustellen (zwischen 4 bestimmten LLm wählen, seed, temp... einstellen)
-  -> wenn llm eingestellt kann man Chat sehen und per Upload Button BPMN hochladen und durchlaufen lassen
-- Result Fehler abfangen
-- BPMN Analyse nicht mehr mit send Button abschicken -> UI/UX änder -> "Extract tasks" Button wegn von oberer Zeile -> Wie wurde das im Master umgesetzt mit BPMN Tasks extrahieren und dann an llm schicken in UI?
-- makierte Tasks per hover Reason anzeigen lassen
+- bei Claer BPMN Button auch analysis result entfernen damit das pop up nicht angezeigt wird...
+- statt Extract Tasks ein button wo direkt die Tasks vom BPMN extrahiert werden UND alles ans Backend
+- aber wie stellt man das dar UI -> LLM hat prompt in ChatHistory -> nix im Chat ODER mit Butto "BPMN analysieren" wirds direkt in den chat geschickt ?
+- HoverPopup nach zoom anpassen
+
+- Result Fehler abfangen -> Result verbessern (isAutomated = true)
 - Ergebnisse speichern mit reason …
+- ganzes Datenset mitgeben dass Analyseirt werden soll, wenn dass analysiert wurde je ein BPMN auswählen und sich im Editor anzeigen lass mit resaon… -> im Evaluation Tab!!!
 - Evalation der verschiedenen LLMs !!!
--
+
+- BPMNEdiot evtl function auslagern
+- Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
+- Ladezeit… anzeigen, wenn LLM daten analysiert
+- Wenn chat Messages zu langeswort ohne unterbrechung schneidtes das ab, und geht über Inupt Box raus wo es stehen sollte
 
 ## Goal:
 

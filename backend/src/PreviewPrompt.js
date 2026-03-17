@@ -9,29 +9,10 @@ Return ONLY valid JSON.
 }
 
 export function buildUserPromptPreview(elements) {
-  return JSON.stringify(
-    {
-      activities: elements.map((e) => ({
-        id: e.id,
-        type: e.type,
-        name: e.name,
-        documentation: e.documentation ?? null,
-        poolName: e.poolName ?? null,
-        laneName: e.laneName ?? null,
-        incomingFlowElementIds: e.incomingFlowElementIds ?? [],
-        outgoingFlowElementIds: e.outgoingFlowElementIds ?? [],
-        outgoingMessageFlowsToElementIds:
-          e.outgoingMessageFlowsToElementIds ?? [],
-        incomingMessageFlowsFromElementIds:
-          e.incomingMessageFlowsFromElementIds ?? [],
-        incomingDataFromElementIds: e.incomingDataFromElementIds ?? [],
-        outgoingDataToElementIds: e.outgoingDataToElementIds ?? [],
-        associatedElementIds: e.associatedElementIds ?? [],
-      })),
-    },
-    null,
-    2,
-  );
+  const lines = elements.map((el) => {
+    return `- Element ID: ${el.id}\n  Name: ${el.name ?? "N/A"}`;
+  });
+  return `BpmnElemente: (${elements.length}):\n${lines.join("\n")}`;
 }
 
 export async function buildPreviewPrompt(elements) {

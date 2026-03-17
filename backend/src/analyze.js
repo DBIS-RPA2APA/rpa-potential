@@ -7,11 +7,11 @@ import { callLlm } from "./LlmClient.js";
 
 // main function that analyzes BPMN elements
 export async function analyze(elements, llmProps = {}) {
-  // 1) Build prompts -> later with LangChain
+  // 1) Build prompts
   const systemPrompt = buildSystemPrompt();
   const userPrompt = buildUserPrompt(elements);
 
-  // 2) Call LLM, get raw response -> later with LangChain
+  // 2) Call LLM, get raw response
   const rawLlmResponse = await callLlm({
     systemPrompt,
     userPrompt,
@@ -19,7 +19,6 @@ export async function analyze(elements, llmProps = {}) {
   });
 
   // 3) Parse LLM response
-  // normalize and validate response
   //const parsed = normalizeAndValidate(rawLlmResponse);
   const criticalElements = rawLlmResponse.criticalElements;
 
@@ -38,11 +37,7 @@ export async function analyze(elements, llmProps = {}) {
   };
 }
 
-function normalizeAndValidate(llmResponse) {
-  // ensure structure, types, etc.
-  return llmResponse;
-}
-
+// Message for Chat UI, based on LLM response
 function formatForChat(parsed) {
   if (!parsed.criticalElements || parsed.criticalElements.length === 0) {
     return "No automatable BPMN elements were identified.";

@@ -5,17 +5,18 @@ const Button = ({
   onClick,
   color = "primary",
   size = "medium",
+  icon,
   ...props
 }) => {
   const colorClasses = {
-    primary: "bg-blue-800 text-white hover:bg-blue-600 rounded",
-    secondary: "bg-gray-500 text-white hover:bg-gray-600 rounded",
+    primary: "bg-blue-800 text-white hover:bg-blue-700 rounded",
+    secondary: "bg-gray-400 text-white hover:bg-gray-500 rounded",
     danger: "bg-red-500 text-white hover:bg-red-600 rounded",
   };
 
   const sizeClasses = {
     small: "px-3 py-1 text-sm",
-    medium: "px-4 py-2 text-base",
+    medium: "px-3 py-2 text-base",
     large: "px-6 py-3 text-lg",
     width: "px-6 py-2 text-lg w-full",
   };
@@ -42,7 +43,10 @@ const Button = ({
       className={classes}
       {...props}
     >
-      {children}
+      <span className="flex items-center justify-center gap-2">
+        {icon && <span className="flex items-center">{icon}</span>}
+        {children}
+      </span>
     </button>
   );
 };
