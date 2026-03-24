@@ -8,8 +8,12 @@
   background: #b9b9b94a !important;
 }
 
-.djs-label {
-  fill: #000 !important;
+.djs-container {
+  position: relative;
+}
+
+.djs-overlay-container {
+  z-index: 2000 !important;
 }
 
 /* Text beim Editieren (Inline-Editor) */

@@ -11,6 +11,10 @@ export async function getPromptPreview(elements) {
   return postJson("/api/preview", { elements });
 }
 
+export async function chatMessage(message, llmProps = {}) {
+  return postJson("/api/chat", { message, llmProps });
+}
+
 async function postJson(path, body) {
   const res = await fetch(`${API_BASE}${path}`, {
     method: "POST",

@@ -13,9 +13,8 @@ const SidePanel = ({
   setLlmProps,
   chatText,
   setChatText,
-  preparedRequest,
-  setPreparedRequest,
-  onAnalysisResult,
+  analysisResult,
+  hasAnalysis
 }) => {
 
   const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default
@@ -31,7 +30,7 @@ const SidePanel = ({
       <div className="flex-1 min-h-0 overflow-hidden">
         {activeTab === "settings" && (
           <LLMSettingsPanel
-            llmPropsDraft={llmPropsDraft} // draft state for settings form, these are just temporary values that are applied to the main llmProps when the user clicks "Apply"
+            llmPropsDraft={llmPropsDraft} //  just temporary values, applied to main llmProps when clicks "Apply"
             setLlmPropsDraft={setLlmPropsDraft}
             setLlmProps={setLlmProps}
             setActiveTab={setActiveTab}
@@ -42,10 +41,9 @@ const SidePanel = ({
           <ChatPanel
             chatText={chatText}
             setChatText={setChatText}
-            preparedRequest={preparedRequest}
-            setPreparedRequest={setPreparedRequest}
-            onAnalysisResult={onAnalysisResult}
             llmProps={effectiveLlmProps}
+            analysisResult={analysisResult}
+            hasAnalysis={hasAnalysis}
           />
         )}
         { activeTab === "evaluation" && (

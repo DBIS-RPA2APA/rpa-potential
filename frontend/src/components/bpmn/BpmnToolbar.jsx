@@ -3,12 +3,12 @@ import { LuUpload, LuDownload, LuPlus  } from "react-icons/lu";
 
 export function BpmnToolbar({
   fileInputRef, // ref for the hidden file input
-  onFileSelected, // function to handle file selection
-  onDownload, // function to handle download action
-  onExtract, // function to handle extract action
+  onFileSelected, 
+  onDownload, 
+  onAnalyze, 
   onCreateNew,
   onClear,
-  onReport
+  onReport,
 }) {
   return (
     <div className="flex items-center bg-white rounded shadow border px-4 py-3">
@@ -41,8 +41,8 @@ export function BpmnToolbar({
         </div>
       {/* Buttons Right */}
         <div className="flex  gap-2"> 
-          <Button color="primary" size="medium" onClick={onExtract}>
-            Extract Tasks
+          <Button color="primary" size="medium" onClick={onAnalyze}>
+            Analysis BPMN
           </Button>
           <Button color="secondary" size="medium" onClick={onClear}>
             Clear BPMN

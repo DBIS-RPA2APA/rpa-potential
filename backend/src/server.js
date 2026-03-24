@@ -2,27 +2,27 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { analyze } from "./analyze.js";
+import { chat } from "./chat.js";
 import { buildPreviewPrompt } from "./PreviewPrompt.js";
 
 const app = express(); // Express-Server initialisieren
 
-app.use(cors()); // CORS aktivieren, damit Frontend zugreifen kann
-app.use(express.json({ limit: "5mb" })); // JSON-Body-Parsing aktivieren
+app.use(cors()); // Enable CORS so that the frontend can access it
+app.use(express.json({ limit: "5mb" })); // JSON-Body-Parsing aktiv
 
 console.log("OPENROUTER_API_KEY loaded:", !!process.env.OPENROUTER_API_KEY);
 console.log("OPENROUTER_BASE_URL:", process.env.OPENROUTER_BASE_URL);
 console.log("DEFAULT_MODEL:", process.env.DEFAULT_MODEL);
 
-// Health-Check Endpoint, um zu prüfen, ob der Server läuft
-// get wird beim Server verwendet für Anfragen
+// Health-Check Endpoint, is server running
 app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// ------- Analyse-Endpoint mit logischem API pfad -------
+// ------- Analytics endpoint with logical API path -------
 app.post("/api/analyze", async (req, res) => {
   try {
-    const { elements, llmProps } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
+    const { elements, llmProps } = req.body;
 
     if (!Array.isArray(elements)) {
       return res.status(400).json({
@@ -31,7 +31,21 @@ app.post("/api/analyze", async (req, res) => {
       });
     }
 
-    const result = await analyze(elements, llmProps || {}); // baut prompt, ruft LLM auf, parst Antwort, await server wartet auf Ergebnis
+    const result = await analyze(elements, llmProps || {});
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
+
+// ------- chat messages -------
+app.post("/api/chat", async (req, res) => {
+  try {
+    const { message, llmProps } = req.body;
+    const result = await chat(message, llmProps || {});
     res.json(result);
   } catch (err) {
     console.error(err);
@@ -44,7 +58,7 @@ app.post("/api/analyze", async (req, res) => {
 // ------ for extract tasks Button preview for user -------
 app.post("/api/preview", async (req, res) => {
   try {
-    const { elements } = req.body; // ist inhalt der anfrage, also die BPMN-Elemente
+    const { elements } = req.body;
 
     if (!Array.isArray(elements)) {
       return res

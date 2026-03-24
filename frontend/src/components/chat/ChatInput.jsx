@@ -24,7 +24,7 @@ export default function ChatInput({ value, onChange, onSend, disabled }) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="Nachricht schreiben…"
+          placeholder="Send a message…"
           className="flex-1 text-black resize-none rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
           rows={4}
         />

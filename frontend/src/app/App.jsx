@@ -6,10 +6,10 @@ import SidePanel from "../components/sidePanel/SidePanel.jsx";
 
 function App() {
   const [chatText, setChatText] = useState("");
-  const [preparedRequest, setPreparedRequest] = useState(null);
   const [analysisResult, setAnalysisResult] = useState(null);
-
+  const [hasAnalysis, setHasAnalysis] = useState(false);
   const [activeTab, setActiveTab] = useState("settings");
+  
 
   const defaultLlmProps = {
     modelName: "openai/gpt-4o-mini",
@@ -27,13 +27,17 @@ function App() {
   return (
     <>
       <div className="h-screen w-screen bg-slate-100 flex flex-col">
-        <main className="flex-1 min-h-0 p-6">
-          <div className="h-full grid grid-cols-3 gap-4">
+        <main className="flex-1 min-h-0 p-3">
+          <div className="h-full grid grid-cols-3 gap-3">
             <div className="col-span-2 min-h-0">
               <BpmnEditor
                 setChatText={setChatText}
                 analysisResult={analysisResult}
-                setPreparedRequest={setPreparedRequest}
+                onAnalysisResult={(result) => {
+                  setAnalysisResult(result);
+                  setHasAnalysis(true);
+                }}
+                llmProps={llmProps ?? defaultLlmProps}
               />
             </div>
             <div className="col-span-1 min-h-0">
@@ -48,9 +52,8 @@ function App() {
                 defaultLlmProps={defaultLlmProps}
                 chatText={chatText}
                 setChatText={setChatText}
-                preparedRequest={preparedRequest}
-                setPreparedRequest={setPreparedRequest}
-                onAnalysisResult={setAnalysisResult}
+                analysisResult={analysisResult}
+                hasAnalysis={hasAnalysis}
               />
             </div>
           </div>

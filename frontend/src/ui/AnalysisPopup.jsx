@@ -8,7 +8,7 @@ const AnalysisPopup = ({
   //visibility = "visible",
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md border-2 border-gray-300 p-4 min-w-100 max-w-220 text-md text-slate-900 pointer-events-none" >
+    <div className=" bg-white rounded-xl shadow-md border-2 border-gray-300 p-4 min-w-100 max-w-220 text-md text-slate-900 z-9999 relative pointer-events-none" >
       <div className="mb-2">
         <span className="text-lg font-bold text-navy">{title}</span>
       </div>

@@ -1,19 +1,17 @@
 ## Next Steps
 
-- bei Claer BPMN Button auch analysis result entfernen damit das pop up nicht angezeigt wird...
-- statt Extract Tasks ein button wo direkt die Tasks vom BPMN extrahiert werden UND alles ans Backend
-- aber wie stellt man das dar UI -> LLM hat prompt in ChatHistory -> nix im Chat ODER mit Butto "BPMN analysieren" wirds direkt in den chat geschickt ?
-- HoverPopup nach zoom anpassen
+bis Montag:
 
-- Result Fehler abfangen -> Result verbessern (isAutomated = true)
-- Ergebnisse speichern mit reason …
+- Lwhen button "create new" is pressed && neues LLM wird gecallt -> chat history=null
+- Ladezeichen nachdem man Analysis BPMN Button gedrückt hat -> Errors... im Display anzeigen nicht mehr im Chat
+- Result Fehler abfangen -> Result verbessern (isAutomated = true) -> Validierung!!!
+
 - ganzes Datenset mitgeben dass Analyseirt werden soll, wenn dass analysiert wurde je ein BPMN auswählen und sich im Editor anzeigen lass mit resaon… -> im Evaluation Tab!!!
 - Evalation der verschiedenen LLMs !!!
 
-- BPMNEdiot evtl function auslagern
+- BPMNEditor evtl functions auslagern
 - Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
-- Ladezeit… anzeigen, wenn LLM daten analysiert
-- Wenn chat Messages zu langeswort ohne unterbrechung schneidtes das ab, und geht über Inupt Box raus wo es stehen sollte
+  -(HoverPopup nach zoom anpassen)
 
 ## Goal:
 

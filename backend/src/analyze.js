@@ -3,16 +3,22 @@
 // parse JSON
 // return result
 import { buildSystemPrompt, buildUserPrompt } from "./LlmPrompt.js";
-import { callLlm } from "./LlmClient.js";
+import {
+  callStructuredLlm,
+  resetDefaultHistory,
+  seedHistory,
+} from "./llmClient.js";
 
 // main function that analyzes BPMN elements
 export async function analyze(elements, llmProps = {}) {
+  resetDefaultHistory();
+
   // 1) Build prompts
   const systemPrompt = buildSystemPrompt();
   const userPrompt = buildUserPrompt(elements);
 
   // 2) Call LLM, get raw response
-  const rawLlmResponse = await callLlm({
+  const rawLlmResponse = await callStructuredLlm({
     systemPrompt,
     userPrompt,
     llmProps,
@@ -26,13 +32,24 @@ export async function analyze(elements, llmProps = {}) {
     throw new Error("Invalid LLM response format");
   }
 
+  //4) --- Set history for the chat  ---
+  const combinedPrompt = `
+  [System Instructions]
+  ${systemPrompt}
+  [User Input]
+  ${userPrompt}
+  `;
+  const uiMessage = formatForChat(rawLlmResponse);
+
+  await seedHistory(combinedPrompt, uiMessage);
+
   return {
     meta: {
       model: llmProps.modelName || process.env.DEFAULT_MODEL || "unknown",
       baseUrl: llmProps.baseUrl || process.env.OPENROUTER_BASE_URL || "unknown",
       note: "LangChain and OpenRouter",
     },
-    uiMessage: formatForChat(rawLlmResponse),
+    uiMessage,
     criticalElements,
   };
 }
@@ -44,7 +61,7 @@ function formatForChat(parsed) {
   }
 
   const lines = parsed.criticalElements.map((el) => {
-    return `- Element ID: ${el.id}\n  Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
+    return `- Element ID: ${el.id}\n Score: ${Array.isArray(el.score) ? el.score.join(", ") : "N/A"}\n Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
   });
 
   return `Kritische Aktivitäten (${parsed.criticalElements.length}):\n${lines.join("\n")}`;

@@ -46,6 +46,7 @@ stored records.
 9. The rule has no or few exceptions or alternatives. For Example: Few con-
 ditional branches, Limited error handling cases, Straight-through processing,
 Single decision outcome.
+
 Do NOT classify an activity as automatable if it:
 • requires human creativity, interpretation, or complex decision-making, for ex-
 ample conducting interviews, assessing applications based on qualitative cri-
@@ -67,6 +68,10 @@ Do not reference BPMN element IDs in the explanation; use the activity names ins
 Exclude from your result all activities that cannot be automated and any
 elements that are not activity/task elements
 
+Additionally, include a 'score' field for each activity classified as automatable.
+This must be an array of integers (1–9), with each number corresponding to one of the RPA feasibility criteria listed above.
+Only include the numbers of the criteria that are clearly demonstrated by the activity.
+Do not include criteria that are uncertain or not supported by the given information.
 
 OUTPUT FORMAT (MUST FOLLOW EXACTLY):
 Return ONLY valid JSON. Do not output markdown. Do not add any extra text before or after the JSON.
@@ -83,8 +88,10 @@ The API response must conform to this JSON Schema:
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "name": { "type": "string or null" },
+          "score": {"type": "string"}.
+          "name": { "type": "array" },
           "reason": { "type": "string or null" }
+
         },
         "required": ["id"]
       }

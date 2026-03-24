@@ -4,13 +4,13 @@ import { BpmnToolbar } from "./BpmnToolbar";
 // receives refs and callbacks from the parent component (BpmnEditor) to manage file input, downloading, and error handling.
 export function BpmnLayout({
   containerRef, // ref for the BPMN modeler container
-  fileInputRef, // from BpmnToolbar
-  onFileSelected, // from BpmnToolbar
-  onDownload, // from BpmnToolbar
-  onExtract, // from BpmnToolbar
-  onCreateNew, // from BpmnToolbar
-  onClear, // from BpmnToolbar
-  onReport, // from BpmnToolbar
+  fileInputRef, 
+  onFileSelected, 
+  onDownload, 
+  onAnalyze, 
+  onCreateNew, 
+  onClear, 
+  onReport, 
   error
 }) {
   return (
@@ -19,7 +19,7 @@ export function BpmnLayout({
         fileInputRef={fileInputRef}
         onFileSelected={onFileSelected}
         onDownload={onDownload}
-        onExtract={onExtract}
+        onAnalyze={onAnalyze}
         onCreateNew={onCreateNew}
         onClear={onClear}
         onReport={onReport}
@@ -32,7 +32,7 @@ export function BpmnLayout({
       )}
 
       <div className="flex-1 pt-4 bg-slate-100">
-        <div className="h-full  bg-white rounded shadow border overflow-hidden">
+        <div className="h-full bg-white rounded-md shadow borde overflow-hidden">
           <div ref={containerRef} className="w-full h-full" />
         </div>
       </div>

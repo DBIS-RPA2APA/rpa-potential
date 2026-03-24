@@ -1,25 +1,37 @@
 import { useCallback, useMemo, useState } from "react";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import { analyzeElements } from "../../services/api/analyzeApi.js";
+import { chatMessage } from "../../services/api/analyzeApi";
+import { useEffect } from "react";
 
 export default function ChatPanel({
   chatText,
   setChatText,
-  preparedRequest,
-  setPreparedRequest, 
-  onAnalysisResult, 
-  llmProps,
+  hasAnalysis,
+  analysisResult,
+  llmProps
 }) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hi! Ich bin dein Chatbot. Schreib mir was",
+      content: "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis." ,
     },
   ]);
   const [isSending, setIsSending] = useState(false);
-
   const canSend = useMemo(() => !isSending, [isSending]);
+
+  useEffect(() => {
+    if(!analysisResult) return;
+
+    setMessages([
+      {
+        role: "assistant",
+        content:
+          analysisResult.uiMessage ||
+          'Analysis is complete. You can now ask questions about it.',
+      },
+    ]);
+  }, [analysisResult]);
 
   // --- Send handler: sends user message, calls analysis API if preparedRequest is set, 
   // and updates chat messages with response ---
@@ -34,63 +46,49 @@ export default function ChatPanel({
       setIsSending(true);
 
       try {
-        if (preparedRequest?.elements?.length) {
-          const result = await analyzeElements(preparedRequest.elements, llmProps);
-
+        if(!hasAnalysis){
           setMessages([
             ...next,
             {
               role: "assistant",
               content:
-                result.uiMessage ||
-                `Analysis finished with model: ${result?.meta?.model ?? "unknown"}`,
+                'Please use the "Analyze BPMN" button in the BPMN toolbar to run the analysis.',
             },
           ]);
-
-          onAnalysisResult?.({ criticalElements: result.criticalElements });
-          setPreparedRequest(null);
           return;
-        } else {
+        }
+        const result = await chatMessage(trimmed, llmProps);
           setMessages([
             ...next,
             {
               role: "assistant",
               content:
-                'Please use the "Extract" button to analyze the BPMN diagram first. Then send your message again.',
+                result.message || 'Haven`t received a reply from llm.',
             },
           ]);
-        }
       } catch (err) {
-        console.error("Error during analysis:", err);
+        console.error("Error during chat:", err);
         setMessages([
           ...next,
           {
             role: "assistant",
-            content: `Error during analysis: ${err.message}`,
+            content: `Error: ${err.message}`,
           },
         ]);
-
-        onAnalysisResult?.({ criticalElements: [] });
       }finally {
         setIsSending(false);
       }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      messages,
-      isSending,
-      setChatText,
-      preparedRequest,
-      setPreparedRequest,
-      onAnalysisResult,
-    ]
-  );
+    }, [ messages, isSending, setChatText, llmProps, hasAnalysis] );
 
   const handleClear = useCallback(() => {
     setMessages([
-      { role: "assistant", content: "Chat geleert. Schreib mir was" },
+      { role: "assistant", 
+        content: hasAnalysis
+          ? "Chat cleared. You can continue asking about the current analysis."
+          : "Chat cleared. Click 'Analyze BPMN' to start a new analysis.", },
     ]);
-  }, []);
+    setChatText("");
+  }, [hasAnalysis, setChatText]);
 
   return (
     <div className="h-full flex flex-col bg-white rounded-xl shadow border overflow-hidden">

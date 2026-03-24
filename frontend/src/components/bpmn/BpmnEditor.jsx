@@ -10,16 +10,19 @@ import "../../styles/bpmn-style/bpmn.css";
 
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
-import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
+//import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
 import  AnalysisPopup  from "../../ui/AnalysisPopup.jsx";
+import { analyzeElements } from "../../services/api/analyzeApi.js";
+import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
 
 
 // main component for the BPMN editor, responsible for initializing the BPMN modeler, handling file imports, 
 // managing state for errors and analysis results, and passing necessary refs and callbacks to the BpmnLayout component for rendering the UI.
 export function BpmnEditor({
-  setChatText,
-  setPreparedRequest,
   analysisResult,
+  onAnalysisResult,
+  llmProps,
+
 }) {
   const containerRef = useRef(null);
   const modelerRef = useRef(null);
@@ -28,7 +31,7 @@ export function BpmnEditor({
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) return; 
 
     const modeler = new BpmnModeler({
       container: containerRef.current,
@@ -64,7 +67,7 @@ export function BpmnEditor({
       modeling.setColor(el, { fill: null, stroke: null });
     });
 
-    // --- Kritische Elemente einfärben ---
+    // --- color critic elements  ---
     analysisResult.criticalElements.forEach((crit) => {
       const el = registry.get(crit.id);
       if (!el) {
@@ -75,7 +78,7 @@ export function BpmnEditor({
       modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
     });
     //console.log("critical:",analysisResult.criticalElements.map((x) => x.id));
-  }, [analysisResult]);
+  }, [analysisResult]); // start just when analysisResult changes 
 
 
   function findCriticalElementById(analysisResult, elementId) {
@@ -199,7 +202,7 @@ export function BpmnEditor({
           eventBus.off("canvas.click", handleCanvasClick);
           cleanupPopup();
         };
-      }, [analysisResult]);
+      }, [analysisResult]); 
 
       // --- Import function: imports BPMN XML string into modeler ---
       const importXmlString = useCallback(async (xml) => {
@@ -216,23 +219,28 @@ export function BpmnEditor({
       }, []);
 
   // --- Extract function: prepares and extracts elements ---
-  const handleExtract = useCallback(async () => {
+  // const f = useCallback(fn, [a, b]); -> Erstelle die Funktion neu, wenn sich einer der Werte a,b ändert, die innen benutzt werden.
+  const handleAnalyzeBpmn = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
       setError(""); // delete any previous error 
 
-      const { previewText, elements } = await preparePromptPreview(
-        modelerRef.current
-      );
-      setChatText(previewText); // preview Prompt teext for ChatInput
-      setPreparedRequest({ elements }); // saves the extracted elements when sending to backend for analysis
+      const modeler = modelerRef.current;
+      const { xml } = await modeler.saveXML({ format: true });
+      const elements  = extractFromXml(xml);
+      const result = await analyzeElements(elements, llmProps);
+      
+      onAnalysisResult?.({
+        criticalElements: result.criticalElements ?? [],
+        uiMessage: result.uiMessage ?? "",
+      });
 
-      console.log("Extracted elements:", elements);
+      console.log("BPMN analysis result:", result);
     } catch (e) {
-      console.error("Extract failed", e);
-      setError("Extract fehlgeschlagen: " + (e?.message ?? ""));
+      console.error("Analyze BPMN failed", e);
+      setError("Analyze failed: " + (e?.message ?? ""));
     }
-  }, [setChatText, setPreparedRequest]);
+  }, [ onAnalysisResult, llmProps]);
 
 
 
@@ -247,9 +255,7 @@ export function BpmnEditor({
       }
       const xml = await file.text();
       await importXmlString(xml);
-    },
-    [importXmlString]
-  );
+    }, [importXmlString]);
 
   // --- Download function: saves the BPMN diagram as an XML file ---
   const handleDownload = useCallback(async () => {
@@ -291,8 +297,8 @@ export function BpmnEditor({
       modeling.setColor(el, { fill: null, stroke: null });
     });
     // clear analysis result in parent state to remove popups and other analysis-related UI
-   
-  }, []);
+    onAnalysisResult?.(null);
+  }, [onAnalysisResult]);
 
   const handleReportExport = useCallback(async () => {
     if (!analysisResult) {
@@ -317,7 +323,7 @@ export function BpmnEditor({
       fileInputRef={fileInputRef}
       onFileSelected={handleFileSelected}
       onDownload={handleDownload}
-      onExtract={handleExtract}
+      onAnalyze={handleAnalyzeBpmn}
       onCreateNew={handleCreateNew}
       onClear={handleClearAnalysis}
       onReport={handleReportExport}

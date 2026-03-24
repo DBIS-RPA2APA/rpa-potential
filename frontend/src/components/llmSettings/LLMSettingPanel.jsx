@@ -8,17 +8,18 @@ const LLMSettingsPanel = ({
   setLlmProps,
   setActiveTab,
 }) => {
+  
   const updateField = (field, value) => {
     setLlmPropsDraft((prev) => ({ 
-        ...prev, 
+        ...prev, // first copy all old llmProps, to just change the field-> value 
         [field]: value }));
   }
 
-const handleApply = () => {
-    setLlmProps(llmPropsDraft); // Apply the draft settings to the main llmProps state
-    console.log("Applied LLM Settings:", llmPropsDraft);
-    setActiveTab("chat"); // Switch to chat tab after applying settings
-  };
+  const handleApply = () => {
+      setLlmProps(llmPropsDraft); 
+      console.log("Applied LLM Settings:", llmPropsDraft);
+      setActiveTab("chat"); 
+    };
 
   return (
     <div className="h-full min-h-0 flex flex-col p-4 border rounded">
@@ -114,7 +115,7 @@ const handleApply = () => {
               />
           </div>
 
-          <div className="xl:flex-[2]">
+          <div className="xl:flex-2">
             <label className="block text-sm font-medium text-black mb-1 min-h-[30px]">
               LLM Response Timeout (seconds)
             </label>
