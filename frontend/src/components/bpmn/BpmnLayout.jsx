@@ -11,6 +11,7 @@ export function BpmnLayout({
   onCreateNew, 
   onClear, 
   onReport, 
+  isAnalyzing,
   error
 }) {
   return (
@@ -23,6 +24,7 @@ export function BpmnLayout({
         onCreateNew={onCreateNew}
         onClear={onClear}
         onReport={onReport}
+        isAnalyzing={isAnalyzing}
       />
 
       {error && (
@@ -30,12 +32,20 @@ export function BpmnLayout({
           {error}
         </div>
       )}
+       <div className="relative flex-1 pt-4 bg-slate-100">
+            <div className="h-full rounded-md shadow border bg-white overflow-hidden">
+              <div ref={containerRef} className="h-full w-full" />
 
-      <div className="flex-1 pt-4 bg-slate-100">
-        <div className="h-full bg-white rounded-md shadow borde overflow-hidden">
-          <div ref={containerRef} className="w-full h-full" />
-        </div>
-      </div>
+              {isAnalyzing && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm">
+                  <div className="h-13 w-13 animate-spin rounded-full border-4 border-slate-300 border-t-slate-700" />
+                  <p className="mt-3 text-sm font-medium text-slate-700">
+                    BPMN is being analyzed...
+                  </p>
+                </div>
+              )}
+            </div>
+           </div>
     </div>
   );
 }

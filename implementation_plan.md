@@ -1,17 +1,32 @@
 ## Next Steps
 
-bis Montag:
+Fragen:
 
-- Lwhen button "create new" is pressed && neues LLM wird gecallt -> chat history=null
-- Ladezeichen nachdem man Analysis BPMN Button gedrückt hat -> Errors... im Display anzeigen nicht mehr im Chat
-- Result Fehler abfangen -> Result verbessern (isAutomated = true) -> Validierung!!!
+- Genau größe vom Datensatz, Wie viele BPMN muss ich vergleichen
+- Wie viele LLMs soll ich nehmen und welche?
+- A/B-Vergleich von Algorithmen. Gegenüberstellung verschiedener Klassifizierungspipelines, mit z. B. alternativen Prompts oder anderem Preprocessing, über eine standardisierte HTTP-Schnittstelle, die in Kapitel 4.4 definiert ist. -> Muss ich das auch machen? im Master nicht gemacht, nur Fokus auf demselben Algorithmus!
+
+bis 9. April:
+
+- deepEval
+- mertendieckmann/griplbackend/evaluation/metrics/MetricsAccumulator.kt
+- Aufbau Evaluierung: Berichterstellung (Diagramme(aus JSON)), Explorative Analyse () Benchmarking von LLMs (Vergleich mehrerer LLMs mit selben Datensätzen, Algorithmus und Parametern)
+- Ergebnis Evaluierung: 1. Pro Testfall und pro Modell: Status („bestanden“/„nicht bestanden“), klassifizierte Elemente mit Begründungen, TP/FP/FN/TN und eine Visualisierung der Klassifikation im BPMN-Prozess. Und Framework Metadaten der Evaluation, z. B. Endpunkt, verwendete Modelle und den Seed. 2. Pro Modell als Summe über alle Testfälle: Accuracy, Precision, Recall, F1-Score und die Konfusionsmatrix.
+- Umsetzung Evaluierung: Button Ergebnisse Download, Tabellen/ Diagramme, über YAML-Datei hochladen oder direk in UI,
+- nachdem man Evaluierung durchgeführt hat kommt eigenes großes Fenster,
+- schon durchgeführte Evluierungen können nochmal aufgerufen werden…
+
+- Labeling Tool evtl.: für jede Avtivität (id, automatiseirbar (true, false), kommentar), vllt als JSON speichern? (frontend/components/labeling/…)
+
+ToDo:
 
 - ganzes Datenset mitgeben dass Analyseirt werden soll, wenn dass analysiert wurde je ein BPMN auswählen und sich im Editor anzeigen lass mit resaon… -> im Evaluation Tab!!!
-- Evalation der verschiedenen LLMs !!!
+- Evaluation der verschiedenen LLMs !!!
 
+- when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
 - BPMNEditor evtl functions auslagern
 - Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
-  -(HoverPopup nach zoom anpassen)
+- (HoverPopup nach zoom anpassen)
 
 ## Goal:
 

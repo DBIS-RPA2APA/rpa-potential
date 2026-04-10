@@ -79,13 +79,15 @@ Additionally, include a "score" field for EACH activity classified as automatabl
 The "score" must be an array of integers (1–9), where each number corresponds to one of the RPA feasibility criteria listed above.
 Evaluate each activity independently. Do NOT assign the same score to all activities by default.
 Each activity must receive an individual score based only on its own context, name, description, and associated data.
-
 Only include the numbers of the criteria that are clearly demonstrated by the activity.
 Do not include criteria that are uncertain or not supported by the given information.
-
 A score such as [1,2,3,4,5,6,7,8,9] should be very rare and should only occur when nearly all criteria are explicitly supported by the activity context.
-
 It is expected that most activities will satisfy only a subset of the criteria, not all of them.
+
+
+Also for each activity that is classified as automatable, add an “isRelevant” field. 
+‘isRelevant’ must be a Boolean value of either true or false, where “true” is set only if the activity has truly been classified as automatable.
+DO NOT assign “true” to all activities by default, regardless of whether they are automatable or not.
 
 OUTPUT FORMAT (MUST FOLLOW EXACTLY):
 Return ONLY valid JSON. Do not output markdown. Do not add any extra text before or after the JSON. 
@@ -100,7 +102,8 @@ The API response must conform to this JSON Schema:
       "id": "string",
       "name": "string or null",
       "score": [1,2,5],
-      "reason": "string or null"
+      "reason": "string or null",
+      "isRelevant": "boolean"
     }
   ]
 }

@@ -8,8 +8,9 @@ import {
   resetDefaultHistory,
   seedHistory,
 } from "./llmClient.js";
+import { normalizeAndValidate } from "./Validation.js";
 
-// main function that analyzes BPMN elements
+// main function that analyzes BPMN elements -> BpmnElement list
 export async function analyze(elements, llmProps = {}) {
   resetDefaultHistory();
 
@@ -25,10 +26,10 @@ export async function analyze(elements, llmProps = {}) {
   });
 
   // 3) Parse LLM response
-  //const parsed = normalizeAndValidate(rawLlmResponse);
-  const criticalElements = rawLlmResponse.criticalElements;
+  const parsed = normalizeAndValidate(rawLlmResponse, elements);
+  const criticalElements = parsed.criticalElements;
 
-  if (!Array.isArray(rawLlmResponse.criticalElements)) {
+  if (!Array.isArray(parsed.criticalElements)) {
     throw new Error("Invalid LLM response format");
   }
 
@@ -61,7 +62,7 @@ function formatForChat(parsed) {
   }
 
   const lines = parsed.criticalElements.map((el) => {
-    return `- Element ID: ${el.id}\n Score: ${Array.isArray(el.score) ? el.score.join(", ") : "N/A"}\n Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
+    return `- Element ID: ${el.id}\n Score: ${Array.isArray(el.score) ? el.score.join(", ") : "N/A"}\n isRelevant: ${el.isRelevant ?? "N/A"}\n Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
   });
 
   return `Kritische Aktivitäten (${parsed.criticalElements.length}):\n${lines.join("\n")}`;

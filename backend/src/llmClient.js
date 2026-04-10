@@ -26,6 +26,7 @@ const BpmnAnalysisResult = z.object({
       name: z.string().nullable(),
       score: z.array(z.number().int().min(1).max(9)).min(1),
       reason: z.string().nullable(),
+      isRelevant: z.boolean(),
     }),
   ),
 });
@@ -105,25 +106,45 @@ export async function callStructuredLlm({
   systemPrompt,
   userPrompt,
   llmProps = {},
+  maxRetries = 3,
 }) {
   const config = buildModelConfig(llmProps);
   const model = new ChatOpenAI(config);
-
   // with Structured Output, we can define the expected structure with Zod (BpmnAnalysisResult)
   const structuredModel = model.withStructuredOutput(BpmnAnalysisResult);
 
-  const prompt = ChatPromptTemplate.fromMessages([
-    ["system", "{systemPrompt}"],
-    ["user", "{userPrompt}"],
-  ]);
+  let lastError = null;
+  let retryPrompt = null;
 
-  const chain = prompt.pipe(structuredModel);
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const prompt = ChatPromptTemplate.fromMessages([
+        ["system", "{systemPrompt}"],
+        ["user", "{userPrompt}"],
+        ["system", "{retryPrompt}"],
+      ]);
 
-  const result = await chain.invoke({ systemPrompt, userPrompt });
+      const chain = prompt.pipe(structuredModel);
 
-  console.log("=== LLM RESPONSE ANALYZE ===");
-  console.dir(result, { depth: null });
-  return result;
+      const result = await chain.invoke({
+        systemPrompt,
+        userPrompt,
+        retryPrompt,
+      });
+
+      console.log(`=== LLM RESPONSE ANALYZE (${i + 1}/${maxRetries}) ===`);
+      console.dir(result, { depth: null });
+      return result;
+    } catch (error) {
+      lastError = error;
+      console.warn(`Retry ${i + 1}/${maxRetries} failed:`, error.message);
+      if (i === maxRetries - 1) {
+        throw error;
+      }
+      retryPrompt = `Parsing failed. Attemting to fix JSON and retry… (Attempt ${i + 1}/${maxRetries})`;
+    }
+  }
+  throw lastError ?? new Error("Structured LLM call failed");
 }
 
 // --- start llm for chat using same sessionId that was used for analysis ---

@@ -29,6 +29,7 @@ export function BpmnEditor({
   const fileInputRef = useRef(null); 
 
   const [error, setError] = useState("");
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return; 
@@ -224,6 +225,7 @@ export function BpmnEditor({
     if (!modelerRef.current) return;
     try {
       setError(""); // delete any previous error 
+      setIsAnalyzing(true); // set analyzing state to true to show loading indicator in UI
 
       const modeler = modelerRef.current;
       const { xml } = await modeler.saveXML({ format: true });
@@ -239,6 +241,8 @@ export function BpmnEditor({
     } catch (e) {
       console.error("Analyze BPMN failed", e);
       setError("Analyze failed: " + (e?.message ?? ""));
+    } finally {
+      setIsAnalyzing(false); // reset analyzing state 
     }
   }, [ onAnalysisResult, llmProps]);
 
@@ -327,6 +331,7 @@ export function BpmnEditor({
       onCreateNew={handleCreateNew}
       onClear={handleClearAnalysis}
       onReport={handleReportExport}
+      isAnalyzing={isAnalyzing}
       error={error}
     />
   );

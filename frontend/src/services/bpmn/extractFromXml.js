@@ -45,7 +45,7 @@ export function extractFromXml(bpmnXml) {
     throw new Error("XML parsing error: " + errorNode.textContent);
   }
 
-  // get all task elements
+  // get all important elements
   const allNodes = Array.from(xmlDoc.getElementsByTagName("*"));
   const taskNodes = allNodes.filter((node) =>
     BPMN_ELEMENT_LOCAL_NAMES.has(node.localName),

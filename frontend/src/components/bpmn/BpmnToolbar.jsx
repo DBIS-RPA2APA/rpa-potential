@@ -9,6 +9,7 @@ export function BpmnToolbar({
   onCreateNew,
   onClear,
   onReport,
+  isAnalyzing
 }) {
   return (
     <div className="flex items-center bg-white rounded shadow border px-4 py-3">
@@ -41,8 +42,8 @@ export function BpmnToolbar({
         </div>
       {/* Buttons Right */}
         <div className="flex  gap-2"> 
-          <Button color="primary" size="medium" onClick={onAnalyze}>
-            Analysis BPMN
+          <Button color="primary" size="medium" onClick={onAnalyze} disabled={isAnalyzing}>
+            {isAnalyzing ? "Analyzing..." : "Analyze BPMN"}
           </Button>
           <Button color="secondary" size="medium" onClick={onClear}>
             Clear BPMN
