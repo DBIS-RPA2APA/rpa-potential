@@ -1,0 +1,37 @@
+import { useState } from "react";
+import { LuChevronDown, LuChevronUp } from "react-icons/lu";
+
+function AccordionSection({
+  title,
+  children,
+  defaultOpen = false,
+  className = "",
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div
+      className={`rounded-md border shadow overflow-hidden ${
+        className || "bg-white"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between p-4 text-left"
+      >
+        <div className="flex-1 text-slate-900 text-xl font-semibold">
+          {title}
+        </div>
+
+        <span className="text-slate-500 text-xl">
+          {isOpen ? <LuChevronUp /> : <LuChevronDown />}
+        </span>
+      </button>
+
+      {isOpen && <div className="px-4 pb-4">{children}</div>}
+    </div>
+  );
+}
+
+export default AccordionSection;

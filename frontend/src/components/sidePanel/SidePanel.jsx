@@ -14,7 +14,8 @@ const SidePanel = ({
   chatText,
   setChatText,
   analysisResult,
-  hasAnalysis
+  hasAnalysis,
+  setOnEvaluation
 }) => {
 
   const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default

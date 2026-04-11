@@ -9,6 +9,7 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [hasAnalysis, setHasAnalysis] = useState(false);
   const [activeTab, setActiveTab] = useState("settings");
+
   
 
   const defaultLlmProps = {
@@ -23,6 +24,8 @@ function App() {
 
   const [llmPropsDraft, setLlmPropsDraft] = useState(defaultLlmProps);
   const [llmProps, setLlmProps] = useState(null);
+
+
 
   return (
     <>
@@ -61,6 +64,7 @@ function App() {
       </div>
     </>
   );
+
 }
 
 export default App;
