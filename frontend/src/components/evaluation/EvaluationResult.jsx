@@ -3,6 +3,7 @@ import Button from "../../ui/button";
 import AccordionSection from "../../ui/AccordionSection";
 import DiagramCard from "../../ui/DiagrammSection";
 import ModelResultAccordion from "../../ui/ModelResultAccordion";
+//import { LuChevronsDownU, LuFoldVertical } from "react-icons/lu"; //<LuChevronsDownUp /> <LuFoldVertical />
 
 export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
   function SummaryStat({ value, label, valueColor = "text-slate-900" }) {
@@ -103,7 +104,7 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
             <p className="text-md text-slate-500">
               Timestamp:{" "}
               <span className="font-medium text-slate-900">
-                {llmProps?.timestamp ?? "-"}
+                {evaluationConfig?.timestamp ?? "-"}
               </span>
             </p>
           </div>

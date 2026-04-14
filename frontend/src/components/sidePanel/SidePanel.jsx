@@ -15,19 +15,14 @@ const SidePanel = ({
   setChatText,
   analysisResult,
   hasAnalysis,
-  setOnEvaluation
+  setOnEvaluation,
 }) => {
-
   const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default
-
 
   return (
     <div className="h-full flex flex-col bg-white rounded-md shadow border overflow-hidden">
-      <PanelTabs
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
-    {/* LLM Settings Tab */}
+      <PanelTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* LLM Settings Tab */}
       <div className="flex-1 min-h-0 overflow-hidden">
         {activeTab === "settings" && (
           <LLMSettingsPanel
@@ -47,20 +42,22 @@ const SidePanel = ({
             hasAnalysis={hasAnalysis}
           />
         )}
-        { activeTab === "evaluation" && (
+        {activeTab === "evaluation" && (
           <EvaluationPanel
             numRepetitions={effectiveLlmProps.numRepetitions}
-            setNumRepetitions={(value) => setLlmProps((prev) => ({ ...prev, numRepetitions: value }))}
+            setNumRepetitions={(value) =>
+              setLlmProps((prev) => ({ ...prev, numRepetitions: value }))
+            }
             maxConcurrentRequests={effectiveLlmProps.maxConcurrentRequests}
-            setMaxConcurrentRequests={(value) => setLlmProps((prev) => ({ ...prev, maxConcurrentRequests: value }))}
-            dataset={effectiveLlmProps.dataset}
-            setDataset={(value) => setLlmProps((prev) => ({ ...prev, dataset: value }))}
+            setMaxConcurrentRequests={(value) =>
+              setLlmProps((prev) => ({ ...prev, maxConcurrentRequests: value }))
+            }
+            llmProps={effectiveLlmProps}
+            setOnEvaluation={setOnEvaluation}
           />
-        )
-        }
+        )}
       </div>
     </div>
   );
-}
+};
 export default SidePanel;
-    

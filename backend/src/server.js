@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { analyze } from "./analyze.js";
+import { evaluateDataset } from "./evaluation/evaluation.js";
 import { chat } from "./chat.js";
 import { buildPreviewPrompt } from "./PreviewPrompt.js";
 
@@ -32,6 +33,20 @@ app.post("/api/analyze", async (req, res) => {
     }
 
     const result = await analyze(elements, llmProps || {});
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
+// ------- Evaluation endpoint -------
+app.post("/api/evaluate", async (req, res) => {
+  try {
+    const { evaluationConfig, llmProps } = req.body;
+
+    const result = await evaluateDataset(evaluationConfig, llmProps || {});
     res.json(result);
   } catch (err) {
     console.error(err);

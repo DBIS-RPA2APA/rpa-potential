@@ -29,7 +29,7 @@ export async function analyze(elements, llmProps = {}) {
   const parsed = normalizeAndValidate(rawLlmResponse, elements);
   const criticalElements = parsed.criticalElements;
 
-  if (!Array.isArray(parsed.criticalElements)) {
+  if (!Array.isArray(criticalElements)) {
     throw new Error("Invalid LLM response format");
   }
 

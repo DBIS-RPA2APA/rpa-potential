@@ -5,28 +5,70 @@ Fragen:
 - Genau größe vom Datensatz, Wie viele BPMN muss ich vergleichen
 - Wie viele LLMs soll ich nehmen und welche?
 - A/B-Vergleich von Algorithmen. Gegenüberstellung verschiedener Klassifizierungspipelines, mit z. B. alternativen Prompts oder anderem Preprocessing, über eine standardisierte HTTP-Schnittstelle, die in Kapitel 4.4 definiert ist. -> Muss ich das auch machen? im Master nicht gemacht, nur Fokus auf demselben Algorithmus!
+- Wenn eine Task rictiger weiße als automatisierbar eingestuft wurde, ABER die Scorse nicht passen, Was dann?
 
 bis 9. April:
 
+data class EvaluationMetadataReport(
+val modelName: String,
+val modelTemperature: Double,
+val modelTopP: Double,
+val dataset: String,
+val totalTestCases: Int,
+val defaultEvaluationEndpoint: String,
+val totalRepetitions: Int = 1,
+val seed: Int? = null,
+val timestamp: Timestamp,
+)
+
+data class EvaluationReportSummary(
+val total: Int,
+val passed: Int,
+val failed: Int,
+val error: Int,
+val amountOfRetries: Int? = null,
+val precision: Double,
+val recall: Double,
+val f1Score: Double,
+val accuracy: Double,
+val totalTruePositives: Int,
+val totalFalsePositives: Int,
+val totalFalseNegatives: Int,
+val totalTrueNegatives: Int
+)
+data class TestCaseReport(
+val testCaseId: Long,
+val testCaseName: String? = null,
+val datasetId: Long? = null,
+val imageSrc: String,
+val correctActivityIds: List<String>,
+val falsePositiveIds: List<String>,
+val falseNegativeIds: List<String>,
+val expectedNamesWithIds: List<String>,
+val actualNamesWithIds: List<String>,
+val isSuccessful: Boolean,
+val result: List<ExpectedValue>,
+val amountOfRetries: Int? = null
+)
+
 - deepEval
 - mertendieckmann/griplbackend/evaluation/metrics/MetricsAccumulator.kt
-- Aufbau Evaluierung: Berichterstellung (Diagramme(aus JSON)), Explorative Analyse () Benchmarking von LLMs (Vergleich mehrerer LLMs mit selben Datensätzen, Algorithmus und Parametern)
-- Ergebnis Evaluierung: 1. Pro Testfall und pro Modell: Status („bestanden“/„nicht bestanden“), klassifizierte Elemente mit Begründungen, TP/FP/FN/TN und eine Visualisierung der Klassifikation im BPMN-Prozess. Und Framework Metadaten der Evaluation, z. B. Endpunkt, verwendete Modelle und den Seed. 2. Pro Modell als Summe über alle Testfälle: Accuracy, Precision, Recall, F1-Score und die Konfusionsmatrix.
-- Umsetzung Evaluierung: Button Ergebnisse Download, Tabellen/ Diagramme, über YAML-Datei hochladen oder direk in UI,
-- nachdem man Evaluierung durchgeführt hat kommt eigenes großes Fenster,
+- Aufbau Evaluierung: Diagramm erstellen lassen, Score pro Task in Tabelle einfügen, Button wo die Kriterien für Automatisierbar stehen!!!
 - schon durchgeführte Evluierungen können nochmal aufgerufen werden…
-
-- Labeling Tool evtl.: für jede Avtivität (id, automatiseirbar (true, false), kommentar), vllt als JSON speichern? (frontend/components/labeling/…)
+- Labeling: für jede Avtivität (id, automatiseirbar (true, false), Scores), als JSON (frontend/components/labeling/…)
 
 ToDo:
 
 - ganzes Datenset mitgeben dass Analyseirt werden soll, wenn dass analysiert wurde je ein BPMN auswählen und sich im Editor anzeigen lass mit resaon… -> im Evaluation Tab!!!
 - Evaluation der verschiedenen LLMs !!!
+- Download Evaluation Button!!!
 
 - when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
 - BPMNEditor evtl functions auslagern
 - Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
 - (HoverPopup nach zoom anpassen)
+- UX überprüfen
+- UI Kit-Deign erstellen und anwenden!!! <3
 
 ## Goal:
 
