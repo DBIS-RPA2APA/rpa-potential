@@ -7,6 +7,7 @@ const LLMSettingsPanel = ({
   setLlmPropsDraft,
   setLlmProps,
   setActiveTab,
+  onResetChat,
 }) => {
   const updateField = (field, value) => {
     setLlmPropsDraft((prev) => ({
@@ -18,6 +19,7 @@ const LLMSettingsPanel = ({
   const handleApply = () => {
     setLlmProps(llmPropsDraft);
     console.log("Applied LLM Settings:", llmPropsDraft);
+    onResetChat?.();
     setActiveTab("chat");
   };
 

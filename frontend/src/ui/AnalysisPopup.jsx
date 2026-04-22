@@ -8,7 +8,7 @@ const AnalysisPopup = ({
   //visibility = "visible",
 }) => {
   return (
-    <div className=" bg-white rounded-xl shadow-md border-2 border-gray-300 p-4 min-w-100 max-w-220 text-md text-slate-900 z-9999 relative pointer-events-none" >
+    <div className=" bg-white rounded-xl shadow-md border-2 border-gray-300 p-4 min-w-100 max-w-220 text-md text-slate-900 z-9999 relative pointer-events-none">
       <div className="mb-2">
         <span className="text-lg font-bold text-navy">{title}</span>
       </div>
@@ -26,8 +26,10 @@ const AnalysisPopup = ({
 
         {score !== undefined && score !== null && (
           <div className="analysis-popup__row">
-            <span className="font-bold text-slate-900 min-w-2xl">Score:</span>
-            <span className="text-slate-900 word-break">{score}</span>
+            <span className="font-bold text-slate-900 min-w-2xl">Score: </span>
+            <span className="text-slate-900 word-break">
+              {score.join(", ")}
+            </span>
           </div>
         )}
       </div>

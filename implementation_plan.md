@@ -3,13 +3,12 @@
 Today:
 
 = Panel ProgressBar -> Evaluation
-= passed -> kriteren anpassen
+= passed -> kriterien anpassen
+= when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
+= Button wo die Kriterien (Bernard…) für Automatisierbar stehen im PopUp und Editor!!!
+= Netzdiagramm und Button bei Diagrammen
 
-- when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
-- Button wo die Kriterien (Bernard…) für Automatisierbar stehen im PopUp und Editor!!!
-- netzdiagramm und Button bei Diagrammen
 - Diagramme relativ zur Bildschirm größe
-
 - repetitions !!! -> von TP,TN; FP; FN Mittelwert nehmen?
 - Download Button -> in Evalutaion PopUp, als JSON… Datei EINE Evaluation runterladen kann
 - Datensatz 10 Bpmn
@@ -34,6 +33,7 @@ bis 30. April:
 - (HoverPopup nach zoom anpassen)
 - UX überprüfen
 - Anfangen zu schreiben,
+- Tests schreiben
 
 - UI Kit-Deign erstellen und anwenden!!! <3
 

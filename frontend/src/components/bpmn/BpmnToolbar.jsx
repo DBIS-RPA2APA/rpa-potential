@@ -1,58 +1,105 @@
 import Button from "../../ui/button";
-import { LuUpload, LuDownload, LuPlus  } from "react-icons/lu";
+import { LuUpload, LuDownload, LuPlus, LuBadgeInfo } from "react-icons/lu";
+import ScorePopup from "../../ui/ScorePopUp";
+import React from "react";
 
 export function BpmnToolbar({
   fileInputRef, // ref for the hidden file input
-  onFileSelected, 
-  onDownload, 
-  onAnalyze, 
+  onFileSelected,
+  onDownload,
+  onAnalyze,
   onCreateNew,
   onClear,
   onReport,
-  isAnalyzing
+  isAnalyzing,
 }) {
+  const [scorePopupVisible, setScorePopupVisible] = React.useState(false);
+  const handleScorePopup = () => {
+    if (scorePopupVisible) {
+      setScorePopupVisible(false);
+    } else {
+      setScorePopupVisible(true);
+    }
+  };
   return (
-    <div className="flex items-center bg-white rounded shadow border px-4 py-3">
-      <div className="flex w-full flex-col gap-3 md:flex-row md:justify-between">
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".bpmn,.xml"
-          className="hidden"
-          onChange={(e) => onFileSelected(e.target.files[0])}
-        />
-      {/* Buttons Left */}
-        <div className="flex gap-2">
-          <Button color="secondary" size="medium" onClick={onCreateNew}
-          icon={<LuPlus size={15} /> }>
-            Create new
-          </Button>
-          <Button color="secondary" size="medium" onClick={onDownload}
-          icon={<LuDownload size={15} /> }>
-            Download BPMN
-          </Button> 
-          <Button
-            color="primary"
-            size="medium"
-            onClick={() => fileInputRef.current.click()}
-            icon={<LuUpload size={15} /> }
-          >
-            Upload BPMN
-          </Button>
+    <>
+      <div className="flex items-center bg-white rounded shadow border px-4 py-3">
+        <div className="flex w-full flex-col gap-3 md:flex-row md:justify-between">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".bpmn,.xml"
+            className="hidden"
+            onChange={(e) => onFileSelected(e.target.files[0])}
+          />
+          {/* Buttons Left */}
+          <div className="flex gap-2">
+            <Button
+              color="secondary"
+              size="medium"
+              onClick={onCreateNew}
+              icon={<LuPlus size={15} />}
+              disabled={isAnalyzing}
+            >
+              New
+            </Button>
+            <Button
+              color="secondary"
+              size="medium"
+              onClick={onDownload}
+              icon={<LuDownload size={15} />}
+              disabled={isAnalyzing}
+            >
+              Download
+            </Button>
+            <Button
+              color="primary"
+              size="medium"
+              onClick={() => fileInputRef.current.click()}
+              icon={<LuUpload size={15} />}
+              disabled={isAnalyzing}
+            >
+              Upload
+            </Button>
+          </div>
+          {/* Buttons Right */}
+          <div className="flex  gap-2">
+            <Button
+              color="primary"
+              size="medium"
+              onClick={onAnalyze}
+              disabled={isAnalyzing}
+            >
+              {isAnalyzing ? "Analyzing..." : "Analyze BPMN"}
+            </Button>
+            <Button
+              color="secondary"
+              size="medium"
+              onClick={onClear}
+              disabled={isAnalyzing}
+            >
+              Clear BPMN
+            </Button>
+            <Button
+              color="secondary"
+              size="medium"
+              onClick={onReport}
+              disabled={isAnalyzing}
+            >
+              Download Report
+            </Button>
+            <button
+              onClick={handleScorePopup}
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-white hover:bg-slate-200 transition cursor-pointer"
+            >
+              <LuBadgeInfo size={27} color="black" />
+            </button>
+          </div>
         </div>
-      {/* Buttons Right */}
-        <div className="flex  gap-2"> 
-          <Button color="primary" size="medium" onClick={onAnalyze} disabled={isAnalyzing}>
-            {isAnalyzing ? "Analyzing..." : "Analyze BPMN"}
-          </Button>
-          <Button color="secondary" size="medium" onClick={onClear}>
-            Clear BPMN
-          </Button>
-           <Button color="secondary" size="medium" onClick={onReport}>
-            Download Report
-          </Button>
-        </div>  
       </div>
-    </div>
+      {scorePopupVisible && (
+        <ScorePopup onClose={() => setScorePopupVisible(false)} />
+      )}
+    </>
   );
 }

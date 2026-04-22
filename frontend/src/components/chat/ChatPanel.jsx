@@ -9,31 +9,44 @@ export default function ChatPanel({
   setChatText,
   hasAnalysis,
   analysisResult,
-  llmProps
+  llmProps,
+  resetToken,
 }) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis." ,
+      content:
+        "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis.",
     },
   ]);
   const [isSending, setIsSending] = useState(false);
   const canSend = useMemo(() => !isSending, [isSending]);
 
   useEffect(() => {
-    if(!analysisResult) return;
+    if (!analysisResult) return;
 
     setMessages([
       {
         role: "assistant",
         content:
           analysisResult.uiMessage ||
-          'Analysis is complete. You can now ask questions about it.',
+          "Analysis is complete. You can now ask questions about it.",
       },
     ]);
   }, [analysisResult]);
 
-  // --- Send handler: sends user message, calls analysis API if preparedRequest is set, 
+  useEffect(() => {
+    setMessages([
+      {
+        role: "assistant",
+        content:
+          "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis.",
+      },
+    ]);
+    setChatText("");
+  }, [resetToken, setChatText]);
+
+  // --- Send handler: sends user message, calls analysis API if preparedRequest is set,
   // and updates chat messages with response ---
   const handleSend = useCallback(
     async (text) => {
@@ -46,7 +59,7 @@ export default function ChatPanel({
       setIsSending(true);
 
       try {
-        if(!hasAnalysis){
+        if (!hasAnalysis) {
           setMessages([
             ...next,
             {
@@ -58,14 +71,13 @@ export default function ChatPanel({
           return;
         }
         const result = await chatMessage(trimmed, llmProps);
-          setMessages([
-            ...next,
-            {
-              role: "assistant",
-              content:
-                result.message || 'Haven`t received a reply from llm.',
-            },
-          ]);
+        setMessages([
+          ...next,
+          {
+            role: "assistant",
+            content: result.message || "Haven`t received a reply from llm.",
+          },
+        ]);
       } catch (err) {
         console.error("Error during chat:", err);
         setMessages([
@@ -75,17 +87,21 @@ export default function ChatPanel({
             content: `Error: ${err.message}`,
           },
         ]);
-      }finally {
+      } finally {
         setIsSending(false);
       }
-    }, [ messages, isSending, setChatText, llmProps, hasAnalysis] );
+    },
+    [messages, isSending, setChatText, llmProps, hasAnalysis],
+  );
 
   const handleClear = useCallback(() => {
     setMessages([
-      { role: "assistant", 
+      {
+        role: "assistant",
         content: hasAnalysis
           ? "Chat cleared. You can continue asking about the current analysis."
-          : "Chat cleared. Click 'Analyze BPMN' to start a new analysis.", },
+          : "Chat cleared. Click 'Analyze BPMN' to start a new analysis.",
+      },
     ]);
     setChatText("");
   }, [hasAnalysis, setChatText]);
@@ -95,7 +111,9 @@ export default function ChatPanel({
       <div className="px-4 py-3 border-b flex items-center justify-between">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">LLM</h2>
-          <div className="text-xs text-slate-500">{llmProps?.modelName || "Unknown Model"}</div>
+          <div className="text-xs text-slate-500">
+            {llmProps?.modelName || "Unknown Model"}
+          </div>
         </div>
 
         <button
