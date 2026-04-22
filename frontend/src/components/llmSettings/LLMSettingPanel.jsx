@@ -8,25 +8,26 @@ const LLMSettingsPanel = ({
   setLlmProps,
   setActiveTab,
 }) => {
-  
   const updateField = (field, value) => {
-    setLlmPropsDraft((prev) => ({ 
-        ...prev, // first copy all old llmProps, to just change the field-> value 
-        [field]: value }));
-  }
+    setLlmPropsDraft((prev) => ({
+      ...prev, // first copy all old llmProps, to just change the field-> value
+      [field]: value,
+    }));
+  };
 
   const handleApply = () => {
-      setLlmProps(llmPropsDraft); 
-      console.log("Applied LLM Settings:", llmPropsDraft);
-      setActiveTab("chat"); 
-    };
+    setLlmProps(llmPropsDraft);
+    console.log("Applied LLM Settings:", llmPropsDraft);
+    setActiveTab("chat");
+  };
 
   return (
     <div className="h-full min-h-0 flex flex-col p-4 border rounded">
       <div className="mb-8">
         <h2 className="text-lg font-semibold text-slate-900">LLM Settings</h2>
         <p className="text-xs text-slate-500">
-          Choose your language model and configure the parameters for analysis and chat interactions.
+          Choose your language model and configure the parameters for analysis
+          and chat interactions.
         </p>
       </div>
 
@@ -40,10 +41,12 @@ const LLMSettingsPanel = ({
             onChange={(e) => updateField("modelName", e.target.value)}
             className="w-full rounded border  text-slate-900"
           >
-            <option  value="openai/gpt-4o-mini">GPT-4o Mini</option>
-            <option  value="google/gemma-3-12b-it">Gemma 3 12B</option>
-            <option  value="google/gemma-2-27b-it">Gemma 2 27B</option>
-            <option  value="deepseek/deepseek-v3.2">Deep Seek 3.2</option>
+            <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+            <option value="google/gemma-4-26b-a4b-it:free">
+              Gemma 4 26B A4B(free)
+            </option>
+            <option value="openai/sora-2-pro">Sora 2 Pro</option>
+            <option value="deepseek/deepseek-v3.2">Deep Seek 3.2</option>
           </select>
         </div>
 
@@ -79,10 +82,12 @@ const LLMSettingsPanel = ({
             type="text"
             placeholder="Optional"
             value={llmPropsDraft.seed ?? ""}
-            onChange={(e) =>setLlmPropsDraft({
-              ...llmPropsDraft,
-              seed: e.target.value,
-            })}
+            onChange={(e) =>
+              setLlmPropsDraft({
+                ...llmPropsDraft,
+                seed: e.target.value,
+              })
+            }
             className="w-full rounded border border-slate-400 px-3 py-2 text-slate-900"
           />
         </div>
@@ -90,16 +95,16 @@ const LLMSettingsPanel = ({
         {/* Number Steppers */}
         <div className="flex flex-col gap-5 mb-10 mt-5 min-[1800px]:flex-row">
           <div className="xl:flex-1">
-            <label className="block text-sm font-medium text-black mb-1 min-h-[30px]" >
+            <label className="block text-sm font-medium text-black mb-1 min-h-[30px]">
               Temperature
             </label>
-              <CompactNumberStepper
-                value={llmPropsDraft.temperature}
-                onChange={(val) => updateField("temperature", val)}
-                min={0}
-                max={1}
-                step={0.1}
-              />
+            <CompactNumberStepper
+              value={llmPropsDraft.temperature}
+              onChange={(val) => updateField("temperature", val)}
+              min={0}
+              max={1}
+              step={0.1}
+            />
           </div>
 
           <div className="xl:flex-1">
@@ -107,12 +112,12 @@ const LLMSettingsPanel = ({
               Top P
             </label>
             <CompactNumberStepper
-                value={llmPropsDraft.topP}
-                onChange={(val) => updateField("topP", val)}
-                min={0}
-                max={1}
-                step={0.1}
-              />
+              value={llmPropsDraft.topP}
+              onChange={(val) => updateField("topP", val)}
+              min={0}
+              max={1}
+              step={0.1}
+            />
           </div>
 
           <div className="xl:flex-2">
@@ -120,23 +125,22 @@ const LLMSettingsPanel = ({
               LLM Response Timeout (seconds)
             </label>
             <CompactNumberStepper
-                value={llmPropsDraft.responseTimeout}
-                onChange={(val) => updateField("responseTimeout", val)}
-                min={0}
-                max={400}
-                step={1}
-              />
+              value={llmPropsDraft.responseTimeout}
+              onChange={(val) => updateField("responseTimeout", val)}
+              min={0}
+              max={400}
+              step={1}
+            />
           </div>
         </div>
-
       </div>
 
       <div className="mt-auto">
-        <Button color="primary" size="width" onClick={handleApply} >
+        <Button color="primary" size="width" onClick={handleApply}>
           Apply Settings
         </Button>
       </div>
     </div>
   );
-}
+};
 export default LLMSettingsPanel;

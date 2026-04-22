@@ -14,7 +14,7 @@ function DiagramCard({ title, children }) {
         </button>
       </div>
 
-      <div className="h-[240px] rounded-md border border-dashed border-rose-300 flex items-center justify-center text-slate-500">
+      <div className="h-[240px] flex items-center justify-center text-slate-500">
         {children}
       </div>
     </div>

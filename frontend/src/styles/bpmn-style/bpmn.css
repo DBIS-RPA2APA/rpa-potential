@@ -25,3 +25,18 @@
 .djs-label tspan {
   fill: #000 !important;
 }
+
+.highlight-correct .djs-visual > :nth-child(1) {
+  stroke: #15803d !important;
+  fill: #a8dbba !important;
+}
+
+.highlight-false-positive .djs-visual > :nth-child(1) {
+  stroke: #DC2626 !important;
+  fill: #FEE2E2 !important;
+}
+
+.highlight-false-negative .djs-visual > :nth-child(1) {
+  stroke: #b16a05 !important;
+  fill: #ffebb0 !important;
+}

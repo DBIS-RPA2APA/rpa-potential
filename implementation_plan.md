@@ -1,74 +1,43 @@
 ## Next Steps
 
-Fragen:
+Today:
 
-- Genau größe vom Datensatz, Wie viele BPMN muss ich vergleichen
-- Wie viele LLMs soll ich nehmen und welche?
-- A/B-Vergleich von Algorithmen. Gegenüberstellung verschiedener Klassifizierungspipelines, mit z. B. alternativen Prompts oder anderem Preprocessing, über eine standardisierte HTTP-Schnittstelle, die in Kapitel 4.4 definiert ist. -> Muss ich das auch machen? im Master nicht gemacht, nur Fokus auf demselben Algorithmus!
-- Wenn eine Task rictiger weiße als automatisierbar eingestuft wurde, ABER die Scorse nicht passen, Was dann?
-
-bis 9. April:
-
-data class EvaluationMetadataReport(
-val modelName: String,
-val modelTemperature: Double,
-val modelTopP: Double,
-val dataset: String,
-val totalTestCases: Int,
-val defaultEvaluationEndpoint: String,
-val totalRepetitions: Int = 1,
-val seed: Int? = null,
-val timestamp: Timestamp,
-)
-
-data class EvaluationReportSummary(
-val total: Int,
-val passed: Int,
-val failed: Int,
-val error: Int,
-val amountOfRetries: Int? = null,
-val precision: Double,
-val recall: Double,
-val f1Score: Double,
-val accuracy: Double,
-val totalTruePositives: Int,
-val totalFalsePositives: Int,
-val totalFalseNegatives: Int,
-val totalTrueNegatives: Int
-)
-data class TestCaseReport(
-val testCaseId: Long,
-val testCaseName: String? = null,
-val datasetId: Long? = null,
-val imageSrc: String,
-val correctActivityIds: List<String>,
-val falsePositiveIds: List<String>,
-val falseNegativeIds: List<String>,
-val expectedNamesWithIds: List<String>,
-val actualNamesWithIds: List<String>,
-val isSuccessful: Boolean,
-val result: List<ExpectedValue>,
-val amountOfRetries: Int? = null
-)
-
-- deepEval
-- mertendieckmann/griplbackend/evaluation/metrics/MetricsAccumulator.kt
-- Aufbau Evaluierung: Diagramm erstellen lassen, Score pro Task in Tabelle einfügen, Button wo die Kriterien für Automatisierbar stehen!!!
-- schon durchgeführte Evluierungen können nochmal aufgerufen werden…
-- Labeling: für jede Avtivität (id, automatiseirbar (true, false), Scores), als JSON (frontend/components/labeling/…)
-
-ToDo:
-
-- ganzes Datenset mitgeben dass Analyseirt werden soll, wenn dass analysiert wurde je ein BPMN auswählen und sich im Editor anzeigen lass mit resaon… -> im Evaluation Tab!!!
-- Evaluation der verschiedenen LLMs !!!
-- Download Evaluation Button!!!
+= Panel ProgressBar -> Evaluation
+= passed -> kriteren anpassen
 
 - when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
-- BPMNEditor evtl functions auslagern
+- Button wo die Kriterien (Bernard…) für Automatisierbar stehen im PopUp und Editor!!!
+- netzdiagramm und Button bei Diagrammen
+- Diagramme relativ zur Bildschirm größe
+
+- repetitions !!! -> von TP,TN; FP; FN Mittelwert nehmen?
+- Download Button -> in Evalutaion PopUp, als JSON… Datei EINE Evaluation runterladen kann
+- Datensatz 10 Bpmn
+- (HoverPopup nach zoom anpassen)
+
+Fragen:
+
+- Genau größe vom Datensatz, Wie viele BPMN muss ich vergleichen -> 10 unterschiedliche größen
+- Wie viele LLMs soll ich nehmen und welche? -> 3 Opensource, …
+- Wenn eine Task rictiger weiße als automatisierbar eingestuft wurde, ABER die Scorse nicht passen, Was dann? -> Später in Arbeits schreiben…
+- Lieber mehr llm Vergleichen, Größeres Datenset, und wiederholungen… -> bei gleichem LLM und gelichem BPMN öfters durchlafuen lassen immer wieder verschiedene Tasks als Automatisierbar eingestuft…
+
+bis 30. April:
+
+- Datensatz 10 Bpmn
+- komplette history von results
+- repetitions !!!
+- Netzdiagramm d3
 - Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
+- Evaluierung: Button wo die Kriterien für Automatisierbar stehen!!!, Download Button, Panel ProgressBar, mehrere Runs?
+- when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
 - (HoverPopup nach zoom anpassen)
 - UX überprüfen
+- Anfangen zu schreiben,
+
 - UI Kit-Deign erstellen und anwenden!!! <3
+
+- deepEval
 
 ## Goal:
 
@@ -85,30 +54,11 @@ Output: BpmnAnalysisResult -> Liste mit kritischen Elementen, in Editor Bpmn ang
 6. ...
 7. Evalation der verschiedenen LLMs !!!
 
-React Native App
-↓
-Node Backend
-↓
-LangChain.js
-↓
-OpenRouter API
-↓
-LLMs
-
 - Frontend: React/ReactNative + bpmn-js (hast du)
 - Backend: Node.js
 - LLM Layer: LangChain.js
 - Provider für Multi-LLM: OpenRouter (plus optional Ollama)
 - Output: Zwingend strukturiert + Retry + id-validation (wie Masterarbeit)
-
-## Offene Fragen...
-
-- Daten Labeln für Evaluation zw verschiedenen LLMs
-- Datenset erstellen/ holen…
-- Camunda informieren
-- Fehlerhafte LLM-Antworten abfangen
-- llmProps (Modelname, temperature, topP, seed etc.) -> im Frontend selber setztn können (PopUp/…)
-- BPMN im Editor interaktiv (Begründungen vom LLM anzeigen)
 
 ## BPMN Extraction
 
@@ -136,23 +86,6 @@ Output: valides BpmnAnalysisResult
 
 Input: BpmnAnalysisResult
 Output: Editor mit rot markierten Elementen
-
-## OpenRouter
-
-- Model Zugriff
-- OpenRouter kein eigener LLM -> ein Gateway / Routing Service
-- liefert Zugriff auf viele LLMs
-
-# Mit Evaluationskonfiguration Config-Pattern:
-
-llmProps = {
-baseUrl: "https://openrouter.ai/api/v1",
-modelName: "mistralai/mistral-7b-instruct",
-apiKey: "...",
-temperature: 0.1,
-topP: 1,
-seed: 123
-}
 
 ## LangChain
 

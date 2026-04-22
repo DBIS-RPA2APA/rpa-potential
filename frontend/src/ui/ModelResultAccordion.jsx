@@ -1,7 +1,12 @@
 import AccordionSection from "./AccordionSection";
+import BpmnPreview from "../components/evaluation/BpmnPreview";
 
 function ModelResultAccordion({ result }) {
-  const isFailed = result.status === "failed";
+  const isFailed = !result.isSuccessful;
+
+  const expectedCount = result.expectedNamesWithIds.length ?? 0;
+  const detectedCount = result.actualNamesWithIds.length ?? 0;
+  const correctCount = result.correctActivityIds.length ?? 0;
 
   return (
     <AccordionSection
@@ -9,10 +14,12 @@ function ModelResultAccordion({ result }) {
         <div className="flex justify-between items-center">
           <div>
             <p className="text-xl font-semibold text-slate-900">
-              {result.title} ({result.total})
+              {result.testCaseName}
             </p>
             <p className="text-sm text-slate-500 font-normal mt-1">
-              {result.subtitle}
+              {correctCount}/{expectedCount} correct,{" "}
+              {result.falsePositiveIds.length ?? 0} false positives,{" "}
+              {result.falseNegativeIds.length ?? 0} false negatives
             </p>
           </div>
 
@@ -31,43 +38,47 @@ function ModelResultAccordion({ result }) {
       <div className="space-y-2">
         {/* Summary cards */}
         <div className="grid grid-cols-3 gap-2">
-          <SmallSummaryCard label="Expected" value={result.expectedCount} />
-          <SmallSummaryCard label="Detected" value={result.detectedCount} />
-          <SmallSummaryCard label="Correct" value={result.correctCount} />
+          <SmallSummaryCard label="Expected" value={expectedCount} />
+          <SmallSummaryCard label="Detected" value={detectedCount} />
+          <SmallSummaryCard label="Correct" value={correctCount} />
         </div>
 
         {/* Expected / detected */}
         <div className="grid grid-cols-2 gap-4">
           <div className="border-rose-800 rounded-md border-2 p-4">
-            <h4 className="text-lg font-semibold text-slate-900 mb-2">
+            <h4 className="text-md font-semibold text-slate-900 mb-2">
               Expected Activities
             </h4>
             <ul className="space-y-1">
-              {result.expectedActivities.map((activity, index) => (
-                <li key={index} className="text-emerald-700">
-                  • {activity}
-                </li>
-              ))}
+              {result.result
+                ?.filter((item) => item.expectedScore !== null)
+                .map((activity) => (
+                  <li key={activity.id} className="text-emerald-700 text-sm">
+                    • {activity.name} ({activity.id})
+                  </li>
+                ))}
             </ul>
           </div>
 
           <div className="border-rose-800 rounded-md border-2 p-4">
-            <h4 className="text-lg font-semibold text-slate-900 mb-2">
+            <h5 className="text-md font-semibold text-slate-900 mb-2">
               Detected Activities
-            </h4>
+            </h5>
             <ul className="space-y-1">
-              {result.detectedActivities.map((activity, index) => (
-                <li
-                  key={index}
-                  className={
-                    activity.type === "falsePositive"
-                      ? "text-red-700"
-                      : "text-emerald-700"
-                  }
-                >
-                  • {activity.text}
-                </li>
-              ))}
+              {result.result
+                ?.filter((item) => item.llmScore !== null)
+                .map((activity) => (
+                  <li
+                    key={activity.id}
+                    className={
+                      activity.status === "falsePositive"
+                        ? "text-red-700 text-sm"
+                        : "text-emerald-700 text-sm"
+                    }
+                  >
+                    • {activity.name} ({activity.id})
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
@@ -77,9 +88,12 @@ function ModelResultAccordion({ result }) {
           <h4 className="text-md font-semibold text-slate-900 mb-3">
             Visual Preview
           </h4>
-          <div className="h-50 rounded-md border border-dashed border-rose-300 flex items-center justify-center text-slate-700">
-            BPMN preview comes here
-          </div>
+          <BpmnPreview
+            bpmnXml={result.imageSrc}
+            correctActivityIds={result.correctActivityIds} // green
+            falsePositiveIds={result.falsePositiveIds} // red
+            falseNegativeIds={result.falseNegativeIds} // orange
+          />
         </div>
 
         {/* Reasoning table */}
@@ -93,25 +107,37 @@ function ModelResultAccordion({ result }) {
               <thead>
                 <tr className="bg-slate-300 text-slate-900">
                   <th className="p-3">Activity</th>
+                  <th className="p-3">LLM Score</th>
+                  <th className="p-3">Expected Score</th>
                   <th className="p-3">Reasoning</th>
                 </tr>
               </thead>
               <tbody>
-                {result.reasoning.map((row, index) => (
-                  <tr
-                    key={index}
-                    className={
-                      row.highlight === "error"
-                        ? "bg-red-100 border-t"
-                        : "bg-white border-t"
-                    }
-                  >
-                    <td className="p-3 text-slate-900 font-medium">
-                      {row.activity}
-                    </td>
-                    <td className="p-3 text-slate-700">{row.text}</td>
-                  </tr>
-                ))}
+                {result.result
+                  .filter((row) => row.llmScore !== null)
+                  .map((row, index) => (
+                    <tr
+                      key={index}
+                      className={
+                        row.status === "falsePositive"
+                          ? "bg-red-200 border-t"
+                          : "bg-white border-t"
+                      }
+                    >
+                      <td className="p-2 text-slate-900 font-medium">
+                        {row.name} ({row.id})
+                      </td>
+                      <td className="p-2 text-slate-700">
+                        {row.llmScore ? row.llmScore.join(", ") : "—"}
+                      </td>
+                      <td className="p-2 text-slate-700">
+                        {row.expectedScore ? row.expectedScore.join(", ") : "—"}
+                      </td>
+                      <td className="p-2 text-slate-700">
+                        {row.reasoning ?? "—"}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -131,3 +157,17 @@ function SmallSummaryCard({ label, value }) {
     </div>
   );
 }
+/*{
+  testCaseID,
+  testCaseName,
+  datasetId,
+  imageSrc,
+  correctActivityIds,
+  falsePositiveIds,
+  falseNegativeIds,
+  expectedNamesWithIds,
+  actualNamesWithIds,
+  isSuccessful,
+  result,
+  amountOfRetries
+}*/

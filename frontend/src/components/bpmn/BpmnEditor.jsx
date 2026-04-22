@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState} from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import BpmnModeler from "bpmn-js/lib/Modeler";
@@ -11,28 +11,22 @@ import "../../styles/bpmn-style/bpmn.css";
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 //import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
-import  AnalysisPopup  from "../../ui/AnalysisPopup.jsx";
+import AnalysisPopup from "../../ui/AnalysisPopup.jsx";
 import { analyzeElements } from "../../services/api/analyzeApi.js";
 import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
 
-
-// main component for the BPMN editor, responsible for initializing the BPMN modeler, handling file imports, 
+// main component for the BPMN editor, responsible for initializing the BPMN modeler, handling file imports,
 // managing state for errors and analysis results, and passing necessary refs and callbacks to the BpmnLayout component for rendering the UI.
-export function BpmnEditor({
-  analysisResult,
-  onAnalysisResult,
-  llmProps,
-
-}) {
+export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
   const containerRef = useRef(null);
   const modelerRef = useRef(null);
-  const fileInputRef = useRef(null); 
+  const fileInputRef = useRef(null);
 
   const [error, setError] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return; 
+    if (!containerRef.current) return;
 
     const modeler = new BpmnModeler({
       container: containerRef.current,
@@ -50,7 +44,6 @@ export function BpmnEditor({
     };
   }, []);
 
-
   useEffect(() => {
     if (!modelerRef.current) return;
     if (!analysisResult?.criticalElements) return;
@@ -64,7 +57,7 @@ export function BpmnEditor({
     const tasks = all.filter((el) => isTask(el));
 
     tasks.forEach((el) => {
-      // bpmn-js set default style 
+      // bpmn-js set default style
       modeling.setColor(el, { fill: null, stroke: null });
     });
 
@@ -79,159 +72,161 @@ export function BpmnEditor({
       modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
     });
     //console.log("critical:",analysisResult.criticalElements.map((x) => x.id));
-  }, [analysisResult]); // start just when analysisResult changes 
-
+  }, [analysisResult]); // start just when analysisResult changes
 
   function findCriticalElementById(analysisResult, elementId) {
     if (!analysisResult?.criticalElements) return null;
-    return analysisResult.criticalElements.find((item) => item.id === elementId) ?? null;
+    return (
+      analysisResult.criticalElements.find((item) => item.id === elementId) ??
+      null
+    );
   }
   // --- Hover Popup: shows analysis details when hovering over critical elements ---
-    useEffect(() => {
-      const modeler = modelerRef.current;
-      if (!modeler || !analysisResult?.criticalElements?.length) return;
+  useEffect(() => {
+    const modeler = modelerRef.current;
+    if (!modeler || !analysisResult?.criticalElements?.length) return;
 
-      const eventBus = modeler.get("eventBus");
-      const overlays = modeler.get("overlays");
+    const eventBus = modeler.get("eventBus");
+    const overlays = modeler.get("overlays");
 
-      let overlayId = null; // to track the current overlay, so we can remove it when needed
-      let popupRoot = null;
-      let hoveredId = null;
-      let showTimeout = null;
-      let hideTimeout = null; 
-      let pinnedId = null; 
+    let overlayId = null; // to track the current overlay, so we can remove it when needed
+    let popupRoot = null;
+    let hoveredId = null;
+    let showTimeout = null;
+    let hideTimeout = null;
+    let pinnedId = null;
 
-      // remove popup and overlay when mouse leaves element
-      const cleanupPopup = () => {
-        clearTimeout(showTimeout);
-        clearTimeout(hideTimeout);
+    // remove popup and overlay when mouse leaves element
+    const cleanupPopup = () => {
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
 
-        if (overlayId) overlays.remove(overlayId);
-        if (popupRoot) popupRoot.unmount();
+      if (overlayId) overlays.remove(overlayId);
+      if (popupRoot) popupRoot.unmount();
 
-        overlayId = null;
-        popupRoot = null;
-        hoveredId = null;
-      };
+      overlayId = null;
+      popupRoot = null;
+      hoveredId = null;
+    };
 
-      const renderPopup = (element, crit) => {
-        if (overlayId) overlays.remove(overlayId);
-        if (popupRoot) popupRoot.unmount();
+    const renderPopup = (element, crit) => {
+      if (overlayId) overlays.remove(overlayId);
+      if (popupRoot) popupRoot.unmount();
 
-        const container = document.createElement("div");
-        popupRoot = createRoot(container);
+      const container = document.createElement("div");
+      popupRoot = createRoot(container);
 
-        popupRoot.render(
-          <AnalysisPopup
-            elementId={crit.id}
-            reason={crit.reason ?? "No reason provided"}
-            score={crit.score}
-            title="This element can be automated"
-          />
-        );
+      popupRoot.render(
+        <AnalysisPopup
+          elementId={crit.id}
+          reason={crit.reason ?? "No reason provided"}
+          score={crit.score}
+          title="This element can be automated"
+        />,
+      );
 
-        overlayId = overlays.add(element, {
-          position: { bottom: -10, left: -10 },
-          html: container,
-        });
+      overlayId = overlays.add(element, {
+        position: { bottom: -10, left: -10 },
+        html: container,
+      });
 
-        hoveredId = element.id;
-      };
-      // show popup with delay when hovering over critical element
-      const handleHover = ({ element }) => {
-        if (pinnedId) return; // wenn gepinnt, Hover ignorieren
-        if (!element || !isTask(element)) return;
+      hoveredId = element.id;
+    };
+    // show popup with delay when hovering over critical element
+    const handleHover = ({ element }) => {
+      if (pinnedId) return; // wenn gepinnt, Hover ignorieren
+      if (!element || !isTask(element)) return;
 
-        const crit = findCriticalElementById(analysisResult, element.id);
-        if (!crit) return;
+      const crit = findCriticalElementById(analysisResult, element.id);
+      if (!crit) return;
 
-        clearTimeout(hideTimeout);
+      clearTimeout(hideTimeout);
 
-        showTimeout = setTimeout(() => {
-          if (hoveredId === element.id && overlayId) return;
-          renderPopup(element, crit);
-        }, 150);
-      };
-      // hide popup with delay when mouse leaves element, but only if not pinned
-      const handleOut = ({ element }) => {
-        if (pinnedId) return; // wenn gepinnt, nicht schließen
-
-        clearTimeout(showTimeout);
-
-        hideTimeout = setTimeout(() => {
-          if (hoveredId === element?.id) {
-            cleanupPopup();
-          }
-        }, 120);
-      };
-      // click to pin/unpin popup
-      const handleClick = ({ element }) => {
-        if (!element || !isTask(element)) {
-          pinnedId = null;
-          cleanupPopup();
-          return;
-        }
-
-        const crit = findCriticalElementById(analysisResult, element.id);
-
-        if (!crit) {
-          pinnedId = null;
-          cleanupPopup();
-          return;
-        }
-
-        clearTimeout(showTimeout);
-        clearTimeout(hideTimeout);
-
-        pinnedId = element.id;
+      showTimeout = setTimeout(() => {
+        if (hoveredId === element.id && overlayId) return;
         renderPopup(element, crit);
-      };
-        const handleCanvasClick = () => {
-          pinnedId = null;
+      }, 150);
+    };
+    // hide popup with delay when mouse leaves element, but only if not pinned
+    const handleOut = ({ element }) => {
+      if (pinnedId) return; // wenn gepinnt, nicht schließen
+
+      clearTimeout(showTimeout);
+
+      hideTimeout = setTimeout(() => {
+        if (hoveredId === element?.id) {
           cleanupPopup();
-        };
-
-        eventBus.on("element.hover", handleHover);
-        eventBus.on("element.out", handleOut);
-        eventBus.on("element.click", handleClick);
-        eventBus.on("canvas.click", handleCanvasClick);
-
-        return () => {
-          eventBus.off("element.hover", handleHover);
-          eventBus.off("element.out", handleOut);
-          eventBus.off("element.click", handleClick);
-          eventBus.off("canvas.click", handleCanvasClick);
-          cleanupPopup();
-        };
-      }, [analysisResult]); 
-
-      // --- Import function: imports BPMN XML string into modeler ---
-      const importXmlString = useCallback(async (xml) => {
-        try {
-          setError("");
-          await modelerRef.current.importXML(xml);
-          console.log("Import erfolgreich");
-          console.log(modelerRef.current.get("elementRegistry").getAll());
-        } catch (e) {
-          console.error(e);
-          setError("Import fehlgeschlagen");
-          await modelerRef.current.importXML(initialDiagram);
         }
-      }, []);
+      }, 120);
+    };
+    // click to pin/unpin popup
+    const handleClick = ({ element }) => {
+      if (!element || !isTask(element)) {
+        pinnedId = null;
+        cleanupPopup();
+        return;
+      }
+
+      const crit = findCriticalElementById(analysisResult, element.id);
+
+      if (!crit) {
+        pinnedId = null;
+        cleanupPopup();
+        return;
+      }
+
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
+
+      pinnedId = element.id;
+      renderPopup(element, crit);
+    };
+    const handleCanvasClick = () => {
+      pinnedId = null;
+      cleanupPopup();
+    };
+
+    eventBus.on("element.hover", handleHover);
+    eventBus.on("element.out", handleOut);
+    eventBus.on("element.click", handleClick);
+    eventBus.on("canvas.click", handleCanvasClick);
+
+    return () => {
+      eventBus.off("element.hover", handleHover);
+      eventBus.off("element.out", handleOut);
+      eventBus.off("element.click", handleClick);
+      eventBus.off("canvas.click", handleCanvasClick);
+      cleanupPopup();
+    };
+  }, [analysisResult]);
+
+  // --- Import function: imports BPMN XML string into modeler ---
+  const importXmlString = useCallback(async (xml) => {
+    try {
+      setError("");
+      await modelerRef.current.importXML(xml);
+      console.log("Import erfolgreich");
+      console.log(modelerRef.current.get("elementRegistry").getAll());
+    } catch (e) {
+      console.error(e);
+      setError("Import fehlgeschlagen");
+      await modelerRef.current.importXML(initialDiagram);
+    }
+  }, []);
 
   // --- Extract function: prepares and extracts elements ---
   // const f = useCallback(fn, [a, b]); -> Erstelle die Funktion neu, wenn sich einer der Werte a,b ändert, die innen benutzt werden.
   const handleAnalyzeBpmn = useCallback(async () => {
     if (!modelerRef.current) return;
     try {
-      setError(""); // delete any previous error 
+      setError(""); // delete any previous error
       setIsAnalyzing(true); // set analyzing state to true to show loading indicator in UI
 
       const modeler = modelerRef.current;
       const { xml } = await modeler.saveXML({ format: true });
-      const elements  = extractFromXml(xml);
+      const elements = extractFromXml(xml);
       const result = await analyzeElements(elements, llmProps);
-      
+
       onAnalysisResult?.({
         criticalElements: result.criticalElements ?? [],
         uiMessage: result.uiMessage ?? "",
@@ -242,11 +237,9 @@ export function BpmnEditor({
       console.error("Analyze BPMN failed", e);
       setError("Analyze failed: " + (e?.message ?? ""));
     } finally {
-      setIsAnalyzing(false); // reset analyzing state 
+      setIsAnalyzing(false); // reset analyzing state
     }
-  }, [ onAnalysisResult, llmProps]);
-
-
+  }, [onAnalysisResult, llmProps]);
 
   // --- File import handler: reads selected BPMN file, checks extension, and imports it into the modeler ---
   const handleFileSelected = useCallback(
@@ -259,7 +252,9 @@ export function BpmnEditor({
       }
       const xml = await file.text();
       await importXmlString(xml);
-    }, [importXmlString]);
+    },
+    [importXmlString],
+  );
 
   // --- Download function: saves the BPMN diagram as an XML file ---
   const handleDownload = useCallback(async () => {
@@ -269,7 +264,7 @@ export function BpmnEditor({
       const blob = new Blob([xml], { type: "application/xml" }); // Binärobjekt, virtual file in memory
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob); // temporäre URL
-      a.download = "diagram.bpmn"; 
+      a.download = "diagram.bpmn";
       a.click();
       URL.revokeObjectURL(a.href);
     } catch (e) {
@@ -277,14 +272,14 @@ export function BpmnEditor({
     }
   }, []);
 
- // --- CreateNew function: loads new empty Diagram  ---
+  // --- CreateNew function: loads new empty Diagram  ---
   const handleCreateNew = useCallback(async () => {
     const modeler = modelerRef.current;
-    if(!modeler) return;
-    try{
+    if (!modeler) return;
+    try {
       await modeler.importXML(initialDiagram);
     } catch (error) {
-        console.error("Fehler beim Erstellen eines neuen BPMN-Diagramms:", error);
+      console.error("Fehler beim Erstellen eines neuen BPMN-Diagramms:", error);
     }
   }, []);
 
@@ -297,7 +292,8 @@ export function BpmnEditor({
     // ---  Reset: remove old colors ---
     const all = registry.getAll();
     const tasks = all.filter((el) => isTask(el));
-    tasks.forEach((el) => { // bpmn-js set default style 
+    tasks.forEach((el) => {
+      // bpmn-js set default style
       modeling.setColor(el, { fill: null, stroke: null });
     });
     // clear analysis result in parent state to remove popups and other analysis-related UI
@@ -310,7 +306,9 @@ export function BpmnEditor({
       return;
     }
     try {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(analysisResult, null, 2));
+      const dataStr =
+        "data:text/json;charset=utf-8," +
+        encodeURIComponent(JSON.stringify(analysisResult, null, 2));
       const a = document.createElement("a");
       a.href = dataStr;
       a.download = "analysis_report.json";

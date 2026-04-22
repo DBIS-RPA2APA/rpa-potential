@@ -6,16 +6,22 @@ data class EvaluationMetadataReport()
 data class EvaluationReportSummary()
 data class TestCaseReport()
 */
-import { buildSystemPrompt, buildUserPrompt } from "./LlmPrompt.js";
-import { callStructuredLlm } from "./llmClient.js";
-import { normalizeAndValidate } from "./Validation.js";
+import { buildSystemPrompt, buildUserPrompt } from "../LlmPrompt.js";
+import { callStructuredLlm } from "../llmClient.js";
+import { normalizeAndValidate } from "../Validation.js";
+import {
+  calculateEvaluationReportSummary,
+  getTestCaseReport,
+} from "./metrics.js";
 
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
-  const { datasetName, testCases, numRepetitions, maxConcurrent } =
-    evaluationConfig;
+  const { datasetName, testCases, numRepetitions } = evaluationConfig;
 
-  // For simplicity, we will just analyze each test case with the existing analyze function
-  // In a real implementation, you would likely want to design a specific evaluation prompt and logic
+  let totalTruePositives = 0;
+  let totalFalsePositives = 0;
+  let totalFalseNegatives = 0;
+  let totalTrueNegatives = 0;
+
   const results = [];
   for (const testCase of testCases) {
     // 1) Build prompts
@@ -32,16 +38,43 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     const parsed = normalizeAndValidate(rawLlmResponse, testCase.elements);
     const criticalElements = parsed.criticalElements;
 
-    results.push({
-      testCaseId: testCase.id,
-      testCaseName: testCase.name,
+    console.log(criticalElements);
+
+    // 4) Build TestCaseReport
+    const TestCaseReport = getTestCaseReport(
       criticalElements,
-      expectedValues: testCase.expectedValues,
-    });
+      testCase,
+      numRepetitions,
+    );
+
+    const totalElements = testCase.elements.length;
+
+    totalFalseNegatives += TestCaseReport.falseNegativeIds.length;
+    totalFalsePositives += TestCaseReport.falsePositiveIds.length;
+    totalTruePositives += TestCaseReport.correctActivityIds.length;
+    totalTrueNegatives +=
+      totalElements -
+      TestCaseReport.expectedNamesWithIds.length -
+      TestCaseReport.falsePositiveIds.length;
+
+    // FP -> falsePositiveIds.length
+    // FN -> falseNegativeIds.length
+    // TP -> correctActivityIds.length
+    // TN -> elements - labeled elements - critical elements
+
+    results.push(TestCaseReport);
   }
+
+  const evaluationReportSummary = calculateEvaluationReportSummary(
+    totalFalseNegatives,
+    totalFalsePositives,
+    totalTrueNegatives,
+    totalTruePositives,
+  );
 
   return {
     datasetName,
-    results,
+    testCaseReports: results,
+    metadata: evaluationReportSummary,
   };
 }

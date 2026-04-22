@@ -3,9 +3,21 @@ import Button from "../../ui/button";
 import AccordionSection from "../../ui/AccordionSection";
 import DiagramCard from "../../ui/DiagrammSection";
 import ModelResultAccordion from "../../ui/ModelResultAccordion";
+import BarPlot from "../../ui/Barplot";
+import PieChart from "../../ui/PieChart";
+import { LuDownload } from "react-icons/lu";
 //import { LuChevronsDownU, LuFoldVertical } from "react-icons/lu"; //<LuChevronsDownUp /> <LuFoldVertical />
 
-export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
+export function EvaluationResult({
+  onClose,
+  llmProps,
+  evaluationConfig,
+  testCaseReports,
+  summary,
+  metadata,
+}) {
+  const numTestCases = evaluationConfig?.testCases?.length;
+
   function SummaryStat({ value, label, valueColor = "text-slate-900" }) {
     return (
       <div className="flex flex-col items-center justify-center">
@@ -14,7 +26,6 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
       </div>
     );
   }
-
   function ProgressMetric({
     value,
     label,
@@ -44,10 +55,18 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
           <h3 className="text-3xl font-semibold text-slate-900">
             Evaluation Results
           </h3>
-
-          <Button size="small" color="secondary" onClick={onClose}>
-            Close
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              color="primary"
+              size="medium"
+              icon={<LuDownload size={15} />}
+            >
+              Download BPMN
+            </Button>
+            <Button size="small" color="secondary" onClick={onClose}>
+              Close
+            </Button>
+          </div>
         </div>
         {/* First Row */}
         <div className="grid grid-cols-2 gap-4">
@@ -80,13 +99,13 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
             <p className="text-md text-slate-500">
               Total Test Cases:{" "}
               <span className="font-medium text-slate-900">
-                {evaluationConfig?.testcases ?? "-"}
+                {numTestCases ?? "-"}
               </span>
             </p>
             <p className="text-md text-slate-500">
               Default Evaluation Endpoint:{" "}
               <span className="font-medium text-slate-900">
-                {llmProps?.defaultEvaluationEndpoint ?? "-"}
+                {evaluationConfig?.defaultEvaluationEndpoint ?? "-"}
               </span>
             </p>
             <p className="text-md text-slate-500">
@@ -117,22 +136,22 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
               </p>
               <div className="grid grid-cols-4 gap-5 my-3">
                 <SummaryStat
-                  value={9}
+                  value={summary?.passed ?? 0}
                   label="Passed"
                   valueColor="text-emerald-800"
                 />
                 <SummaryStat
-                  value={16}
+                  value={summary?.failed ?? 0}
                   label="Failed"
                   valueColor="text-red-800"
                 />
                 <SummaryStat
-                  value={0}
+                  value={summary?.error ?? 0}
                   label="Errors"
                   valueColor="text-orange-500"
                 />
                 <SummaryStat
-                  value={25}
+                  value={summary?.total ?? 0}
                   label="Total"
                   valueColor="text-slate-700"
                 />
@@ -144,13 +163,13 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
                     Success Rate
                   </span>
                   <span className="text-xs font-medium text-slate-500">
-                    45%
+                    {summary?.percent ?? "-"}%
                   </span>
                 </div>
                 <div className="w-full bg-slate-200 g-slate-300 rounded-full h-2">
                   <div
-                    className="bg-cyan-800 h-2 rounded-full"
-                    style={{ width: "45%" }}
+                    className="bg-cyan-800 h-2 rounded-full transition-all duration-700 ease-out"
+                    style={{ width: `${summary?.percent ?? 0}%` }}
                   ></div>
                 </div>
               </div>
@@ -162,27 +181,49 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
               </p>
               <div className="grid grid-cols-4 gap-7 mt-5">
                 <ProgressMetric
-                  value="0.735"
+                  // Accuracy: Anteil der korrekt klassifizierten Elemente (TP + TN) / (TP + FP + FN + TN)
+                  value={metadata?.accuracy}
                   label="Accuracy"
-                  percent={73.5}
+                  percent={
+                    metadata?.accuracy
+                      ? (metadata.accuracy * 100).toFixed(1)
+                      : "0.0"
+                  }
                   valueColor="text-rose-400"
                 />
                 <ProgressMetric
-                  value="0.746"
+                  // Precision: Anteil korrekt identifizierter relevanter Elemente
+                  // (TP / (TP + FP))
+                  value={metadata?.precision}
                   label="Precision"
-                  percent={74.6}
+                  percent={
+                    metadata?.precision
+                      ? (metadata.precision * 100).toFixed(1)
+                      : "0.0"
+                  }
                   valueColor="text-violet-800"
                 />
                 <ProgressMetric
-                  value="0.880"
+                  // Recall: Anteil relevanter Elemente, die korrekt identifiziert
+                  //wurden (TP / (TP + FN))
+                  value={metadata?.recall}
                   label="Recall"
-                  percent={88.0}
+                  percent={
+                    metadata?.recall
+                      ? (metadata.recall * 100).toFixed(1)
+                      : "0.0"
+                  }
                   valueColor="text-amber-400"
                 />
                 <ProgressMetric
-                  value="0.808"
+                  // Mittelwert aus Präzision und Recall
+                  value={metadata?.f1Score}
                   label="F1-Score"
-                  percent={80.8}
+                  percent={
+                    metadata?.f1Score
+                      ? (metadata.f1Score * 100).toFixed(1)
+                      : "0.0"
+                  }
                   valueColor="text-lime-500"
                 />
               </div>
@@ -193,16 +234,62 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
         <AccordionSection title="Diagrams of results">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
             <DiagramCard title="Test Results Distribution">
-              <p className="text-sm">A diagram could go here</p>
+              <PieChart
+                data={[
+                  { name: "Passed", value: summary?.passed ?? 0 },
+                  { name: "Failed", value: summary?.failed ?? 0 },
+                ]}
+                width={800}
+                height={290}
+              />
             </DiagramCard>
             <DiagramCard title="Performance Metrics Overview">
-              <p className="text-sm">A diagram could go here</p>
+              <BarPlot
+                data={[
+                  { name: "Accuracy", value: metadata?.accuracy ?? 0 },
+                  { name: "Precision", value: metadata?.precision ?? 0 },
+                  { name: "Recall", value: metadata?.recall ?? 0 },
+                  { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                ]}
+                width={700}
+                height={240}
+              />
             </DiagramCard>
             <DiagramCard title="Performance Metrics Comparison">
-              <p className="text-sm">A diagram could go here</p>
+              <BarPlot
+                data={[
+                  { name: "Accuracy", value: metadata?.accuracy ?? 0 },
+                  { name: "Precision", value: metadata?.precision ?? 0 },
+                  { name: "Recall", value: metadata?.recall ?? 0 },
+                  { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                ]}
+                width={700}
+                height={240}
+              />
             </DiagramCard>
             <DiagramCard title="Confusion Matrix Breakdown">
-              <p className="text-sm">A diagram could go here</p>
+              <BarPlot
+                data={[
+                  {
+                    name: "True Positives",
+                    value: metadata?.totalTruePositives ?? 0,
+                  },
+                  {
+                    name: "False Positives",
+                    value: metadata?.totalFalsePositives ?? 0,
+                  },
+                  {
+                    name: "False Negatives",
+                    value: metadata?.totalFalseNegatives ?? 0,
+                  },
+                  {
+                    name: "True Negatives",
+                    value: metadata?.totalTrueNegatives ?? 0,
+                  },
+                ]}
+                width={700}
+                height={240}
+              />
             </DiagramCard>
           </div>
         </AccordionSection>
@@ -210,8 +297,8 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
         {/* Third Row */}
         <AccordionSection title="Results per model">
           <div className="grid grid-cols-1 gap-2">
-            {modelResults.map((result) => (
-              <ModelResultAccordion key={result.id} result={result} />
+            {testCaseReports.map((result) => (
+              <ModelResultAccordion key={result.testCaseID} result={result} />
             ))}
           </div>
         </AccordionSection>
@@ -221,42 +308,3 @@ export function EvaluationResult({ onClose, llmProps, evaluationConfig }) {
 }
 
 export default EvaluationResult;
-
-const modelResults = [
-  {
-    id: 1,
-    title: "Arzttermin buchen",
-    total: 30,
-    status: "failed",
-    subtitle: "3/3 correct, 1 false positives",
-    expectedCount: 3,
-    detectedCount: 4,
-    correctCount: 3,
-    expectedActivities: [
-      "Patientendaten aufnehmen (Activity_0gi1msm)",
-      "Termin bestätigen (Activity_1agrvaf)",
-      "Erinnerung senden (Activity_1molpic)",
-    ],
-    detectedActivities: [
-      {
-        text: "Terminoptionen prüfen (Activity_0khomk4)",
-        type: "falsePositive",
-      },
-      { text: "Patientendaten aufnehmen (Activity_0gi1msm)", type: "correct" },
-      { text: "Termin bestätigen (Activity_1agrvaf)", type: "correct" },
-      { text: "Erinnerung senden (Activity_1molpic)", type: "correct" },
-    ],
-    reasoning: [
-      {
-        activity: "Terminoptionen prüfen (Activity_0khomk4)",
-        text: "The activity 'Check appointment options' involves reviewing appointment options...",
-        highlight: "error",
-      },
-      {
-        activity: "Patientendaten aufnehmen (Activity_0gi1msm)",
-        text: "The activity 'Record patient data' clearly indicates the collection and storage of patient data...",
-        highlight: "normal",
-      },
-    ],
-  },
-];

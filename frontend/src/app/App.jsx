@@ -10,8 +10,6 @@ function App() {
   const [hasAnalysis, setHasAnalysis] = useState(false);
   const [activeTab, setActiveTab] = useState("settings");
 
-  
-
   const defaultLlmProps = {
     modelName: "openai/gpt-4o-mini",
     baseUrl: "https://openrouter.ai/api/v1",
@@ -24,8 +22,6 @@ function App() {
 
   const [llmPropsDraft, setLlmPropsDraft] = useState(defaultLlmProps);
   const [llmProps, setLlmProps] = useState(null);
-
-
 
   return (
     <>
@@ -64,7 +60,6 @@ function App() {
       </div>
     </>
   );
-
 }
 
 export default App;
