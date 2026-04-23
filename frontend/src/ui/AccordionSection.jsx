@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
-function AccordionSection({
-  title,
-  children,
-  defaultOpen = false,
-  className = "",
-}) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+function AccordionSection({ title, children, className = "" }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div

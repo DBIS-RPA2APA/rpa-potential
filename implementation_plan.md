@@ -7,12 +7,11 @@ Today:
 = when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
 = Button wo die Kriterien (Bernard…) für Automatisierbar stehen im PopUp und Editor!!!
 = Netzdiagramm und Button bei Diagrammen
+= Diagrammex größe
 
-- Diagramme relativ zur Bildschirm größe
 - repetitions !!! -> von TP,TN; FP; FN Mittelwert nehmen?
-- Download Button -> in Evalutaion PopUp, als JSON… Datei EINE Evaluation runterladen kann
 - Datensatz 10 Bpmn
-- (HoverPopup nach zoom anpassen)
+- Download Button -> in Evalutaion PopUp, als JSON… Datei EINE Evaluation runterladen kann
 
 Fragen:
 
@@ -26,17 +25,12 @@ bis 30. April:
 - Datensatz 10 Bpmn
 - komplette history von results
 - repetitions !!!
-- Netzdiagramm d3
-- Button disabled machen wenn diese ihre Funktion NICHT ausfühern können
-- Evaluierung: Button wo die Kriterien für Automatisierbar stehen!!!, Download Button, Panel ProgressBar, mehrere Runs?
-- when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
-- (HoverPopup nach zoom anpassen)
+- Evaluierung: Download Button, mehrere Runs?
 - UX überprüfen
 - Anfangen zu schreiben,
 - Tests schreiben
 
 - UI Kit-Deign erstellen und anwenden!!! <3
-
 - deepEval
 
 ## Goal:

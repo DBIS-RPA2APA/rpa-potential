@@ -37,7 +37,6 @@ function ModelResultAccordion({ result }) {
             </span>
           </div>
         }
-        defaultOpen={false}
         className="bg-slate-100 border-slate-300"
       >
         <div className="space-y-2">
@@ -48,7 +47,7 @@ function ModelResultAccordion({ result }) {
             <SmallSummaryCard label="Correct" value={correctCount} />
           </div>
 
-          {/* Expected / detected */}
+          {/* Expected / detected list*/}
           <div className="grid grid-cols-2 gap-4">
             <div className="border-rose-800 rounded-md border-2 p-4">
               <h4 className="text-md font-semibold text-slate-900 mb-2">
@@ -111,7 +110,6 @@ function ModelResultAccordion({ result }) {
               <button
                 onClick={() => setScorePopupVisible(true)}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white transition hover:bg-slate-200 cursor-pointer"
-                aria-label="Open scoring criteria"
               >
                 <LuBadgeInfo size={22} color="black" />
               </button>

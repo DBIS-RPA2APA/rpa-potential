@@ -57,9 +57,9 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
         </h3>
         <button
           onClick={onClose}
-          className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition hover:bg-slate-100"
+          className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition hover:bg-slate-50"
         >
-          <LuX size={20} color="black" />
+          <LuX size={25} color="black" />
         </button>
       </div>
 

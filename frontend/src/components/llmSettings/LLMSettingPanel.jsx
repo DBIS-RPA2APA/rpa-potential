@@ -1,6 +1,6 @@
 import Button from "../../ui/button";
 import "../../styles/index.css";
-import CompactNumberStepper from "../../ui/NumberStepper";
+import NumberStepper from "../../ui/NumberStepper";
 
 const LLMSettingsPanel = ({
   llmPropsDraft,
@@ -100,7 +100,7 @@ const LLMSettingsPanel = ({
             <label className="block text-sm font-medium text-black mb-1 min-h-[30px]">
               Temperature
             </label>
-            <CompactNumberStepper
+            <NumberStepper
               value={llmPropsDraft.temperature}
               onChange={(val) => updateField("temperature", val)}
               min={0}
@@ -113,7 +113,7 @@ const LLMSettingsPanel = ({
             <label className="block text-sm font-medium text-black mb-1 min-h-[30px]">
               Top P
             </label>
-            <CompactNumberStepper
+            <NumberStepper
               value={llmPropsDraft.topP}
               onChange={(val) => updateField("topP", val)}
               min={0}
@@ -126,7 +126,7 @@ const LLMSettingsPanel = ({
             <label className="block text-sm font-medium text-black mb-1 min-h-[30px]">
               LLM Response Timeout (seconds)
             </label>
-            <CompactNumberStepper
+            <NumberStepper
               value={llmPropsDraft.responseTimeout}
               onChange={(val) => updateField("responseTimeout", val)}
               min={0}

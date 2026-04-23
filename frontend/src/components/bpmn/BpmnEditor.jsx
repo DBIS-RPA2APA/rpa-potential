@@ -10,7 +10,6 @@ import "../../styles/bpmn-style/bpmn.css";
 
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
-//import { preparePromptPreview } from "../../services/bpmn/preparePrompt.js";
 import AnalysisPopup from "../../ui/AnalysisPopup.jsx";
 import { analyzeElements } from "../../services/api/analyzeApi.js";
 import { extractFromXml } from "../../services/bpmn/extractFromXml.js";

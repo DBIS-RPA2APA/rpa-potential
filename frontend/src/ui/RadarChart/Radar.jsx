@@ -61,7 +61,7 @@ export default function Radar({ width, height, data }) {
           stroke="#FF6285"
           strokeWidth={1}
         />
-
+        {/* key bullet points VALUES */}
         {points.map((point, i) => (
           <g key={i}>
             <circle cx={point.x} cy={point.y} r={4} fill="#FF6285" />

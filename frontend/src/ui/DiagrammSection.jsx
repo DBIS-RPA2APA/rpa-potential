@@ -1,23 +1,34 @@
 import { LuCroissant } from "react-icons/lu";
+import { useState } from "react";
+import DiagrammPopup from "./DiagrammPopUp";
 
 function DiagramCard({ title, children }) {
+  const [diagrammVisible, setDiagrammVisible] = useState(false);
   return (
-    <div className="bg-rose-100 rounded-md p-4 min-h-[320px]">
-      <div className="flex items-start justify-between mb-2">
-        <h4 className="text-md font-semibold text-slate-900">{title}</h4>
+    <>
+      <div className="bg-rose-100 rounded-md p-4">
+        <div className="flex items-start justify-between mb-2">
+          <h4 className="text-md font-semibold text-slate-900">{title}</h4>
 
-        <button
-          type="button"
-          className="rounded-md bg-rose-300 px-3 py-2 text-rose-600 hover:bg-rose-400"
-        >
-          <LuCroissant className="h-4 w-4" />
-        </button>
-      </div>
+          <button
+            type="button"
+            className="rounded-md bg-rose-300 px-2 py-2 text-rose-600 hover:bg-rose-400 cursor-pointer"
+            onClick={() => setDiagrammVisible(true)}
+          >
+            <LuCroissant className="h-5 w-5" />
+          </button>
+        </div>
 
-      <div className="h-[240px] flex items-center justify-center text-slate-500">
-        {children}
+        <div className="h-60 flex items-center justify-center text-slate-500">
+          {children({ width: 600, height: 260 })}
+        </div>
       </div>
-    </div>
+      {diagrammVisible && (
+        <DiagrammPopup title={title} onClose={() => setDiagrammVisible(false)}>
+          {children}
+        </DiagrammPopup>
+      )}
+    </>
   );
 }
 export default DiagramCard;

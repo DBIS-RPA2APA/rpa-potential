@@ -234,64 +234,72 @@ export function EvaluationResult({
           </div>
           {/* Second Row */}
           <AccordionSection title="Diagrams of results">
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 xl:grid-cols-2 gap-4">
               <DiagramCard title="Test Results Distribution">
-                <PieChart
-                  data={[
-                    { name: "Passed", value: summary?.passed ?? 0 },
-                    { name: "Failed", value: summary?.failed ?? 0 },
-                  ]}
-                  width={800}
-                  height={290}
-                />
+                {({ width, height }) => (
+                  <PieChart
+                    data={[
+                      { name: "Passed", value: summary?.passed ?? 0 },
+                      { name: "Failed", value: summary?.failed ?? 0 },
+                    ]}
+                    width={width}
+                    height={height}
+                  />
+                )}
               </DiagramCard>
               <DiagramCard title="Performance Metrics Overview">
-                <Radar
-                  data={[
-                    { name: "Accuracy", value: metadata?.accuracy ?? 0 },
-                    { name: "Precision", value: metadata?.precision ?? 0 },
-                    { name: "Recall", value: metadata?.recall ?? 0 },
-                    { name: "F1-Score", value: metadata?.f1Score ?? 0 },
-                  ]}
-                  width={340}
-                  height={340}
-                />
+                {({ width, height }) => (
+                  <Radar
+                    data={[
+                      { name: "Accuracy", value: metadata?.accuracy ?? 0 },
+                      { name: "Precision", value: metadata?.precision ?? 0 },
+                      { name: "Recall", value: metadata?.recall ?? 0 },
+                      { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                    ]}
+                    width={width}
+                    height={height}
+                  />
+                )}
               </DiagramCard>
               <DiagramCard title="Performance Metrics Comparison">
-                <BarPlot
-                  data={[
-                    { name: "Accuracy", value: metadata?.accuracy ?? 0 },
-                    { name: "Precision", value: metadata?.precision ?? 0 },
-                    { name: "Recall", value: metadata?.recall ?? 0 },
-                    { name: "F1-Score", value: metadata?.f1Score ?? 0 },
-                  ]}
-                  width={700}
-                  height={240}
-                />
+                {({ width, height }) => (
+                  <BarPlot
+                    data={[
+                      { name: "Accuracy", value: metadata?.accuracy ?? 0 },
+                      { name: "Precision", value: metadata?.precision ?? 0 },
+                      { name: "Recall", value: metadata?.recall ?? 0 },
+                      { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                    ]}
+                    width={width}
+                    height={height}
+                  />
+                )}
               </DiagramCard>
               <DiagramCard title="Confusion Matrix Breakdown">
-                <BarPlot
-                  data={[
-                    {
-                      name: "True Positives",
-                      value: metadata?.totalTruePositives ?? 0,
-                    },
-                    {
-                      name: "False Positives",
-                      value: metadata?.totalFalsePositives ?? 0,
-                    },
-                    {
-                      name: "False Negatives",
-                      value: metadata?.totalFalseNegatives ?? 0,
-                    },
-                    {
-                      name: "True Negatives",
-                      value: metadata?.totalTrueNegatives ?? 0,
-                    },
-                  ]}
-                  width={700}
-                  height={240}
-                />
+                {({ width, height }) => (
+                  <BarPlot
+                    data={[
+                      {
+                        name: "True Positives",
+                        value: metadata?.totalTruePositives ?? 0,
+                      },
+                      {
+                        name: "False Positives",
+                        value: metadata?.totalFalsePositives ?? 0,
+                      },
+                      {
+                        name: "False Negatives",
+                        value: metadata?.totalFalseNegatives ?? 0,
+                      },
+                      {
+                        name: "True Negatives",
+                        value: metadata?.totalTrueNegatives ?? 0,
+                      },
+                    ]}
+                    width={width}
+                    height={height}
+                  />
+                )}
               </DiagramCard>
             </div>
           </AccordionSection>

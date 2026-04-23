@@ -8,11 +8,11 @@ import { useState } from "react";
 const SidePanel = ({
   activeTab,
   setActiveTab,
-  llmPropsDraft,
-  setLlmPropsDraft,
-  defaultLlmProps,
+  llmPropsDraft, // placed in LlmSetting
+  setLlmPropsDraft, // placed in LlmSetting
+  defaultLlmProps, // placed in app
   llmProps,
-  setLlmProps,
+  setLlmProps, // placed in LlmSetting and and forwarded to everyone via the app using the side panel
   chatText,
   setChatText,
   analysisResult,

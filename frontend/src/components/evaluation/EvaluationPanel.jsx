@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Button from "../../ui/button";
 import "../../styles/index.css";
 import EvaluationResult from "./EvaluationResult";
@@ -53,7 +53,7 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
     },
   };
 
-  const currentStatus = // UI damit ändern ja nachedem was passiert und wie der Status ist
+  const currentStatus = // Change the UI depending on what happens and what the status is
     statusConfig[evaluationStatus] || statusConfig.available;
 
   const startProgressSimulation = () => {
@@ -63,11 +63,11 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
     setProgress(3);
     progressIntervalRef.current = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 93) return prev;
+        if (prev >= 97) return prev;
 
-        const remaining = 93 - prev;
-        const increment = Math.max(1, remaining * 0.1); // anfangs schneller, dann langsamer
-        return Math.min(93, prev + increment);
+        const remaining = 97 - prev;
+        const increment = Math.max(1, remaining * 0.1); // faster at first, then slower
+        return Math.min(97, prev + increment);
       });
     }, 1000);
   };
