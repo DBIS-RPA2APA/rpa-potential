@@ -12,17 +12,74 @@ import { normalizeAndValidate } from "../Validation.js";
 import {
   calculateEvaluationReportSummary,
   getTestCaseReport,
+  totalRunEvaluationSummary,
 } from "./metrics.js";
-
+const BPMN_TASK_TYPES = new Set([
+  "task",
+  "userTask",
+  "serviceTask",
+  "manualTask",
+  "scriptTask",
+  "sendTask",
+  "receiveTask",
+]);
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
   const { datasetName, testCases, numRepetitions } = evaluationConfig;
 
+  {
+    /* totalRunResult: [
+    {
+      datasetName: "...",
+      runId: 1,
+      testCaseReports: ProModell:[testCaseId, name, xml, fpIds, fnIds, expected, acuatl,…],
+      metadata: ProDatenset{precision, recall,…, totalFN, …}
+    },
+    {
+      datasetName: "...",
+      runId: 2,
+      testCaseReports: [...],
+      metadata: {...}
+    }] */
+  }
+  const totalRunResult = [];
+
+  for (let i = 0; i < numRepetitions; i++) {
+    // return return { datasetName, runId, testCaseReports: results, metadata: evaluationReportSummary,};
+    const resultTestCase = await evaluateSingleRun(
+      datasetName,
+      testCases,
+      numRepetitions,
+      llmProps,
+      i + 1,
+    );
+    totalRunResult.push(resultTestCase);
+  }
+
+  //accurac, precision, racall, f1score, failed, passed, error, total, of ALL runs
+  const totalMetrics = totalRunEvaluationSummary(totalRunResult);
+
+  return {
+    datasetName,
+    totalMetrics,
+    totalRunResult,
+  };
+}
+
+async function evaluateSingleRun(
+  datasetName,
+  testCases,
+  numRepetitions,
+  llmProps = {},
+  runId,
+) {
   let totalTruePositives = 0;
   let totalFalsePositives = 0;
   let totalFalseNegatives = 0;
   let totalTrueNegatives = 0;
 
   const results = [];
+  // --- loop through each BPMN in dataset ---
+  // return-> TestCaseReport (testCaseId, name, xml, fpIds, fnIds, expected, acuatl,…)
   for (const testCase of testCases) {
     // 1) Build prompts
     const systemPrompt = buildSystemPrompt();
@@ -38,16 +95,17 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     const parsed = normalizeAndValidate(rawLlmResponse, testCase.elements);
     const criticalElements = parsed.criticalElements;
 
-    console.log(criticalElements);
-
-    // 4) Build TestCaseReport
+    // 4) Build TestCaseReport (testCaseId, name, xml, fpIds, fnIds, expected, acuatl,…)
     const TestCaseReport = getTestCaseReport(
       criticalElements,
       testCase,
       numRepetitions,
     );
 
-    const totalElements = testCase.elements.length;
+    const taskElements = testCase.elements.filter((el) =>
+      BPMN_TASK_TYPES.has(el.type),
+    );
+    const totalElements = taskElements.length;
 
     totalFalseNegatives += TestCaseReport.falseNegativeIds.length;
     totalFalsePositives += TestCaseReport.falsePositiveIds.length;
@@ -65,6 +123,7 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     results.push(TestCaseReport);
   }
 
+  // --- metrics are calculated based on dataset per ONE Run---
   const evaluationReportSummary = calculateEvaluationReportSummary(
     totalFalseNegatives,
     totalFalsePositives,
@@ -74,6 +133,7 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
 
   return {
     datasetName,
+    runId,
     testCaseReports: results,
     metadata: evaluationReportSummary,
   };

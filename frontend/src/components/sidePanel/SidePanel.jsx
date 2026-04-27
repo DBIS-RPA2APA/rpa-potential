@@ -17,7 +17,6 @@ const SidePanel = ({
   setChatText,
   analysisResult,
   hasAnalysis,
-  setOnEvaluation,
 }) => {
   const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default
   const [chatResetToken, setChatResetToken] = useState(0);
@@ -48,18 +47,7 @@ const SidePanel = ({
           />
         )}
         {activeTab === "evaluation" && (
-          <EvaluationPanel
-            numRepetitions={effectiveLlmProps.numRepetitions}
-            setNumRepetitions={(value) =>
-              setLlmProps((prev) => ({ ...prev, numRepetitions: value }))
-            }
-            maxConcurrentRequests={effectiveLlmProps.maxConcurrentRequests}
-            setMaxConcurrentRequests={(value) =>
-              setLlmProps((prev) => ({ ...prev, maxConcurrentRequests: value }))
-            }
-            llmProps={effectiveLlmProps}
-            setOnEvaluation={setOnEvaluation}
-          />
+          <EvaluationPanel llmProps={effectiveLlmProps} />
         )}
       </div>
     </div>

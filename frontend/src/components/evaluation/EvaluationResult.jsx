@@ -7,6 +7,7 @@ import BarPlot from "../../ui/Barplot";
 import PieChart from "../../ui/PieChart";
 import Radar from "../../ui/RadarChart/Radar";
 import { LuDownload, LuBadgeInfo } from "react-icons/lu";
+import { useState } from "react";
 
 //import { LuChevronsDownU, LuFoldVertical } from "react-icons/lu"; //<LuChevronsDownUp /> <LuFoldVertical />
 
@@ -14,11 +15,46 @@ export function EvaluationResult({
   onClose,
   llmProps,
   evaluationConfig,
-  testCaseReports,
-  summary,
+  totalRunResult,
+  totalSummary,
   metadata,
+  evaluationDataObject,
 }) {
   const numTestCases = evaluationConfig?.testCases?.length;
+  const totalRuns = evaluationConfig?.numRepetitions ?? 1;
+  const runs = Array.from({ length: totalRuns }, (_, i) => i + 1);
+  const [activeRun, setActiveRun] = useState(1);
+
+  const activeRunResult = totalRunResult?.find(
+    (run) => run.runId === activeRun,
+  );
+
+  const activeTestCaseReports = activeRunResult?.testCaseReports ?? [];
+  const activeMetadata = activeRunResult?.metadata ?? {};
+
+  const activeSummary = createActiveSummary(activeTestCaseReports);
+  function createActiveSummary(activeTestCaseReports) {
+    const passed = activeTestCaseReports.filter(
+      (tc) => tc.isSuccessful === true,
+    ).length;
+    const failed = activeTestCaseReports.filter(
+      (tc) => tc.isSuccessful === false,
+    ).length;
+    const error = activeTestCaseReports.filter(
+      (tc) => tc.isSuccessful !== true && tc.isSuccessful !== false,
+    ).length;
+    const total = activeTestCaseReports.length;
+    const percent = total > 0 ? (passed / total) * 100 : 0;
+
+    return {
+      total,
+      passed,
+      failed,
+      error,
+      percent,
+    };
+  }
+
   function SummaryStat({ value, label, valueColor = "text-slate-900" }) {
     return (
       <div className="flex flex-col items-center justify-center">
@@ -49,6 +85,20 @@ export function EvaluationResult({
       </div>
     );
   }
+
+  function handleResultDownload() {
+    const downloadData = evaluationDataObject;
+    const json = JSON.stringify(downloadData, null, 2); // JSON.stringify(was, replacer/filter, spacing), JavaScript-Objekt -> JSON
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `evaluation-result-${evaluationDataObject.datasetName}-${evaluationDataObject.timestamp}.json`;
+    link.click();
+
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <>
       <div className="fixed inset-0 z-500 bg-black/40 flex items-center justify-center">
@@ -62,14 +112,16 @@ export function EvaluationResult({
                 color="primary"
                 size="medium"
                 icon={<LuDownload size={15} />}
+                onClick={handleResultDownload}
               >
-                Download BPMN
+                Download JSON
               </Button>
               <Button size="small" color="secondary" onClick={onClose}>
                 Close
               </Button>
             </div>
           </div>
+
           {/* First Row */}
           <div className="grid grid-cols-2 gap-4">
             {/* Left */}
@@ -95,7 +147,7 @@ export function EvaluationResult({
               <p className="text-md text-slate-500">
                 Dataset:{" "}
                 <span className="font-medium text-slate-900">
-                  {evaluationConfig?.dataset ?? "-"}
+                  {evaluationConfig?.datasetName ?? "-"}
                 </span>
               </p>
               <p className="text-md text-slate-500">
@@ -138,22 +190,22 @@ export function EvaluationResult({
                 </p>
                 <div className="grid grid-cols-4 gap-5 my-3">
                   <SummaryStat
-                    value={summary?.passed ?? 0}
+                    value={totalSummary?.passed ?? 0}
                     label="Passed"
                     valueColor="text-emerald-800"
                   />
                   <SummaryStat
-                    value={summary?.failed ?? 0}
+                    value={totalSummary?.failed ?? 0}
                     label="Failed"
                     valueColor="text-red-800"
                   />
                   <SummaryStat
-                    value={summary?.error ?? 0}
+                    value={totalSummary?.error ?? 0}
                     label="Errors"
                     valueColor="text-orange-500"
                   />
                   <SummaryStat
-                    value={summary?.total ?? 0}
+                    value={totalSummary?.total ?? 0}
                     label="Total"
                     valueColor="text-slate-700"
                   />
@@ -165,13 +217,13 @@ export function EvaluationResult({
                       Success Rate
                     </span>
                     <span className="text-xs font-medium text-slate-500">
-                      {summary?.percent ?? "-"}%
+                      {totalSummary?.percent ?? "-"}%
                     </span>
                   </div>
                   <div className="w-full bg-slate-200 g-slate-300 rounded-full h-2">
                     <div
                       className="bg-cyan-800 h-2 rounded-full transition-all duration-700 ease-out"
-                      style={{ width: `${summary?.percent ?? 0}%` }}
+                      style={{ width: `${totalSummary?.percent ?? 0}%` }}
                     ></div>
                   </div>
                 </div>
@@ -232,15 +284,39 @@ export function EvaluationResult({
               </div>
             </div>
           </div>
+          {/* Tab Bar to switch between runs  */}
+          <div className="bg-slate-300 rounded-md p-1 shadow-inner">
+            <div
+              className="grid gap-2"
+              style={{
+                gridTemplateColumns: `repeat(${runs.length}, minmax(0, 1fr))`,
+              }}
+            >
+              {runs.map((run) => (
+                <button
+                  key={run}
+                  type="button"
+                  onClick={() => setActiveRun(run)}
+                  className={`py-3 rounded-md text-sm font-semibold transition-all cursor-pointer ${
+                    activeRun === run
+                      ? "bg-slate-100 text-cyan-900 shadow"
+                      : "text-slate-700 hover:bg-slate-200 "
+                  }`}
+                >
+                  Run {run}
+                </button>
+              ))}
+            </div>
+          </div>
           {/* Second Row */}
-          <AccordionSection title="Diagrams of results">
+          <AccordionSection title={`Diagrams of results (Run ${activeRun})`}>
             <div className="grid grid-cols-2 xl:grid-cols-2 gap-4">
               <DiagramCard title="Test Results Distribution">
                 {({ width, height }) => (
                   <PieChart
                     data={[
-                      { name: "Passed", value: summary?.passed ?? 0 },
-                      { name: "Failed", value: summary?.failed ?? 0 },
+                      { name: "Passed", value: activeSummary?.passed ?? 0 },
+                      { name: "Failed", value: activeSummary?.failed ?? 0 },
                     ]}
                     width={width}
                     height={height}
@@ -251,10 +327,16 @@ export function EvaluationResult({
                 {({ width, height }) => (
                   <Radar
                     data={[
-                      { name: "Accuracy", value: metadata?.accuracy ?? 0 },
-                      { name: "Precision", value: metadata?.precision ?? 0 },
-                      { name: "Recall", value: metadata?.recall ?? 0 },
-                      { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                      {
+                        name: "Accuracy",
+                        value: activeMetadata?.accuracy ?? 0,
+                      },
+                      {
+                        name: "Precision",
+                        value: activeMetadata?.precision ?? 0,
+                      },
+                      { name: "Recall", value: activeMetadata?.recall ?? 0 },
+                      { name: "F1-Score", value: activeMetadata?.f1Score ?? 0 },
                     ]}
                     width={width}
                     height={height}
@@ -265,10 +347,16 @@ export function EvaluationResult({
                 {({ width, height }) => (
                   <BarPlot
                     data={[
-                      { name: "Accuracy", value: metadata?.accuracy ?? 0 },
-                      { name: "Precision", value: metadata?.precision ?? 0 },
-                      { name: "Recall", value: metadata?.recall ?? 0 },
-                      { name: "F1-Score", value: metadata?.f1Score ?? 0 },
+                      {
+                        name: "Accuracy",
+                        value: activeMetadata?.accuracy ?? 0,
+                      },
+                      {
+                        name: "Precision",
+                        value: activeMetadata?.precision ?? 0,
+                      },
+                      { name: "Recall", value: activeMetadata?.recall ?? 0 },
+                      { name: "F1-Score", value: activeMetadata?.f1Score ?? 0 },
                     ]}
                     width={width}
                     height={height}
@@ -281,19 +369,19 @@ export function EvaluationResult({
                     data={[
                       {
                         name: "True Positives",
-                        value: metadata?.totalTruePositives ?? 0,
+                        value: activeMetadata?.totalTruePositives ?? 0,
                       },
                       {
                         name: "False Positives",
-                        value: metadata?.totalFalsePositives ?? 0,
+                        value: activeMetadata?.totalFalsePositives ?? 0,
                       },
                       {
                         name: "False Negatives",
-                        value: metadata?.totalFalseNegatives ?? 0,
+                        value: activeMetadata?.totalFalseNegatives ?? 0,
                       },
                       {
                         name: "True Negatives",
-                        value: metadata?.totalTrueNegatives ?? 0,
+                        value: activeMetadata?.totalTrueNegatives ?? 0,
                       },
                     ]}
                     width={width}
@@ -305,9 +393,9 @@ export function EvaluationResult({
           </AccordionSection>
 
           {/* Third Row */}
-          <AccordionSection title="Results per model">
+          <AccordionSection title={`Result per model (Run ${activeRun})`}>
             <div className="grid grid-cols-1 gap-2">
-              {testCaseReports.map((result) => (
+              {activeTestCaseReports.map((result) => (
                 <ModelResultAccordion key={result.testCaseID} result={result} />
               ))}
             </div>

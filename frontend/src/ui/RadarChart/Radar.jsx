@@ -31,9 +31,10 @@ export default function Radar({ width, height, data }) {
 
   const lineGenerator = d3
     .lineRadial()
-    .angle((d) => xScale(d.name) + xScale.bandwidth() / 2)
+    .angle((d) => xScale(d.name) + xScale.bandwidth() / 2 - Math.PI / 2)
     .radius((d) => yScales[d.name](d.value))
     .curve(d3.curveLinearClosed);
+
   const radarPath = lineGenerator(data);
 
   const points = data.map((d) => {
@@ -45,6 +46,11 @@ export default function Radar({ width, height, data }) {
       y: Math.sin(angle) * radius,
     };
   });
+
+  const shiftedPoints = points.map((point, index) => ({
+    ...point,
+    value: points[(index + 1) % points.length].value,
+  }));
 
   return (
     <svg width={width} height={height}>
@@ -62,7 +68,7 @@ export default function Radar({ width, height, data }) {
           strokeWidth={1}
         />
         {/* key bullet points VALUES */}
-        {points.map((point, i) => (
+        {shiftedPoints.map((point, i) => (
           <g key={i}>
             <circle cx={point.x} cy={point.y} r={4} fill="#FF6285" />
             <text

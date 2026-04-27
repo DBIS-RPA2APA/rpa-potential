@@ -16,6 +16,30 @@ export async function getPromptPreview(elements) {
 export async function chatMessage(message, llmProps = {}) {
   return postJson("/api/chat", { message, llmProps });
 }
+export async function saveEvaluationHistory(evaluationResultObject) {
+  return postJson("/api/evaluationHistory", evaluationResultObject);
+}
+
+export async function getEvaluationHistory() {
+  const res = await fetch(`${API_BASE}/api/evaluationHistory`, {
+    method: "GET",
+  });
+  const text = await res.text();
+
+  let parsed;
+  try {
+    parsed = text ? JSON.parse(text) : null;
+  } catch {
+    parsed = null;
+  }
+
+  if (!res.ok) {
+    throw new Error(
+      parsed?.error ? parsed.error : `Backend error ${res.status}: ${text}`,
+    );
+  }
+  return parsed;
+}
 
 async function postJson(path, body) {
   const res = await fetch(`${API_BASE}${path}`, {

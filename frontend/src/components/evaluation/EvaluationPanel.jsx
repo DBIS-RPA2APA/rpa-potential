@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 import { useState, useMemo, useRef, useEffect } from "react";
 import Button from "../../ui/button";
 import "../../styles/index.css";
@@ -6,29 +7,48 @@ import {
   getAvailableDatasets,
   loadDatasetTestCases,
 } from "../../services/evaluation/loadDataset";
-import { evaluateDataset } from "../../services/api/analyzeApi";
+import {
+  evaluateDataset,
+  getEvaluationHistory,
+  saveEvaluationHistory,
+} from "../../services/api/analyzeApi";
 
-const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
+const EvaluationPanel = ({ llmProps }) => {
   const availableDatasets = useMemo(() => getAvailableDatasets(), []);
   const [dataset, setDataset] = useState(availableDatasets[0] || "");
   const [evaluationData, setEvaluationData] = useState(null);
   const [showEvaluationResult, setShowEvaluationResult] = useState(false);
   const [testCases, setTestCases] = useState([]);
+  const [numRepetitions, setNumRepetitions] = useState("");
 
   const [evaluationStatus, setEvaluationStatus] = useState("available"); // Status zu speichern
   const [progress, setProgress] = useState(0); // progress (weite der Bar) zu speichern
   const [evaluationError, setEvaluationError] = useState(null); // Error-Message zu speichern
+  const [evaluationHistory, setEvaluationHistory] = useState([]);
 
   const progressIntervalRef = useRef(null);
+  useEffect(() => {
+    loadHistory();
+  }, []);
 
   useEffect(() => {
-    // cleanup function to clear interval on unmount
+    // cleanup function to clear progerss interval on unmount
     return () => {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
       }
     };
   }, []);
+
+  async function loadHistory() {
+    try {
+      const data = await getEvaluationHistory();
+      setEvaluationHistory(data);
+    } catch (error) {
+      console.error("Could not load hisotry", error);
+      setEvaluationHistory([]);
+    }
+  }
 
   const statusConfig = {
     available: {
@@ -89,7 +109,7 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
     const evaluationConfig = {
       datasetName: dataset,
       testCases: cases,
-      numRepetitions,
+      numRepetitions: numRepetitions || 1,
       evaluationEndpoint: "/api/evaluate",
     };
     if (cases.length === 0) {
@@ -104,15 +124,25 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
 
     try {
       const result = await evaluateDataset(evaluationConfig, llmProps);
-      console.log("Evaluation result:", result);
+
+      const evaluationResultObject = {
+        datasetName: dataset,
+        timestamp: new Date().toISOString(),
+        numRepetitions: numRepetitions || 1,
+        defaultEvaluationEndpoint: "/api/evaluate",
+        llmProps: llmProps,
+        totalMetrics: result.totalMetrics,
+        totalRunResult: result.totalRunResult,
+      };
+      console.log("Evaluatjion Result:", evaluationResultObject);
 
       stopProgressSimulation();
       setProgress(100);
       setEvaluationStatus("finished");
       await new Promise((resolve) => setTimeout(resolve, 800));
-
-      setEvaluationData(result);
-      console.log("Summary:", summary);
+      await saveEvaluationHistory(evaluationResultObject);
+      await loadHistory();
+      setEvaluationData(evaluationResultObject);
       setShowEvaluationResult(true);
     } catch (error) {
       console.error("Evaluation failed:", error);
@@ -122,28 +152,10 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
       setEvaluationError("An error occurred during evaluation.");
     }
   };
-
-  const summary = evaluationData ? createSummary(evaluationData) : null;
-  function createSummary(evaluationData) {
-    const passedCount = evaluationData.testCaseReports.filter(
-      (report) => report.isSuccessful,
-    ).length;
-    const totalCount = evaluationData.testCaseReports.length;
-    const failedCount = totalCount - passedCount;
-    const errorCount = evaluationData.testCaseReports.filter(
-      (report) => report.error,
-    ).length;
-    const percent = totalCount > 0 ? (passedCount / totalCount) * 100 : 0;
-
-    return {
-      total: totalCount,
-      passed: passedCount,
-      failed: failedCount,
-      error: errorCount,
-      percent: percent.toFixed(2),
-    };
+  function openResult(item) {
+    setEvaluationData(item);
+    setShowEvaluationResult(true);
   }
-
   return (
     <>
       <div className="h-full min-h-0 flex flex-col p-4">
@@ -165,9 +177,22 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
             </label>
             <input
               type="number"
+              min={1}
+              max={5}
+              placeholder="Set a number between 1 and 5"
               value={numRepetitions}
-              onChange={(e) => setNumRepetitions(Number(e.target.value))}
-              className="w-full rounded border border-slate-400 px-3 py-2 text-slate-900"
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === "") {
+                  setNumRepetitions("");
+                  return;
+                }
+                let num = Number(val);
+                if (num < 1) num = 1;
+                if (num > 5) num = 5;
+                setNumRepetitions(num);
+              }}
+              className="w-full rounded border border-slate-400 px-3 py-2 text-slate-700 bg-slate-100"
             />
           </div>
 
@@ -199,7 +224,28 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
             </Button>
           </div>
         </div>
-
+        <h2 className="text-slate-900 font-semibold text-2xl mb-2">History</h2>
+        <div className="bg-slate-100 rounded border-md p-3 overflow-scroll max-h-80">
+          {evaluationHistory.length === 0 && (
+            <p className="text-md text-slate-500">No evaluations saved yet.</p>
+          )}
+          {evaluationHistory.map((item) => (
+            <div
+              key={`${item.datasetName}-${item.timestamp}`}
+              className="rounded border-md border-slate-300 bg-white px-4 py-2 mb-2 cursor-pointer hover:bg-slate-200 transition"
+              onClick={() => openResult(item)}
+            >
+              <p className="text-md font-medium text-slate-900 pb-2">
+                {item.datasetName}
+              </p>
+              <p className="text-sm text-slate-500 pb-1">{item.timestamp}</p>
+              <p className="text-sm text-slate-500">
+                Runs: {item.numRepetitions ?? 1}
+              </p>
+            </div>
+          ))}
+        </div>
+        {/* Progress Bar */}
         <div className="mt-auto space-y-5">
           <div className="mt-15 mb-2">
             <p className="text-sm text-slate-500">
@@ -224,7 +270,7 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
             <Button
               size="width"
               disabled={!evaluationData || evaluationStatus !== "finished"}
-              onClick={() => setShowEvaluationResult(true) && evaluationData}
+              onClick={() => setShowEvaluationResult(true)}
             >
               Open Results
             </Button>
@@ -234,51 +280,21 @@ const EvaluationPanel = ({ numRepetitions, setNumRepetitions, llmProps }) => {
       {showEvaluationResult && evaluationData && (
         <EvaluationResult
           onClose={() => setShowEvaluationResult(false)}
-          llmProps={llmProps}
+          llmProps={evaluationData.llmProps}
           evaluationConfig={{
-            dataset,
-            numRepetitions,
+            datasetName: evaluationData.datasetName,
+            timestamp: evaluationData.timestamp,
+            numRepetitions: evaluationData.numRepetitions,
+            defaultEvaluationEndpoint: evaluationData.defaultEvaluationEndpoint,
             testCases,
-            defaultEvaluationEndpoint: "/api/evaluate",
-            timestamp: new Date().toISOString(),
           }}
-          testCaseReports={evaluationData.testCaseReports ?? []}
-          summary={summary}
-          metadata={evaluationData.metadata}
+          totalRunResult={evaluationData.totalRunResult ?? []}
+          totalSummary={evaluationData.totalMetrics}
+          metadata={evaluationData.totalMetrics}
+          evaluationDataObject={evaluationData}
         />
       )}
     </>
   );
 };
 export default EvaluationPanel;
-/*
-evaluationData =
-{
-  datasetName: "Dataset1",
-  testCaseReports: [
-    {
-        testCaseID: 1,
-        testCaseName: "...",
-        datasetId: "Dataset1",
-        imageSrc: null,
-        correctActivityIds: [...],
-        falsePositiveIds: [...],
-        falseNegativeIds: [...],
-        expectedNamesWithIds: [...],
-        actualNamesWithIds: [...],
-        isSuccessful: true,
-        result: [...],
-        amountOfRetries: 0
-    },
-    {
-      ...
-    }
-  ]
-  metadata: {
-  precision: 0.75,
-  recall: 0.88,
-  f1Score: 0.80,
-  accuracy: 0.73
-  }
-}
-*/

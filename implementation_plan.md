@@ -2,34 +2,32 @@
 
 Today:
 
-= Panel ProgressBar -> Evaluation
-= passed -> kriterien anpassen
-= when button "create new" is pressed && neues LLM wird gecallt -> chat history=null
-= Button wo die Kriterien (Bernard…) für Automatisierbar stehen im PopUp und Editor!!!
-= Netzdiagramm und Button bei Diagrammen
-= Diagrammex größe
-
-- repetitions !!! -> von TP,TN; FP; FN Mittelwert nehmen?
+- change Color of BPMN Tasks (Analysis Editor/ Evaluation Editor)
 - Datensatz 10 Bpmn
-- Download Button -> in Evalutaion PopUp, als JSON… Datei EINE Evaluation runterladen kann
 
 Fragen:
 
 - Genau größe vom Datensatz, Wie viele BPMN muss ich vergleichen -> 10 unterschiedliche größen
-- Wie viele LLMs soll ich nehmen und welche? -> 3 Opensource, …
+- Wie viele LLMs soll ich nehmen und welche? -> 3 Opensource, Kleines, … (siehe Master)
 - Wenn eine Task rictiger weiße als automatisierbar eingestuft wurde, ABER die Scorse nicht passen, Was dann? -> Später in Arbeits schreiben…
 - Lieber mehr llm Vergleichen, Größeres Datenset, und wiederholungen… -> bei gleichem LLM und gelichem BPMN öfters durchlafuen lassen immer wieder verschiedene Tasks als Automatisierbar eingestuft…
 
+Neu:
+
+- Netzdiagram
+- Repetitions
+- Crossiant Button
+- Info Button für Score
+- Progress Bar
+- History
+
 bis 30. April:
 
+- Anfangen zu schreiben
 - Datensatz 10 Bpmn
-- komplette history von results
-- repetitions !!!
-- Evaluierung: Download Button, mehrere Runs?
 - UX überprüfen
-- Anfangen zu schreiben,
-- Tests schreiben
-
+- DarkMode Farben anpassen
+  (- Tests schreiben)
 - UI Kit-Deign erstellen und anwenden!!! <3
 - deepEval
 

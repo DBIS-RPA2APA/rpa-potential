@@ -5,6 +5,8 @@ import { analyze } from "./analyze.js";
 import { evaluateDataset } from "./evaluation/evaluation.js";
 import { chat } from "./chat.js";
 import { buildPreviewPrompt } from "./PreviewPrompt.js";
+import { saveEvaluation, getAllEvaluations } from "./evaluation/history.js";
+import { success } from "zod";
 
 const app = express(); // Express-Server initialisieren
 
@@ -55,7 +57,33 @@ app.post("/api/evaluate", async (req, res) => {
       .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
   }
 });
+// ------- save Evaluation History -------
+app.post("/api/evaluationHistory", async (req, res) => {
+  try {
+    const evaluation = req.body;
+    const result = saveEvaluation(evaluation); // true
 
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
+// ------- load Evaluation History -------
+app.get("/api/evaluationHistory", async (req, res) => {
+  try {
+    const evaluations = getAllEvaluations();
+
+    res.json(evaluations); // all evaluations that were saved in the folder
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
 // ------- chat messages -------
 app.post("/api/chat", async (req, res) => {
   try {

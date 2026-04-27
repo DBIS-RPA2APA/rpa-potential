@@ -16,6 +16,50 @@ val totalFalseNegatives: Int,
 val totalTrueNegatives: Int
 )
 */
+
+export function totalRunEvaluationSummary(totalRunResult) {
+  let accuracySum = 0.0;
+  let precisionSum = 0.0;
+  let recallSum = 0.0;
+  let f1ScoreSum = 0.0;
+  let failed = 0;
+  let passed = 0;
+  let error = 0;
+  let total = 0;
+
+  for (const runResult of totalRunResult) {
+    accuracySum += Number(runResult.metadata.accuracy);
+    precisionSum += Number(runResult.metadata.precision);
+    recallSum += Number(runResult.metadata.recall);
+    f1ScoreSum += Number(runResult.metadata.f1Score);
+
+    for (const testCase of runResult.testCaseReports) {
+      total += 1;
+      if (testCase.isSuccessful === true) {
+        passed += 1;
+      } else if (testCase.isSuccessful === false) {
+        failed += 1;
+      } else {
+        error += 1;
+      }
+    }
+  }
+  const totalRuns = totalRunResult.length || 1;
+  const percent = total > 0 ? (passed / total) * 100 : 0;
+
+  return {
+    accuracy: (accuracySum / totalRuns).toFixed(2),
+    precision: (precisionSum / totalRuns).toFixed(2),
+    recall: (recallSum / totalRuns).toFixed(2),
+    f1Score: (f1ScoreSum / totalRuns).toFixed(2),
+    failed,
+    passed,
+    error,
+    total,
+    percent: percent.toFixed(2),
+  };
+}
+
 export function calculateEvaluationReportSummary(
   totalFalseNegatives,
   totalFalsePositives,
@@ -115,6 +159,5 @@ export function getTestCaseReport(criticalElements, testCase, numRepetitions) {
     }),
     amountOfRetries: numRepetitions - 1,
   };
-
   return TestCaseReport;
 }
