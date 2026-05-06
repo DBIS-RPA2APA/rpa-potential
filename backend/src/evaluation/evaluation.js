@@ -9,11 +9,13 @@ data class TestCaseReport()
 import { buildSystemPrompt, buildUserPrompt } from "../LlmPrompt.js";
 import { callStructuredLlm } from "../llmClient.js";
 import { normalizeAndValidate } from "../Validation.js";
+import { loadDatasetTestCases } from "../evaluation/loadDataset.js";
 import {
   calculateEvaluationReportSummary,
   getTestCaseReport,
   totalRunEvaluationSummary,
 } from "./metrics.js";
+
 const BPMN_TASK_TYPES = new Set([
   "task",
   "userTask",
@@ -24,7 +26,12 @@ const BPMN_TASK_TYPES = new Set([
   "receiveTask",
 ]);
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
-  const { datasetName, testCases, numRepetitions } = evaluationConfig;
+  const { datasetName, numRepetitions } = evaluationConfig;
+  const testCases = loadDatasetTestCases(datasetName);
+
+  if (testCases.length === 0) {
+    throw new Error(`No data test cases found: ${datasetName}`);
+  }
 
   {
     /* totalRunResult: [
@@ -60,6 +67,7 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
 
   return {
     datasetName,
+    testCases,
     totalMetrics,
     totalRunResult,
   };
@@ -134,6 +142,7 @@ async function evaluateSingleRun(
   return {
     datasetName,
     runId,
+
     testCaseReports: results,
     metadata: evaluationReportSummary,
   };

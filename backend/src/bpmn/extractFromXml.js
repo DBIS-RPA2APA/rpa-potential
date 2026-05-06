@@ -1,8 +1,8 @@
 // function get input bpmnXml string and extract all elements from it
 // and return them as an array of BpmnElement[] objects
 // use DOMParser to parse the XML string and DOMQuery to extract elements
-
-import BpmnElement from "./BpmnElement";
+import { DOMParser } from "@xmldom/xmldom";
+import BpmnElement from "./BpmnElement.js";
 
 const BPMN_ELEMENT_LOCAL_NAMES = new Set([
   // activities
@@ -40,9 +40,9 @@ export function extractFromXml(bpmnXml) {
   const xmlDoc = parser.parseFromString(bpmnXml, "text/xml");
 
   // Check for parsing errors
-  const errorNode = xmlDoc.querySelector("parsererror");
-  if (errorNode) {
-    throw new Error("XML parsing error: " + errorNode.textContent);
+  const errorNodes = Array.from(xmlDoc.getElementsByTagName("parsererror"));
+  if (errorNodes.length > 0) {
+    throw new Error("XML parsing error: " + errorNodes[0].textContent);
   }
 
   // get all important elements
@@ -184,31 +184,31 @@ function findPoolName(taskNode, xmlDoc) {
 }
 
 function findParentByLocalName(node, localName) {
-  let current = node.parentElement;
+  let current = node.parentNode;
   while (current) {
     if (current.localName === localName) {
       return current;
     }
-    current = current.parentElement;
+    current = current.parentNode;
   }
   return null;
 }
 
 // get text content of direct child elements with a specific local name
 function getDirectChildContent(node, localName) {
-  return Array.from(node.children)
+  return Array.from(node.childNodes)
     .filter((child) => child.localName === localName)
     .map((child) => (child.textContent || "").trim())
     .filter(Boolean);
 }
 
 function extractIncomingDataFromElementIds(taskNode) {
-  const dataInput = Array.from(taskNode.children).filter(
+  const dataInput = Array.from(taskNode.childNodes).filter(
     (n) => n.localName === "dataInputAssociation",
   );
 
   return dataInput.flatMap((assoc) =>
-    Array.from(assoc.children)
+    Array.from(assoc.childNodes)
       .filter((n) => n.localName === "sourceRef")
       .map((n) => n.textContent.trim())
       .filter(Boolean),
@@ -216,11 +216,11 @@ function extractIncomingDataFromElementIds(taskNode) {
 }
 
 function extractOutgoingDataToElementIds(taskNode) {
-  const dataOutput = Array.from(taskNode.children).filter(
+  const dataOutput = Array.from(taskNode.childNodes).filter(
     (n) => n.localName === "dataOutputAssociation",
   );
   return dataOutput.flatMap((assoc) =>
-    Array.from(assoc.children)
+    Array.from(assoc.childNodes)
       .filter((n) => n.localName === "targetRef")
       .map((n) => n.textContent.trim())
       .filter(Boolean),

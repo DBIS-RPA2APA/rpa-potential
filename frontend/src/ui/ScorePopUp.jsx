@@ -30,7 +30,7 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
     },
     {
       id: 7,
-      test: "he activity/rule uses available structured data. For example: Structured XML, CSV, or JSON files, Forms with predefined fields, Spreadsheet-based data.",
+      test: "The activity/rule uses available structured data. For example: Structured XML, CSV, or JSON files, Forms with predefined fields, Spreadsheet-based data.",
     },
     {
       id: 8,
@@ -53,7 +53,14 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
     >
       <div className="mb-2 flex items-start justify-between">
         <h3 className="text-base font-semibold text-slate-900">
-          Scoring criteria according to Bédard et al.
+          Scoring criteria according to{" "}
+          <a
+            href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/smr.2709"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bédard et al.
+          </a>
         </h3>
         <button
           onClick={onClose}

@@ -6,7 +6,7 @@ import { evaluateDataset } from "./evaluation/evaluation.js";
 import { chat } from "./chat.js";
 import { buildPreviewPrompt } from "./PreviewPrompt.js";
 import { saveEvaluation, getAllEvaluations } from "./evaluation/history.js";
-import { success } from "zod";
+import { extractFromXml } from "./bpmn/extractFromXml.js";
 
 const app = express(); // Express-Server initialisieren
 
@@ -22,6 +22,27 @@ app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
+// ------- Extract endpoint with logical API path -------
+app.post("/api/extract", async (req, res) => {
+  try {
+    const { xml } = req.body;
+
+    if (!xml || typeof xml !== "string") {
+      return res.status(400).json({
+        error: "xml must be an string",
+        code: "INVALID_INPUT",
+      });
+    }
+
+    const result = await extractFromXml(xml);
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
 // ------- Analytics endpoint with logical API path -------
 app.post("/api/analyze", async (req, res) => {
   try {

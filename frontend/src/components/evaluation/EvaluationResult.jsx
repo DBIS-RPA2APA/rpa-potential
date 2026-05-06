@@ -308,98 +308,109 @@ export function EvaluationResult({
               ))}
             </div>
           </div>
-          {/* Second Row */}
-          <AccordionSection title={`Diagrams of results (Run ${activeRun})`}>
-            <div className="grid grid-cols-2 xl:grid-cols-2 gap-4">
-              <DiagramCard title="Test Results Distribution">
-                {({ width, height }) => (
-                  <PieChart
-                    data={[
-                      { name: "Passed", value: activeSummary?.passed ?? 0 },
-                      { name: "Failed", value: activeSummary?.failed ?? 0 },
-                    ]}
-                    width={width}
-                    height={height}
-                  />
-                )}
-              </DiagramCard>
-              <DiagramCard title="Performance Metrics Overview">
-                {({ width, height }) => (
-                  <Radar
-                    data={[
-                      {
-                        name: "Accuracy",
-                        value: activeMetadata?.accuracy ?? 0,
-                      },
-                      {
-                        name: "Precision",
-                        value: activeMetadata?.precision ?? 0,
-                      },
-                      { name: "Recall", value: activeMetadata?.recall ?? 0 },
-                      { name: "F1-Score", value: activeMetadata?.f1Score ?? 0 },
-                    ]}
-                    width={width}
-                    height={height}
-                  />
-                )}
-              </DiagramCard>
-              <DiagramCard title="Performance Metrics Comparison">
-                {({ width, height }) => (
-                  <BarPlot
-                    data={[
-                      {
-                        name: "Accuracy",
-                        value: activeMetadata?.accuracy ?? 0,
-                      },
-                      {
-                        name: "Precision",
-                        value: activeMetadata?.precision ?? 0,
-                      },
-                      { name: "Recall", value: activeMetadata?.recall ?? 0 },
-                      { name: "F1-Score", value: activeMetadata?.f1Score ?? 0 },
-                    ]}
-                    width={width}
-                    height={height}
-                  />
-                )}
-              </DiagramCard>
-              <DiagramCard title="Confusion Matrix Breakdown">
-                {({ width, height }) => (
-                  <BarPlot
-                    data={[
-                      {
-                        name: "True Positives",
-                        value: activeMetadata?.totalTruePositives ?? 0,
-                      },
-                      {
-                        name: "False Positives",
-                        value: activeMetadata?.totalFalsePositives ?? 0,
-                      },
-                      {
-                        name: "False Negatives",
-                        value: activeMetadata?.totalFalseNegatives ?? 0,
-                      },
-                      {
-                        name: "True Negatives",
-                        value: activeMetadata?.totalTrueNegatives ?? 0,
-                      },
-                    ]}
-                    width={width}
-                    height={height}
-                  />
-                )}
-              </DiagramCard>
-            </div>
-          </AccordionSection>
+          <div className="space-y-3 px-3">
+            {/* Second Row */}
+            <AccordionSection title={`Diagrams of results (Run ${activeRun})`}>
+              <div className="grid grid-cols-2 xl:grid-cols-2 gap-4">
+                <DiagramCard title="Test Results Distribution">
+                  {({ width, height }) => (
+                    <PieChart
+                      data={[
+                        { name: "Passed", value: activeSummary?.passed ?? 0 },
+                        { name: "Failed", value: activeSummary?.failed ?? 0 },
+                      ]}
+                      width={width}
+                      height={height}
+                    />
+                  )}
+                </DiagramCard>
+                <DiagramCard title="Performance Metrics Overview">
+                  {({ width, height }) => (
+                    <Radar
+                      data={[
+                        {
+                          name: "Accuracy",
+                          value: activeMetadata?.accuracy ?? 0,
+                        },
+                        {
+                          name: "Precision",
+                          value: activeMetadata?.precision ?? 0,
+                        },
+                        { name: "Recall", value: activeMetadata?.recall ?? 0 },
+                        {
+                          name: "F1-Score",
+                          value: activeMetadata?.f1Score ?? 0,
+                        },
+                      ]}
+                      width={width}
+                      height={height}
+                    />
+                  )}
+                </DiagramCard>
+                <DiagramCard title="Performance Metrics Comparison">
+                  {({ width, height }) => (
+                    <BarPlot
+                      data={[
+                        {
+                          name: "Accuracy",
+                          value: activeMetadata?.accuracy ?? 0,
+                        },
+                        {
+                          name: "Precision",
+                          value: activeMetadata?.precision ?? 0,
+                        },
+                        { name: "Recall", value: activeMetadata?.recall ?? 0 },
+                        {
+                          name: "F1-Score",
+                          value: activeMetadata?.f1Score ?? 0,
+                        },
+                      ]}
+                      width={width}
+                      height={height}
+                    />
+                  )}
+                </DiagramCard>
+                <DiagramCard title="Confusion Matrix Breakdown">
+                  {({ width, height }) => (
+                    <BarPlot
+                      data={[
+                        {
+                          name: "True Positives",
+                          value: activeMetadata?.totalTruePositives ?? 0,
+                        },
+                        {
+                          name: "False Positives",
+                          value: activeMetadata?.totalFalsePositives ?? 0,
+                        },
+                        {
+                          name: "False Negatives",
+                          value: activeMetadata?.totalFalseNegatives ?? 0,
+                        },
+                        {
+                          name: "True Negatives",
+                          value: activeMetadata?.totalTrueNegatives ?? 0,
+                        },
+                      ]}
+                      width={width}
+                      height={height}
+                    />
+                  )}
+                </DiagramCard>
+              </div>
+            </AccordionSection>
 
-          {/* Third Row */}
-          <AccordionSection title={`Result per model (Run ${activeRun})`}>
-            <div className="grid grid-cols-1 gap-2">
-              {activeTestCaseReports.map((result) => (
-                <ModelResultAccordion key={result.testCaseID} result={result} />
-              ))}
-            </div>
-          </AccordionSection>
+            {/* Third Row */}
+            <AccordionSection title={`Result per model (Run ${activeRun})`}>
+              <div className="grid grid-cols-1 gap-2">
+                {activeTestCaseReports.map((result) => (
+                  <ModelResultAccordion
+                    key={result.testCaseID}
+                    result={result}
+                  />
+                ))}
+              </div>
+            </AccordionSection>
+          </div>
         </div>
       </div>
     </>

@@ -1,0 +1,16 @@
+{
+  "model_id": 6,
+  "name": "6 Numerus-Clausus-Verfahren",
+  "expectedValues": [
+    {
+      "id": "sid-DA6C60D3-D7F8-4C71-ADF1-831BC044E549",
+      "reason": "The activity 'Bonierungs-kriterien prüfen' involves checking criteria, which is typically a rule-based process and can be performed through digital systems without ambiguity. The rules are well-defined, stable, and enforced, and the data used is structured and digital.",
+      "score": [1, 2, 3, 4, 7, 8]
+    },
+    {
+      "id": "sid-7B112DC7-E8CD-4D2D-8BE0-0535131F434D",
+      "reason": "The activity 'potentielle Bonierungs-gründe sammeln' involves gathering potential reasons for criteria, which can be structured and does not require creativity. The process can be automated as it uses stable digital data.",
+      "score": [1, 3, 6, 7, 8]
+    }
+  ]
+}

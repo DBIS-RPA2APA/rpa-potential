@@ -31,14 +31,14 @@ export default function Radar({ width, height, data }) {
 
   const lineGenerator = d3
     .lineRadial()
-    .angle((d) => xScale(d.name) + xScale.bandwidth() / 2 - Math.PI / 2)
+    .angle((d) => xScale(d.name) + xScale.bandwidth() / 2 - Math.PI / 2) // ändert die Linien vom "Netz" -> so passts, - Math.PI / 2 -> dreht Kreis um 90
     .radius((d) => yScales[d.name](d.value))
     .curve(d3.curveLinearClosed);
 
   const radarPath = lineGenerator(data);
 
   const points = data.map((d) => {
-    const angle = xScale(d.name) + xScale.bandwidth() / 2 - Math.PI / 2;
+    const angle = xScale(d.name) + xScale.bandwidth() / 2 - (2 * Math.PI) / 2; // ändert Punkt -> Punkte passe aber Bezeichung nicht
     const radius = yScales[d.name](d.value);
     return {
       ...d,
@@ -49,7 +49,7 @@ export default function Radar({ width, height, data }) {
 
   const shiftedPoints = points.map((point, index) => ({
     ...point,
-    value: points[(index + 1) % points.length].value,
+    value: points[index % points.length].value,
   }));
 
   return (
@@ -67,7 +67,7 @@ export default function Radar({ width, height, data }) {
           stroke="#FF6285"
           strokeWidth={1}
         />
-        {/* key bullet points VALUES */}
+        {/* key bullet points VALUES FF6285 */}
         {shiftedPoints.map((point, i) => (
           <g key={i}>
             <circle cx={point.x} cy={point.y} r={4} fill="#FF6285" />

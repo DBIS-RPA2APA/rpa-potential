@@ -11,8 +11,10 @@ import "../../styles/bpmn-style/bpmn.css";
 import initialDiagram from "../../data/empty.bpmn?raw";
 import { BpmnLayout } from "./BpmnLayout.jsx";
 import AnalysisPopup from "../../ui/AnalysisPopup.jsx";
-import { analyzeElements } from "../../services/api/analyzeApi.js";
-import { extractFromXml } from "../../services/bpmn/extractFromXml.js";
+import {
+  analyzeElements,
+  extractBpmnElements,
+} from "../../services/api/analyzeApi.js";
 
 // main component for the BPMN editor, responsible for initializing the BPMN modeler, handling file imports,
 // managing state for errors and analysis results, and passing necessary refs and callbacks to the BpmnLayout component for rendering the UI.
@@ -67,8 +69,8 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
         console.warn("No element found for ID:", crit.id);
         return;
       }
-      // set color for critical elements, red fill and stroke
-      modeling.setColor(el, { fill: "#FEE2E2", stroke: "#DC2626" });
+      // set color for critical elements, green fill and stroke
+      modeling.setColor(el, { fill: "#a8dbba", stroke: "#15803d" });
     });
     //console.log("critical:",analysisResult.criticalElements.map((x) => x.id));
   }, [analysisResult]); // start just when analysisResult changes
@@ -223,7 +225,8 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
 
       const modeler = modelerRef.current;
       const { xml } = await modeler.saveXML({ format: true });
-      const elements = extractFromXml(xml);
+
+      const elements = await extractBpmnElements(xml);
       const result = await analyzeElements(elements, llmProps);
 
       onAnalysisResult?.({

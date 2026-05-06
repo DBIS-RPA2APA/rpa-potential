@@ -6,6 +6,9 @@ const API_BASE = "http://localhost:8080";
 export async function analyzeElements(elements, llmProps = {}) {
   return postJson("/api/analyze", { elements, llmProps });
 }
+export async function extractBpmnElements(xml) {
+  return postJson("/api/extract", { xml });
+}
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
   return postJson("/api/evaluate", { evaluationConfig, llmProps });
 }

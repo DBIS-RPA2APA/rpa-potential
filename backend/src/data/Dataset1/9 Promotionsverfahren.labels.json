@@ -1,0 +1,31 @@
+{
+  "model_id": 9,
+  "name": "9 Promotionsverfahren",
+  "expectedValues": [
+    {
+      "id": "sid-11629DEA-648B-4729-B443-56ABC4F74A36",
+      "reason": "Filling out an application form is a task performed based on well-defined rules and unambiguous criteria. The process involves entering data into predefined fields, which is a routine task. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
+      "score": [1, 3, 4, 5, 6, 7, 8]
+    },
+      {
+      "id": "sid-06FD75DC-446B-4F97-8625-B1474E718C4D",
+      "reason": "Submitting required documents is a task performed based on well-defined rules and unambiguous criteria. The process involves submitting structured data. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
+      "score": [1, 2, 3, 5, 8, 9]
+    },
+      {
+      "id": "sid-D16F8B64-9593-40F2-B485-9155D14803F1",
+      "reason": " This activity involves checking the completeness and authenticity of documents, which is a routine task based on predefined rules and unambiguous criteria. The rules are enforced strictly, and the task is performed within a predictable context, using structured data. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+      {
+      "id": "sid-CC22AF37-549A-4915-9ADE-4C776B08B064",
+      "reason": "This activity involves conducting the promotion process according to specific regulations, which is based on well-defined and unambiguous rules. The process follows a standard procedure and uses structured data. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+      {
+      "id": "sid-11CA6E09-FC51-45FE-AD47-2C82B17FDE39",
+      "reason": "Creating a report involves filling out forms based on predefined templates and rules. The process is routine and follows a standardized procedure. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  ]
+}

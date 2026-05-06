@@ -1,0 +1,66 @@
+{
+  "model_id": 5,
+  "name": "5 Zulassungsverfahren Master",
+  "expectedValues": [
+    {
+      "id": "sid-2A5A6CDE-B7E8-490E-9CEC-A9A6FD7D3436",
+      "reason": "The task of recording test fees and forwarding payment export files is highly structured and clearly defined, making it suitable for automation.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-4FB33B89-4CA2-4A32-8712-B978548431DF",
+      "reason": "This activity involves checking the admission requirements according to specific regulations, which is a structured process carried out by humans using systems. The rules are defined, stable, and strictly enforced, making it suitable for automation.",
+      "score": [1]
+    },
+    {
+      "id": "sid-F4B153F7-A8B3-41F5-B6C0-00614554A819",
+      "reason": "Preparing documents is a systematic task that can be automated as it follows defined rules and structured formats.",
+      "score": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": "sid-F28C64EB-36B1-4AD8-8788-8D60D4F32819",
+      "reason": "Creating a rejection notification is a process with well-defined steps and criteria, which can be automated as it relies on standard rules and predictable data.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-8E8D9BDC-0EA8-497F-9DA6-3D2702E7D86B",
+      "reason": "The generation of an admission notification follows a clearly defined process and rules that can be consistently applied, making it suitable for automation.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-F01DC827-B34F-40E1-9EE1-3A04D4F9DC5F",
+      "reason": "Applying a one-stage process involves straightforward, structured steps that do not change often and can be automated effectively.",
+      "score": [1, 2, 3, 4, 5, 6]
+    },
+     {
+      "id": "sid-9EAD1775-D2C5-4032-9445-FD7FEFFA5280",
+      "reason": "The process of determining whether a procedure is single-stage or two-stage is straightforward and can be automated as it follows fixed criteria.",
+      "score": [1, 2 ,3, 4, 5, 6]
+    },
+   {
+      "id": "sid-4AFB480B-9558-49A9-91CA-BAAA596EB7E1",
+      "reason": "Checking whether a numerical criterion (NC) exists is a structured and rule-based activity, making it suitable for automation.",
+      "score": [1,2,3,4,5,6,9]
+    },
+     {
+      "id": "sid-E51CE8F0-33FE-4B80-9A09-D20B65FA62F3",
+      "reason": "This task involves verifying the equivalence of qualifications and other admission requirements based on clear rules, making it suitable for automation.",
+      "score": [1,2,3,4,5,6,9]
+    },
+     {
+      "id": "sid-57B74B17-CDBC-43DE-A4AD-B78D7A292A33",
+      "reason": "Generating requirements is a structured activity that can be automated as it follows predefined criteria and formats.",
+      "score": [1, 2, 3, 4, 5, 6]
+    },
+    {
+      "id": "sid-B0AF9106-BF1F-4CE7-A3F4-501B368EB695",
+      "reason": "Creating justifications follows a structured process, can be standardized, and does not require complex decision-making, making it automatable.",
+      "score": [1, 2, 3, 4, 5, 6]
+    },
+     {
+      "id": "sid-17BD7500-EBB8-4915-96B4-AFC8A3A31D22",
+      "reason": "Collecting and recording test results is a data-driven task that follows clear procedures and can be automated effectively.",
+      "score": [1, 2, 3, 4, 5, 6, 7]
+    }
+  ]
+}

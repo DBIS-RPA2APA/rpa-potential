@@ -1,0 +1,36 @@
+{
+  "model_id": 10,
+  "name": "10 Raumreservierung",
+  "expectedValues": [
+    {
+      "id": "sid-E7FAB73B-379A-4048-A586-A59B0ED6166A",
+      "reason": "This activity involves checking reservations and ensuring they meet certain predefined criteria, such as availability and compliance with rules. It does not require creative thinking or complex decision-making. The data needed for this activity is likely in digital format, and the process is based on stable and unchanging rules.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-9A70E4EF-B517-4157-B629-06264E449001",
+      "reason": "This activity involves saving reservations which is based on well-defined rules and does not require creativity or complex decision-making. The data needed for this activity is likely in digital format, and the process is stable and predictable.",
+      "score": [2, 3, 4, 5, 6, 7, 8, 9]
+    },
+    {
+      "id": "sid-FE374497-52A3-4E82-9D5E-854C0B6332ED",
+      "reason": "The activity 'Raumanfrage korrigieren' involves correcting a room request based on set parameters and structured data, making it suitable for automation.",
+      "score": [3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-0825FE13-E3E0-442A-9B69-0B0F79F22C23",
+      "reason": "The activity 'Genehmigung prüfen' involves checking approval criteria which can be automated. It follows clear rules, uses structured data, and does not require human judgment, making it feasible for automation.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "sid-54F3E394-FD59-4452-BF25-7DD18151D78F",
+      "reason": "The activity 'Genehmigungs-E-Mail senden' involves sending an email for approval which is a repetitive and rule-based task. It uses structured data for email content and can be automated effectively.",
+      "score": [1, 2, 3, 4, 5, 6, 8]
+    },
+    {
+      "id": "sid-E854EBEC-5F9D-4A08-9C43-B166FDFEF1C9",
+      "reason": "The activity 'Ablehnungs-E-Mail senden' is the process of sending an email to inform about the rejection of a reservation. It is a straightforward task that can be executed automatically using structured data.",
+      "score": [1, 2, 3, 4, 5, 6, 8]
+    }
+  ]
+}

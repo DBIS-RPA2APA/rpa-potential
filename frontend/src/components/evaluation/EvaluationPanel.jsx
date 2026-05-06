@@ -1,12 +1,8 @@
 /* eslint-disable react-hooks/immutability */
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Button from "../../ui/button";
 import "../../styles/index.css";
 import EvaluationResult from "./EvaluationResult";
-import {
-  getAvailableDatasets,
-  loadDatasetTestCases,
-} from "../../services/evaluation/loadDataset";
 import {
   evaluateDataset,
   getEvaluationHistory,
@@ -14,11 +10,9 @@ import {
 } from "../../services/api/analyzeApi";
 
 const EvaluationPanel = ({ llmProps }) => {
-  const availableDatasets = useMemo(() => getAvailableDatasets(), []);
-  const [dataset, setDataset] = useState(availableDatasets[0] || "");
   const [evaluationData, setEvaluationData] = useState(null);
   const [showEvaluationResult, setShowEvaluationResult] = useState(false);
-  const [testCases, setTestCases] = useState([]);
+  const [dataset, setDataset] = useState("Dataset0");
   const [numRepetitions, setNumRepetitions] = useState("");
 
   const [evaluationStatus, setEvaluationStatus] = useState("available"); // Status zu speichern
@@ -86,10 +80,10 @@ const EvaluationPanel = ({ llmProps }) => {
         if (prev >= 97) return prev;
 
         const remaining = 97 - prev;
-        const increment = Math.max(1, remaining * 0.1); // faster at first, then slower
+        const increment = Math.max(1, remaining * 0.05); // faster at first, then slower
         return Math.min(97, prev + increment);
       });
-    }, 1000);
+    }, 1800);
   };
 
   const stopProgressSimulation = () => {
@@ -100,25 +94,13 @@ const EvaluationPanel = ({ llmProps }) => {
   };
 
   const handleEvaluation = async () => {
-    // returns array of test cases with id, name, bpmnXml, elements, expectedValues
-    const cases = loadDatasetTestCases(dataset);
-    console.log("Loaded test cases:", cases);
-    setTestCases(cases);
     setEvaluationError("");
 
     const evaluationConfig = {
       datasetName: dataset,
-      testCases: cases,
       numRepetitions: numRepetitions || 1,
       evaluationEndpoint: "/api/evaluate",
     };
-    if (cases.length === 0) {
-      console.warn("No test cases found for dataset:", dataset);
-      setEvaluationStatus("error");
-      setProgress(0);
-      setEvaluationError("No test cases found for the selected dataset.");
-      return;
-    }
     setEvaluationStatus("running");
     startProgressSimulation();
 
@@ -131,6 +113,7 @@ const EvaluationPanel = ({ llmProps }) => {
         numRepetitions: numRepetitions || 1,
         defaultEvaluationEndpoint: "/api/evaluate",
         llmProps: llmProps,
+        testCases: result.testCases ?? [],
         totalMetrics: result.totalMetrics,
         totalRunResult: result.totalRunResult,
       };
@@ -205,11 +188,10 @@ const EvaluationPanel = ({ llmProps }) => {
               onChange={(e) => setDataset(e.target.value)}
               className="w-full rounded border  text-slate-900"
             >
-              {availableDatasets.map((ds) => (
-                <option key={ds} value={ds}>
-                  {ds}
-                </option>
-              ))}
+              <option value="Dataset0">Dataset 0</option>
+              <option value="Dataset1">Dataset 1</option>
+              <option value="Dataset2">Dataset 2</option>
+              <option value="Dataset3">Dataset 3</option>
             </select>
           </div>
 
@@ -224,7 +206,7 @@ const EvaluationPanel = ({ llmProps }) => {
             </Button>
           </div>
         </div>
-        <h2 className="text-slate-900 font-semibold text-2xl mb-2">History</h2>
+        <h2 className="text-slate-900 font-semibold text-xl mb-2">History</h2>
         <div className="bg-slate-100 rounded border-md p-3 overflow-scroll max-h-80">
           {evaluationHistory.length === 0 && (
             <p className="text-md text-slate-500">No evaluations saved yet.</p>
@@ -232,13 +214,13 @@ const EvaluationPanel = ({ llmProps }) => {
           {evaluationHistory.map((item) => (
             <div
               key={`${item.datasetName}-${item.timestamp}`}
-              className="rounded border-md border-slate-300 bg-white px-4 py-2 mb-2 cursor-pointer hover:bg-slate-200 transition"
+              className="rounded border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-slate-200 transition"
               onClick={() => openResult(item)}
             >
               <p className="text-md font-medium text-slate-900 pb-2">
                 {item.datasetName}
               </p>
-              <p className="text-sm text-slate-500 pb-1">{item.timestamp}</p>
+              <p className="text-sm text-slate-500">{item.timestamp}</p>
               <p className="text-sm text-slate-500">
                 Runs: {item.numRepetitions ?? 1}
               </p>
@@ -272,7 +254,7 @@ const EvaluationPanel = ({ llmProps }) => {
               disabled={!evaluationData || evaluationStatus !== "finished"}
               onClick={() => setShowEvaluationResult(true)}
             >
-              Open Results
+              Open Last Result
             </Button>
           </div>
         </div>
@@ -286,7 +268,7 @@ const EvaluationPanel = ({ llmProps }) => {
             timestamp: evaluationData.timestamp,
             numRepetitions: evaluationData.numRepetitions,
             defaultEvaluationEndpoint: evaluationData.defaultEvaluationEndpoint,
-            testCases,
+            testCases: evaluationData.testCases,
           }}
           totalRunResult={evaluationData.totalRunResult ?? []}
           totalSummary={evaluationData.totalMetrics}

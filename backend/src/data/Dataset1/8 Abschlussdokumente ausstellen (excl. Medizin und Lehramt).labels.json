@@ -1,0 +1,41 @@
+{
+  "model_id": 8,
+  "name": "8 Abschlussdokumente ausstellen (excl. Medizin und Lehramt)",
+  "expectedValues": [
+    {
+      "id": "sid-A3F04A82-5F94-4E37-8181-D1088BE55CFC",
+      "reason": " Informing students about their status is a standardized procedure based on well-defined rules and follows predictable patterns. It does not require complex decision-making.",
+      "score": [2, 3, 4, 5, 6, 7, 8]
+    },
+     {
+      "id": "sid-B0F6F125-9B02-4FB8-AF25-FC825D8A267F",
+      "reason": " The activity involves verifying predefined information, which is based on well-defined rules, follows stable procedures, and does not require complex decision-making. The information verification process is stable and the data involved are likely structured.",
+      "score": [2, 3, 4, 5, 6, 7]
+    },
+     {
+      "id": "sid-3BC2BFA2-2D79-4029-9B61-C8AE9E3CED5D",
+      "reason": "This activity involves processing relevant information, which typically follows predefined rules and procedures. It is stable and structured, requiring no complex decision-making.",
+      "score": [2, 3, 4, 5, 6, 7, 8]
+    },
+     {
+      "id": "sid-F1BBFA01-7EBA-429E-B2C6-F29220B31654",
+      "reason": "Creating certificates and documents involves standard templates and procedures. It follows stable rules and involves structured data.",
+      "score": [3, 4, 5, 7, 8]
+    },
+     {
+      "id": "sid-3E2AD42E-A4C8-4666-838B-68D7D0E539FE",
+      "reason": "Creating and storing documents and attestations is a routine task based on predefined rules. It follows stable procedures and involves structured data.",
+      "score": [3, 4, 5, 7, 8]
+    },
+    {
+      "id": "sid-04396EDF-5D5D-456B-BC5A-04C9DF30267F",
+      "reason": "Sending documents is a routine task that follows stable procedures and does not require complex decision-making. The task is based on well-defined rules and involves structured data.",
+      "score": [2, 3, 4, 6, 7, 8]
+    },
+    {
+      "id": "sid-E0C99F74-CB62-4D6B-BF8D-6B7E528CE50F",
+      "reason": " This activity involves resending information, which is likely triggered by a specific condition and can be automated as part of a retry mechanism.",
+      "score": [1, 2, 3, 4, 6, 7, 8]
+    }
+  ]
+}

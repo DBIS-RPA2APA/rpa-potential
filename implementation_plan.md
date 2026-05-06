@@ -2,8 +2,26 @@
 
 Today:
 
-- change Color of BPMN Tasks (Analysis Editor/ Evaluation Editor)
+- loadDataset ins Backend
+- Netzdiagramm verbessern
+- 3 neue LLM Modelle raussuchen !!!
 - Datensatz 10 Bpmn
+
+- UX überprüfen: History in EvaluationPanel ändern, Logo ändern
+- UI Kit-Deign erstellen und anwenden!!! <3
+- DarkMode Farben anpassen
+- code anpassen
+
+Wednesday
+
+- Related Work neue paper suchen!!!
+- UI Kit-Deign
+
+- chatbots generieren bpmn in related work
+- schauen wer alles bernad zitiert hat
+- aufteilung von related work eher in background
+- related work llm in bpmn, rpa umsetzung ähnliches, was wurde noch mit den kriterein gemacht -> pro kategorie 2-3
+- mistral
 
 Fragen:
 
@@ -12,20 +30,9 @@ Fragen:
 - Wenn eine Task rictiger weiße als automatisierbar eingestuft wurde, ABER die Scorse nicht passen, Was dann? -> Später in Arbeits schreiben…
 - Lieber mehr llm Vergleichen, Größeres Datenset, und wiederholungen… -> bei gleichem LLM und gelichem BPMN öfters durchlafuen lassen immer wieder verschiedene Tasks als Automatisierbar eingestuft…
 
-Neu:
-
-- Netzdiagram
-- Repetitions
-- Crossiant Button
-- Info Button für Score
-- Progress Bar
-- History
-
-bis 30. April:
+bis 21. Mai:
 
 - Anfangen zu schreiben
-- Datensatz 10 Bpmn
-- UX überprüfen
 - DarkMode Farben anpassen
   (- Tests schreiben)
 - UI Kit-Deign erstellen und anwenden!!! <3
@@ -46,12 +53,6 @@ Output: BpmnAnalysisResult -> Liste mit kritischen Elementen, in Editor Bpmn ang
 6. ...
 7. Evalation der verschiedenen LLMs !!!
 
-- Frontend: React/ReactNative + bpmn-js (hast du)
-- Backend: Node.js
-- LLM Layer: LangChain.js
-- Provider für Multi-LLM: OpenRouter (plus optional Ollama)
-- Output: Zwingend strukturiert + Retry + id-validation (wie Masterarbeit)
-
 ## BPMN Extraction
 
 Input: BPMN XML
@@ -64,7 +65,7 @@ Output: BpmnAnalysisResult
 
 - Labeling-Guide / Gold Labels (Evaluation)
 
-## Validation / Guardrails
+## Validation
 
 Input: rohe LLM-Antwort
 Output: valides BpmnAnalysisResult
@@ -95,43 +96,7 @@ Output: Editor mit rot markierten Elementen
 
 ## Anfrage an Backend
 
-Frontend sendet:  
-POST /analysis
-{
-"bpmnElements": [...],
-"llmProps": {
-"modelName": "mistralai/mistral-7b-instruct",
-"temperature": 0.1
-}
-}
-
 ## Backend baut Prompt
-
-Backend baut: System Prompt
-You are an expert in business process automation.
-Identify tasks that are automatable.
-Return only JSON.
-
-Format:
-{
-"automatableTasks": [
-{ "id": "...", "reason": "..." }
-]
-}
-
-## User Prompt
-
-LangChain bekommt:
-[
-{
-"id": "Task_1",
-"name": "Check customer data"
-},
-{
-"id": "Task_2",
-"name": "Send email"
-}
-]
 
 ## LangChain ruft LLM auf
 
@@ -143,15 +108,9 @@ LangChain übernimmt:
 ## Anfrage geht zu OpenRouter
 
 OpenRouter entscheidet:
-modelName = mistralai/mistral-7b-instruct -> ANfrage geht an Mistral
+modelName = mistralai/mistral-7b-instruct -> Anfrage geht an Mistral
 
 ## LLM gibt JSON zurück + Backend validiert Ergebnis
-
-wie in der Masterarbeit:
-Backend prüft:
-• JSON valid?
-• id existiert?
-• keine Duplikate?
 
 ## Ergebnis zurück ans Frontend
 
