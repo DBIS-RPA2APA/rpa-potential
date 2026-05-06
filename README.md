@@ -54,7 +54,15 @@ The following technologies were used in this application:
 
 ## Quickstart
 
-To use the application, first install all the dependencies and then execute the Setup in both the frontend and backend folders.
+First create a `.env` file inside the backend folder:
+
+```env
+OPENROUTER_API_KEY=your_api_key
+OPENROUTER_BASE_URL=your_base_url (https://openrouter.ai/api/v1)
+DEFAULT_MODEL=your_default_model (optional, e.g.: openai/gpt-4o-mini)
+```
+
+To use the application, install all the dependencies and then execute the Setup in both the frontend and backend folders.
 
 ### Installation
 
