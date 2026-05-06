@@ -1,10 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { analyze } from "./analyze.js";
+import { analyze } from "./llm/analyze.js";
 import { evaluateDataset } from "./evaluation/evaluation.js";
-import { chat } from "./chat.js";
-import { buildPreviewPrompt } from "./PreviewPrompt.js";
+import { chat } from "./llm/chat.js";
+import { buildPreviewPrompt } from "./llm/PreviewPrompt.js";
 import { saveEvaluation, getAllEvaluations } from "./evaluation/history.js";
 import { extractFromXml } from "./bpmn/extractFromXml.js";
 

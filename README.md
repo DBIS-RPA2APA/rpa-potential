@@ -1,34 +1,87 @@
-# Project Name
+# Bachelor Experiment: BPMN & LLM
 
-Evaluating Large Language Models in Identifying BPMN Activities for Robotic Process Automation
-…
+## Project Name
 
-# Description
+Evaluating Large Language Models in Identifying BPMN Activities for Robotic Process Automation.
 
-This repository contains the implementation of a web-based BPMN editor and experimentation environment developed as part of a Bachelor thesis.
+## Description
+
+The application uses BPMN visualization, data preprocessing, and the integration of large language models (LLMs) to evaluate the effectiveness of LLMs in identifying and analyzing BPMN activities related to robotic process automation(RPA). The application also includes a chatbot that allows users to discuss the analysis.
+This Project involves the implementation of a web-based BPMN editor and a testing environment with an evaluation feature, which were developed as part of a bachelor thesis.
 
 ## Features
 
 - Import and export of BPMN (.bpmn / .xml) files
 - Visualization and editing of BPMN models
 - BPMN preprocessing for LLM input
-- Experimental sandbox for LLM-based BPMN analysis
+- Parsing and extraction of BPMN elements
+- LLM settings can be configured
+- Chat interface for interacting with LLMs
+- Analyze different BPMN diagramms to determine which activities are suitable for RPA
+- Show BPMN in the editor with highlighted activities, which are suitable for RPA
+- Local experimentation environment for evaluating bachelor thesis
+- Support of multiple evaluation parameters
+- Dynamic visualization of evaluation results such as metrics and LLm settings
 
-# Technologies used
+## Technologies used
 
-# Bachelor Experiment – BPMN & LLMs
+The following technologies were used in this application:
 
-# Quickstart
+### Frontend
 
-# Installation
+- React
+- Vite
+- TailwindCSS
+- bpmn-js
+- bpmn.io
+- D3.js
+- React Markdown
+- react-icons
 
-# Requirements
+### Backend
 
-## Setup
+- node-js
+- LangChain.js
+- OpenRouter
+- zod
+- DOMParser
+
+## Project goals
+
+- Evaluate the performance of LLMs in terms of how well they can identify RPA-capable BPMN activities
+- Development of a interactive web-based platform for LLM and BPMN research
+- Visualize and compare the evaluation reuslt of different LLMs across multiple runs
+
+## Quickstart
+
+To use the application, first install all the dependencies and then execute the Setup in both the frontend and backend folders.
+
+### Installation
 
 ```bash
 npm install
+```
+
+### Setup
+
+```bash
 npm run dev
 ```
 
-# Licenses
+## Project Structure
+
+- `frontend/` -> React application
+- `components/` -> Visualization of the components (bpmn, chat, llmSettings,…)
+- `services/` -> Backend API Functions
+- `ui/` -> Reusable UI and diagram components
+
+- `backend/` -> Backend functions
+- `bpmn/` -> BpmnElement extraction
+- `data/` -> Datasets for evaluation
+- `evaluation/` -> Functions for evaluation and saved evaluation results
+- `llm/` -> Functions for connecting to and initiating LLM calls, as well as for chatting with the LLM
+- `prompts/` -> User and system prompts for LLM interaction
+
+## Licenses
+
+This project was created for academic reasons.

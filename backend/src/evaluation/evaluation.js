@@ -6,9 +6,9 @@ data class EvaluationMetadataReport()
 data class EvaluationReportSummary()
 data class TestCaseReport()
 */
-import { buildSystemPrompt, buildUserPrompt } from "../LlmPrompt.js";
-import { callStructuredLlm } from "../llmClient.js";
-import { normalizeAndValidate } from "../Validation.js";
+import { buildSystemPrompt, buildUserPrompt } from "../llm/LlmPrompt.js";
+import { callStructuredLlm } from "../llm/llmClient.js";
+import { normalizeAndValidate } from "../llm/Validation.js";
 import { loadDatasetTestCases } from "../evaluation/loadDataset.js";
 import {
   calculateEvaluationReportSummary,
