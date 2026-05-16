@@ -1,0 +1,770 @@
+{
+  "datasetName": "Dataset2",
+  "timestamp": "2026-05-16T23:02:00.047Z",
+  "numRepetitions": 1,
+  "defaultEvaluationEndpoint": "/api/evaluate",
+  "llmProps": {
+    "modelName": "openai/gpt-4o-mini",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "apiKey": "",
+    "temperature": 0.7,
+    "topP": 1,
+    "seed": "",
+    "responseTimeout": 20
+  },
+  "testCases": [
+    {
+      "id": 1,
+      "name": "1 Prüfungsunterlagen",
+      "datasetId": "Dataset2",
+      "bpmnXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><definitions xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:i18n=\"http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0\" xmlns:omgdc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:omgdi=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:signavio=\"http://www.signavio.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" exporter=\"Signavio Process Editor, http://www.signavio.com\" exporterVersion=\"26.7.0-20260213220553+4fc63c1\" expressionLanguage=\"http://www.w3.org/TR/XPath\" id=\"sid-6bbc2438-7cd8-492e-8f81-95d633e3baff\" targetNamespace=\"http://www.signavio.com\" typeLanguage=\"http://www.w3.org/2001/XMLSchema\" xml:lang=\"en-GB\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd\">\n   <collaboration id=\"sid-db2dbd5d-997a-4aea-b4ab-f1e5d455710e\">\n      <extensionElements>\n         <signavio:signavioDiagramMetaData metaKey=\"revisionid\" metaValue=\"3aedbf65f7ba4747bc0cc1fb163d9e8d\"/>\n      </extensionElements>\n      <participant id=\"sid-7ec43e373ac44588b10f92f74ce7bc83\" name=\"Universität Ulm\" processRef=\"sid-45242547-8815-4159-B605-77B2499AE912\">\n         <extensionElements>\n            <i18n:translation xml:lang=\"de-DE\">Universität Ulm</i18n:translation>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/2747ef178b884408bbad319ebf1a0230</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#99CCFF\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </participant>\n   </collaboration>\n   <process id=\"sid-45242547-8815-4159-B605-77B2499AE912\" isClosed=\"false\" isExecutable=\"false\" name=\"Universität Ulm\" processType=\"None\">\n      <extensionElements/>\n      <laneSet id=\"sid-f1067150-1528-4c07-b1eb-b6d7d5c63fa5\">\n         <lane id=\"sid-a781ba58babb4e1fb7d800149875c64e\" name=\"Abt. II-2 Studiensekretariat\">\n            <extensionElements>\n               <i18n:translation xml:lang=\"de-DE\">Dez. II - Studiensekreatriat</i18n:translation>\n               <signavio:signavioDictionaryLink propertyId=\"name\">\n                  <signavio:dictionaryLink>/glossary/c4752b48fe39471bb9b89f2af837b50a</signavio:dictionaryLink>\n               </signavio:signavioDictionaryLink>\n               <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"\"/>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <flowNodeRef>sid-B6C0F687-0869-4766-95F0-63CF912053EE</flowNodeRef>\n            <flowNodeRef>sid-1D64B177-78B0-48AC-8695-CA5A8D336E83</flowNodeRef>\n            <flowNodeRef>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5</flowNodeRef>\n            <flowNodeRef>sid-1DA8C03A-1B54-4464-99E9-F920A68F3797</flowNodeRef>\n            <flowNodeRef>sid-980528A9-ACE9-482C-907A-6DA546C001CB</flowNodeRef>\n            <flowNodeRef>sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11</flowNodeRef>\n            <flowNodeRef>sid-59F30528-1681-46C6-BDC5-EC1E07267490</flowNodeRef>\n            <flowNodeRef>sid-7373b0a412224cfe8311a0a98cfef055</flowNodeRef>\n            <flowNodeRef>sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF</flowNodeRef>\n            <flowNodeRef>sid-16C3075E-2486-49FF-88BE-C04F4859ED81</flowNodeRef>\n         </lane>\n      </laneSet>\n      <dataObject id=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" isCollection=\"false\" name=\"CSV-Datei\">\n         <extensionElements/>\n      </dataObject>\n      <exclusiveGateway gatewayDirection=\"Diverging\" id=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" name=\"weniger als &#10;10 Teilnehmer?\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel align=\"right\" bottom=\"false\" left=\"true\" ref=\"text_name\" right=\"false\" top=\"true\" valign=\"bottom\" x=\"-7.0\" y=\"-8.0\"/>\n         </extensionElements>\n         <incoming>sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E</incoming>\n         <outgoing>sid-E620C8A6-E6F7-4A61-B40A-431414669E69</outgoing>\n         <outgoing>sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137</outgoing>\n      </exclusiveGateway>\n      <task completionQuantity=\"1\" id=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" isForCompensation=\"false\" name=\"manuelle Eingabe der Mtnr im DMS\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137</incoming>\n         <outgoing>sid-BDC56C99-4826-48CA-9099-0CAD35E56A51</outgoing>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" isForCompensation=\"false\" name=\"Abfrage aller Klausurteilnehmer im CMS und Erstellung einer CSV-Datei\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-E620C8A6-E6F7-4A61-B40A-431414669E69</incoming>\n         <outgoing>sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2</outgoing>\n         <ioSpecification id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_iospec\">\n            <dataOutput id=\"sid-a6d4a601-cd0f-4c27-a974-edb79205a12f\"/>\n            <inputSet id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_inset\" name=\"DefaultInputSet\">\n               <outputSetRefs>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_outset</outputSetRefs>\n            </inputSet>\n            <outputSet id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_outset\" name=\"DefaultOutputSet\">\n               <dataOutputRefs>sid-a6d4a601-cd0f-4c27-a974-edb79205a12f</dataOutputRefs>\n               <inputSetRefs>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_inset</inputSetRefs>\n            </outputSet>\n         </ioSpecification>\n         <dataOutputAssociation id=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698\">\n            <extensionElements>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <sourceRef>sid-a6d4a601-cd0f-4c27-a974-edb79205a12f</sourceRef>\n            <targetRef>sid-857E499E-9DCF-4269-BF61-56AADAFE0563</targetRef>\n         </dataOutputAssociation>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" isForCompensation=\"false\" name=\"Barcode für die Teilakte &quot;Prüfungsverwaltung&quot;/Reiter &quot;Prüfungen&quot; aus DMS erzeugen, auf Etiketten drucken und auf personenbezogenem Klausurdeckblatt anbringen\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-5F6694F3-2C08-4556-9278-D5935E48B00A</incoming>\n         <outgoing>sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC</outgoing>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" isForCompensation=\"false\" name=\"Scannen der Klausuren\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-BDC56C99-4826-48CA-9099-0CAD35E56A51</incoming>\n         <outgoing>sid-9113FBA4-6428-4BC7-9434-0A4182443583</outgoing>\n      </task>\n      <endEvent id=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" name=\"Klausuren im DMS\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701</incoming>\n      </endEvent>\n      <task completionQuantity=\"1\" id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" isForCompensation=\"false\" name=\"Import der CSV-Datei in das DMS\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2</incoming>\n         <outgoing>sid-5F6694F3-2C08-4556-9278-D5935E48B00A</outgoing>\n         <ioSpecification id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_iospec\">\n            <dataInput id=\"sid-965f367d-045c-4e46-96fd-8ee330d1d128\"/>\n            <inputSet id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_inset\" name=\"DefaultInputSet\">\n               <dataInputRefs>sid-965f367d-045c-4e46-96fd-8ee330d1d128</dataInputRefs>\n               <outputSetRefs>sid-59F30528-1681-46C6-BDC5-EC1E07267490_outset</outputSetRefs>\n            </inputSet>\n            <outputSet id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_outset\" name=\"DefaultOutputSet\">\n               <inputSetRefs>sid-59F30528-1681-46C6-BDC5-EC1E07267490_inset</inputSetRefs>\n            </outputSet>\n         </ioSpecification>\n         <dataInputAssociation id=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239\">\n            <extensionElements>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <sourceRef>sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46</sourceRef>\n            <targetRef>sid-965f367d-045c-4e46-96fd-8ee330d1d128</targetRef>\n         </dataInputAssociation>\n      </task>\n      <startEvent id=\"sid-7373b0a412224cfe8311a0a98cfef055\" name=\"Prüfungsbewertung &#10;abgeschlossen\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel align=\"right\" bottom=\"false\" left=\"true\" ref=\"text_name\" right=\"false\" top=\"false\" valign=\"middle\" x=\"-7.0\" y=\"15.0\"/>\n         </extensionElements>\n         <outgoing>sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E</outgoing>\n      </startEvent>\n      <task completionQuantity=\"1\" id=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" isForCompensation=\"false\" name=\"Scannen der Klausuren mit Hochleistungsscanner\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC</incoming>\n         <outgoing>sid-61B83563-DC63-418B-BD93-CC3C20E00931</outgoing>\n      </task>\n      <exclusiveGateway gatewayDirection=\"Converging\" id=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-9113FBA4-6428-4BC7-9434-0A4182443583</incoming>\n         <incoming>sid-61B83563-DC63-418B-BD93-CC3C20E00931</incoming>\n         <outgoing>sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701</outgoing>\n      </exclusiveGateway>\n      <sequenceFlow id=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69\" name=\"nein\" sourceRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" targetRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A\" sourceRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" targetRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2\" sourceRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" targetRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E\" sourceRef=\"sid-7373b0a412224cfe8311a0a98cfef055\" targetRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137\" name=\"ja\" sourceRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" targetRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel edge=\"startbottom\" ref=\"text_name\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC\" sourceRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" targetRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51\" sourceRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" targetRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931\" sourceRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" targetRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701\" sourceRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\" targetRef=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <dataObjectReference dataObjectRef=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" id=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563\" name=\"CSV-Datei\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </dataObjectReference>\n      <dataObjectReference dataObjectRef=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" id=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46\" name=\"CSV-Datei\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </dataObjectReference>\n      <association associationDirection=\"None\" id=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6\" sourceRef=\"sid-7373b0a412224cfe8311a0a98cfef055\" targetRef=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-7375DF72-4472-456C-BB0D-E270E206088E\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211\" sourceRef=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" targetRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806\" sourceRef=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" targetRef=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3\" sourceRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" targetRef=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5\" sourceRef=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" targetRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054\" sourceRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" targetRef=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D\" sourceRef=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" targetRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966\" sourceRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" targetRef=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <textAnnotation id=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"32.0\" y=\"23.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" signavio:alignment=\"left\">\n         <extensionElements>\n            <i18n:translation target=\"text\" xml:lang=\"de-DE\">CMS</i18n:translation>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/4233c09982f247149c38acef3cdced41</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"29.0\" y=\"21.0\"/>\n         </extensionElements>\n         <text>CMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>alle bewerteten Klausuren liegen der Abt. II-2 Studiensektretariat vor</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>Alle Klausuren werden an einem zentralen Scan-PC in Abt. II-2 Studiensekretariat eingescannt (i.d.R. durch HiWi)\nDabei ist zu beachten:\n- Klammern und/oder Büroklammern aus Klausuren entfernen\n- Format beim Einlegen in Scanner beachten (A5 - A3)\n- bereits bestehende Barcodes unkenntlich machen\n</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>Aufbewahrungsfrist:\n6 Jahre ab Exmatrikulationsdatum</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n   </process>\n   <bpmndi:BPMNDiagram id=\"sid-6b393ca3-0c59-4677-a4af-d99c12b2f607\">\n      <bpmndi:BPMNPlane bpmnElement=\"sid-db2dbd5d-997a-4aea-b4ab-f1e5d455710e\" id=\"sid-1b04138c-aff8-4023-957f-5fa83d260162\">\n         <bpmndi:BPMNShape bpmnElement=\"sid-7ec43e373ac44588b10f92f74ce7bc83\" id=\"sid-7ec43e373ac44588b10f92f74ce7bc83_gui\" isHorizontal=\"false\">\n            <omgdc:Bounds height=\"1188.8187407031448\" width=\"986.457937411532\" x=\"71.42857142857144\" y=\"34.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"12.0\" width=\"81.77142333984375\" x=\"523.7718636648996\" y=\"39.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-a781ba58babb4e1fb7d800149875c64e\" id=\"sid-a781ba58babb4e1fb7d800149875c64e_gui\" isHorizontal=\"false\">\n            <omgdc:Bounds height=\"1158.8187407031448\" width=\"986.4579374115322\" x=\"71.42857142857144\" y=\"64.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"12.0\" width=\"150.4285888671875\" x=\"489.4432809012277\" y=\"70.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" id=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE_gui\" isMarkerVisible=\"true\">\n            <omgdc:Bounds height=\"40.0\" width=\"40.0\" x=\"400.1428571428572\" y=\"284.23366957929244\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"24.0\" width=\"82.54285430908203\" x=\"310.6000028337752\" y=\"252.23366957929244\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" id=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"255.14285714285722\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"36.0\" width=\"69.42857360839844\" x=\"270.428570338658\" y=\"378.17966957929247\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"60.0\" width=\"89.4857177734375\" x=\"563.6857125418527\" y=\"366.17966957929247\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" id=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797_gui\">\n            <omgdc:Bounds height=\"153.83561450917477\" width=\"145.68493253407587\" x=\"535.4285714285714\" y=\"666.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"96.0\" width=\"134.22858428955078\" x=\"541.1562821524484\" y=\"693.4570098344204\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" id=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"256.1428571428572\" y=\"882.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"67.88571166992188\" x=\"272.2000013078963\" y=\"908.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" id=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11_gui\">\n            <omgdc:Bounds height=\"28.0\" width=\"28.0\" x=\"291.1428571428572\" y=\"1107.5930105668422\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"11.0\" width=\"90.5142822265625\" x=\"259.885716029576\" y=\"1137.5930105668422\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"506.53901056684236\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"36.0\" width=\"91.028564453125\" x=\"562.914289202009\" y=\"526.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-7373b0a412224cfe8311a0a98cfef055\" id=\"sid-7373b0a412224cfe8311a0a98cfef055_gui\">\n            <omgdc:Bounds height=\"30.0\" width=\"30.0\" x=\"405.1428571428571\" y=\"141.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"22.0\" width=\"97.5857162475586\" x=\"300.5571408952985\" y=\"143.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" id=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"882.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"48.0\" width=\"81.77142333984375\" x=\"567.5428597586496\" y=\"896.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\" id=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81_gui\" isMarkerVisible=\"true\">\n            <omgdc:Bounds height=\"40.0\" width=\"40.0\" x=\"285.1428571428572\" y=\"1007.0023744197085\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563\" id=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563_gui\">\n            <omgdc:Bounds height=\"56.99999999999994\" width=\"43.0\" x=\"691.1428571428572\" y=\"285.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"28.54285430908203\" x=\"698.3714299883162\" y=\"299.5\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46\" id=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46_gui\">\n            <omgdc:Bounds height=\"56.99999999999994\" width=\"43.0\" x=\"470.42857142857144\" y=\"518.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"28.54285430908203\" x=\"477.65714427403043\" y=\"533.0390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\" id=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"147.26785714285722\" y=\"370.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"166.92499978201738\" y=\"385.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" id=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"370.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"23.914283752441406\" x=\"720.4714295523507\" y=\"383.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\" id=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"147.26785714285722\" y=\"893.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"164.92499978201738\" y=\"907.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\" id=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"517.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"531.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\" id=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5_gui\">\n            <omgdc:Bounds height=\"83.05399999999975\" width=\"131.0\" x=\"515.1428571428572\" y=\"114.0\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" id=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834_gui\">\n            <omgdc:Bounds height=\"115.22573013630267\" width=\"369.07852245478364\" x=\"645.0\" y=\"1014.0\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\" id=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233_gui\">\n            <omgdc:Bounds height=\"50.0\" width=\"144.0\" x=\"364.1428571428572\" y=\"1071.4609894331577\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" id=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"714.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"728.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\" id=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"893.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"907.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69\" id=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69_gui\">\n            <omgdi:waypoint x=\"440.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"22.371429443359375\" x=\"448.14300537109375\" y=\"284.7340087890625\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583\" id=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583_gui\">\n            <omgdi:waypoint x=\"305.9532879496518\" y=\"962.0\"/>\n            <omgdi:waypoint x=\"305.740011354375\" y=\"1007.0023744197085\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A\" id=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A_gui\">\n            <omgdi:waypoint x=\"608.3965715327452\" y=\"586.5390105668423\"/>\n            <omgdi:waypoint x=\"608.3325717410927\" y=\"666.5390105668423\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6\" id=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6_gui\">\n            <omgdi:waypoint x=\"435.1428571428571\" y=\"155.66762329976117\"/>\n            <omgdi:waypoint x=\"515.1428571428572\" y=\"153.89494756515407\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2\" id=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2_gui\">\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"438.17966957929247\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"506.53901056684236\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-7375DF72-4472-456C-BB0D-E270E206088E\" id=\"sid-7375DF72-4472-456C-BB0D-E270E206088E_gui\">\n            <omgdi:waypoint x=\"356.1428571428572\" y=\"943.5018597967253\"/>\n            <omgdi:waypoint x=\"645.0\" y=\"1067.7211755366643\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E\" id=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E_gui\">\n            <omgdi:waypoint x=\"420.1428571428571\" y=\"171.0\"/>\n            <omgdi:waypoint x=\"420.1428571428572\" y=\"284.23366957929244\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137\" id=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137_gui\">\n            <omgdi:waypoint x=\"400.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"305.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"305.1428571428572\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"10.028564453125\" x=\"382.11444091796875\" y=\"312.7340087890625\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC\" id=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC_gui\">\n            <omgdi:waypoint x=\"608.3389044668869\" y=\"820.3746250760171\"/>\n            <omgdi:waypoint x=\"608.3932782897263\" y=\"882.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51\" id=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51_gui\">\n            <omgdi:waypoint x=\"305.2192192038102\" y=\"438.17966957929247\"/>\n            <omgdi:waypoint x=\"306.06649508190424\" y=\"882.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211\" id=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211_gui\">\n            <omgdi:waypoint x=\"645.0\" y=\"1065.3875958903\"/>\n            <omgdi:waypoint x=\"618.6306892182881\" y=\"962.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806\" id=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806_gui\">\n            <omgdi:waypoint x=\"319.1428571428572\" y=\"1115.539928239384\"/>\n            <omgdi:waypoint x=\"364.1428571428572\" y=\"1096.083592186839\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3\" id=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3_gui\">\n            <omgdi:waypoint x=\"255.14285714285722\" y=\"398.8916618058761\"/>\n            <omgdi:waypoint x=\"211.14285714285722\" y=\"399.5182149652697\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5\" id=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5_gui\">\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"399.52179771295835\"/>\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"398.8860528075377\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054\" id=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054_gui\">\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"546.5283754117463\"/>\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"546.5188037721599\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D\" id=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D_gui\">\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"743.4981412734887\"/>\n            <omgdi:waypoint x=\"681.1135039626473\" y=\"743.4884506522163\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966\" id=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966_gui\">\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"921.989364844904\"/>\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"921.9797932053176\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A\" id=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A_gui\">\n            <omgdi:waypoint x=\"256.1428571428572\" y=\"921.989364844904\"/>\n            <omgdi:waypoint x=\"211.14285714285722\" y=\"921.9797932053176\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239\" id=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239_gui\">\n            <omgdi:waypoint x=\"513.4285714285714\" y=\"546.9467358887307\"/>\n            <omgdi:waypoint x=\"558.4285714285714\" y=\"546.7536028415204\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698\" id=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698_gui\">\n            <omgdi:waypoint x=\"657.6561067895598\" y=\"358.17966957929247\"/>\n            <omgdi:waypoint x=\"691.1428571428572\" y=\"330.9698975622803\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931\" id=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931_gui\">\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"962.0\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"1027.5023744197085\"/>\n            <omgdi:waypoint x=\"325.1428571428572\" y=\"1027.5023744197085\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701\" id=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701_gui\">\n            <omgdi:waypoint x=\"305.53923365385504\" y=\"1047.0023744197085\"/>\n            <omgdi:waypoint x=\"305.2172534939357\" y=\"1107.5930105668422\"/>\n         </bpmndi:BPMNEdge>\n      </bpmndi:BPMNPlane>\n      <bpmndi:BPMNLabelStyle id=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n         <omgdc:Font isBold=\"false\" isItalic=\"false\" isStrikeThrough=\"false\" isUnderline=\"false\" name=\"Arial\" size=\"11.0\"/>\n      </bpmndi:BPMNLabelStyle>\n      <bpmndi:BPMNLabelStyle id=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n         <omgdc:Font isBold=\"false\" isItalic=\"false\" isStrikeThrough=\"false\" isUnderline=\"false\" name=\"Arial\" size=\"12.0\"/>\n      </bpmndi:BPMNLabelStyle>\n   </bpmndi:BPMNDiagram>\n</definitions>\n",
+      "elements": [
+        {
+          "type": "exclusiveGateway",
+          "id": "sid-B6C0F687-0869-4766-95F0-63CF912053EE",
+          "name": "weniger als \n10 Teilnehmer?",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-7373b0a412224cfe8311a0a98cfef055"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+            "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": []
+        },
+        {
+          "type": "task",
+          "id": "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+          "name": "manuelle Eingabe der Mtnr im DMS",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-B6C0F687-0869-4766-95F0-63CF912053EE"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-980528A9-ACE9-482C-907A-6DA546C001CB"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528"
+          ]
+        },
+        {
+          "type": "task",
+          "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+          "name": "Abfrage aller Klausurteilnehmer im CMS und Erstellung einer CSV-Datei",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-B6C0F687-0869-4766-95F0-63CF912053EE"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-59F30528-1681-46C6-BDC5-EC1E07267490"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [
+            "sid-857E499E-9DCF-4269-BF61-56AADAFE0563"
+          ],
+          "associatedElementIds": [
+            "sid-4A53023C-AC37-488A-AC69-09BC38E51F74"
+          ]
+        },
+        {
+          "type": "task",
+          "id": "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797",
+          "name": "Barcode für die Teilakte \"Prüfungsverwaltung\"/Reiter \"Prüfungen\" aus DMS erzeugen, auf Etiketten drucken und auf personenbezogenem Klausurdeckblatt anbringen",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-59F30528-1681-46C6-BDC5-EC1E07267490"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE"
+          ]
+        },
+        {
+          "type": "task",
+          "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+          "name": "Scannen der Klausuren",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-16C3075E-2486-49FF-88BE-C04F4859ED81"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-FC7DD929-D2C2-4140-8983-F20AC5415834",
+            "sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1"
+          ]
+        },
+        {
+          "type": "endEvent",
+          "id": "sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11",
+          "name": "Klausuren im DMS",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-16C3075E-2486-49FF-88BE-C04F4859ED81"
+          ],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-99CE1184-D5F7-4937-83F4-B9162EC79233"
+          ]
+        },
+        {
+          "type": "task",
+          "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+          "name": "Import der CSV-Datei in das DMS",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [
+            "sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46"
+          ],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38"
+          ]
+        },
+        {
+          "type": "startEvent",
+          "id": "sid-7373b0a412224cfe8311a0a98cfef055",
+          "name": "Prüfungsbewertung \nabgeschlossen",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [
+            "sid-B6C0F687-0869-4766-95F0-63CF912053EE"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5"
+          ]
+        },
+        {
+          "type": "task",
+          "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
+          "name": "Scannen der Klausuren mit Hochleistungsscanner",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-16C3075E-2486-49FF-88BE-C04F4859ED81"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-FC7DD929-D2C2-4140-8983-F20AC5415834",
+            "sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6"
+          ]
+        },
+        {
+          "type": "exclusiveGateway",
+          "id": "sid-16C3075E-2486-49FF-88BE-C04F4859ED81",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": "Abt. II-2 Studiensekretariat",
+          "incomingFlowElementIds": [
+            "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+            "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF"
+          ],
+          "outgoingFlowElementIds": [
+            "sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11"
+          ],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": []
+        },
+        {
+          "type": "dataObjectReference",
+          "id": "sid-857E499E-9DCF-4269-BF61-56AADAFE0563",
+          "name": "CSV-Datei",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": []
+        },
+        {
+          "type": "dataObjectReference",
+          "id": "sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46",
+          "name": "CSV-Datei",
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": []
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-4A53023C-AC37-488A-AC69-09BC38E51F74",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-980528A9-ACE9-482C-907A-6DA546C001CB"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-59F30528-1681-46C6-BDC5-EC1E07267490"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-7373b0a412224cfe8311a0a98cfef055"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-FC7DD929-D2C2-4140-8983-F20AC5415834",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+            "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-99CE1184-D5F7-4937-83F4-B9162EC79233",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797"
+          ]
+        },
+        {
+          "type": "textAnnotation",
+          "id": "sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6",
+          "name": null,
+          "documentation": null,
+          "poolName": "Universität Ulm",
+          "laneName": null,
+          "incomingFlowElementIds": [],
+          "outgoingFlowElementIds": [],
+          "outgoingMessageFlowsToElementIds": [],
+          "incomingMessageFlowsFromElementIds": [],
+          "incomingDataFromElementIds": [],
+          "outgoingDataToElementIds": [],
+          "associatedElementIds": [
+            "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF"
+          ]
+        }
+      ],
+      "expectedValues": [
+        {
+          "id": "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+          "reason": "This activity involves manual data entry into a Document Management System (DMS), which is a structured process that follows defined rules. It requires strict adherence to data entry guidelines and uses structured data. The task is predictable and does not require creativity or complex interpretation.",
+          "score": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+          "reason": "The activity of scanning exams is performed using a scanning device and produces digital output, which can be automated as it follows consistent procedures and uses structured data. It does not involve complex decision-making or creativity.",
+          "score": [
+            1,
+            5,
+            9
+          ]
+        },
+        {
+          "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
+          "reason": "This activity involves scanning exam papers with a high-performance scanner. Similar to the other scanning task, it is a physical-to-digital conversion using a specialized system. The operation is predictable, repetitive, and rule-based, suitable for automation when integrated with automated document handling.",
+          "score": [
+            1,
+            5,
+            9
+          ]
+        },
+        {
+          "id": "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797",
+          "reason": "This activity involves generating a barcode from the DMS, printing it on labels, and attaching it to personalized exam cover sheets. The generation and printing steps are system-based and rule-driven. However, the physical attachment of labels may require manual dexterity. The automatable parts are the barcode generation and printing, which are predictable, digital tasks.",
+          "score": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+          "reason": "This activity consists of importing a CSV file into the DMS, which follows clear and unambiguous rules. The data is structured, digital, and the process can be executed consistently, making it suitable for automation.",
+          "score": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+          "reason": "This task involves querying data from a Content Management System (CMS) and generating a CSV file, which is a structured data format. The rules for querying and file creation are well-defined and stable, and the interaction with the CMS can be automated, making it feasible for RPA.",
+          "score": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ]
+    }
+  ],
+  "totalMetrics": {
+    "accuracy": "0.83",
+    "precision": "1.00",
+    "recall": "0.83",
+    "f1Score": "0.91",
+    "failed": 1,
+    "passed": 0,
+    "error": 0,
+    "total": 1,
+    "percent": "0.00"
+  },
+  "totalRunResult": [
+    {
+      "datasetName": "Dataset2",
+      "runId": 1,
+      "testCaseReports": [
+        {
+          "testCaseID": 1,
+          "testCaseName": "1 Prüfungsunterlagen",
+          "datasetId": "Dataset2",
+          "imageSrc": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><definitions xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:i18n=\"http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0\" xmlns:omgdc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:omgdi=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:signavio=\"http://www.signavio.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" exporter=\"Signavio Process Editor, http://www.signavio.com\" exporterVersion=\"26.7.0-20260213220553+4fc63c1\" expressionLanguage=\"http://www.w3.org/TR/XPath\" id=\"sid-6bbc2438-7cd8-492e-8f81-95d633e3baff\" targetNamespace=\"http://www.signavio.com\" typeLanguage=\"http://www.w3.org/2001/XMLSchema\" xml:lang=\"en-GB\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd\">\n   <collaboration id=\"sid-db2dbd5d-997a-4aea-b4ab-f1e5d455710e\">\n      <extensionElements>\n         <signavio:signavioDiagramMetaData metaKey=\"revisionid\" metaValue=\"3aedbf65f7ba4747bc0cc1fb163d9e8d\"/>\n      </extensionElements>\n      <participant id=\"sid-7ec43e373ac44588b10f92f74ce7bc83\" name=\"Universität Ulm\" processRef=\"sid-45242547-8815-4159-B605-77B2499AE912\">\n         <extensionElements>\n            <i18n:translation xml:lang=\"de-DE\">Universität Ulm</i18n:translation>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/2747ef178b884408bbad319ebf1a0230</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#99CCFF\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </participant>\n   </collaboration>\n   <process id=\"sid-45242547-8815-4159-B605-77B2499AE912\" isClosed=\"false\" isExecutable=\"false\" name=\"Universität Ulm\" processType=\"None\">\n      <extensionElements/>\n      <laneSet id=\"sid-f1067150-1528-4c07-b1eb-b6d7d5c63fa5\">\n         <lane id=\"sid-a781ba58babb4e1fb7d800149875c64e\" name=\"Abt. II-2 Studiensekretariat\">\n            <extensionElements>\n               <i18n:translation xml:lang=\"de-DE\">Dez. II - Studiensekreatriat</i18n:translation>\n               <signavio:signavioDictionaryLink propertyId=\"name\">\n                  <signavio:dictionaryLink>/glossary/c4752b48fe39471bb9b89f2af837b50a</signavio:dictionaryLink>\n               </signavio:signavioDictionaryLink>\n               <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"\"/>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <flowNodeRef>sid-B6C0F687-0869-4766-95F0-63CF912053EE</flowNodeRef>\n            <flowNodeRef>sid-1D64B177-78B0-48AC-8695-CA5A8D336E83</flowNodeRef>\n            <flowNodeRef>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5</flowNodeRef>\n            <flowNodeRef>sid-1DA8C03A-1B54-4464-99E9-F920A68F3797</flowNodeRef>\n            <flowNodeRef>sid-980528A9-ACE9-482C-907A-6DA546C001CB</flowNodeRef>\n            <flowNodeRef>sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11</flowNodeRef>\n            <flowNodeRef>sid-59F30528-1681-46C6-BDC5-EC1E07267490</flowNodeRef>\n            <flowNodeRef>sid-7373b0a412224cfe8311a0a98cfef055</flowNodeRef>\n            <flowNodeRef>sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF</flowNodeRef>\n            <flowNodeRef>sid-16C3075E-2486-49FF-88BE-C04F4859ED81</flowNodeRef>\n         </lane>\n      </laneSet>\n      <dataObject id=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" isCollection=\"false\" name=\"CSV-Datei\">\n         <extensionElements/>\n      </dataObject>\n      <exclusiveGateway gatewayDirection=\"Diverging\" id=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" name=\"weniger als &#10;10 Teilnehmer?\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel align=\"right\" bottom=\"false\" left=\"true\" ref=\"text_name\" right=\"false\" top=\"true\" valign=\"bottom\" x=\"-7.0\" y=\"-8.0\"/>\n         </extensionElements>\n         <incoming>sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E</incoming>\n         <outgoing>sid-E620C8A6-E6F7-4A61-B40A-431414669E69</outgoing>\n         <outgoing>sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137</outgoing>\n      </exclusiveGateway>\n      <task completionQuantity=\"1\" id=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" isForCompensation=\"false\" name=\"manuelle Eingabe der Mtnr im DMS\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137</incoming>\n         <outgoing>sid-BDC56C99-4826-48CA-9099-0CAD35E56A51</outgoing>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" isForCompensation=\"false\" name=\"Abfrage aller Klausurteilnehmer im CMS und Erstellung einer CSV-Datei\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-E620C8A6-E6F7-4A61-B40A-431414669E69</incoming>\n         <outgoing>sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2</outgoing>\n         <ioSpecification id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_iospec\">\n            <dataOutput id=\"sid-a6d4a601-cd0f-4c27-a974-edb79205a12f\"/>\n            <inputSet id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_inset\" name=\"DefaultInputSet\">\n               <outputSetRefs>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_outset</outputSetRefs>\n            </inputSet>\n            <outputSet id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_outset\" name=\"DefaultOutputSet\">\n               <dataOutputRefs>sid-a6d4a601-cd0f-4c27-a974-edb79205a12f</dataOutputRefs>\n               <inputSetRefs>sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_inset</inputSetRefs>\n            </outputSet>\n         </ioSpecification>\n         <dataOutputAssociation id=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698\">\n            <extensionElements>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <sourceRef>sid-a6d4a601-cd0f-4c27-a974-edb79205a12f</sourceRef>\n            <targetRef>sid-857E499E-9DCF-4269-BF61-56AADAFE0563</targetRef>\n         </dataOutputAssociation>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" isForCompensation=\"false\" name=\"Barcode für die Teilakte &quot;Prüfungsverwaltung&quot;/Reiter &quot;Prüfungen&quot; aus DMS erzeugen, auf Etiketten drucken und auf personenbezogenem Klausurdeckblatt anbringen\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-5F6694F3-2C08-4556-9278-D5935E48B00A</incoming>\n         <outgoing>sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC</outgoing>\n      </task>\n      <task completionQuantity=\"1\" id=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" isForCompensation=\"false\" name=\"Scannen der Klausuren\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-BDC56C99-4826-48CA-9099-0CAD35E56A51</incoming>\n         <outgoing>sid-9113FBA4-6428-4BC7-9434-0A4182443583</outgoing>\n      </task>\n      <endEvent id=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" name=\"Klausuren im DMS\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701</incoming>\n      </endEvent>\n      <task completionQuantity=\"1\" id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" isForCompensation=\"false\" name=\"Import der CSV-Datei in das DMS\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2</incoming>\n         <outgoing>sid-5F6694F3-2C08-4556-9278-D5935E48B00A</outgoing>\n         <ioSpecification id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_iospec\">\n            <dataInput id=\"sid-965f367d-045c-4e46-96fd-8ee330d1d128\"/>\n            <inputSet id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_inset\" name=\"DefaultInputSet\">\n               <dataInputRefs>sid-965f367d-045c-4e46-96fd-8ee330d1d128</dataInputRefs>\n               <outputSetRefs>sid-59F30528-1681-46C6-BDC5-EC1E07267490_outset</outputSetRefs>\n            </inputSet>\n            <outputSet id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_outset\" name=\"DefaultOutputSet\">\n               <inputSetRefs>sid-59F30528-1681-46C6-BDC5-EC1E07267490_inset</inputSetRefs>\n            </outputSet>\n         </ioSpecification>\n         <dataInputAssociation id=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239\">\n            <extensionElements>\n               <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            </extensionElements>\n            <sourceRef>sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46</sourceRef>\n            <targetRef>sid-965f367d-045c-4e46-96fd-8ee330d1d128</targetRef>\n         </dataInputAssociation>\n      </task>\n      <startEvent id=\"sid-7373b0a412224cfe8311a0a98cfef055\" name=\"Prüfungsbewertung &#10;abgeschlossen\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel align=\"right\" bottom=\"false\" left=\"true\" ref=\"text_name\" right=\"false\" top=\"false\" valign=\"middle\" x=\"-7.0\" y=\"15.0\"/>\n         </extensionElements>\n         <outgoing>sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E</outgoing>\n      </startEvent>\n      <task completionQuantity=\"1\" id=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" isForCompensation=\"false\" name=\"Scannen der Klausuren mit Hochleistungsscanner\" startQuantity=\"1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffcc\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC</incoming>\n         <outgoing>sid-61B83563-DC63-418B-BD93-CC3C20E00931</outgoing>\n      </task>\n      <exclusiveGateway gatewayDirection=\"Converging\" id=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <incoming>sid-9113FBA4-6428-4BC7-9434-0A4182443583</incoming>\n         <incoming>sid-61B83563-DC63-418B-BD93-CC3C20E00931</incoming>\n         <outgoing>sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701</outgoing>\n      </exclusiveGateway>\n      <sequenceFlow id=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69\" name=\"nein\" sourceRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" targetRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A\" sourceRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" targetRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2\" sourceRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" targetRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E\" sourceRef=\"sid-7373b0a412224cfe8311a0a98cfef055\" targetRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137\" name=\"ja\" sourceRef=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" targetRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel edge=\"startbottom\" ref=\"text_name\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC\" sourceRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" targetRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51\" sourceRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" targetRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931\" sourceRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" targetRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <sequenceFlow id=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701\" sourceRef=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\" targetRef=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </sequenceFlow>\n      <dataObjectReference dataObjectRef=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" id=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563\" name=\"CSV-Datei\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </dataObjectReference>\n      <dataObjectReference dataObjectRef=\"sid-09ee3fd6-d096-4006-b194-cc526fcc5efa\" id=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46\" name=\"CSV-Datei\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#ffffff\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </dataObjectReference>\n      <association associationDirection=\"None\" id=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6\" sourceRef=\"sid-7373b0a412224cfe8311a0a98cfef055\" targetRef=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-7375DF72-4472-456C-BB0D-E270E206088E\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211\" sourceRef=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" targetRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806\" sourceRef=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" targetRef=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3\" sourceRef=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" targetRef=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5\" sourceRef=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" targetRef=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054\" sourceRef=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" targetRef=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D\" sourceRef=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" targetRef=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966\" sourceRef=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" targetRef=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <association associationDirection=\"None\" id=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A\" sourceRef=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" targetRef=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n      </association>\n      <textAnnotation id=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"32.0\" y=\"23.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" signavio:alignment=\"left\">\n         <extensionElements>\n            <i18n:translation target=\"text\" xml:lang=\"de-DE\">CMS</i18n:translation>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/4233c09982f247149c38acef3cdced41</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"29.0\" y=\"21.0\"/>\n         </extensionElements>\n         <text>CMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>alle bewerteten Klausuren liegen der Abt. II-2 Studiensektretariat vor</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>Alle Klausuren werden an einem zentralen Scan-PC in Abt. II-2 Studiensekretariat eingescannt (i.d.R. durch HiWi)\nDabei ist zu beachten:\n- Klammern und/oder Büroklammern aus Klausuren entfernen\n- Format beim Einlegen in Scanner beachten (A5 - A3)\n- bereits bestehende Barcodes unkenntlich machen\n</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\" signavio:alignment=\"left\" textFormat=\"text/plain\">\n         <extensionElements>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n         </extensionElements>\n         <text>Aufbewahrungsfrist:\n6 Jahre ab Exmatrikulationsdatum</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n      <textAnnotation id=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\" signavio:alignment=\"left\">\n         <extensionElements>\n            <signavio:signavioDictionaryLink propertyId=\"name\">\n               <signavio:dictionaryLink>/glossary/280d8050916d46f9904d6834ade6ff48</signavio:dictionaryLink>\n            </signavio:signavioDictionaryLink>\n            <signavio:signavioType dataObjectType=\"IT-System\"/>\n            <signavio:signavioMetaData metaKey=\"bgcolor\" metaValue=\"#e1e1e1\"/>\n            <signavio:signavioMetaData metaKey=\"bordercolor\" metaValue=\"#000000\"/>\n            <signavio:signavioLabel ref=\"text_name\" valign=\"middle\" x=\"30.0\" y=\"22.0\"/>\n         </extensionElements>\n         <text>DMS</text>\n      </textAnnotation>\n   </process>\n   <bpmndi:BPMNDiagram id=\"sid-6b393ca3-0c59-4677-a4af-d99c12b2f607\">\n      <bpmndi:BPMNPlane bpmnElement=\"sid-db2dbd5d-997a-4aea-b4ab-f1e5d455710e\" id=\"sid-1b04138c-aff8-4023-957f-5fa83d260162\">\n         <bpmndi:BPMNShape bpmnElement=\"sid-7ec43e373ac44588b10f92f74ce7bc83\" id=\"sid-7ec43e373ac44588b10f92f74ce7bc83_gui\" isHorizontal=\"false\">\n            <omgdc:Bounds height=\"1188.8187407031448\" width=\"986.457937411532\" x=\"71.42857142857144\" y=\"34.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"12.0\" width=\"81.77142333984375\" x=\"523.7718636648996\" y=\"39.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-a781ba58babb4e1fb7d800149875c64e\" id=\"sid-a781ba58babb4e1fb7d800149875c64e_gui\" isHorizontal=\"false\">\n            <omgdc:Bounds height=\"1158.8187407031448\" width=\"986.4579374115322\" x=\"71.42857142857144\" y=\"64.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"12.0\" width=\"150.4285888671875\" x=\"489.4432809012277\" y=\"70.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE\" id=\"sid-B6C0F687-0869-4766-95F0-63CF912053EE_gui\" isMarkerVisible=\"true\">\n            <omgdc:Bounds height=\"40.0\" width=\"40.0\" x=\"400.1428571428572\" y=\"284.23366957929244\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"24.0\" width=\"82.54285430908203\" x=\"310.6000028337752\" y=\"252.23366957929244\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83\" id=\"sid-1D64B177-78B0-48AC-8695-CA5A8D336E83_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"255.14285714285722\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"36.0\" width=\"69.42857360839844\" x=\"270.428570338658\" y=\"378.17966957929247\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5\" id=\"sid-135DC678-5D4A-42EB-B23D-ECCB095190D5_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"60.0\" width=\"89.4857177734375\" x=\"563.6857125418527\" y=\"366.17966957929247\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797\" id=\"sid-1DA8C03A-1B54-4464-99E9-F920A68F3797_gui\">\n            <omgdc:Bounds height=\"153.83561450917477\" width=\"145.68493253407587\" x=\"535.4285714285714\" y=\"666.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"96.0\" width=\"134.22858428955078\" x=\"541.1562821524484\" y=\"693.4570098344204\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB\" id=\"sid-980528A9-ACE9-482C-907A-6DA546C001CB_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"256.1428571428572\" y=\"882.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"67.88571166992188\" x=\"272.2000013078963\" y=\"908.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11\" id=\"sid-74B056A1-D3DB-4B20-AA7D-153C9F8D9C11_gui\">\n            <omgdc:Bounds height=\"28.0\" width=\"28.0\" x=\"291.1428571428572\" y=\"1107.5930105668422\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"11.0\" width=\"90.5142822265625\" x=\"259.885716029576\" y=\"1137.5930105668422\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490\" id=\"sid-59F30528-1681-46C6-BDC5-EC1E07267490_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"506.53901056684236\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"36.0\" width=\"91.028564453125\" x=\"562.914289202009\" y=\"526.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-7373b0a412224cfe8311a0a98cfef055\" id=\"sid-7373b0a412224cfe8311a0a98cfef055_gui\">\n            <omgdc:Bounds height=\"30.0\" width=\"30.0\" x=\"405.1428571428571\" y=\"141.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"22.0\" width=\"97.5857162475586\" x=\"300.5571408952985\" y=\"143.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF\" id=\"sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF_gui\">\n            <omgdc:Bounds height=\"80.0\" width=\"100.0\" x=\"558.4285714285714\" y=\"882.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"48.0\" width=\"81.77142333984375\" x=\"567.5428597586496\" y=\"896.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81\" id=\"sid-16C3075E-2486-49FF-88BE-C04F4859ED81_gui\" isMarkerVisible=\"true\">\n            <omgdc:Bounds height=\"40.0\" width=\"40.0\" x=\"285.1428571428572\" y=\"1007.0023744197085\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563\" id=\"sid-857E499E-9DCF-4269-BF61-56AADAFE0563_gui\">\n            <omgdc:Bounds height=\"56.99999999999994\" width=\"43.0\" x=\"691.1428571428572\" y=\"285.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"28.54285430908203\" x=\"698.3714299883162\" y=\"299.5\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46\" id=\"sid-17351E2D-BBE5-4B6C-91D3-90C5555E4D46_gui\">\n            <omgdc:Bounds height=\"56.99999999999994\" width=\"43.0\" x=\"470.42857142857144\" y=\"518.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n               <omgdc:Bounds height=\"24.0\" width=\"28.54285430908203\" x=\"477.65714427403043\" y=\"533.0390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528\" id=\"sid-20C13AC0-3D88-4BED-BA3A-20EC60BD3528_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"147.26785714285722\" y=\"370.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"166.92499978201738\" y=\"385.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74\" id=\"sid-4A53023C-AC37-488A-AC69-09BC38E51F74_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"370.99999999999994\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"23.914283752441406\" x=\"720.4714295523507\" y=\"383.99999999999994\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1\" id=\"sid-99718BF8-89EF-4A6B-BF70-77B8C9B88FF1_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"147.26785714285722\" y=\"893.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"164.92499978201738\" y=\"907.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38\" id=\"sid-44E30DC2-48B6-43B0-A0CB-EEEA30E19E38_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"517.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"531.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5\" id=\"sid-6B11154D-06F0-4FD7-8EFA-EF24424E5BA5_gui\">\n            <omgdc:Bounds height=\"83.05399999999975\" width=\"131.0\" x=\"515.1428571428572\" y=\"114.0\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834\" id=\"sid-FC7DD929-D2C2-4140-8983-F20AC5415834_gui\">\n            <omgdc:Bounds height=\"115.22573013630267\" width=\"369.07852245478364\" x=\"645.0\" y=\"1014.0\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233\" id=\"sid-99CE1184-D5F7-4937-83F4-B9162EC79233_gui\">\n            <omgdc:Bounds height=\"50.0\" width=\"144.0\" x=\"364.1428571428572\" y=\"1071.4609894331577\"/>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE\" id=\"sid-366174B4-A1ED-4E86-AC6E-FF0E05C894CE_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"714.5390105668423\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"728.5390105668423\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNShape bpmnElement=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6\" id=\"sid-DB45C6DE-FBD3-44F1-B4D3-FED449779AC6_gui\">\n            <omgdc:Bounds height=\"57.946000000000026\" width=\"63.875\" x=\"703.4285714285714\" y=\"893.0\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"24.685714721679688\" x=\"721.0857140677316\" y=\"907.0\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNShape>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69\" id=\"sid-E620C8A6-E6F7-4A61-B40A-431414669E69_gui\">\n            <omgdi:waypoint x=\"440.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"22.371429443359375\" x=\"448.14300537109375\" y=\"284.7340087890625\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583\" id=\"sid-9113FBA4-6428-4BC7-9434-0A4182443583_gui\">\n            <omgdi:waypoint x=\"305.9532879496518\" y=\"962.0\"/>\n            <omgdi:waypoint x=\"305.740011354375\" y=\"1007.0023744197085\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A\" id=\"sid-5F6694F3-2C08-4556-9278-D5935E48B00A_gui\">\n            <omgdi:waypoint x=\"608.3965715327452\" y=\"586.5390105668423\"/>\n            <omgdi:waypoint x=\"608.3325717410927\" y=\"666.5390105668423\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6\" id=\"sid-B8DEDBF8-44DD-4B10-BBBF-3C7A53E174D6_gui\">\n            <omgdi:waypoint x=\"435.1428571428571\" y=\"155.66762329976117\"/>\n            <omgdi:waypoint x=\"515.1428571428572\" y=\"153.89494756515407\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2\" id=\"sid-9DC25A18-DC53-41E3-870D-632B53A4BDB2_gui\">\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"438.17966957929247\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"506.53901056684236\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-7375DF72-4472-456C-BB0D-E270E206088E\" id=\"sid-7375DF72-4472-456C-BB0D-E270E206088E_gui\">\n            <omgdi:waypoint x=\"356.1428571428572\" y=\"943.5018597967253\"/>\n            <omgdi:waypoint x=\"645.0\" y=\"1067.7211755366643\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E\" id=\"sid-A2E5CFE2-47A6-44B3-A06D-C5ADD217A06E_gui\">\n            <omgdi:waypoint x=\"420.1428571428571\" y=\"171.0\"/>\n            <omgdi:waypoint x=\"420.1428571428572\" y=\"284.23366957929244\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137\" id=\"sid-AB1896E8-15E0-4D58-864D-46F9D4F9F137_gui\">\n            <omgdi:waypoint x=\"400.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"305.1428571428572\" y=\"304.73366957929244\"/>\n            <omgdi:waypoint x=\"305.1428571428572\" y=\"358.17966957929247\"/>\n            <bpmndi:BPMNLabel labelStyle=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n               <omgdc:Bounds height=\"12.0\" width=\"10.028564453125\" x=\"382.11444091796875\" y=\"312.7340087890625\"/>\n            </bpmndi:BPMNLabel>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC\" id=\"sid-EB4DCE83-2D3E-45D1-8498-3A86DF743BAC_gui\">\n            <omgdi:waypoint x=\"608.3389044668869\" y=\"820.3746250760171\"/>\n            <omgdi:waypoint x=\"608.3932782897263\" y=\"882.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51\" id=\"sid-BDC56C99-4826-48CA-9099-0CAD35E56A51_gui\">\n            <omgdi:waypoint x=\"305.2192192038102\" y=\"438.17966957929247\"/>\n            <omgdi:waypoint x=\"306.06649508190424\" y=\"882.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211\" id=\"sid-ABA400CE-10DF-4214-9DDB-2CB658867211_gui\">\n            <omgdi:waypoint x=\"645.0\" y=\"1065.3875958903\"/>\n            <omgdi:waypoint x=\"618.6306892182881\" y=\"962.0\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806\" id=\"sid-057EDE3A-3DDE-4D1B-BDB4-3FA38D13E806_gui\">\n            <omgdi:waypoint x=\"319.1428571428572\" y=\"1115.539928239384\"/>\n            <omgdi:waypoint x=\"364.1428571428572\" y=\"1096.083592186839\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3\" id=\"sid-F9FC8553-10D5-4E65-83B7-7186E36887D3_gui\">\n            <omgdi:waypoint x=\"255.14285714285722\" y=\"398.8916618058761\"/>\n            <omgdi:waypoint x=\"211.14285714285722\" y=\"399.5182149652697\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5\" id=\"sid-AE29FA10-B91E-4713-B9FB-FF94E35DD0E5_gui\">\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"399.52179771295835\"/>\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"398.8860528075377\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054\" id=\"sid-D50857AD-3648-46BD-9474-7EDE72AE3054_gui\">\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"546.5283754117463\"/>\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"546.5188037721599\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D\" id=\"sid-EA003B17-A6AB-4025-ADDD-9BC0B9B9FB3D_gui\">\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"743.4981412734887\"/>\n            <omgdi:waypoint x=\"681.1135039626473\" y=\"743.4884506522163\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966\" id=\"sid-10B80200-ABDA-48E2-9FC2-508B6F61A966_gui\">\n            <omgdi:waypoint x=\"658.4285714285714\" y=\"921.989364844904\"/>\n            <omgdi:waypoint x=\"703.4285714285714\" y=\"921.9797932053176\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A\" id=\"sid-1EA76D5C-9E4F-4891-BF33-16B5ADD9336A_gui\">\n            <omgdi:waypoint x=\"256.1428571428572\" y=\"921.989364844904\"/>\n            <omgdi:waypoint x=\"211.14285714285722\" y=\"921.9797932053176\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239\" id=\"sid-FA99C21D-6398-4D79-AA62-BCA7196AC239_gui\">\n            <omgdi:waypoint x=\"513.4285714285714\" y=\"546.9467358887307\"/>\n            <omgdi:waypoint x=\"558.4285714285714\" y=\"546.7536028415204\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698\" id=\"sid-8B9F1F3D-CD7A-438F-B0A3-0779FAFCD698_gui\">\n            <omgdi:waypoint x=\"657.6561067895598\" y=\"358.17966957929247\"/>\n            <omgdi:waypoint x=\"691.1428571428572\" y=\"330.9698975622803\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931\" id=\"sid-61B83563-DC63-418B-BD93-CC3C20E00931_gui\">\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"962.0\"/>\n            <omgdi:waypoint x=\"608.4285714285714\" y=\"1027.5023744197085\"/>\n            <omgdi:waypoint x=\"325.1428571428572\" y=\"1027.5023744197085\"/>\n         </bpmndi:BPMNEdge>\n         <bpmndi:BPMNEdge bpmnElement=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701\" id=\"sid-6B6DC07C-1F54-41A8-9FCD-039E444F3701_gui\">\n            <omgdi:waypoint x=\"305.53923365385504\" y=\"1047.0023744197085\"/>\n            <omgdi:waypoint x=\"305.2172534939357\" y=\"1107.5930105668422\"/>\n         </bpmndi:BPMNEdge>\n      </bpmndi:BPMNPlane>\n      <bpmndi:BPMNLabelStyle id=\"sid-f736195e-9c4d-449d-9e49-47f21ad09976\">\n         <omgdc:Font isBold=\"false\" isItalic=\"false\" isStrikeThrough=\"false\" isUnderline=\"false\" name=\"Arial\" size=\"11.0\"/>\n      </bpmndi:BPMNLabelStyle>\n      <bpmndi:BPMNLabelStyle id=\"sid-e1e622ba-8b6d-4ce8-b69e-936bbd56b0f6\">\n         <omgdc:Font isBold=\"false\" isItalic=\"false\" isStrikeThrough=\"false\" isUnderline=\"false\" name=\"Arial\" size=\"12.0\"/>\n      </bpmndi:BPMNLabelStyle>\n   </bpmndi:BPMNDiagram>\n</definitions>\n",
+          "correctActivityIds": [
+            "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+            "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+            "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+            "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+            "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF"
+          ],
+          "falsePositiveIds": [],
+          "falseNegativeIds": [
+            "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797"
+          ],
+          "expectedNamesWithIds": [
+            {
+              "id": "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+              "reason": "This activity involves manual data entry into a Document Management System (DMS), which is a structured process that follows defined rules. It requires strict adherence to data entry guidelines and uses structured data. The task is predictable and does not require creativity or complex interpretation.",
+              "score": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+              "reason": "The activity of scanning exams is performed using a scanning device and produces digital output, which can be automated as it follows consistent procedures and uses structured data. It does not involve complex decision-making or creativity.",
+              "score": [
+                1,
+                5,
+                9
+              ]
+            },
+            {
+              "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
+              "reason": "This activity involves scanning exam papers with a high-performance scanner. Similar to the other scanning task, it is a physical-to-digital conversion using a specialized system. The operation is predictable, repetitive, and rule-based, suitable for automation when integrated with automated document handling.",
+              "score": [
+                1,
+                5,
+                9
+              ]
+            },
+            {
+              "id": "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797",
+              "reason": "This activity involves generating a barcode from the DMS, printing it on labels, and attaching it to personalized exam cover sheets. The generation and printing steps are system-based and rule-driven. However, the physical attachment of labels may require manual dexterity. The automatable parts are the barcode generation and printing, which are predictable, digital tasks.",
+              "score": [
+                1,
+                2,
+                3,
+                6,
+                7,
+                8
+              ]
+            },
+            {
+              "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+              "reason": "This activity consists of importing a CSV file into the DMS, which follows clear and unambiguous rules. The data is structured, digital, and the process can be executed consistently, making it suitable for automation.",
+              "score": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+              "reason": "This task involves querying data from a Content Management System (CMS) and generating a CSV file, which is a structured data format. The rules for querying and file creation are well-defined and stable, and the interaction with the CMS can be automated, making it feasible for RPA.",
+              "score": [
+                2,
+                3,
+                5,
+                6,
+                7,
+                8
+              ]
+            }
+          ],
+          "actualNamesWithIds": [
+            {
+              "id": "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+              "name": "manuelle Eingabe der Mtnr im DMS",
+              "score": [
+                1,
+                8
+              ],
+              "reason": "This activity involves manually entering data into a Document Management System (DMS), which is a repetitive task that can be performed by a software robot. The data is structured and available in digital format, making it suitable for automation.",
+              "isRelevant": true
+            },
+            {
+              "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+              "name": "Abfrage aller Klausurteilnehmer im CMS und Erstellung einer CSV-Datei",
+              "score": [
+                1,
+                2,
+                8
+              ],
+              "reason": "This task involves querying a system to retrieve participant data and creating a structured CSV file. It follows well-defined rules, uses structured data, and does not require creativity or complex interpretation, making it a good candidate for automation.",
+              "isRelevant": true
+            },
+            {
+              "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+              "name": "Import der CSV-Datei in das DMS",
+              "score": [
+                1,
+                8
+              ],
+              "reason": "This activity involves importing structured data from a CSV file into a Document Management System, which is a straightforward data processing task suitable for RPA as it follows a predictable process and uses digital data.",
+              "isRelevant": true
+            },
+            {
+              "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+              "name": "Scannen der Klausuren",
+              "score": [
+                1,
+                8
+              ],
+              "reason": "This task involves scanning documents, which can be automated as it is a repetitive action that processes structured data in a digital format, making it feasible for RPA.",
+              "isRelevant": true
+            },
+            {
+              "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
+              "name": "Scannen der Klausuren mit Hochleistungsscanner",
+              "score": [
+                1,
+                8
+              ],
+              "reason": "Similar to the previous scanning task, this task involves using a high-performance scanner to digitize documents, which can also be automated due to its repetitive and structured nature.",
+              "isRelevant": true
+            }
+          ],
+          "isSuccessful": false,
+          "result": [
+            {
+              "id": "sid-1D64B177-78B0-48AC-8695-CA5A8D336E83",
+              "name": "manuelle Eingabe der Mtnr im DMS",
+              "llmScore": [
+                1,
+                8
+              ],
+              "expectedScore": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "reasoning": "This activity involves manually entering data into a Document Management System (DMS), which is a repetitive task that can be performed by a software robot. The data is structured and available in digital format, making it suitable for automation.",
+              "status": "correct"
+            },
+            {
+              "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
+              "name": "Scannen der Klausuren",
+              "llmScore": [
+                1,
+                8
+              ],
+              "expectedScore": [
+                1,
+                5,
+                9
+              ],
+              "reasoning": "This task involves scanning documents, which can be automated as it is a repetitive action that processes structured data in a digital format, making it feasible for RPA.",
+              "status": "correct"
+            },
+            {
+              "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
+              "name": "Scannen der Klausuren mit Hochleistungsscanner",
+              "llmScore": [
+                1,
+                8
+              ],
+              "expectedScore": [
+                1,
+                5,
+                9
+              ],
+              "reasoning": "Similar to the previous scanning task, this task involves using a high-performance scanner to digitize documents, which can also be automated due to its repetitive and structured nature.",
+              "status": "correct"
+            },
+            {
+              "id": "sid-1DA8C03A-1B54-4464-99E9-F920A68F3797",
+              "name": "Unknown",
+              "llmScore": null,
+              "expectedScore": [
+                1,
+                2,
+                3,
+                6,
+                7,
+                8
+              ],
+              "reasoning": "This activity involves generating a barcode from the DMS, printing it on labels, and attaching it to personalized exam cover sheets. The generation and printing steps are system-based and rule-driven. However, the physical attachment of labels may require manual dexterity. The automatable parts are the barcode generation and printing, which are predictable, digital tasks.",
+              "status": "falseNegative"
+            },
+            {
+              "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
+              "name": "Import der CSV-Datei in das DMS",
+              "llmScore": [
+                1,
+                8
+              ],
+              "expectedScore": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "reasoning": "This activity involves importing structured data from a CSV file into a Document Management System, which is a straightforward data processing task suitable for RPA as it follows a predictable process and uses digital data.",
+              "status": "correct"
+            },
+            {
+              "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
+              "name": "Abfrage aller Klausurteilnehmer im CMS und Erstellung einer CSV-Datei",
+              "llmScore": [
+                1,
+                2,
+                8
+              ],
+              "expectedScore": [
+                2,
+                3,
+                5,
+                6,
+                7,
+                8
+              ],
+              "reasoning": "This task involves querying a system to retrieve participant data and creating a structured CSV file. It follows well-defined rules, uses structured data, and does not require creativity or complex interpretation, making it a good candidate for automation.",
+              "status": "correct"
+            }
+          ],
+          "amountOfRetries": 0
+        }
+      ],
+      "metadata": {
+        "precision": "1.00",
+        "recall": "0.83",
+        "f1Score": "0.91",
+        "accuracy": "0.83",
+        "totalFalseNegatives": 1,
+        "totalFalsePositives": 0,
+        "totalTrueNegatives": 0,
+        "totalTruePositives": 5
+      }
+    }
+  ]
+}
