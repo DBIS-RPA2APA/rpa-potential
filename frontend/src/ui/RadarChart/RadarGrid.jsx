@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 
 export const INNER_RADIUS = 40;
-const GRID_NUMBER = 5;
-const GRID_COLOR = "#94a3b8";
+const GRID_NUMBER = 6;
+const GRID_COLOR = "#7C7C7C";
 
 function polarToCartesian(angle, radius) {
   return {
@@ -39,18 +39,19 @@ export const RadarGrid = ({ outerRadius, xScale, axisConfig }) => {
         <path
           d={path}
           stroke={GRID_COLOR}
-          strokeWidth={0.5}
+          strokeWidth={0.3}
           fill="none"
           rx={1}
         />
         <text
           x={labelPosition.x}
           y={labelPosition.y}
-          fontSize={13}
-          fill="#808080"
+          fontSize={16}
+          fill="#0B172D"
           textAnchor={labelPosition.x > 0 ? "start" : "end"}
           dominantBaseline="middle"
-          fontWeight={500}
+          fontWeight={300}
+          opacity={0.7}
         >
           {axis.name}
         </text>
@@ -71,7 +72,7 @@ export const RadarGrid = ({ outerRadius, xScale, axisConfig }) => {
         }
         stroke={GRID_COLOR}
         fill="none"
-        opacity={0.6}
+        opacity={0.7}
       />
     );
   });

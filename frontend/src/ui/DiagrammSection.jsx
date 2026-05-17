@@ -6,13 +6,13 @@ function DiagramCard({ title, children }) {
   const [diagrammVisible, setDiagrammVisible] = useState(false);
   return (
     <>
-      <div className="bg-rose-100 rounded-md p-4">
+      <div className="bg-[#FFF4EE] rounded-xl p-4">
         <div className="flex items-start justify-between mb-2">
           <h4 className="text-md font-semibold text-slate-900">{title}</h4>
 
           <button
             type="button"
-            className="rounded-md bg-rose-300 px-2 py-2 text-rose-600 hover:bg-rose-400 cursor-pointer"
+            className="rounded-md bg-[#FF6200]/30 px-2 py-2 text-[#FF6200] hover:bg-[#FF6200]/50 cursor-pointer"
             onClick={() => setDiagrammVisible(true)}
           >
             <LuCroissant className="h-5 w-5" />

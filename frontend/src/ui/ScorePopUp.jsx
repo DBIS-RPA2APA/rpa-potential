@@ -1,4 +1,5 @@
 import { LuX } from "react-icons/lu";
+import { createPortal } from "react-dom";
 
 const ScorePopup = ({ onClose, variant = "inline" }) => {
   const left = [
@@ -47,8 +48,8 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
     <div
       className={
         isModal
-          ? "flex max-h-[80vh] w-full max-w-5xl flex-col rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-700 shadow-2xl"
-          : "mt-2 flex h-[200px] w-full flex-col rounded-md border border-slate-200 bg-blue-50 p-5 text-sm text-slate-700 shadow-md"
+          ? "flex max-h-[80vh] w-full max-w-5xl flex-col rounded-3xl border-2  border-white/30 bg-white/60 p-6 text-sm text-slate-700 shadow-lg backdrop-blur-xl"
+          : "mt-2 flex h-[200px] w-full flex-col rounded-3xl border-2 border-white/30 bg-[#F9F9F9]/35 p-5 text-sm text-slate-700 shadow-md backdrop-blur-xl"
       }
     >
       <div className="mb-2 flex items-start justify-between">
@@ -64,7 +65,7 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
         </h3>
         <button
           onClick={onClose}
-          className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition hover:bg-slate-50"
+          className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition hover:bg-white/50"
         >
           <LuX size={25} color="black" />
         </button>
@@ -95,10 +96,11 @@ const ScorePopup = ({ onClose, variant = "inline" }) => {
   );
 
   if (isModal) {
-    return (
-      <div className="fixed inset-0 z-600 flex items-center justify-center bg-black/35 p-4">
+    return createPortal(
+      <div className="fixed inset-0 z-500 flex items-center justify-center bg-black/50 p-4">
         {popupContent}
-      </div>
+      </div>,
+      document.body,
     );
   }
   return popupContent;

@@ -42,13 +42,13 @@ const NumberStepper = ({
 
   return (
     <div
-      className={`inline-flex items-center rounded-full bg-slate-200 p-1 shadow-inner ${className}`}
+      className={`inline-flex items-center rounded-full bg-white/60 p-1  ${className}`}
     >
       <button
         type="button"
         onClick={handleDecrease}
         disabled={disabled}
-        className="flex h-6 w-6 shrink-0 items-center justify-center m-1 p-1 rounded-full text-2xl leading-none text-slate-500 transition hover:bg-slate-500 hover:text-white "
+        className="flex h-6 w-6 shrink-0 items-center justify-center m-1 p-1 rounded-full text-2xl leading-none text-slate-500 transition hover:bg-[#FF6200] hover:text-white "
       >
         <LuMinus />
       </button>
@@ -68,7 +68,7 @@ const NumberStepper = ({
         type="button"
         onClick={handleIncrease}
         disabled={disabled}
-        className="flex h-6 w-6 shrink-0 items-center justify-center m-1 p-1 rounded-full text-2xl leading-none text-slate-500 transition hover:bg-slate-500 hover:text-white"
+        className="flex h-6 w-6 shrink-0 items-center justify-center m-1 p-1 rounded-full text-2xl leading-none text-slate-500 transition hover:bg-[#FF6200] hover:text-white"
       >
         <LuPlus />
       </button>

@@ -6,7 +6,7 @@ import ModelResultAccordion from "../../ui/ModelResultAccordion";
 import BarPlot from "../../ui/Barplot";
 import PieChart from "../../ui/PieChart";
 import Radar from "../../ui/RadarChart/Radar";
-import { LuDownload, LuBadgeInfo } from "react-icons/lu";
+import { LuDownload, LuBadgeInfo, LuX } from "react-icons/lu";
 import { useState } from "react";
 
 //import { LuChevronsDownU, LuFoldVertical } from "react-icons/lu"; //<LuChevronsDownUp /> <LuFoldVertical />
@@ -78,7 +78,7 @@ export function EvaluationResult({
 
         <div className="w-full bg-slate-300 rounded-full h-2">
           <div
-            className="bg-cyan-800 h-2 rounded-full"
+            className="bg-[#10214D] h-2 rounded-full"
             style={{ width: `${percent}%` }}
           />
         </div>
@@ -101,13 +101,13 @@ export function EvaluationResult({
 
   return (
     <>
-      <div className="fixed inset-0 z-500 bg-black/40 flex items-center justify-center">
-        <div className="w-full h-full bg-slate-100 p-6 overflow-y-auto space-y-5">
+      <div className="fixed inset-0 z-500 bg-black/40 flex items-center justify-center ">
+        <div className="w-full h-full bg-white/30 p-6 overflow-y-auto space-y-5 backdrop-blur-xl">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-3xl font-semibold text-slate-900">
               Evaluation Results
             </h3>
-            <div className="flex gap-2">
+            <div className="flex gap-4 items-center justify-center">
               <Button
                 color="primary"
                 size="medium"
@@ -116,16 +116,19 @@ export function EvaluationResult({
               >
                 Download JSON
               </Button>
-              <Button size="small" color="secondary" onClick={onClose}>
-                Close
-              </Button>
+              <button
+                onClick={onClose}
+                className="flex h-11 w-11 mr-4 cursor-pointer items-center justify-center rounded-full transition hover:bg-white/50"
+              >
+                <LuX size={35} color="black" />
+              </button>
             </div>
           </div>
 
           {/* First Row */}
           <div className="grid grid-cols-2 gap-4">
             {/* Left */}
-            <div className="bg-white rounded-md  shadow p-4">
+            <div className="bg-white rounded-3xl  shadow p-4">
               <p className="text-md text-slate-500">
                 Model:{" "}
                 <span className="font-medium text-slate-900">
@@ -184,7 +187,7 @@ export function EvaluationResult({
             {/* Right */}
             <div className="grid grid-rows-2 gap-2">
               {/* Evaluation Summary */}
-              <div className="bg-white rounded-md  shadow p-4">
+              <div className="bg-white rounded-3xl  shadow p-4">
                 <p className="text-slate-900 text-lg font-semibold">
                   Evaluation Summary
                 </p>
@@ -222,14 +225,14 @@ export function EvaluationResult({
                   </div>
                   <div className="w-full bg-slate-200 g-slate-300 rounded-full h-2">
                     <div
-                      className="bg-cyan-800 h-2 rounded-full transition-all duration-700 ease-out"
+                      className="bg-[#10214D] h-2 rounded-full transition-all duration-700 ease-out"
                       style={{ width: `${totalSummary?.percent ?? 0}%` }}
                     ></div>
                   </div>
                 </div>
               </div>
               {/* Performance Metrics */}
-              <div className="bg-white rounded-md shadow p-4">
+              <div className="bg-white rounded-3xl shadow p-4">
                 <p className="text-slate-900 text-lg font-semibold">
                   Performance Metrics
                 </p>
@@ -284,8 +287,8 @@ export function EvaluationResult({
               </div>
             </div>
           </div>
-          {/* Tab Bar to switch between runs  */}
-          <div className="bg-slate-300 rounded-md p-1 shadow-inner">
+          {/* Tab Bar to switch between runs [#10214D] */}
+          <div className="bg-[#10214D] rounded-full p-1 shadow-inner">
             <div
               className="grid gap-2"
               style={{
@@ -297,10 +300,10 @@ export function EvaluationResult({
                   key={run}
                   type="button"
                   onClick={() => setActiveRun(run)}
-                  className={`py-3 rounded-md text-sm font-semibold transition-all cursor-pointer ${
+                  className={`py-3 rounded-full text-sm font-semibold transition-all cursor-pointer ${
                     activeRun === run
-                      ? "bg-slate-100 text-cyan-900 shadow"
-                      : "text-slate-700 hover:bg-slate-200 "
+                      ? "bg-white text-black shadow"
+                      : "text-white hover:bg-slate-300 "
                   }`}
                 >
                   Run {run}

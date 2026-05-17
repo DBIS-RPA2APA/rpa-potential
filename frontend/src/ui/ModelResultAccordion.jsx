@@ -49,7 +49,7 @@ function ModelResultAccordion({ result }) {
 
           {/* Expected / detected list*/}
           <div className="grid grid-cols-2 gap-4">
-            <div className="border-rose-800 rounded-md border-2 p-4">
+            <div className="border-[#10214D] rounded-3xl border-2 p-4">
               <h4 className="text-md font-semibold text-slate-900 mb-2">
                 Expected Activities
               </h4>
@@ -64,7 +64,7 @@ function ModelResultAccordion({ result }) {
               </ul>
             </div>
 
-            <div className="border-rose-800 rounded-md border-2 p-4">
+            <div className="border-[#10214D] rounded-3xl border-2 p-4">
               <h5 className="text-md font-semibold text-slate-900 mb-2">
                 Detected Activities
               </h5>
@@ -88,7 +88,7 @@ function ModelResultAccordion({ result }) {
           </div>
 
           {/* Visual preview placeholder */}
-          <div className="border-rose-800 rounded-md border-2 p-4">
+          <div className="border-[#10214D] rounded-3xl border-2 p-4">
             <h4 className="text-md font-semibold text-slate-900 mb-3">
               Visual Preview
             </h4>
@@ -102,7 +102,7 @@ function ModelResultAccordion({ result }) {
           </div>
 
           {/* Reasoning table */}
-          <div className="border-rose-800 rounded-md border-2 p-4">
+          <div className="border-[#10214D] rounded-3xl border-2 p-4">
             <div className="mb-3 flex items-center justify-between">
               <h4 className="text-lg font-semibold text-slate-900">
                 AI Model Reasoning
@@ -171,7 +171,7 @@ export default ModelResultAccordion;
 
 function SmallSummaryCard({ label, value }) {
   return (
-    <div className="border-rose-800 rounded-md border-2 p-4">
+    <div className="border-[#10214D] rounded-3xl border-2 p-4">
       <p className="text-slate-700 text-sm mb-2">{label}</p>
       <p className="text-3xl font-bold text-slate-900">{value}</p>
       <p className="text-sm text-slate-500 mt-1">Activities</p>

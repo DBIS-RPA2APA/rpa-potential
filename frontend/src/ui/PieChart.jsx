@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useState, useRef, useMemo } from "react";
 
-const colors = ["#FF6285", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"];
+const colors = ["#FF6200", "#929FC1", "#10214D", "#FFA256", "#EFEFEF"];
 const margin = 30;
 
 export default function PieChart({ data, width, height }) {
@@ -83,8 +83,10 @@ export default function PieChart({ data, width, height }) {
             position: "absolute",
             left: tooltip.x,
             top: tooltip.y,
-            background: "#FFF7F8",
-            border: "1px solid #FF9AAC",
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
+            border: "1px solid #FF6200",
             borderRadius: 6,
             padding: "6px 8px",
             fontSize: 15,

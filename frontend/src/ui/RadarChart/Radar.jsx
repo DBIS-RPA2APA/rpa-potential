@@ -62,21 +62,22 @@ export default function Radar({ width, height, data }) {
         />
         <path
           d={radarPath}
-          fill="#FF6285"
+          fill="#FF6200"
           fillOpacity={0.25}
-          stroke="#FF6285"
+          stroke="#FF6200"
           strokeWidth={1}
         />
-        {/* key bullet points VALUES FF6285 */}
+        {/* key bullet points VALUES FF6200 */}
         {shiftedPoints.map((point, i) => (
           <g key={i}>
-            <circle cx={point.x} cy={point.y} r={4} fill="#FF6285" />
+            <circle cx={point.x} cy={point.y} r={5} fill="#FF6200" />
             <text
               x={point.x}
               y={point.y - 20}
               textAnchor="middle"
               fontSize={13}
               fill="#000000"
+              fontWeight={700}
             >
               {(point.value * 100).toFixed(0)}%
             </text>

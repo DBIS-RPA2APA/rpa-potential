@@ -47,13 +47,13 @@ const EvaluationPanel = ({ llmProps }) => {
   const statusConfig = {
     available: {
       label: "available",
-      textColor: "text-slate-700",
-      barColor: "bg-slate-700",
+      textColor: "text-[#FF6200]",
+      barColor: "bg-[#FF6200]",
     },
     running: {
       label: "running",
-      textColor: "text-cyan-700",
-      barColor: "bg-cyan-700",
+      textColor: "text-[#10214D]",
+      barColor: "bg-[#10214D]",
     },
     finished: {
       label: "finished",
@@ -141,7 +141,7 @@ const EvaluationPanel = ({ llmProps }) => {
   }
   return (
     <>
-      <div className="h-full min-h-0 flex flex-col p-4">
+      <div className="h-full min-h-0 flex flex-col p-4 bg-white/45">
         {/* Evaluation Settings*/}
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-slate-900">
@@ -153,7 +153,7 @@ const EvaluationPanel = ({ llmProps }) => {
           </p>
         </div>
 
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-5 pl-1 pr-4">
+        <div className="flex-1 min-h-0 overflow-y-auto space-y-5 px-3">
           <div>
             <label className="block text-sm font-medium text-black mb-1">
               Number of Repetitions
@@ -175,18 +175,18 @@ const EvaluationPanel = ({ llmProps }) => {
                 if (num > 5) num = 5;
                 setNumRepetitions(num);
               }}
-              className="w-full rounded border border-slate-400 px-3 py-2 text-slate-700 bg-slate-100"
+              className="w-full rounded-xl shadow-inner border-[#425176] border-2 px-3 py-2 text-slate-700 bg-white/30 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium text-black mb-1">
+            <label className="block text-sm font-medium text-black mb-1 ">
               Select Datasets
             </label>
             <select
               value={dataset}
               onChange={(e) => setDataset(e.target.value)}
-              className="w-full rounded border  text-slate-900"
+              className="w-full rounded border  text-slate-900 bg-white/30 focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
             >
               <option value="Dataset0">Dataset 0</option>
               <option value="Dataset1">Dataset 1</option>
@@ -197,7 +197,7 @@ const EvaluationPanel = ({ llmProps }) => {
 
           <div className="mt-5">
             <Button
-              color="primary"
+              color="thirdary"
               size="width"
               onClick={handleEvaluation}
               disabled={evaluationStatus === "running"}
@@ -206,18 +206,27 @@ const EvaluationPanel = ({ llmProps }) => {
             </Button>
           </div>
         </div>
-        <h2 className="text-slate-900 font-semibold text-xl mb-2">History</h2>
-        <div className="bg-slate-100 rounded border-md p-3 overflow-scroll max-h-80">
+
+        {/* Evaluation History */}
+        <div className="mb-5">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Evaluation History
+          </h2>
+          <p className="text-xs text-slate-500">
+            View your last evaluation history and results.
+          </p>
+        </div>
+        <div className="bg-[#97A8D5]/50 shadow-inner rounded-3xl border p-3 overflow-scroll max-h-80">
           {evaluationHistory.length === 0 && (
             <p className="text-md text-slate-500">No evaluations saved yet.</p>
           )}
           {evaluationHistory.map((item) => (
             <div
               key={`${item.datasetName}-${item.timestamp}`}
-              className="rounded border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-slate-200 transition"
+              className="rounded-3xl border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-[#10214D] hover:text-white transition"
               onClick={() => openResult(item)}
             >
-              <p className="text-md font-medium text-slate-900 pb-2">
+              <p className="text-md font-medium text-slate-900 pb-2" id="title">
                 {item.datasetName}
               </p>
               <p className="text-sm text-slate-500">{item.timestamp}</p>
@@ -237,7 +246,7 @@ const EvaluationPanel = ({ llmProps }) => {
               </span>
             </p>
           </div>
-          <div className="w-full mb-1 bg-slate-300 rounded-full h-2">
+          <div className="w-full mb-1 bg-[#EFEFEF] rounded-full h-2">
             <div
               className={`${currentStatus.barColor} h-2 rounded-full w-1/2 transition-all duration-500 ease-in-out`}
               style={{ width: `${progress}%` }}
@@ -250,6 +259,7 @@ const EvaluationPanel = ({ llmProps }) => {
           {/* automatische Navigation zu /evaluation/results/:runId*/}
           <div className="mt-auto">
             <Button
+              color="thirdary"
               size="width"
               disabled={!evaluationData || evaluationStatus !== "finished"}
               onClick={() => setShowEvaluationResult(true)}

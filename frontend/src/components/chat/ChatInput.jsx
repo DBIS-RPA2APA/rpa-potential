@@ -1,4 +1,4 @@
-import { useCallback} from "react";
+import { useCallback } from "react";
 import Button from "../../ui/button";
 
 export default function ChatInput({ value, onChange, onSend, disabled }) {
@@ -14,23 +14,23 @@ export default function ChatInput({ value, onChange, onSend, disabled }) {
         if (!disabled) handleSend();
       }
     },
-    [disabled, handleSend]
+    [disabled, handleSend],
   );
 
   return (
-    <div className="border-t bg-white p-3">
+    <div className="bg-white/35 p-4">
       <div className="flex gap-2 items-end">
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder="Send a message…"
-          className="flex-1 text-black resize-none rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
+          className="flex-1 h-40 bg-white/35 text-black resize-none rounded-2xl border-2 border-[#425176] px-3 py-2 text-md outline-none focus:ring-2 focus:ring-slate-300"
           rows={4}
         />
 
         <Button
-          color="primary"
+          color="thirdary"
           size="small"
           onClick={handleSend}
           disabled={disabled || !value.trim()}

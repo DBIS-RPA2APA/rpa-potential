@@ -7,9 +7,9 @@ export default function ChatMessages({ messages }) {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
+  //bg-[#FFF4EE]
   return (
-    <div className="flex-1 min-h-0 overflow-auto p-2 bg-slate-50">
+    <div className="flex-1 min-h-0 overflow-auto p-2">
       <div className="flex flex-col gap-3">
         {messages.map((m, idx) => {
           const isUser = m.role === "user";
@@ -18,10 +18,10 @@ export default function ChatMessages({ messages }) {
           return (
             <div
               key={idx}
-              className={`max-w-[80%] rounded-xl px-3 py-2 text-sm whitespace-pre-wrap wrap-break-word ${
+              className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap wrap-break-word ${
                 isUser
-                  ? "ml-auto bg-slate-900 text-white"
-                  : "mr-auto bg-white border text-slate-900"
+                  ? "ml-auto bg-[#0B172D] text-white"
+                  : "mr-auto bg-[#FFF4EE] text-[#0B172D]"
               }`}
             >
               {isUser ? (

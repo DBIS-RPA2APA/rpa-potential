@@ -2,11 +2,6 @@
 
 Today:
 
-- loadDataset ins Backend
-- Netzdiagramm verbessern
-- 3 neue LLM Modelle raussuchen !!!
-- Datensatz 10 Bpmn
-
 - UX überprüfen: History in EvaluationPanel ändern, Logo ändern
 - UI Kit-Deign erstellen und anwenden!!! <3
 - DarkMode Farben anpassen

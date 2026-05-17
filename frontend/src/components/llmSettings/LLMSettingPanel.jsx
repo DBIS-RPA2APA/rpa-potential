@@ -24,7 +24,7 @@ const LLMSettingsPanel = ({
   };
 
   return (
-    <div className="h-full min-h-0 flex flex-col p-4 border rounded">
+    <div className="h-full min-h-0 flex flex-col p-4 bg-white/45">
       <div className="mb-8">
         <h2 className="text-lg font-semibold text-slate-900">LLM Settings</h2>
         <p className="text-xs text-slate-500">
@@ -41,7 +41,7 @@ const LLMSettingsPanel = ({
           <select
             value={llmPropsDraft.modelName}
             onChange={(e) => updateField("modelName", e.target.value)}
-            className="w-full rounded border  text-slate-900"
+            className="w-full rounded-xl border text-slate-900 bg-white/30 focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
           >
             <option value="qwen/qwen-2.5-7b-instruct">
               qwen-2.5-7b instruct
@@ -65,7 +65,7 @@ const LLMSettingsPanel = ({
             type="text"
             value={llmPropsDraft.baseUrl}
             onChange={(e) => updateField("baseUrl", e.target.value)}
-            className="w-full rounded border border-slate-400 px-3 py-2 text-slate-900"
+            className="w-full rounded-xl border-2 border-[#425176] px-3 py-2 text-slate-700 bg-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
           />
         </div>
 
@@ -77,7 +77,7 @@ const LLMSettingsPanel = ({
             type="password"
             value={llmPropsDraft.apiKey}
             onChange={(e) => updateField("apiKey", e.target.value)}
-            className="w-full rounded border border-slate-400 px-3 py-2 text-slate-900"
+            className="w-full rounded-xl border-2 border-[#425176] px-3 py-2 text-slate-700 bg-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
             placeholder="Optional: overwrites the backend .env"
           />
         </div>
@@ -95,7 +95,7 @@ const LLMSettingsPanel = ({
                 seed: e.target.value,
               })
             }
-            className="w-full rounded border border-slate-400 px-3 py-2 text-slate-900"
+            className="w-full rounded-xl border-2 border-[#425176] px-3 py-2 text-slate-700 bg-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
           />
         </div>
 
@@ -143,7 +143,7 @@ const LLMSettingsPanel = ({
       </div>
 
       <div className="mt-auto">
-        <Button color="primary" size="width" onClick={handleApply}>
+        <Button color="thirdary" size="width" onClick={handleApply}>
           Apply Settings
         </Button>
       </div>

@@ -6,7 +6,7 @@ function AccordionSection({ title, children, className = "" }) {
 
   return (
     <div
-      className={`rounded-md border shadow overflow-hidden ${
+      className={`rounded-3xl border shadow overflow-hidden ${
         className || "bg-white"
       }`}
     >
@@ -20,7 +20,7 @@ function AccordionSection({ title, children, className = "" }) {
         </div>
 
         <span className="text-slate-500 text-xl">
-          {isOpen ? <LuChevronUp /> : <LuChevronDown />}
+          {isOpen ? <LuChevronUp size={30} /> : <LuChevronDown size={30} />}
         </span>
       </button>
 

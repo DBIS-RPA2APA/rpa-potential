@@ -4,15 +4,15 @@ import { BpmnToolbar } from "./BpmnToolbar";
 // receives refs and callbacks from the parent component (BpmnEditor) to manage file input, downloading, and error handling.
 export function BpmnLayout({
   containerRef, // ref for the BPMN modeler container
-  fileInputRef, 
-  onFileSelected, 
-  onDownload, 
-  onAnalyze, 
-  onCreateNew, 
-  onClear, 
-  onReport, 
+  fileInputRef,
+  onFileSelected,
+  onDownload,
+  onAnalyze,
+  onCreateNew,
+  onClear,
+  onReport,
   isAnalyzing,
-  error
+  error,
 }) {
   return (
     <div className="h-full flex flex-col">
@@ -32,20 +32,20 @@ export function BpmnLayout({
           {error}
         </div>
       )}
-       <div className="relative flex-1 pt-4 bg-slate-100">
-            <div className="h-full rounded-md shadow border bg-white overflow-hidden">
-              <div ref={containerRef} className="h-full w-full" />
+      <div className="relative flex-1 pt-4">
+        <div className="h-full shadow-md border-2 border-white rounded-3xl bg-white/60 overflow-hidden">
+          <div ref={containerRef} className="h-full w-full" />
 
-              {isAnalyzing && (
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm">
-                  <div className="h-13 w-13 animate-spin rounded-full border-4 border-slate-300 border-t-slate-700" />
-                  <p className="mt-3 text-sm font-medium text-slate-700">
-                    BPMN is being analyzed...
-                  </p>
-                </div>
-              )}
+          {isAnalyzing && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm">
+              <div className="h-13 w-13 animate-spin rounded-full border-4 border-slate-300 border-t-slate-700" />
+              <p className="mt-3 text-sm font-medium text-slate-700">
+                BPMN is being analyzed...
+              </p>
             </div>
-           </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

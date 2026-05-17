@@ -62,8 +62,7 @@ export default function BarPlot({ data, width, height }) {
           width={xScale.bandwidth()}
           height={boundsHeight - yScale(d.value)}
           opacity={0.9}
-          stroke="#FF0038"
-          fill="#FF6285"
+          fill="#FF6200"
           fillOpacity={1}
           strokeWidth={1}
           rx={1}
@@ -91,7 +90,7 @@ export default function BarPlot({ data, width, height }) {
         x2={boundsWidth}
         y1={yScale(value)}
         y2={yScale(value)}
-        stroke="#808080"
+        stroke="#383838"
         opacity={0.3}
       />
       <text
@@ -101,8 +100,8 @@ export default function BarPlot({ data, width, height }) {
         alignmentBaseline="central"
         fontSize={13}
         fontWeight={100}
-        stroke="#808080"
-        opacity={0.7}
+        stroke="#0B172D"
+        opacity={0.5}
       >
         {value}
       </text>
@@ -127,8 +126,10 @@ export default function BarPlot({ data, width, height }) {
             position: "absolute",
             left: tooltip.x,
             top: tooltip.y,
-            background: "#FFF7F8",
-            border: "1px solid #FF9AAC",
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
+            border: "1px solid #FF6200",
             borderRadius: 6,
             padding: "6px 8px",
             fontSize: 15,

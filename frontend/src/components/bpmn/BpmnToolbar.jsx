@@ -23,7 +23,7 @@ export function BpmnToolbar({
   };
   return (
     <>
-      <div className="flex items-center bg-white rounded shadow border px-4 py-3">
+      <div className="flex items-center bg-white/20 backdrop-blur-xl rounded-[6rem] border-2 border-white/30 shadow-md px-5 py-4">
         <div className="flex w-full flex-col gap-3 md:flex-row md:justify-between">
           <input
             ref={fileInputRef}
@@ -63,7 +63,7 @@ export function BpmnToolbar({
             </Button>
           </div>
           {/* Buttons Right */}
-          <div className="flex  gap-2">
+          <div className="flex gap-2 items-center justify-center">
             <Button
               color="primary"
               size="medium"
@@ -90,9 +90,9 @@ export function BpmnToolbar({
             </Button>
             <button
               onClick={handleScorePopup}
-              className="w-10 h-10 rounded-full flex items-center justify-center bg-white hover:bg-slate-200 transition cursor-pointer"
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-white/35 hover:bg-white/50 transition cursor-pointer"
             >
-              <LuBadgeInfo size={27} color="black" />
+              <LuBadgeInfo size={48} color="white" />
             </button>
           </div>
         </div>

@@ -1,12 +1,11 @@
 const PanelTabs = ({ activeTab, setActiveTab }) => {
-  const baseClasses =
-    "px-4 py-2 text-sm text-slate-300  font-medium rounded-tl-md rounded-tr-md";
-  const activeClasses = "bg-white text-slate-900";
+  const baseClasses = "px-4 py-4 text-md ";
+  const activeClasses = "bg-white/45 text-black font-semibold";
   const inactiveClasses =
-    "bg-slate-15 text-slate-500 hover:bg-slate-200 cursor-pointer";
+    "text-slate-700 hover:bg-white/15 cursor-pointer font-light";
 
   return (
-    <div className="flex items-center bg-slate-100">
+    <div className="flex items-center">
       <button
         type="button"
         onClick={() => setActiveTab("settings")}
