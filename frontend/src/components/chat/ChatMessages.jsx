@@ -5,11 +5,11 @@ export default function ChatMessages({ messages }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages]);
   //bg-[#FFF4EE]
   return (
-    <div className="flex-1 min-h-0 overflow-auto p-2">
+    <div className="flex-1 min-h-0 overflow-auto px-2 pb-2 pt-20">
       <div className="flex flex-col gap-3">
         {messages.map((m, idx) => {
           const isUser = m.role === "user";

@@ -129,6 +129,9 @@ export function EvaluationResult({
           <div className="grid grid-cols-2 gap-4">
             {/* Left */}
             <div className="bg-white rounded-3xl  shadow p-4">
+              <h2 className="text-xl font-bold text-slate-900 pb-3">
+                Run Configuration
+              </h2>
               <p className="text-md text-slate-500">
                 Model:{" "}
                 <span className="font-medium text-slate-900">
@@ -288,7 +291,7 @@ export function EvaluationResult({
             </div>
           </div>
           {/* Tab Bar to switch between runs [#10214D] */}
-          <div className="bg-[#10214D] rounded-full p-1 shadow-inner">
+          <div className="bg-[#10214D] rounded-full p-1 inset-shadow-sm inset-shadow-black/70 ">
             <div
               className="grid gap-2"
               style={{

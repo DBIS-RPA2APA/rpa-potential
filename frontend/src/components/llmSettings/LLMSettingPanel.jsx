@@ -22,9 +22,9 @@ const LLMSettingsPanel = ({
     onResetChat?.();
     setActiveTab("chat");
   };
-
+  // bg-[#DFE5F5]/30
   return (
-    <div className="h-full min-h-0 flex flex-col p-4 bg-white/45">
+    <div className="h-full min-h-0 flex flex-col p-4  bg-[#DFE5F5]/70">
       <div className="mb-8">
         <h2 className="text-lg font-semibold text-slate-900">LLM Settings</h2>
         <p className="text-xs text-slate-500">

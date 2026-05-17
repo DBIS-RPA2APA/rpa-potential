@@ -18,7 +18,7 @@ export default function ChatInput({ value, onChange, onSend, disabled }) {
   );
 
   return (
-    <div className="bg-white/35 p-4">
+    <div className="bg-[#DFE5F5]/70 p-4">
       <div className="flex gap-2 items-end">
         <textarea
           value={value}

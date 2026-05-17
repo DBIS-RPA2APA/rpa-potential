@@ -1,6 +1,8 @@
 import * as d3 from "d3";
 import { useState, useRef } from "react";
 
+const colors = ["#FF5573", "#5315B3", "#FFAF00", "#6DC800", "#FF5573"];
+
 export default function BarPlot({ data, width, height }) {
   const [tooltip, setTooltip] = useState(null);
   const svgRef = useRef(null);
@@ -62,7 +64,7 @@ export default function BarPlot({ data, width, height }) {
           width={xScale.bandwidth()}
           height={boundsHeight - yScale(d.value)}
           opacity={0.9}
-          fill="#FF6200"
+          fill={colors[i]}
           fillOpacity={1}
           strokeWidth={1}
           rx={1}
@@ -138,7 +140,7 @@ export default function BarPlot({ data, width, height }) {
             whiteSpace: "nowrap",
           }}
         >
-          <div>
+          <div style={{ fontSize: 15, color: "#383838" }}>
             <strong>{tooltip.name}</strong>
           </div>
           <div>Wert: {tooltip.value}</div>

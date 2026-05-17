@@ -1,6 +1,7 @@
 const PanelTabs = ({ activeTab, setActiveTab }) => {
   const baseClasses = "px-4 py-4 text-md ";
-  const activeClasses = "bg-white/45 text-black font-semibold";
+  const activeClasses =
+    "bg-[#DFE5F5]/70  text-black font-semibold border-b-2 border-[#97A8D5] ";
   const inactiveClasses =
     "text-slate-700 hover:bg-white/15 cursor-pointer font-light";
 

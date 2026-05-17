@@ -141,7 +141,7 @@ const EvaluationPanel = ({ llmProps }) => {
   }
   return (
     <>
-      <div className="h-full min-h-0 flex flex-col p-4 bg-white/45">
+      <div className="h-full min-h-0 flex flex-col p-4 bg-[#DFE5F5]/60 ">
         {/* Evaluation Settings*/}
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-slate-900">
@@ -216,14 +216,14 @@ const EvaluationPanel = ({ llmProps }) => {
             View your last evaluation history and results.
           </p>
         </div>
-        <div className="bg-[#97A8D5]/50 shadow-inner rounded-3xl border p-3 overflow-scroll max-h-80">
+        <div className="bg-[#97A8D5]/50 inset-shadow-sm inset-shadow-slate-500 rounded-3xl border p-3 overflow-scroll max-h-80">
           {evaluationHistory.length === 0 && (
             <p className="text-md text-slate-500">No evaluations saved yet.</p>
           )}
           {evaluationHistory.map((item) => (
             <div
               key={`${item.datasetName}-${item.timestamp}`}
-              className="rounded-3xl border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-[#10214D] hover:text-white transition"
+              className="rounded-3xl  border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-[#10214D] hover:shadow-md hover:*:text-white transition"
               onClick={() => openResult(item)}
             >
               <p className="text-md font-medium text-slate-900 pb-2" id="title">

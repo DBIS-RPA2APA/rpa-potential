@@ -22,7 +22,7 @@ const SidePanel = ({
   const [chatResetToken, setChatResetToken] = useState(0);
 
   return (
-    <div className="h-full flex flex-col bg-white/30 rounded-3xl shadow-md border-2 border-white overflow-hidden">
+    <div className="h-full flex flex-col bg-[#DFE5F5]/30 rounded-3xl shadow-md border-2 border-white overflow-hidden">
       <PanelTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* LLM Settings Tab */}
       <div className="flex-1 min-h-0 overflow-hidden">

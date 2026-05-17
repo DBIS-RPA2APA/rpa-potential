@@ -107,8 +107,8 @@ export default function ChatPanel({
   }, [hasAnalysis, setChatText]);
 
   return (
-    <div className="h-full flex flex-col   overflow-hidden">
-      <div className="px-4 py-3 flex items-center justify-between bg-white/35">
+    <div className="relative h-full flex flex-col overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 z-20 px-4 py-3 flex items-center justify-between bg-[#DFE5F5]/70  backdrop-blur-xl border-b border-white/20 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">LLM</h2>
           <div className="text-xs text-slate-500">
@@ -118,7 +118,7 @@ export default function ChatPanel({
 
         <button
           onClick={handleClear}
-          className="text-sm text-slate-600 hover:text-slate-900 cursor-pointer"
+          className="text-sm text-slate-900 hover:underline cursor-pointer"
         >
           Clear
         </button>
