@@ -6,7 +6,7 @@ Evaluating Large Language Models in Identifying BPMN Activities for Robotic Proc
 
 ## Description
 
-The application uses BPMN visualization, data preprocessing, and the integration of large language models (LLMs) to evaluate the effectiveness of LLMs in identifying and analyzing BPMN activities related to robotic process automation(RPA). The application also includes a chatbot that allows users to discuss the analysis.
+The application uses BPMN visualization, data preprocessing, and the integration of Large Language Models (LLMs) to evaluate the effectiveness of LLMs in identifying and analyzing BPMN activities related to robotic process automation(RPA). The application also includes a chatbot that allows users to discuss the analysis.
 This Project involves the implementation of a web-based BPMN editor and a testing environment with an evaluation feature, which were developed as part of a bachelor thesis.
 
 ## Features
