@@ -101,7 +101,7 @@ export function EvaluationResult({
 
   return (
     <>
-      <div className="fixed inset-0 z-500 bg-black/40 flex items-center justify-center ">
+      <div className="fixed inset-0 z-500 bg-slate-900/30 flex items-center justify-center ">
         <div className="w-full h-full bg-white/30 p-6 overflow-y-auto space-y-5 backdrop-blur-xl">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-3xl font-semibold text-slate-900">

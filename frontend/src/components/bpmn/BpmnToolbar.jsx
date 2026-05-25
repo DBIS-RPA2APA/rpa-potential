@@ -23,7 +23,7 @@ export function BpmnToolbar({
   };
   return (
     <>
-      <div className="flex items-center bg-white/20 backdrop-blur-xl rounded-[6rem] border-2 border-white/30 shadow-md px-5 py-4">
+      <div className="flex items-center bg-white/20 backdrop-blur-xl rounded-[6rem] border-2 border-white/30 shadow-md px-3 py-2">
         <div className="flex w-full flex-col gap-3 md:flex-row md:justify-between">
           <input
             ref={fileInputRef}

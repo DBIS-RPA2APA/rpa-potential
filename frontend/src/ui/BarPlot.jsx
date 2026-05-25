@@ -131,7 +131,7 @@ export default function BarPlot({ data, width, height }) {
             background: "rgba(255,255,255,0.55)",
             backdropFilter: "blur(5px)",
             WebkitBackdropFilter: "blur(5px)",
-            border: "1px solid #FF6200",
+            border: "1px solid #383838",
             borderRadius: 6,
             padding: "6px 8px",
             fontSize: 15,

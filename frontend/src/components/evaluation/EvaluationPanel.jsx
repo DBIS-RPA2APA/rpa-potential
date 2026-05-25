@@ -141,7 +141,7 @@ const EvaluationPanel = ({ llmProps }) => {
   }
   return (
     <>
-      <div className="h-full min-h-0 flex flex-col p-4 bg-[#DFE5F5]/60 ">
+      <div className="h-full min-h-0 flex flex-col overflow-y-auto p-4 bg-[#DFE5F5]/60">
         {/* Evaluation Settings*/}
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-slate-900">
@@ -153,7 +153,7 @@ const EvaluationPanel = ({ llmProps }) => {
           </p>
         </div>
 
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-5 px-3">
+        <div className="shrink-0 space-y-5 px-3 mb-6">
           <div>
             <label className="block text-sm font-medium text-black mb-1">
               Number of Repetitions
@@ -216,14 +216,14 @@ const EvaluationPanel = ({ llmProps }) => {
             View your last evaluation history and results.
           </p>
         </div>
-        <div className="bg-[#97A8D5]/50 inset-shadow-sm inset-shadow-slate-500 rounded-3xl border p-3 overflow-scroll max-h-80">
+        <div className="bg-[#97A8D5]/50 inset-shadow-sm inset-shadow-slate-500 rounded-3xl border p-3 overflow-y-auto max-h-56 md:max-h-80 shrink-0">
           {evaluationHistory.length === 0 && (
             <p className="text-md text-slate-500">No evaluations saved yet.</p>
           )}
           {evaluationHistory.map((item) => (
             <div
               key={`${item.datasetName}-${item.timestamp}`}
-              className="rounded-3xl  border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-[#10214D] hover:shadow-md hover:*:text-white transition"
+              className="rounded-2xl  border-md border-slate-300 bg-white px-4 py-3 mb-2 cursor-pointer hover:bg-[#10214D] hover:shadow-md hover:*:text-white transition"
               onClick={() => openResult(item)}
             >
               <p className="text-md font-medium text-slate-900 pb-2" id="title">
@@ -237,7 +237,7 @@ const EvaluationPanel = ({ llmProps }) => {
           ))}
         </div>
         {/* Progress Bar */}
-        <div className="mt-auto space-y-5">
+        <div className="shrink-0 mt-6 space-y-5">
           <div className="mt-15 mb-2">
             <p className="text-sm text-slate-500">
               Current Evaluation Status:{" "}

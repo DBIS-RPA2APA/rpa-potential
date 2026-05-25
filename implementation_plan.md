@@ -2,15 +2,9 @@
 
 Today:
 
-- UX überprüfen: History in EvaluationPanel ändern, Logo ändern
-- UI Kit-Deign erstellen und anwenden!!! <3
+- Logo ändern
 - DarkMode Farben anpassen
 - code anpassen
-
-Wednesday
-
-- Related Work neue paper suchen!!!
-- UI Kit-Deign
 
 - chatbots generieren bpmn in related work
 - schauen wer alles bernad zitiert hat
@@ -27,10 +21,8 @@ Fragen:
 
 bis 21. Mai:
 
-- Anfangen zu schreiben
 - DarkMode Farben anpassen
   (- Tests schreiben)
-- UI Kit-Deign erstellen und anwenden!!! <3
 - deepEval
 
 ## Goal:

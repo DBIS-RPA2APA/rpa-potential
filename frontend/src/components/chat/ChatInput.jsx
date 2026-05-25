@@ -25,7 +25,7 @@ export default function ChatInput({ value, onChange, onSend, disabled }) {
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder="Send a message…"
-          className="flex-1 h-40 bg-white/35 text-black resize-none rounded-2xl border-2 border-[#425176] px-3 py-2 text-md outline-none focus:ring-2 focus:ring-slate-300"
+          className="flex-1 h-30 bg-white/35 text-black resize-none rounded-2xl border-2 border-[#425176] px-3 py-2 text-md outline-none focus:ring-2 focus:ring-slate-300"
           rows={4}
         />
 

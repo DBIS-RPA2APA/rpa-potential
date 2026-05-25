@@ -43,16 +43,22 @@ const LLMSettingsPanel = ({
             onChange={(e) => updateField("modelName", e.target.value)}
             className="w-full rounded-xl border text-slate-900 bg-white/30 focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
           >
+            <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+
             <option value="qwen/qwen-2.5-7b-instruct">
               qwen-2.5-7b instruct
             </option>
-            <option value="google/gemma-3-12b-it">gemma-3 12b-it</option>
             <option value="mistralai/mistral-7b-instruct-v0.1">
               mistral-7b instruct-v0.1
             </option>
-            <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
-            <option value="mistralai/mistral-medium-3.1">
-              mistral-medium 3.1
+            <option value="google/gemma-3-12b-it">gemma-3 12b-it</option>
+            <option value="deepseek/deepseek-r1-distill-qwen-32b">
+              deepseek-r1-distill-qwen-32b
+            </option>
+
+            <option value="openai/gpt-oss-120b">GPT-OSS-120B</option>
+            <option value="mistralai/mixtral-8x22b-instruct">
+              Mixtral-8x22b-instruct
             </option>
           </select>
         </div>

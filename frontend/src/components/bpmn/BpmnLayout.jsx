@@ -32,12 +32,12 @@ export function BpmnLayout({
           {error}
         </div>
       )}
-      <div className="relative flex-1 pt-4">
+      <div className="relative flex-1 pt-2">
         <div className="h-full shadow-md border-2 border-white rounded-3xl bg-white/60 overflow-hidden">
           <div ref={containerRef} className="h-full w-full" />
 
           {isAnalyzing && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm rounded-3xl mt-4">
               <div className="h-13 w-13 animate-spin rounded-full border-4 border-slate-300 border-t-slate-700" />
               <p className="mt-3 text-sm font-medium text-slate-700">
                 BPMN is being analyzed...
