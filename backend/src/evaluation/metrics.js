@@ -120,6 +120,13 @@ export function calculateEvaluationReportSummary(
 export function getTestCaseReport(criticalElements, testCase, numRepetitions) {
   const expectedIds = testCase.expectedValues.map((ev) => ev.id); // from dataset labels - Lösung
   const actualIds = criticalElements.map((el) => el.id); // from llm response
+  const expectedNamesWithIds = testCase.expectedValues.map((value) => {
+    const element = testCase.elements.find((el) => el.id === value.id);
+    return {
+      ...value,
+      name: element?.name ?? null,
+    };
+  });
 
   const allIds = Array.from(new Set([...expectedIds, ...actualIds]));
 
@@ -133,7 +140,7 @@ export function getTestCaseReport(criticalElements, testCase, numRepetitions) {
       .map((el) => el.id),
     falsePositiveIds: actualIds.filter((id) => !expectedIds.includes(id)),
     falseNegativeIds: expectedIds.filter((id) => !actualIds.includes(id)),
-    expectedNamesWithIds: testCase.expectedValues, // id, reason, score NAME!!!!!!
+    expectedNamesWithIds: expectedNamesWithIds, // id, reason, score NAME!!!!!!
     actualNamesWithIds: criticalElements,
     isSuccessful:
       expectedIds.length === actualIds.length &&
@@ -157,7 +164,7 @@ export function getTestCaseReport(criticalElements, testCase, numRepetitions) {
               : "falsePositive",
       };
     }),
-    amountOfRetries: numRepetitions - 1,
+    amountOfRetries: numRepetitions,
   };
   return TestCaseReport;
 }

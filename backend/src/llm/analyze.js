@@ -19,7 +19,7 @@ export async function analyze(elements, llmProps = {}) {
   const userPrompt = buildUserPrompt(elements);
 
   // 2) Call LLM, get raw response
-  const rawLlmResponse = await callStructuredLlm({
+  const { result: rawLlmResponse, retries } = await callStructuredLlm({
     systemPrompt,
     userPrompt,
     llmProps,
@@ -48,7 +48,7 @@ export async function analyze(elements, llmProps = {}) {
     meta: {
       model: llmProps.modelName || process.env.DEFAULT_MODEL || "unknown",
       baseUrl: llmProps.baseUrl || process.env.OPENROUTER_BASE_URL || "unknown",
-      note: "LangChain and OpenRouter",
+      retries,
     },
     uiMessage,
     criticalElements,

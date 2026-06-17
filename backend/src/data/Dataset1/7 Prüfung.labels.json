@@ -21,11 +21,6 @@
       "id": "sid-941B48A3-9416-4DF3-9C77-8248F39D4695",
       "reason": "This activity involves recording a withdrawal with a medical certificate, which follows set rules and uses structured data, making it suitable for automation.",
       "score": [1, 2, 3, 4, 5, 6, 7]
-    },
-   {
-      "id": "sid-D1FED733-B5B7-454E-9761-777BAAAA782D",
-      "reason": "This activity involves creating personalized documents (Klausuren und Deckblätter) which suggests the use of a system. The process is likely rule-based (personalization) and uses structured data (student data, course information). It is performed by a human using a system, and the personalization likely follows predefined rules. Data is likely available digitally",
-      "score": [1, 2, 6, 7, 8]
     }
   ]
 }

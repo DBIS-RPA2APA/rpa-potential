@@ -59,6 +59,7 @@ function App() {
                 setChatText={setChatText}
                 analysisResult={analysisResult}
                 hasAnalysis={hasAnalysis}
+                setAnalysisResult={setAnalysisResult}
               />
             </div>
           </div>

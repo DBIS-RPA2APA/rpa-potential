@@ -32,27 +32,27 @@
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
       "score": [1,2,6,7,8]
     },
-     {
+    {
       "id": "sid-5707D741-CB1F-4096-A34A-7AA2F50E49F2",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
       "score": [1,2,6,7,8]
     },
-     {
+    {
       "id": "sid-0899CAB2-116D-4BA9-B14F-9938FDC8C463",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
       "score": [1,2,6,7,8]
     },
-     {
+    {
       "id": "sid-014DED60-BF06-44BD-872D-8CBDD0FCFEFD",
       "reason": "This task involves reviewing an application and making decisions based on structured data and well-defined rules, which makes it automatable.",
       "score": [1,2,6,7,8]
     },
-     {
+    {
       "id": "sid-497E9C09-3EE9-4D70-BB00-FA96493C2FB4",
       "reason": "This task involves deleting an acceptance which follows clear rules and uses structured data, thus making it automatable.",
       "score": [2,3,5,6,7,8,9]
     },
-     {
+    {
       "id": "sid-8630B3E4-2878-4D73-B48C-A7899171070C",
       "reason": "This task involves executing a program change based on structured data and defined rules, which can be efficiently automated.",
       "score": [1,2,5,6,7,8,9]

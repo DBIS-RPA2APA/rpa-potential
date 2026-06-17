@@ -131,10 +131,11 @@ export async function callStructuredLlm({
         userPrompt,
         retryPrompt,
       });
+      const retries = i + 1;
 
       console.log(`=== LLM RESPONSE ANALYZE (${i + 1}/${maxRetries}) ===`);
       console.dir(result, { depth: null });
-      return result;
+      return { result, retries };
     } catch (error) {
       lastError = error;
       console.warn(`Retry ${i + 1}/${maxRetries} failed:`, error.message);

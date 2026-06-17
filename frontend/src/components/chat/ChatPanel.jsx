@@ -39,12 +39,14 @@ export default function ChatPanel({
     setMessages([
       {
         role: "assistant",
-        content:
-          "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis.",
+        content: analysisResult
+          ? analysisResult.uiMessage ||
+            "Analysis is complete. You can now ask questions about it."
+          : "Hey! I'm your chatbot. Send me a message! But first click 'Analyze BPMN' to start the analysis.",
       },
     ]);
     setChatText("");
-  }, [resetToken, setChatText]);
+  }, [resetToken, setChatText, analysisResult]);
 
   // --- Send handler: sends user message, calls analysis API if preparedRequest is set,
   // and updates chat messages with response ---

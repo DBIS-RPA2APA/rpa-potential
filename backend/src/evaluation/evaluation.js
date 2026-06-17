@@ -55,7 +55,6 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     const resultTestCase = await evaluateSingleRun(
       datasetName,
       testCases,
-      numRepetitions,
       llmProps,
       i + 1,
     );
@@ -73,13 +72,7 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
   };
 }
 
-async function evaluateSingleRun(
-  datasetName,
-  testCases,
-  numRepetitions,
-  llmProps = {},
-  runId,
-) {
+async function evaluateSingleRun(datasetName, testCases, llmProps = {}, runId) {
   let totalTruePositives = 0;
   let totalFalsePositives = 0;
   let totalFalseNegatives = 0;
@@ -94,7 +87,7 @@ async function evaluateSingleRun(
     const userPrompt = buildUserPrompt(testCase.elements);
 
     // 2) Call LLM, get raw response
-    const rawLlmResponse = await callStructuredLlm({
+    const { result: rawLlmResponse, retries } = await callStructuredLlm({
       systemPrompt,
       userPrompt,
       llmProps,
@@ -107,7 +100,7 @@ async function evaluateSingleRun(
     const TestCaseReport = getTestCaseReport(
       criticalElements,
       testCase,
-      numRepetitions,
+      retries || 1,
     );
 
     const taskElements = testCase.elements.filter((el) =>
@@ -142,7 +135,6 @@ async function evaluateSingleRun(
   return {
     datasetName,
     runId,
-
     testCaseReports: results,
     metadata: evaluationReportSummary,
   };

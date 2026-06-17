@@ -3,8 +3,6 @@ import ChatPanel from "../chat/ChatPanel.jsx";
 import LLMSettingsPanel from "../llmSettings/LLMSettingPanel.jsx";
 import EvaluationPanel from "../evaluation/EvaluationPanel.jsx";
 
-import { useState } from "react";
-
 const SidePanel = ({
   activeTab,
   setActiveTab,
@@ -17,9 +15,9 @@ const SidePanel = ({
   setChatText,
   analysisResult,
   hasAnalysis,
+  setAnalysisResult,
 }) => {
   const effectiveLlmProps = llmProps ?? defaultLlmProps; // Use applied settings if available, otherwise use default
-  const [chatResetToken, setChatResetToken] = useState(0);
 
   return (
     <div className="h-full flex flex-col bg-[#DFE5F5]/30 rounded-3xl shadow-md border-2 border-white overflow-hidden">
@@ -32,7 +30,7 @@ const SidePanel = ({
             setLlmPropsDraft={setLlmPropsDraft}
             setLlmProps={setLlmProps}
             setActiveTab={setActiveTab}
-            onResetChat={() => setChatResetToken((prev) => prev + 1)}
+            onResetChat={() => setAnalysisResult(null)}
           />
         )}
         {/*  ChatPanel Tab */}
@@ -43,7 +41,6 @@ const SidePanel = ({
             llmProps={effectiveLlmProps}
             analysisResult={analysisResult}
             hasAnalysis={hasAnalysis}
-            resetToken={chatResetToken}
           />
         )}
         {activeTab === "evaluation" && (

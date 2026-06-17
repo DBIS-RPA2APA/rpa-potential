@@ -228,6 +228,7 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
 
       const elements = await extractBpmnElements(xml);
       const result = await analyzeElements(elements, llmProps);
+      console.log("For analysis:", elements, "LLM Props:", llmProps);
 
       onAnalysisResult?.({
         criticalElements: result.criticalElements ?? [],

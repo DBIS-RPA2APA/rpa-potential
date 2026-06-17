@@ -54,13 +54,11 @@ function ModelResultAccordion({ result }) {
                 Expected Activities
               </h4>
               <ul className="space-y-1">
-                {result.result
-                  ?.filter((item) => item.expectedScore !== null)
-                  .map((activity) => (
-                    <li key={activity.id} className="text-emerald-700 text-sm">
-                      • {activity.name} ({activity.id})
-                    </li>
-                  ))}
+                {result.expectedNamesWithIds.map((activity) => (
+                  <li key={activity.id} className="text-emerald-700 text-sm">
+                    • {activity.name} ({activity.id})
+                  </li>
+                ))}
               </ul>
             </div>
 
