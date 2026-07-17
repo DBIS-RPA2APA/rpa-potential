@@ -4,12 +4,12 @@
   "expectedValues": [
     {
       "id": "sid-A3F04A82-5F94-4E37-8181-D1088BE55CFC",
-      "reason": " Informing students about their status is a standardized procedure based on well-defined rules and follows predictable patterns. It does not require complex decision-making.",
+      "reason": "Informing students about their status is a standardized procedure based on well-defined rules and follows predictable patterns. It does not require complex decision-making.",
       "score": [2, 3, 4, 5, 6, 7, 8]
     },
      {
       "id": "sid-B0F6F125-9B02-4FB8-AF25-FC825D8A267F",
-      "reason": " The activity involves verifying predefined information, which is based on well-defined rules, follows stable procedures, and does not require complex decision-making. The information verification process is stable and the data involved are likely structured.",
+      "reason": "The activity involves verifying predefined information, which is based on well-defined rules, follows stable procedures, and does not require complex decision-making. The information verification process is stable and the data involved are likely structured.",
       "score": [2, 3, 4, 5, 6, 7]
     },
      {
@@ -34,7 +34,7 @@
     },
     {
       "id": "sid-E0C99F74-CB62-4D6B-BF8D-6B7E528CE50F",
-      "reason": " This activity involves resending information, which is likely triggered by a specific condition and can be automated as part of a retry mechanism.",
+      "reason": "This activity involves resending information, which is likely triggered by a specific condition and can be automated as part of a retry mechanism.",
       "score": [1, 2, 3, 4, 6, 7, 8]
     }
   ]

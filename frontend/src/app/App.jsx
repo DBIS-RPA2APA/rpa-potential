@@ -14,9 +14,9 @@ function App() {
     modelName: "openai/gpt-4o-mini",
     baseUrl: "https://openrouter.ai/api/v1",
     apiKey: "",
-    temperature: 0.7,
+    temperature: 0.1,
     topP: 1,
-    seed: "",
+    seed: "24523833",
     responseTimeout: 20,
   };
 

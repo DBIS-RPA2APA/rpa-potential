@@ -23,8 +23,20 @@ export function BpmnToolbar({
   };
   return (
     <>
-      <div className="flex items-center bg-white/20 backdrop-blur-xl rounded-[6rem] border-2 border-white/30 shadow-md px-3 py-2">
-        <div className="flex w-full flex-col gap-3 md:flex-row md:justify-between">
+      <div
+        className="
+          w-full
+          bg-white/20
+          backdrop-blur-xl
+          rounded-3xl xl:rounded-[6rem]
+          border-2 border-white/30
+          shadow-md
+          px-3 py-3
+          min-h-[90px]
+          xl:min-h-[70px]"
+      >
+        {" "}
+        <div className="flex w-full flex-col gap-2 lg:items-center lg:justify-between lg:flex-row">
           <input
             ref={fileInputRef}
             type="file"
@@ -33,7 +45,7 @@ export function BpmnToolbar({
             onChange={(e) => onFileSelected(e.target.files[0])}
           />
           {/* Buttons Left */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
             <Button
               color="secondary"
               size="medium"
@@ -63,7 +75,7 @@ export function BpmnToolbar({
             </Button>
           </div>
           {/* Buttons Right */}
-          <div className="flex gap-2 items-center justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-end">
             <Button
               color="primary"
               size="medium"

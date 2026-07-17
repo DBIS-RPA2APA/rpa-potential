@@ -48,15 +48,15 @@ const LLMSettingsPanel = ({
             <option value="qwen/qwen-2.5-7b-instruct">
               qwen-2.5-7b instruct
             </option>
-            <option value="mistralai/mistral-7b-instruct-v0.1">
-              mistral-7b instruct-v0.1
+            <option value="mistralai/ministral-8b-2512">
+              ministral-8b-2512
             </option>
             <option value="google/gemma-3-12b-it">gemma-3 12b-it</option>
-            <option value="deepseek/deepseek-r1-distill-qwen-32b">
-              deepseek-r1-distill-qwen-32b
-            </option>
+            <option value="deepseek/deepseek-v3.2">Deepseek-v3.2</option>
 
-            <option value="openai/gpt-oss-120b">GPT-OSS-120B</option>
+            <option value="qwen/qwen3-vl-32b-instruct">
+              qwen3-vl-32b-instruct
+            </option>
             <option value="mistralai/mixtral-8x22b-instruct">
               Mixtral-8x22b-instruct
             </option>

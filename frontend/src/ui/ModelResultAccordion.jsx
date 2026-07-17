@@ -123,33 +123,31 @@ function ModelResultAccordion({ result }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {result.result
-                    .filter((row) => row.llmScore !== null)
-                    .map((row, index) => (
-                      <tr
-                        key={index}
-                        className={
-                          row.status === "falsePositive"
-                            ? "bg-red-200 border-t"
-                            : "bg-white border-t"
-                        }
-                      >
-                        <td className="p-2 text-slate-900 font-medium">
-                          {row.name} ({row.id})
-                        </td>
-                        <td className="p-2 text-slate-700">
-                          {row.llmScore ? row.llmScore.join(", ") : "—"}
-                        </td>
-                        <td className="p-2 text-slate-700">
-                          {row.expectedScore
-                            ? row.expectedScore.join(", ")
-                            : "—"}
-                        </td>
-                        <td className="p-2 text-slate-700">
-                          {row.reasoning ?? "—"}
-                        </td>
-                      </tr>
-                    ))}
+                  {result.result.map((row, index) => (
+                    <tr //result.expectedNamesWithIds.map((activity)
+                      key={index}
+                      className={
+                        row.status === "correct"
+                          ? "bg-[#a8dbba77] border-t"
+                          : row.status === "falsePositive"
+                            ? "bg-[#fee2e2b0] border-t"
+                            : "bg-[#ffebb070] border-t"
+                      }
+                    >
+                      <td className="p-2 text-slate-900 font-medium">
+                        {row.name} ({row.id})
+                      </td>
+                      <td className="p-2 text-slate-900">
+                        {row.llmScore ? row.llmScore.join(", ") : "—"}
+                      </td>
+                      <td className="p-2 text-slate-900">
+                        {row.expectedScore ? row.expectedScore.join(", ") : "—"}
+                      </td>
+                      <td className="p-2 text-slate-900">
+                        {row.reasoning ?? "—"}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

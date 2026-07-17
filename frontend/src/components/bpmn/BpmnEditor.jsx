@@ -255,6 +255,8 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
       }
       const xml = await file.text();
       await importXmlString(xml);
+      const canvas = modelerRef.current.get("canvas");
+      canvas.zoom("fit-viewport", "auto");
     },
     [importXmlString],
   );
@@ -281,6 +283,8 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
     if (!modeler) return;
     try {
       await modeler.importXML(initialDiagram);
+      const canvas = modelerRef.current.get("canvas");
+      canvas.zoom("fit-viewport", "auto");
     } catch (error) {
       console.error("Fehler beim Erstellen eines neuen BPMN-Diagramms:", error);
     }
@@ -322,6 +326,12 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
     }
   }, [analysisResult]);
 
+  const handleCenterView = useCallback(() => {
+    if (!modelerRef.current) return;
+    const canvas = modelerRef.current.get("canvas");
+    canvas.zoom("fit-viewport", "auto");
+  }, []);
+
   return (
     <BpmnLayout
       containerRef={containerRef}
@@ -332,6 +342,7 @@ export function BpmnEditor({ analysisResult, onAnalysisResult, llmProps }) {
       onCreateNew={handleCreateNew}
       onClear={handleClearAnalysis}
       onReport={handleReportExport}
+      onCenterView={handleCenterView}
       isAnalyzing={isAnalyzing}
       error={error}
     />

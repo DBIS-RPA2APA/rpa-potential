@@ -2,7 +2,11 @@
 // LLM call
 // parse JSON
 // return result
-import { buildSystemPrompt, buildUserPrompt } from "./LlmPrompt.js";
+import {
+  buildSystemPrompt,
+  buildUserPrompt,
+  buildSystemPromptHistory,
+} from "./LlmPrompt.js";
 import {
   callStructuredLlm,
   resetDefaultHistory,
@@ -33,10 +37,12 @@ export async function analyze(elements, llmProps = {}) {
     throw new Error("Invalid LLM response format");
   }
 
+  const systemPromptHistory = buildSystemPromptHistory();
+
   //4) --- Set history for the chat  ---
   const combinedPrompt = `
   [System Instructions]
-  ${systemPrompt}
+  ${systemPromptHistory}
   [User Input]
   ${userPrompt}
   `;

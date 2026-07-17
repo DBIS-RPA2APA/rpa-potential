@@ -56,6 +56,11 @@
       "id": "sid-8630B3E4-2878-4D73-B48C-A7899171070C",
       "reason": "This task involves executing a program change based on structured data and defined rules, which can be efficiently automated.",
       "score": [1,2,5,6,7,8,9]
+    },
+    {
+      "id": "sid-7820C0A5-3FD5-4406-81D1-F09D75C38D51",
+      "reason": "This task involves confirming academic advising based on structured data and clear rules, making it suitable for automation.",
+      "score": [1,2,3,4,6,7,8]
     }
   ]
 }

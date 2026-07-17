@@ -16,7 +16,7 @@ const EvaluationPanel = ({ llmProps }) => {
   const [numRepetitions, setNumRepetitions] = useState("");
 
   const [evaluationStatus, setEvaluationStatus] = useState("available"); // Status zu speichern
-  const [progress, setProgress] = useState(0); // progress (weite der Bar) zu speichern
+  const [progress, setProgress] = useState(0); // progress zu speichern
   const [evaluationError, setEvaluationError] = useState(null); // Error-Message zu speichern
   const [evaluationHistory, setEvaluationHistory] = useState([]);
 
@@ -99,7 +99,6 @@ const EvaluationPanel = ({ llmProps }) => {
     const evaluationConfig = {
       datasetName: dataset,
       numRepetitions: numRepetitions || 1,
-      evaluationEndpoint: "/api/evaluate",
     };
     setEvaluationStatus("running");
     startProgressSimulation();
@@ -208,7 +207,7 @@ const EvaluationPanel = ({ llmProps }) => {
         </div>
 
         {/* Evaluation History */}
-        <div className="mb-5">
+        <div className="my-3">
           <h2 className="text-lg font-semibold text-slate-900">
             Evaluation History
           </h2>
@@ -237,8 +236,8 @@ const EvaluationPanel = ({ llmProps }) => {
           ))}
         </div>
         {/* Progress Bar */}
-        <div className="shrink-0 mt-6 space-y-5">
-          <div className="mt-15 mb-2">
+        <div className="mt-auto pt-6 shrink-0  space-y-5">
+          <div className="my-3">
             <p className="text-sm text-slate-500">
               Current Evaluation Status:{" "}
               <span className={`font-bold ${currentStatus.textColor}`}>

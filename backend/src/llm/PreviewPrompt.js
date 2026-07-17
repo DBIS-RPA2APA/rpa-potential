@@ -5,7 +5,7 @@ export function buildSystemPromptPreview() {
   return `
 You are an assistant that analyzes BPMN activities.
 Return ONLY valid JSON.
-`.trim(); // trim() entfernt Leerzeichen
+`.trim();
 }
 
 export function buildUserPromptPreview(elements) {

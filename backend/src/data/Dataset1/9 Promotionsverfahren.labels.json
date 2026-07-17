@@ -26,6 +26,16 @@
       "id": "sid-11CA6E09-FC51-45FE-AD47-2C82B17FDE39",
       "reason": "Creating a report involves filling out forms based on predefined templates and rules. The process is routine and follows a standardized procedure. The necessary data are available digitally, and there are no significant exceptions or ambiguities.",
       "score": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+     {
+      "id": "sid-85676362-2AD6-49D4-B4EC-56170046B6DD",
+      "reason": "Informing doctoral student about missing documents is a standardized procedure based on well-defined rules and follows predictable patterns. It does not require complex decision-making.",
+      "score": [2, 3, 4, 5, 6, 7, 8]
+    },
+     {
+      "id": "sid-83893FE1-5990-4392-B538-16FB2F118DE9",
+      "reason": "Informing doctoral student about their status is a standardized procedure based on well-defined rules and follows predictable patterns. It does not require complex decision-making.",
+      "score": [1, 2, 3, 4, 5, 6, 7, 8]
     }
   ]
 }

@@ -34,14 +34,16 @@ const SidePanel = ({
           />
         )}
         {/*  ChatPanel Tab */}
-        {activeTab === "chat" && effectiveLlmProps && (
-          <ChatPanel
-            chatText={chatText}
-            setChatText={setChatText}
-            llmProps={effectiveLlmProps}
-            analysisResult={analysisResult}
-            hasAnalysis={hasAnalysis}
-          />
+        {effectiveLlmProps && (
+          <div className={activeTab === "chat" ? "h-full" : "hidden"}>
+            <ChatPanel
+              chatText={chatText}
+              setChatText={setChatText}
+              llmProps={effectiveLlmProps}
+              analysisResult={analysisResult}
+              hasAnalysis={hasAnalysis}
+            />
+          </div>
         )}
         {activeTab === "evaluation" && (
           <EvaluationPanel llmProps={effectiveLlmProps} />

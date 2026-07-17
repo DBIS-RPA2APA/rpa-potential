@@ -16,7 +16,6 @@ export async function chat(message, llmProps = {}) {
     llmProps,
   });
 
-  // warum message als return?
   return {
     message:
       typeof result.content === "string"

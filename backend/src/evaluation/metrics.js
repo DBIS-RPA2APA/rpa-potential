@@ -146,7 +146,7 @@ export function getTestCaseReport(criticalElements, testCase, numRepetitions) {
       expectedIds.length === actualIds.length &&
       expectedIds.every((id) => actualIds.includes(id)),
     result: [...allIds].map((id) => {
-      const expected = testCase.expectedValues.find((ev) => ev.id === id);
+      const expected = expectedNamesWithIds.find((ev) => ev.id === id);
       const actual = criticalElements.find((el) => el.id === id);
 
       return {
