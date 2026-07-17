@@ -22,15 +22,15 @@ function App() {
 
   const [llmPropsDraft, setLlmPropsDraft] = useState(defaultLlmProps);
   const [llmProps, setLlmProps] = useState(null);
-  // 0B172D. 97A8D5
+  // 0B172D. 97A8D5 657CB7 374E8B
   return (
     <>
-      <div className="relative h-screen w-screen overflow-hidden bg-[#97A8D5] flex flex-col">
-        <div className="absolute top-[-200px] right-[-150px] w-[500px] h-[500px] rounded-full bg-yellow-300/10 blur-3xl pointer-events-none" />
+      <div className="relative h-screen w-screen overflow-hidden bg-[#657CB7] flex flex-col">
+        <div className="absolute top-[-200px] right-[-150px] w-[500px] h-[500px] rounded-full bg-yellow-400/10 blur-3xl pointer-events-none" />
 
-        <div className="absolute bottom-[-300px] left-[-350px] w-[900px] h-[900px] rounded-full bg-orange-300/50 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-300px] left-[-350px] w-[900px] h-[900px] rounded-full bg-orange-300/40 blur-3xl pointer-events-none" />
 
-        <div className="absolute top-[20%] left-[45%] w-[900px] h-[900px] rounded-full bg-indigo-900/15 blur-3xl pointer-events-none" />
+        <div className="absolute top-[20%] left-[45%] w-[900px] h-[900px] rounded-full bg-[#374E8B30] blur-3xl pointer-events-none" />
 
         <main className="flex-1 min-h-0 p-3">
           <div className="h-full grid grid-cols-3 gap-3">

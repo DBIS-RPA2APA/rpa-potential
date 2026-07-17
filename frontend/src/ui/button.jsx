@@ -10,11 +10,11 @@ const Button = ({
 }) => {
   const colorClasses = {
     primary:
-      "bg-[#FF6200]/90 text-white hover:bg-[#FF6200] rounded-full backdrop-blur-md",
+      "bg-[#FF6200]/90 text-white hover:bg-[#FF6200] rounded-full backdrop-blur-md hover:rotate-3",
     secondary:
-      "bg-white/5 text-white border-1 border-white hover:bg-white/30 rounded-full backdrop-blur-md",
+      "bg-white/5 text-white border-1 border-white hover:bg-white/30 rounded-full backdrop-blur-md hover:-rotate-3",
     thirdary:
-      "bg-[#10214D] text-white hover:bg-[#10214D] rounded-full backdrop-blur-md",
+      "bg-[#10214D] text-white hover:bg-[#10214D] rounded-full backdrop-blur-md hover:-rotate-1",
     danger:
       "bg-red-500 text-white hover:bg-red-600 rounded-full backdrop-blur-md",
   };
@@ -26,7 +26,7 @@ const Button = ({
     width: "px-6 py-3 text-lg w-full",
   };
   const baseClasses =
-    "cursor-pointer rounded-3xl transition-all duration-150 ease-in-out hover:scale-[1.02] hover:shadow-md";
+    "cursor-pointer rounded-3xl transition-all duration-150 ease-in-out hover:scale-105 hover:shadow-lg";
 
   const disabledClasses =
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none";
