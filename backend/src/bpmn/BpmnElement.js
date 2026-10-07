@@ -16,6 +16,8 @@ function BpmnElement({
   outgoingDataToElementIds = [],
 
   associatedElementIds = [],
+
+  parentSubProcessId = null, // ID of the enclosing subprocess (not sent to the LLM)
 }) {
   this.type = type;
   this.id = id;
@@ -34,6 +36,8 @@ function BpmnElement({
   this.outgoingDataToElementIds = outgoingDataToElementIds;
 
   this.associatedElementIds = associatedElementIds;
+
+  this.parentSubProcessId = parentSubProcessId;
 }
 
 export default BpmnElement;

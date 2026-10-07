@@ -112,6 +112,7 @@ const EvaluationPanel = ({ llmProps }) => {
         numRepetitions: numRepetitions || 1,
         defaultEvaluationEndpoint: "/api/evaluate",
         llmProps: llmProps,
+        evaluationMeta: result.evaluationMeta,
         testCases: result.testCases ?? [],
         totalMetrics: result.totalMetrics,
         totalRunResult: result.totalRunResult,
@@ -191,6 +192,7 @@ const EvaluationPanel = ({ llmProps }) => {
               <option value="Dataset1">Dataset 1</option>
               <option value="Dataset2">Dataset 2</option>
               <option value="Dataset3">Dataset 3</option>
+              <option value="Dataset4">Dataset 4</option>
             </select>
           </div>
 

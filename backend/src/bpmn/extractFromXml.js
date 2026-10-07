@@ -65,7 +65,16 @@ export function extractFromXml(bpmnXml) {
     const id = node.getAttribute("id");
     const name = node.getAttribute("name") || null;
     const type = node.localName;
-    const documentation = extractDocumentationText(node);
+    // text annotations keep their text in a <text> child, not in <documentation>
+    const documentation =
+      type === "textAnnotation"
+        ? extractAnnotationText(node)
+        : extractDocumentationText(node);
+    // ID of the enclosing subprocess, if any (used to optionally exclude
+    // nested activities from the evaluation; not passed to the LLM)
+    const parentSubProcessId =
+      findParentByLocalNames(node, SUBPROCESS_LOCAL_NAMES)?.getAttribute("id") ??
+      null;
 
     const poolName = findPoolName(node, xmlDoc);
     const laneName = findLaneName(node, xmlDoc);
@@ -127,9 +136,37 @@ export function extractFromXml(bpmnXml) {
       incomingDataFromElementIds,
       outgoingDataToElementIds,
       associatedElementIds,
+      parentSubProcessId,
     });
   });
   return elements;
+}
+
+const SUBPROCESS_LOCAL_NAMES = new Set([
+  "subProcess",
+  "adHocSubProcess",
+  "transaction",
+]);
+
+function findParentByLocalNames(node, localNames) {
+  let current = node.parentNode;
+  while (current) {
+    if (localNames.has(current.localName)) {
+      return current;
+    }
+    current = current.parentNode;
+  }
+  return null;
+}
+
+// text of <textAnnotation><text>...</text></textAnnotation>
+function extractAnnotationText(annotationNode) {
+  const text = Array.from(annotationNode.childNodes)
+    .filter((n) => n.localName === "text")
+    .map((n) => (n.textContent || "").trim())
+    .filter(Boolean)
+    .join("\n");
+  return text || null;
 }
 
 // looks for <documentation>…</documentation> child nodes and extracts their text content

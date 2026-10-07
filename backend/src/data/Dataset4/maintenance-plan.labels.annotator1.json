@@ -1,0 +1,68 @@
+{
+  "model_id": 0,
+  "name": "maintenance-plan",
+  "expectedValues": [
+    {
+      "id": "Activity_1ou6si0",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1udea0j",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0rjyvai",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1h3y6da",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1cnfor6",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1osp6zr",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_178br01",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "model_id": 0,
+  "name": "manage-time-tracking-master-data",
+  "expectedValues": [
+    {
+      "id": "Activity_0zdclv0",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_155p9cn",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1qgwe0c",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0sbki5q",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0gdqy75",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ehyjjo",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

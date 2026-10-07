@@ -1,0 +1,53 @@
+{
+  "model_id": 0,
+  "name": "create-auction-listing",
+  "expectedValues": [
+    {
+      "id": "Activity_0hfw44n",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1wxob36",
+      "reason": null,
+      "score": [
+        1,
+        4,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_1kde38x",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0opjqzl",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_15tv6vf",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

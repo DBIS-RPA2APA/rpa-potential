@@ -1,0 +1,98 @@
+{
+  "model_id": 0,
+  "name": "complete-travel-expense-report",
+  "expectedValues": [
+    {
+      "id": "Activity_1y8xvye",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_155eztm",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1wvi4nv",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1x58wnj",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1nmtymz",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0ey1or8",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_13rfoqf",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1sdw4tq",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_00gz325",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

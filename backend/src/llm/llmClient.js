@@ -16,20 +16,37 @@ import {
 import { RunnableWithMessageHistory } from "@langchain/core/runnables";
 import { InMemoryChatMessageHistory } from "@langchain/core/chat_history";
 import { z } from "zod";
+import fs from "fs";
 
 const DEFAULT_SESSION_ID = "default-session";
 
+// One entry per activity of the BPMN model (see OUTPUT in LlmPrompt.js)
 const BpmnAnalysisResult = z.object({
-  criticalElements: z.array(
+  activities: z.array(
     z.object({
       id: z.string(),
       name: z.string().nullable(),
-      score: z.array(z.number().int().min(1).max(9)).min(1),
+      automatable: z.boolean(),
+      criteria: z.array(z.number().int().min(1).max(9)),
       reason: z.string().nullable(),
-      isRelevant: z.boolean(),
     }),
   ),
 });
+
+// Optional OpenRouter provider routing per model, e.g.
+// { "qwen/qwen3-vl-32b-instruct": { "order": ["<provider>"], "allow_fallbacks": false, "quantizations": ["bf16"] } }
+// See https://openrouter.ai/docs (provider routing).
+const PROVIDER_ROUTING = loadProviderRouting();
+
+function loadProviderRouting() {
+  try {
+    const file = new URL("./providers.json", import.meta.url);
+    return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf-8")) : {};
+  } catch (error) {
+    console.warn("Could not read providers.json:", error.message);
+    return {};
+  }
+}
 
 // A list of messages stored in historyStore
 // addMessages(…),getMessages(), clear(),…
@@ -74,8 +91,21 @@ function buildModelConfig(llmProps = {}) {
         "https://openrouter.ai/api/v1",
     },
   };
-  if (llmProps.seed !== undefined && llmProps.seed !== null) {
-    modelConfig.seed = llmProps.seed;
+  if (
+    llmProps.seed !== undefined &&
+    llmProps.seed !== null &&
+    llmProps.seed !== ""
+  ) {
+    // the API expects an integer seed (the frontend stores it as a string)
+    const seed = Number(llmProps.seed);
+    if (!Number.isInteger(seed)) {
+      throw new Error(`seed must be an integer, got "${llmProps.seed}"`);
+    }
+    modelConfig.seed = seed;
+  }
+  const provider = llmProps.provider ?? PROVIDER_ROUTING[modelConfig.model];
+  if (provider) {
+    modelConfig.modelKwargs = { provider };
   }
   return modelConfig;
 }
@@ -102,6 +132,9 @@ function chatChain(llmProps = {}) {
 }
 
 // --- start a llm for analysis  ---
+// Returns { result, retries, raw, failedAttempts }.
+// raw: metadata of the raw model response (generation ID, model, usage, ...)
+// so that provider and model version can be traced afterwards.
 export async function callStructuredLlm({
   systemPrompt,
   userPrompt,
@@ -111,41 +144,68 @@ export async function callStructuredLlm({
   const config = buildModelConfig(llmProps);
   const model = new ChatOpenAI(config);
   // with Structured Output, we can define the expected structure with Zod (BpmnAnalysisResult)
-  const structuredModel = model.withStructuredOutput(BpmnAnalysisResult);
+  // includeRaw: keep the raw message; `parsed` is null if parsing failed
+  const structuredModel = model.withStructuredOutput(BpmnAnalysisResult, {
+    includeRaw: true,
+  });
 
+  const failedAttempts = [];
   let lastError = null;
   let retryPrompt = null;
 
   for (let i = 0; i < maxRetries; i++) {
     try {
-      const prompt = ChatPromptTemplate.fromMessages([
+      const messages = [
         ["system", "{systemPrompt}"],
         ["user", "{userPrompt}"],
-        ["system", "{retryPrompt}"],
-      ]);
-
+      ];
+      // the retry hint is only sent after a failed attempt
+      if (retryPrompt) messages.push(["system", "{retryPrompt}"]);
+      const prompt = ChatPromptTemplate.fromMessages(messages);
       const chain = prompt.pipe(structuredModel);
 
-      const result = await chain.invoke({
-        systemPrompt,
-        userPrompt,
-        retryPrompt,
-      });
+      const output = await chain.invoke(
+        retryPrompt
+          ? { systemPrompt, userPrompt, retryPrompt }
+          : { systemPrompt, userPrompt },
+      );
+      if (!output?.parsed) {
+        throw new Error("Structured output could not be parsed");
+      }
       const retries = i + 1;
 
       console.log(`=== LLM RESPONSE ANALYZE (${i + 1}/${maxRetries}) ===`);
-      console.dir(result, { depth: null });
-      return { result, retries };
+      console.dir(output.parsed, { depth: null });
+      return {
+        result: output.parsed,
+        retries,
+        raw: summarizeRaw(output.raw),
+        failedAttempts,
+      };
     } catch (error) {
       lastError = error;
+      failedAttempts.push({ attempt: i + 1, error: error.message });
       console.warn(`Retry ${i + 1}/${maxRetries} failed:`, error.message);
-      if (i === maxRetries - 1) {
-        throw error;
-      }
-      retryPrompt = `Parsing failed. Attemting to fix JSON and retry… (Attempt ${i + 1}/${maxRetries})`;
+      retryPrompt =
+        "The previous response could not be parsed. Return only valid JSON that conforms to the required structure.";
     }
   }
-  throw lastError ?? new Error("Structured LLM call failed");
+  const error = lastError ?? new Error("Structured LLM call failed");
+  error.failedAttempts = failedAttempts;
+  throw error;
+}
+
+function summarizeRaw(raw) {
+  if (!raw) return null;
+  return {
+    generationId: raw.id ?? raw.response_metadata?.id ?? null,
+    model: raw.response_metadata?.model_name ?? raw.response_metadata?.model ?? null,
+    finishReason: raw.response_metadata?.finish_reason ?? null,
+    usage: raw.usage_metadata ?? raw.response_metadata?.tokenUsage ?? null,
+    responseMetadata: raw.response_metadata ?? null,
+    content: typeof raw.content === "string" ? raw.content : null,
+    toolCalls: raw.tool_calls ?? null,
+  };
 }
 
 // --- start llm for chat using same sessionId that was used for analysis ---

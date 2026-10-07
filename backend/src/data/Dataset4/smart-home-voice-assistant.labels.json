@@ -1,0 +1,36 @@
+{
+  "model_id": 0,
+  "name": "smart-home-voice-assistant",
+  "expectedValues": [
+    {
+      "id": "Activity_1u766hf",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1okce2b",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1qfxhdw",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

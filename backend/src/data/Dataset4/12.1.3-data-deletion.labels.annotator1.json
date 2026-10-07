@@ -1,0 +1,33 @@
+{
+  "model_id": 12,
+  "name": "12.1.3-data-deletion",
+  "expectedValues": [
+    {
+      "id": "Activity_1hmlvkf",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0diqa6r",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_03eqdj1",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

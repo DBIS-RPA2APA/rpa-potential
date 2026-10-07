@@ -1,0 +1,73 @@
+{
+  "model_id": 10,
+  "name": "10 Raumreservierung",
+  "expectedValues": [
+    {
+      "id": "sid-3A6B8A10-BA78-4D7B-8F58-C8BCE5BEACF3",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-FE374497-52A3-4E82-9D5E-854C0B6332ED",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-E7FAB73B-379A-4048-A586-A59B0ED6166A",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-0825FE13-E3E0-442A-9B69-0B0F79F22C23",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-9A70E4EF-B517-4157-B629-06264E449001",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-E854EBEC-5F9D-4A08-9C43-B166FDFEF1C9",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-54F3E394-FD59-4452-BF25-7DD18151D78F",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

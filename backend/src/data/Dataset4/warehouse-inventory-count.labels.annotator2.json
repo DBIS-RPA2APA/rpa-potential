@@ -1,0 +1,38 @@
+{
+  "model_id": 0,
+  "name": "warehouse-inventory-count",
+  "expectedValues": [
+    {
+      "id": "Activity_01zwx9r",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ljsesm",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0tdqtrn",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_12rx4in",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

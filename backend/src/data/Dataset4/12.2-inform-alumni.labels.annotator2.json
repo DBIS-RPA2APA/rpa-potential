@@ -1,0 +1,51 @@
+{
+  "model_id": 12,
+  "name": "12.2-inform-alumni",
+  "expectedValues": [
+    {
+      "id": "Activity_1m32eaw",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1aom4gc",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0zc2680",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0al58jn",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1x0umvb",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

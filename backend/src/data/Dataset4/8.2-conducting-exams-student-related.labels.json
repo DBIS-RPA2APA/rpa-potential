@@ -1,0 +1,96 @@
+{
+  "model_id": 8,
+  "name": "8.2-conducting-exams-student-related",
+  "expectedValues": [
+    {
+      "id": "Activity_0032be5",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0ytl62t",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_01u5csa",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0jhm3a2",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1s0semu",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_00hjah1",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_094rta6",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_10q9og8",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0w02yy3",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

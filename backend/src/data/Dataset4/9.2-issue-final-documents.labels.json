@@ -1,0 +1,59 @@
+{
+  "model_id": 9,
+  "name": "9.2-issue-final-documents",
+  "expectedValues": [
+    {
+      "id": "Activity_1m5pmy1",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0iwuzdv",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0zm2tpg",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_03mm8g1",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0ebqyn6",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0mw97kx",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

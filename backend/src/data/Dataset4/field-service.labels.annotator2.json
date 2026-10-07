@@ -1,0 +1,40 @@
+{
+  "model_id": 0,
+  "name": "field-service",
+  "expectedValues": [
+    {
+      "id": "Activity_09cxfj1",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0v9kh1r",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0lgbipa",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0iw4o5g",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

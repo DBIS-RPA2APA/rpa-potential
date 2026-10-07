@@ -1,0 +1,38 @@
+{
+  "model_id": 0,
+  "name": "perform-blood-analysis",
+  "expectedValues": [
+    {
+      "id": "sid-4DF3FDE2-955E-4BEE-8227-F1E08D41A250",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-E5677736-1AA3-4A14-A2E4-CD0FAE1D636E",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-E242E6B3-FB76-4A9A-89FB-A11DD4A16FB4",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

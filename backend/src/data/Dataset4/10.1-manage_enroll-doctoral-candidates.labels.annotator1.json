@@ -1,0 +1,66 @@
+{
+  "model_id": 10,
+  "name": "10.1-manage_enroll-doctoral-candidates",
+  "expectedValues": [
+    {
+      "id": "Activity_1o8vwxj",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ra3o23",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1yga6m1",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0v7xt8z",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0d0lkgp",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0o201oj",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1emi6j3",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "model_id": 0,
+  "name": "credit-check",
+  "expectedValues": [
+    {
+      "id": "Activity_0bhy3tc",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_076z0xz",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0h6b2os",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0lj08pt",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_0no8brt",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_05ty5tk",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_17ocl5e",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_1xuk2ce",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_06d45n8",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1sbfi0w",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ka7psp",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0jbmwlw",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_0uu0vgm",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_11olj5b",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1dunh2c",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ]
+}

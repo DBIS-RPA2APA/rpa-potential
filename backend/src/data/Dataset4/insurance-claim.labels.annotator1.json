@@ -1,0 +1,63 @@
+{
+  "model_id": 0,
+  "name": "insurance-claim",
+  "expectedValues": [
+    {
+      "id": "sid-4668D3A6-886E-4CC3-BC95-B407774E7014",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-4A89A049-86A0-49A1-9EC1-04EE0BB5E272",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-D80A2512-0EF3-4A26-87EF-2935C0AE6E37",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-9F72D8F7-296C-4367-9061-2336B1326157",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "sid-141A48DA-11AE-4F9F-98A7-FA6BA46DB72F",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-696D5ACD-E662-40DE-86F9-FF233EC9D0C7",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

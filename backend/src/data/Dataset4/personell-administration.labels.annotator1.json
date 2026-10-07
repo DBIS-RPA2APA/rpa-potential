@@ -1,0 +1,70 @@
+{
+  "model_id": 0,
+  "name": "personell-administration",
+  "expectedValues": [
+    {
+      "id": "sid-089A60B7-8763-4A1D-9C60-94EA5B6F2478",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-F2A569DB-3ACA-455E-9EB8-1B87156B946B",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-6CD7CAF0-7B2A-48BC-B54E-C7599689324C",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-D5E51C27-1F63-49F0-A709-0140EEE68DB5",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-D8B4F61C-1639-43FE-B408-E95125D5BC3C",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-C61635D2-E3DB-4EB8-95BA-563D7F0D2A2E",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

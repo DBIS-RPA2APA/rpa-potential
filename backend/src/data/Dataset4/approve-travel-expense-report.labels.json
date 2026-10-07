@@ -1,0 +1,75 @@
+{
+  "model_id": 0,
+  "name": "approve-travel-expense-report",
+  "expectedValues": [
+    {
+      "id": "Activity_09xjmoa",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_139gn06",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1gmv6sr",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_04nb3je",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_12qes83",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_09a3xij",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0g25hl7",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

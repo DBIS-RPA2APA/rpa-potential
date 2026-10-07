@@ -1,0 +1,35 @@
+{
+  "model_id": 0,
+  "name": "endtoend-hospital-stay",
+  "expectedValues": [
+    {
+      "id": "sid-B4F50462-5944-415F-942B-ECB51B0F74AA",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-F8B3BF59-2562-409E-B979-92DD7DD3E7FF",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-9F7D8370-6F93-49EF-943E-0B94C3FA4682",
+      "reason": null,
+      "score": [
+        1,
+        4,
+        6,
+        8,
+        9
+      ]
+    }
+  ]
+}

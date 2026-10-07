@@ -1,0 +1,25 @@
+{
+  "model_id": 0,
+  "name": "library",
+  "expectedValues": [
+    {
+      "id": "Activity_1sj41or",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_18sc6l5",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

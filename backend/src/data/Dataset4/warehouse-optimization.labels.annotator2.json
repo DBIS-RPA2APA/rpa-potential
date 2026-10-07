@@ -1,0 +1,87 @@
+{
+  "model_id": 0,
+  "name": "warehouse-optimization",
+  "expectedValues": [
+    {
+      "id": "sid-1D1EF4B0-0651-4909-9B4D-0C8C61F4758E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-5100EBA3-E14F-44FE-AF0A-3C8304FD35B6",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-FE321138-4FF0-485A-916D-66FA1F4B265D",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-9117EA73-8362-49FB-8CA6-83FE46F25522",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-68E871BF-D911-4C2D-BD66-08A9AAD32CEC",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-F2E68AC0-4245-44D7-9BFF-47015E384362",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-83FDE875-D1C6-4A61-AE95-A0764E241C4E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-C6DB0809-7984-4018-8C4D-A015882FF3D8",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-EB25994B-55A9-40B3-958B-DB47E77C8728",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

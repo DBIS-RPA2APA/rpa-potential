@@ -1,0 +1,16 @@
+{
+  "model_id": 0,
+  "name": "machine-calibration",
+  "expectedValues": [
+    {
+      "id": "Activity_1h7uu9s",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

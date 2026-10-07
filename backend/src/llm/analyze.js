@@ -63,13 +63,16 @@ export async function analyze(elements, llmProps = {}) {
 
 // Message for Chat UI, based on LLM response
 function formatForChat(parsed) {
-  if (!parsed.criticalElements || parsed.criticalElements.length === 0) {
-    return "No automatable BPMN elements were identified.";
+  const automatable = (parsed.activities ?? []).filter(
+    (el) => el.automatable === true,
+  );
+  if (automatable.length === 0) {
+    return "No automatable BPMN activities were identified.";
   }
 
-  const lines = parsed.criticalElements.map((el) => {
-    return `- Element ID: ${el.id}\n Score: ${Array.isArray(el.score) ? el.score.join(", ") : "N/A"}\n isRelevant: ${el.isRelevant ?? "N/A"}\n Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
+  const lines = automatable.map((el) => {
+    return `- Element ID: ${el.id}\n Criteria: ${Array.isArray(el.criteria) && el.criteria.length > 0 ? el.criteria.join(", ") : "N/A"}\n Name: ${el.name ?? "N/A"}\n  Reason: ${el.reason}`;
   });
 
-  return `Kritische Aktivitäten (${parsed.criticalElements.length}):\n${lines.join("\n")}`;
+  return `Kritische Aktivitäten (${automatable.length}):\n${lines.join("\n")}`;
 }

@@ -1,0 +1,71 @@
+{
+  "model_id": 0,
+  "name": "administrative-admission",
+  "expectedValues": [
+    {
+      "id": "sid-E09CB8DD-CEC3-43B2-A362-5362C7842065",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-F9D1CF99-6047-4EE5-BD01-E616F8E86527",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-87E6CC43-F782-4F48-B905-BC69F0E9E619",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-CB47348C-5462-43DF-9029-631DD8C5F1FA",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-B33E91ED-46BB-47F2-A1E1-5FD46EFD850C",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-75C6FA2B-A6A8-4E7C-8ED7-281BF34973D8",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

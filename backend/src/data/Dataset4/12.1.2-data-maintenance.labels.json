@@ -1,0 +1,80 @@
+{
+  "model_id": 12,
+  "name": "12.1.2-data-maintenance",
+  "expectedValues": [
+    {
+      "id": "Activity_0slljyv",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_05qg7yr",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0lou2tv",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1gjv4ia",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ggve98",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0jsxvvl",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0il94jm",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_04vox1b",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

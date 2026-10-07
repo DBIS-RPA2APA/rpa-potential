@@ -1,0 +1,24 @@
+{
+  "model_id": 0,
+  "name": "perform-consultative-examination",
+  "expectedValues": [
+    {
+      "id": "sid-0F35203C-A6C1-4679-9300-B14DC44619E7",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-DF3BB1CB-DCD6-46E3-9F3B-87AF7CE0AA2F",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "model_id": 0,
+  "name": "introduce-patient-to-anesthesia",
+  "expectedValues": [
+    {
+      "id": "sid-1B1BE497-3F85-4A78-8294-85F51CF58933",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-96D618DB-9481-472D-A470-FA1AF1C512D6",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-9EBF4ECB-075E-4B12-9DBB-6B11330DF00C",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

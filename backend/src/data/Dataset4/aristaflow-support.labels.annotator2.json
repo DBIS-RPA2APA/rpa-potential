@@ -1,0 +1,168 @@
+{
+  "model_id": 0,
+  "name": "aristaflow-support",
+  "expectedValues": [
+    {
+      "id": "sid-8E886214-A86A-484E-BAA5-1D1716BA5EEF",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-7E1C23F3-E78C-479A-BA18-67E683C35C52",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-A902E8FB-91F6-4CB7-8A61-BE02A7B39521",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-6F4BECDD-A084-4F9D-9663-2D7D9B906E9D",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-025EEB23-FDB0-47DA-B045-E00DC39071E8",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-3BA0FE5F-05FE-4312-8233-5526913E1875",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-CB7D85A1-3217-423B-871F-2D84E134D07E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-981A4C8A-49BA-48F9-98F2-21DEC5B6F38B",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-8B06E517-F9A4-46CE-B124-61C7E2693CFC",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-D0C69E68-3666-4893-8DF4-16C194D99EDE",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-60BDD1D6-95D3-4B54-BD05-F2618D067A2E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-32CEFE05-70AB-4767-B49D-8572B4D08DD0",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-B7C70421-859E-4628-BFFF-0A2F05F75AB5",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-16B5B885-E648-4F5F-96A1-721EF6863516",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-395E28C7-5D46-4650-9C76-C43413675623",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-49AF96CB-72FB-4708-800E-F3C26198BA8E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-3DB30CB3-8FF7-48D9-924C-A7DF9DE53449",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

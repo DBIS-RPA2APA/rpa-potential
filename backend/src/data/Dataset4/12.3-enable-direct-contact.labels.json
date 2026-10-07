@@ -1,0 +1,32 @@
+{
+  "model_id": 12,
+  "name": "12.3-enable-direct-contact",
+  "expectedValues": [
+    {
+      "id": "Activity_1wcmssc",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_10ohl7n",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1t9zk9g",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

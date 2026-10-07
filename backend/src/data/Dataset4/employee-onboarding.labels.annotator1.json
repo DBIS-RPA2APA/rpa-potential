@@ -1,0 +1,45 @@
+{
+  "model_id": 0,
+  "name": "employee-onboarding",
+  "expectedValues": [
+    {
+      "id": "Activity_1j7juow",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0ysu7vr",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1y20awm",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0161hap",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "model_id": 10,
+  "name": "10.2-doctoral-examination-procedure",
+  "expectedValues": [
+    {
+      "id": "Activity_0s8fru4",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1oge53k",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_070imyi",
+      "reason": null,
+      "score": [
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_07564wa",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0r9hva9",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1qlqjdc",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

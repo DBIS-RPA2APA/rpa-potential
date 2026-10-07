@@ -1,0 +1,26 @@
+{
+  "model_id": 0,
+  "name": "record-own-working-time",
+  "expectedValues": [
+    {
+      "id": "Activity_1904str",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1m7p17k",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    }
+  ]
+}

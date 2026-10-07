@@ -1,0 +1,15 @@
+{
+  "model_id": 0,
+  "name": "introduce-patient-to-senior-physician",
+  "expectedValues": [
+    {
+      "id": "sid-18CEBA33-917E-40DE-9EC9-ACDDD3587422",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

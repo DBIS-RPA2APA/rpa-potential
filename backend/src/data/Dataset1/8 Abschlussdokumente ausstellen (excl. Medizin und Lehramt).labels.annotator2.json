@@ -1,0 +1,77 @@
+{
+  "model_id": 8,
+  "name": "8 Abschlussdokumente ausstellen (excl. Medizin und Lehramt)",
+  "expectedValues": [
+    {
+      "id": "sid-A3F04A82-5F94-4E37-8181-D1088BE55CFC",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-B0F6F125-9B02-4FB8-AF25-FC825D8A267F",
+      "reason": null,
+      "score": [
+        1,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-3BC2BFA2-2D79-4029-9B61-C8AE9E3CED5D",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-F1BBFA01-7EBA-429E-B2C6-F29220B31654",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-3E2AD42E-A4C8-4666-838B-68D7D0E539FE",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-1D87CA03-963B-4557-BD22-7C4057B4A2D3",
+      "reason": null,
+      "score": [
+        8
+      ]
+    },
+    {
+      "id": "sid-04396EDF-5D5D-456B-BC5A-04C9DF30267F",
+      "reason": null,
+      "score": [
+        8
+      ]
+    },
+    {
+      "id": "sid-E0C99F74-CB62-4D6B-BF8D-6B7E528CE50F",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    }
+  ]
+}

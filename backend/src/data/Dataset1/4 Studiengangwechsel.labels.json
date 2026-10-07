@@ -5,62 +5,147 @@
     {
       "id": "sid-6B858C71-612A-4352-A501-358B0F46C82C",
       "reason": "This activity involves submitting a formal application and attaching required documents, which is typically performed using digital systems. The process is based on well-defined rules regarding what documents are necessary, involves structured data, and utilizes digital formats.",
-      "score": [1,2,3,6,7,8]
+      "score": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-7B71A8E2-8B0F-484E-A5E1-102AA86ADAF9",
       "reason": "This task includes confirming receipt of applications and conducting checks based on established criteria, which are stable and enforceable. The activity uses structured data and follows predictable processes.",
-      "score": [1, 2, 3, 4, 6, 7, 8]
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-DD0CAAD3-4ACF-4797-881A-96A4E078CCBC",
       "reason": "This task involves processing applications for specific semesters, which is based on clear rules and utilizes structured data. It can be executed consistently within the defined context.",
-      "score": [1,2,3,5,6,7,8]
+      "score": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-D5554C4D-0281-4108-97F5-5183E29A69A2",
       "reason": "This task processes applications from higher semesters, which involves checking structured data and following defined rules. Since it does not require creative decisions, it can be automated.",
-      "score": [1,2,3,5,6,7,8]
+      "score": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-ABC8AF17-C9B7-4D37-9C05-68AE189B5914",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
-      "score": [1,2,6,7,8]
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
     },
-     {
+    {
       "id": "sid-E95652FD-793B-4608-859C-DB647D06C788",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
-      "score": [1,2,6,7,8]
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-5707D741-CB1F-4096-A34A-7AA2F50E49F2",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
-      "score": [1,2,6,7,8]
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-0899CAB2-116D-4BA9-B14F-9938FDC8C463",
       "reason": "This task involves processing applications into higher semesters based on structured data and predefined criteria, aligning well with RPA feasibility.",
-      "score": [1,2,6,7,8]
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-014DED60-BF06-44BD-872D-8CBDD0FCFEFD",
       "reason": "This task involves reviewing an application and making decisions based on structured data and well-defined rules, which makes it automatable.",
-      "score": [1,2,6,7,8]
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
     },
     {
       "id": "sid-497E9C09-3EE9-4D70-BB00-FA96493C2FB4",
       "reason": "This task involves deleting an acceptance which follows clear rules and uses structured data, thus making it automatable.",
-      "score": [2,3,5,6,7,8,9]
+      "score": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
     },
     {
       "id": "sid-8630B3E4-2878-4D73-B48C-A7899171070C",
       "reason": "This task involves executing a program change based on structured data and defined rules, which can be efficiently automated.",
-      "score": [1,2,5,6,7,8,9]
+      "score": [
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
     },
     {
       "id": "sid-7820C0A5-3FD5-4406-81D1-F09D75C38D51",
       "reason": "This task involves confirming academic advising based on structured data and clear rules, making it suitable for automation.",
-      "score": [1,2,3,4,6,7,8]
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ]
     }
   ]
 }

@@ -1,0 +1,80 @@
+{
+  "model_id": 0,
+  "name": "online-doctoral-appointment-with-digital-recipe",
+  "expectedValues": [
+    {
+      "id": "Activity_1s7mgu3",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_07trrge",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0jxi5ox",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_08gv78p",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1iurq90",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0lsqwxv",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1elwdck",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_05mzpz4",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

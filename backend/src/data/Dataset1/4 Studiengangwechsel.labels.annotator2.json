@@ -1,0 +1,149 @@
+{
+  "model_id": 4,
+  "name": "4 Studiengangwechsel",
+  "expectedValues": [
+    {
+      "id": "sid-6B858C71-612A-4352-A501-358B0F46C82C",
+      "reason": null,
+      "score": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-7B71A8E2-8B0F-484E-A5E1-102AA86ADAF9",
+      "reason": null,
+      "score": [
+        1,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-DD0CAAD3-4ACF-4797-881A-96A4E078CCBC",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-D5554C4D-0281-4108-97F5-5183E29A69A2",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-5707D741-CB1F-4096-A34A-7AA2F50E49F2",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-ABC8AF17-C9B7-4D37-9C05-68AE189B5914",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-0899CAB2-116D-4BA9-B14F-9938FDC8C463",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-E95652FD-793B-4608-859C-DB647D06C788",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-014DED60-BF06-44BD-872D-8CBDD0FCFEFD",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-7820C0A5-3FD5-4406-81D1-F09D75C38D51",
+      "reason": null,
+      "score": [
+        1,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-70181670-FBB0-45CF-9F0B-992E81AB2288",
+      "reason": null,
+      "score": [
+        1,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-FB90AB1E-1092-49BE-9A6D-19ACE59DFDC4",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-8630B3E4-2878-4D73-B48C-A7899171070C",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-497E9C09-3EE9-4D70-BB00-FA96493C2FB4",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "model_id": 0,
+  "name": "laparoscopic-surgery",
+  "expectedValues": [
+    {
+      "id": "sid-2B71C940-AFF9-4B8F-8797-2DAA0C6C514D",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-A05645FA-317C-4717-AF1F-32BA4E340A1A",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-C18543D9-01C4-4B90-B7F8-ABA198EE30AE",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-6D636E3C-0D08-4EE2-A8A6-615460C8FBDE",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-96FA76E4-8A6B-46EB-A212-1EB55D6DDD64",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-AB1963AA-880F-4DCB-9461-EFE6D88339BE",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

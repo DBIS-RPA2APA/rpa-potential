@@ -1,0 +1,137 @@
+{
+  "model_id": 5,
+  "name": "5 Zulassungsverfahren Master",
+  "expectedValues": [
+    {
+      "id": "sid-497E9C09-3EE9-4D70-BB00-FA96493C2FB4",
+      "reason": null,
+      "score": []
+    },
+    {
+      "id": "sid-F28C64EB-36B1-4AD8-8788-8D60D4F32819",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-4FB33B89-4CA2-4A32-8712-B978548431DF",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-F4B153F7-A8B3-41F5-B6C0-00614554A819",
+      "reason": null,
+      "score": [
+        8
+      ]
+    },
+    {
+      "id": "sid-E51CE8F0-33FE-4B80-9A09-D20B65FA62F3",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-B0AF9106-BF1F-4CE7-A3F4-501B368EB695",
+      "reason": null,
+      "score": [
+        8
+      ]
+    },
+    {
+      "id": "sid-57B74B17-CDBC-43DE-A4AD-B78D7A292A33",
+      "reason": null,
+      "score": [
+        8
+      ]
+    },
+    {
+      "id": "sid-4AFB480B-9558-49A9-91CA-BAAA596EB7E1",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-8E8D9BDC-0EA8-497F-9DA6-3D2702E7D86B",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-9EAD1775-D2C5-4032-9445-FD7FEFFA5280",
+      "reason": null,
+      "score": [
+        2,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-14620165-8A55-470A-BCC3-7C0397B9ED1B",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-2A5A6CDE-B7E8-490E-9CEC-A9A6FD7D3436",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-74D1AA0B-0BF2-4BDF-98DC-E2831CE0733B",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-17BD7500-EBB8-4915-96B4-AFC8A3A31D22",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": 0,
+  "name": "complaint-call",
+  "expectedValues": [
+    {
+      "id": "Activity_0p9q804",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1c62kpv",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1c3rm9z",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

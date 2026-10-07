@@ -1,0 +1,84 @@
+{
+  "model_id": 9,
+  "name": "9 Promotionsverfahren",
+  "expectedValues": [
+    {
+      "id": "sid-11629DEA-648B-4729-B443-56ABC4F74A36",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-06FD75DC-446B-4F97-8625-B1474E718C4D",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-D16F8B64-9593-40F2-B485-9155D14803F1",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-85676362-2AD6-49D4-B4EC-56170046B6DD",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-83893FE1-5990-4392-B538-16FB2F118DE9",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-CC22AF37-549A-4915-9ADE-4C776B08B064",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-0085CAF6-816A-49DE-9EF5-F844D2476287",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-42092BB9-D39E-4997-8C1E-493B2B5B3D48",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-11CA6E09-FC51-45FE-AD47-2C82B17FDE39",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

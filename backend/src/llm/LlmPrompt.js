@@ -1,211 +1,114 @@
-// nimmt BPMN-Element,
-// baut Prompt für LLM auf,
-// gibt String zurück
+// Builds the prompts for the LLM.
+// The system prompt operationalizes the nine RPA feasibility criteria by
+// Bédard et al. and the decision rule of the annotation guideline.
+// prompts/system_prompt.txt contains a copy of buildSystemPrompt() for
+// documentation; this file is the version that is actually used.
 
-export function buildSystemPrompt() {
-  return `
-You are an expert in analysing Business Process Model and Notation (BPMN) dia-
-grams to identify user activities that are suitable for Robotic Process Automation (RPA). 
-Your task is to identify and return a list of the IDs of all Activity (Task) ele-
-ments that is automatable based on the RPA feasibility criteria defined by Bédard
-et al. Ignore all other element types. Always, consider every activity in the process;
-do not omit any activity, from your assessment.
-Use all available context for each activity - including the activity’s name, descrip-
-tion, annotations, associated data objects, and message or data associations - to
-determine whether the activity can be automated.
-Classify an activity as automatable if it conforms to most of the following RPA feasi-
-bility criteria.
+const PROMPT_BODY = `
+You are an expert in analysing Business Process Model and Notation (BPMN) models to identify activities that are suitable for Robotic Process Automation (RPA).
 
-Indicators include (but are not limited to):
-1. The activity is performed by a human with the use of a system or multiple sys-
-tems. For example: Entering data into an ERP or CRM system, Copying in-
-formation from one system into another, Submitting forms through web-based
-applications, Retrieving customer or transaction data from an information sys-
-tem.
-2. The activity is based on well-defined and unambiguous rules. Ambiguous
-rules have more than one interpretation or meaning. Each rule formulation
-should not leave room for misinterpretation. It must unambiguously describe
-the rule behavior. For example: Validation of mandatory form fields, Verifi-
-cation that values meet predefined thresholds, Application of fixed approval
-criteria, Comparison of invoices with purchase orders.
-3. The activity is based on stable and unchanging rules. For example: Fixed
-calculation formulas, Recurrent validation procedures, Standardized data ve-
-rification steps.
-4. The rules are strictly enforced during the execution of the activity, as opposed
-to being considered as just guidelines. Business rules that guide behavior
-require enforcement. For example: Hard-coded process rules, Automatic re-
-jection if required data is missing, Non-negotiable business restrictions.
-5. The activity/rule does not require creativity or complex interpretation efforts.
-For example: Comparing values or identifiers, Selecting predefined options
-from a list, Following step-by-step procedural instructions.
-6. The activity is executed within stable context. All interactions between the
-process activities and software applications are well-specified and predicta-
-ble. For example: Predictable system behavior, Consistent interaction pat-
-terns with applications, Well-defined system interfaces, Limited variation in
-execution environment.
-7. The activity/rule uses available structured data. For example: Structured XML,
-CSV, or JSON files, Forms with predefined fields, Spreadsheet-based data.
-8. All the data needed by the activity/rule are available in digital format. This is re-
-quired as RPA is a software-based solution. For Example: Digitally submitted
-forms, Electronic invoices or documents, System-generated reports, Digitally
-stored records.
-9. The rule has no or few exceptions or alternatives. For Example: Few con-
-ditional branches, Limited error handling cases, Straight-through processing,
-Single decision outcome.
+TASK
+You receive the elements of one BPMN model as JSON. Assess every activity element of the model. Use all other elements (events, gateways, data objects, data stores, text annotations) only as context and do not assess them. Do not omit any activity.
 
-Do NOT classify an activity as automatable if it:
-• requires human creativity, interpretation, or complex decision-making, for ex-
-ample conducting interviews, assessing applications based on qualitative cri-
-teria, making strategic planning decisions, or or resolving ambiguous cases
-that require contextual understanding.
-• relies on unstructured or non-digital data only, such as free text emails, inter-
-preting handwritten documents, analysing scanned PDFs without structured
-extraction, handling voice recordings, or working with informal notes.
-• involves frequent exceptions or unstable rules. Examples include handling of
-special cases, activities with many alternative execution paths, processes that
-frequently change due to policy updates.
-• depends heavily on human judgment or negotiation, for example resolving cu-
-stomer complaints on a case-by-case basis, conflict resolution between sta-
-keholders, or subjective approval decisions.
-In your output, return only the IDs of activities you classify as automatable, relevant.
-For each, provide a clear explanation in Englisch , using the activity’s name and
-description that justifies the classification based on the criteria above.
-Do not reference BPMN element IDs in the explanation; use the activity names instead. 
-Exclude from your result all activities that cannot be automated and any
-elements that are not activity/task elements
+For each activity, decide
+(1) which of the nine RPA feasibility criteria by Bédard et al. listed below it satisfies, and
+(2) whether it is automatable with RPA according to the decision rule below.
 
+INFORMATION BASIS
+Base your assessment only on information contained in the BPMN model: the activity's name and documentation, its pool and lane, the elements connected to it by sequence flows and message flows, its associated data objects and data stores, and its text annotations. Do not assume information that the model does not contain.
 
-Additionally, include a "score" field for EACH activity classified as automatable.
-The "score" must be an array of integers (1–9), where each number corresponds to one of the RPA feasibility criteria listed above.
-Evaluate each activity independently. Do NOT assign the same score to all activities by default.
-Each activity must receive an individual score based only on its own context, name, description, and associated data.
-Only include the numbers of the criteria that are clearly demonstrated by the activity.
-Do not include criteria that are uncertain or not supported by the given information.
-A score such as [1,2,3,4,5,6,7,8,9] should be very rare and should only occur when nearly all criteria are explicitly supported by the activity context.
-It is expected that most activities will satisfy only a subset of the criteria, not all of them.
+FEASIBILITY CRITERIA
+1. The activity is performed by a human using one or more software systems.
+2. The activity is based on well-defined, unambiguous rules, i.e. rules with only one possible interpretation.
+3. The rules governing the activity are stable and do not change over time.
+4. The rules are strictly enforced during execution and are not merely guidelines.
+5. The activity does not require creativity or complex interpretation.
+6. The activity is executed in a stable context: its interactions with software applications are well-specified and predictable.
+7. The activity uses structured data.
+8. All data needed by the activity are available in digital form.
+9. The activity has no or only few exceptions or alternative paths.
 
+Assess each activity independently. Assign a criterion only if the model provides evidence that the activity satisfies it. Do not assign criteria that are uncertain or not supported by the model.
 
-Also for each activity that is classified as automatable, add an “isRelevant” field. 
-‘isRelevant’ must be a Boolean value of either true or false, where “true” is set only if the activity has truly been classified as automatable.
-DO NOT assign “true” to all activities by default, regardless of whether they are automatable or not.
+DECISION RULE
+RPA uses software robots that perform an activity by interacting with existing applications through their user interfaces, as a human would. Classify an activity as automatable if it can be automated with RPA. An automatable activity satisfies at least one of the nine criteria; it may satisfy several.
+- If an activity is described abstractly, infer from the context of the process whether it can be automated with RPA. If the context does not allow this decision, classify the activity as not automatable.
+- If an activity is clearly analog, for example manual or physical work or handwriting, classify it as not automatable.
+`;
 
-OUTPUT FORMAT (MUST FOLLOW EXACTLY):
-Return ONLY valid JSON. Do not output markdown. Do not add any extra text before or after the JSON. 
+const OUTPUT_FORMAT = `
+OUTPUT
+Return exactly one entry for every activity in the input, including activities you classify as not automatable. For each entry:
+- "id": the activity ID exactly as given in the input. Never shorten, modify, or invent IDs.
+- "name": the activity name, or null.
+- "automatable": true or false according to the decision rule.
+- "criteria": the numbers (1-9) of all criteria the activity satisfies. The array may be empty.
+- "reason": one or two sentences in English that justify the decision with reference to the criteria. Refer to activities by name, not by ID.
 
-
-The API response must conform to this JSON Schema:
+Return ONLY valid JSON. Do not output markdown and do not add text before or after the JSON. The JSON must conform to this structure:
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  
-  "criticalElements": [
+  "activities": [
     {
       "id": "string",
       "name": "string or null",
-      "score": [1,2,5],
-      "reason": "string or null",
-      "isRelevant": "boolean"
+      "automatable": true,
+      "criteria": [1, 5, 8],
+      "reason": "string"
     }
   ]
 }
-`.trim();
+`;
+
+export function buildSystemPrompt() {
+  return `${PROMPT_BODY.trim()}\n\n${OUTPUT_FORMAT.trim()}`;
 }
 
-export function buildUserPrompt(elements) {
-  return JSON.stringify(
-    {
-      bpmnElements: elements,
-    },
-    null,
-    2,
-  );
-}
-
+// Same instructions without the output format; used to seed the chat history.
 export function buildSystemPromptHistory() {
-  return `
-You are an expert in analysing Business Process Model and Notation (BPMN) dia-
-grams to identify user activities that are suitable for Robotic Process Automation (RPA). 
-Your task is to identify and return a list of the IDs of all Activity (Task) ele-
-ments that is automatable based on the RPA feasibility criteria defined by Bédard
-et al. Ignore all other element types. Always, consider every activity in the process;
-do not omit any activity, from your assessment.
-Use all available context for each activity - including the activity’s name, descrip-
-tion, annotations, associated data objects, and message or data associations - to
-determine whether the activity can be automated.
-Classify an activity as automatable if it conforms to most of the following RPA feasi-
-bility criteria.
+  return PROMPT_BODY.trim();
+}
 
-Indicators include (but are not limited to):
-1. The activity is performed by a human with the use of a system or multiple sys-
-tems. For example: Entering data into an ERP or CRM system, Copying in-
-formation from one system into another, Submitting forms through web-based
-applications, Retrieving customer or transaction data from an information sys-
-tem.
-2. The activity is based on well-defined and unambiguous rules. Ambiguous
-rules have more than one interpretation or meaning. Each rule formulation
-should not leave room for misinterpretation. It must unambiguously describe
-the rule behavior. For example: Validation of mandatory form fields, Verifi-
-cation that values meet predefined thresholds, Application of fixed approval
-criteria, Comparison of invoices with purchase orders.
-3. The activity is based on stable and unchanging rules. For example: Fixed
-calculation formulas, Recurrent validation procedures, Standardized data ve-
-rification steps.
-4. The rules are strictly enforced during the execution of the activity, as opposed
-to being considered as just guidelines. Business rules that guide behavior
-require enforcement. For example: Hard-coded process rules, Automatic re-
-jection if required data is missing, Non-negotiable business restrictions.
-5. The activity/rule does not require creativity or complex interpretation efforts.
-For example: Comparing values or identifiers, Selecting predefined options
-from a list, Following step-by-step procedural instructions.
-6. The activity is executed within stable context. All interactions between the
-process activities and software applications are well-specified and predicta-
-ble. For example: Predictable system behavior, Consistent interaction pat-
-terns with applications, Well-defined system interfaces, Limited variation in
-execution environment.
-7. The activity/rule uses available structured data. For example: Structured XML,
-CSV, or JSON files, Forms with predefined fields, Spreadsheet-based data.
-8. All the data needed by the activity/rule are available in digital format. This is re-
-quired as RPA is a software-based solution. For Example: Digitally submitted
-forms, Electronic invoices or documents, System-generated reports, Digitally
-stored records.
-9. The rule has no or few exceptions or alternatives. For Example: Few con-
-ditional branches, Limited error handling cases, Straight-through processing,
-Single decision outcome.
+const ACTIVITY_TYPES = new Set([
+  "task",
+  "userTask",
+  "serviceTask",
+  "manualTask",
+  "scriptTask",
+  "sendTask",
+  "receiveTask",
+]);
 
-Do NOT classify an activity as automatable if it:
-• requires human creativity, interpretation, or complex decision-making, for ex-
-ample conducting interviews, assessing applications based on qualitative cri-
-teria, making strategic planning decisions, or or resolving ambiguous cases
-that require contextual understanding.
-• relies on unstructured or non-digital data only, such as free text emails, inter-
-preting handwritten documents, analysing scanned PDFs without structured
-extraction, handling voice recordings, or working with informal notes.
-• involves frequent exceptions or unstable rules. Examples include handling of
-special cases, activities with many alternative execution paths, processes that
-frequently change due to policy updates.
-• depends heavily on human judgment or negotiation, for example resolving cu-
-stomer complaints on a case-by-case basis, conflict resolution between sta-
-keholders, or subjective approval decisions.
-In your output, return only the IDs of activities you classify as automatable, relevant.
-For each, provide a clear explanation in Englisch , using the activity’s name and
-description that justifies the classification based on the criteria above.
-Do not reference BPMN element IDs in the explanation; use the activity names instead. 
-Exclude from your result all activities that cannot be automated and any
-elements that are not activity/task elements
+// full          : all extracted elements with all context (default)
+// labelsOnly    : only the activities with ID and name (ablation, no context)
+// structureOnly : all elements and relations, but without any names,
+//                 documentation, pool or lane names (ablation, no labels)
+export const INPUT_MODES = ["full", "labelsOnly", "structureOnly"];
 
+export function buildUserPrompt(elements, { inputMode = "full" } = {}) {
+  if (!INPUT_MODES.includes(inputMode)) {
+    throw new Error(`Unknown inputMode "${inputMode}"`);
+  }
 
-Additionally, include a "score" field for EACH activity classified as automatable.
-The "score" must be an array of integers (1–9), where each number corresponds to one of the RPA feasibility criteria listed above.
-Evaluate each activity independently. Do NOT assign the same score to all activities by default.
-Each activity must receive an individual score based only on its own context, name, description, and associated data.
-Only include the numbers of the criteria that are clearly demonstrated by the activity.
-Do not include criteria that are uncertain or not supported by the given information.
-A score such as [1,2,3,4,5,6,7,8,9] should be very rare and should only occur when nearly all criteria are explicitly supported by the activity context.
-It is expected that most activities will satisfy only a subset of the criteria, not all of them.
+  // All activity types are passed as plain "task", so that BPMN task types
+  // (userTask, serviceTask, manualTask, ...) cannot leak the label.
+  // parentSubProcessId is internal metadata and not shown to the LLM.
+  let prepared = elements.map(({ parentSubProcessId, ...el }) =>
+    ACTIVITY_TYPES.has(el.type) ? { ...el, type: "task" } : { ...el },
+  );
 
+  if (inputMode === "labelsOnly") {
+    prepared = prepared
+      .filter((el) => el.type === "task")
+      .map((el) => ({ id: el.id, type: el.type, name: el.name }));
+  } else if (inputMode === "structureOnly") {
+    prepared = prepared.map((el) => ({
+      ...el,
+      name: null,
+      documentation: null,
+      poolName: null,
+      laneName: null,
+    }));
+  }
 
-Also for each activity that is classified as automatable, add an “isRelevant” field. 
-‘isRelevant’ must be a Boolean value of either true or false, where “true” is set only if the activity has truly been classified as automatable.
-DO NOT assign “true” to all activities by default, regardless of whether they are automatable or not.
-
-`.trim();
+  return JSON.stringify({ bpmnElements: prepared }, null, 2);
 }

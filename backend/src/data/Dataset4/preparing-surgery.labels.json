@@ -1,0 +1,27 @@
+{
+  "model_id": 0,
+  "name": "preparing-surgery",
+  "expectedValues": [
+    {
+      "id": "sid-97A5C3AA-D6BB-4803-A0AC-D63762A3A69B",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-857018B9-BAD3-4C01-903B-0A1CFA8E00EA",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ]
+}

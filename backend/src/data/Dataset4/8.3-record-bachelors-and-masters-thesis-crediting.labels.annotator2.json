@@ -1,0 +1,202 @@
+{
+  "model_id": 8,
+  "name": "8.3-record-bachelors-and-masters-thesis-crediting",
+  "expectedValues": [
+    {
+      "id": "Activity_1y9kp1y",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_07swkwz",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_05o4uuz",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0hu2phx",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_00ce4xt",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_17nlv97",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0hcf69w",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_13efh0b",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1y6yq4p",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1s2guce",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1a6j4k3",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_02ql834",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1r1qvz8",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1pj27xb",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1o9dt36",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_19y240k",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0fghzes",
+      "reason": null,
+      "score": [
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0msxlk0",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_02p1tj2",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0660x2t",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0x8obd0",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "model_id": 7,
+  "name": "7 Prüfung",
+  "expectedValues": [
+    {
+      "id": "sid-D1FED733-B5B7-454E-9761-777BAAAA782D",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-941B48A3-9416-4DF3-9C77-8248F39D4695",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-34C47DF0-80FA-48B8-821C-A31F303FC018",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-A7E7D7F0-6616-4946-ACF0-ED83A2E1976D",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-C9F03B20-FE3A-48B3-8626-A80AEE1A8CFF",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        5,
+        8,
+        9
+      ]
+    }
+  ]
+}

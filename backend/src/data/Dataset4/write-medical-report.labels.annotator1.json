@@ -1,0 +1,24 @@
+{
+  "model_id": 0,
+  "name": "write-medical-report",
+  "expectedValues": [
+    {
+      "id": "Activity_0my528c",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0bfm2nt",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    }
+  ]
+}

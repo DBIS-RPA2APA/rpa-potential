@@ -1,0 +1,25 @@
+{
+  "model_id": 12,
+  "name": "12.2-inform-alumni",
+  "expectedValues": [
+    {
+      "id": "Activity_0al58jn",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1x0umvb",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

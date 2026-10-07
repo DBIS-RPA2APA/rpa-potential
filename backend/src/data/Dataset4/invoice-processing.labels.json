@@ -1,0 +1,87 @@
+{
+  "model_id": 0,
+  "name": "invoice-processing",
+  "expectedValues": [
+    {
+      "id": "sid-8496D8E5-B976-4BF7-A5F1-3EBAED83BBD3",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-A92FDCED-DC2A-4E34-B2B2-3133B957B675",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-40DD5E96-FF4E-4D68-BAC2-5D0B4481EB74",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "sid-7F0B6BFC-EA86-4829-A519-5FA5D07D43DE",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-A0DF8AC0-0C38-41CD-B4A3-5C41136312CA",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-0CA54FF7-B3AB-4EA5-AF56-FFD3CA6D6080",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "sid-5D21E84E-DE2E-4A83-8EEF-70010BC36203",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "sid-D4FD439E-1724-4741-9D37-9BBBE0667B73",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

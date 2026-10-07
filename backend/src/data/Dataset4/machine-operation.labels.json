@@ -1,0 +1,24 @@
+{
+  "model_id": 0,
+  "name": "machine-operation",
+  "expectedValues": [
+    {
+      "id": "Activity_0fgw81d",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_09g8qo1",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

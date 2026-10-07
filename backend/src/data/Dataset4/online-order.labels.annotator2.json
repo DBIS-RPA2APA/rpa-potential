@@ -1,0 +1,48 @@
+{
+  "model_id": 0,
+  "name": "online-order",
+  "expectedValues": [
+    {
+      "id": "Activity_1mbuo0y",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0s3i7sn",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0u711j0",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0suecu7",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_09gzqac",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    }
+  ]
+}

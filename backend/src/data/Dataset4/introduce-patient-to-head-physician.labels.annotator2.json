@@ -1,0 +1,15 @@
+{
+  "model_id": 0,
+  "name": "introduce-patient-to-head-physician",
+  "expectedValues": [
+    {
+      "id": "sid-915B12CE-53F4-4984-AB0F-1B301C9FBC3B",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": 0,
+  "name": "job-advertisement",
+  "expectedValues": [
+    {
+      "id": "Activity_1we96gq",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_019gmiq",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_08gdgxe",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

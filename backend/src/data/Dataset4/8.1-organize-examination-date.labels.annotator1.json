@@ -1,0 +1,99 @@
+{
+  "model_id": 8,
+  "name": "8.1-organize-examination-date",
+  "expectedValues": [
+    {
+      "id": "Activity_1axl82x",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1pmuvxc",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1l0skeo",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0bdbkz3",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_1qs7fmk",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_17g3683",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_01ttyu5",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_01ivifh",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1jzuzmh",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

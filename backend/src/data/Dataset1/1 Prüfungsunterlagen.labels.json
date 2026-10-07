@@ -5,22 +5,47 @@
     {
       "id": "sid-980528A9-ACE9-482C-907A-6DA546C001CB",
       "reason": "The activity of scanning exams is performed using a scanning device and produces digital output, which can be automated as it follows consistent procedures and uses structured data. It does not involve complex decision-making or creativity.",
-      "score": [1, 5, 9]
+      "score": [
+        1,
+        5,
+        9
+      ]
     },
     {
       "id": "sid-FA85BBB1-AA1B-4515-BD31-2C7656ECD6AF",
       "reason": "This activity involves scanning exam papers with a high-performance scanner. Similar to the other scanning task, it is a physical-to-digital conversion using a specialized system. The operation is predictable, repetitive, and rule-based, suitable for automation when integrated with automated document handling.",
-      "score": [1, 5, 9]
+      "score": [
+        1,
+        5,
+        9
+      ]
     },
     {
       "id": "sid-59F30528-1681-46C6-BDC5-EC1E07267490",
       "reason": "This activity consists of importing a CSV file into the DMS, which follows clear and unambiguous rules. The data is structured, digital, and the process can be executed consistently, making it suitable for automation.",
-      "score": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      "score": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
     },
     {
       "id": "sid-135DC678-5D4A-42EB-B23D-ECCB095190D5",
       "reason": "This task involves querying data from a Content Management System (CMS) and generating a CSV file, which is a structured data format. The rules for querying and file creation are well-defined and stable, and the interaction with the CMS can be automated, making it feasible for RPA.",
-      "score": [2, 3, 5, 6, 7, 8]
+      "score": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ]
     }
   ]
 }

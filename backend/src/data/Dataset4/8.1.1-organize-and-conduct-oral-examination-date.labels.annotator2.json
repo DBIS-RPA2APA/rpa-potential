@@ -1,0 +1,71 @@
+{
+  "model_id": 8,
+  "name": "8.1.1-organize-and-conduct-oral-examination-date",
+  "expectedValues": [
+    {
+      "id": "Activity_0032be5",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0ytl62t",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_10aktii",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_17lwxnx",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1hta0pz",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_10q9og8",
+      "reason": null,
+      "score": [
+        1,
+        2,
+        3,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "Activity_0w02yy3",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

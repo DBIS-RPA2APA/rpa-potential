@@ -1,0 +1,25 @@
+{
+  "model_id": 0,
+  "name": "order-blood-bottles",
+  "expectedValues": [
+    {
+      "id": "sid-D8309D0D-4482-428E-A648-46AE8CB7144E",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-525EA4D4-3E64-473A-A143-CF609068A875",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "model_id": 0,
+  "name": "internet-service-provider-commission",
+  "expectedValues": [
+    {
+      "id": "sid-3B0EDBCF-BE0F-418E-A24E-215628C04F84",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "sid-561300F0-B48F-4BC0-B67F-4B118F1D1714",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-810FB071-74CD-4663-A9BB-9B5250944404",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-C0C3F9F6-471C-475A-9AD8-528C78DE08DF",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-BCB72B81-B9AB-497A-BA9F-7CE550FD9A88",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-2EBB860C-A2E8-4FE5-BDD3-7AC743E46EF7",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-D1173A71-9743-47CE-8CDD-6D80DD00F154",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "sid-D4687327-C7F6-4114-A7EE-39F22B9303F9",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    }
+  ]
+}

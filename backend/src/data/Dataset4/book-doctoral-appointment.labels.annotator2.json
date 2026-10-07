@@ -1,0 +1,49 @@
+{
+  "model_id": 0,
+  "name": "book-doctoral-appointment",
+  "expectedValues": [
+    {
+      "id": "Activity_1yvnxkm",
+      "reason": null,
+      "score": [
+        1,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "Activity_0opdtai",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1242a7i",
+      "reason": null,
+      "score": [
+        1,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ejebrd",
+      "reason": null,
+      "score": [
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "Activity_173b7vp",
+      "reason": null,
+      "score": [
+        1,
+        7,
+        8
+      ]
+    }
+  ]
+}

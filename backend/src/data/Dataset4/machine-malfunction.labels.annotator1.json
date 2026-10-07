@@ -1,0 +1,24 @@
+{
+  "model_id": 0,
+  "name": "machine-malfunction",
+  "expectedValues": [
+    {
+      "id": "Activity_0bchckp",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "Activity_1ckfg10",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        8
+      ]
+    }
+  ]
+}

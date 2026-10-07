@@ -1,0 +1,17 @@
+{
+  "model_id": 0,
+  "name": "patient-dies",
+  "expectedValues": [
+    {
+      "id": "sid-54418E5F-348A-474E-A214-F556D67EE515",
+      "reason": null,
+      "score": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ]
+}
