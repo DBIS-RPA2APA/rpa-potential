@@ -184,8 +184,21 @@ export async function callStructuredLlm({
       };
     } catch (error) {
       lastError = error;
-      failedAttempts.push({ attempt: i + 1, error: error.message });
-      console.warn(`Retry ${i + 1}/${maxRetries} failed:`, error.message);
+      // OpenRouter puts the provider's own error message into the error body
+      // (error.metadata.raw / provider_name); keep it for diagnosis
+      const details =
+        error?.error ?? error?.response?.data ?? error?.cause?.error ?? null;
+      failedAttempts.push({
+        attempt: i + 1,
+        error: error.message,
+        status: error?.status ?? null,
+        details,
+      });
+      console.warn(
+        `Retry ${i + 1}/${maxRetries} failed:`,
+        error.message,
+        details ? JSON.stringify(details) : "",
+      );
       retryPrompt =
         "The previous response could not be parsed. Return only valid JSON that conforms to the required structure.";
     }
