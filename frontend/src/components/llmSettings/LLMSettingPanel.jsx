@@ -45,6 +45,9 @@ const LLMSettingsPanel = ({
           >
             <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
 
+            <option value="qwen/qwen3-vl-8b-instruct">
+              qwen3-vl-8b-instruct
+            </option>
             <option value="qwen/qwen-2.5-7b-instruct">
               qwen-2.5-7b instruct
             </option>

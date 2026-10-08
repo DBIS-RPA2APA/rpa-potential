@@ -1,1 +1,60 @@
-{}
+{
+  "qwen/qwen3-vl-8b-instruct": {
+    "order": [
+      "parasail"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "quantizations": [
+      "bf16"
+    ]
+  },
+  "qwen/qwen-2.5-7b-instruct": {
+    "order": [
+      "phala"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+  },
+  "mistralai/ministral-8b-2512": {
+    "order": [
+      "mistral"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+  },
+  "google/gemma-3-12b-it": {
+    "order": [
+      "deepinfra"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "quantizations": [
+      "bf16"
+    ]
+  },
+  "qwen/qwen3-vl-32b-instruct": {
+    "order": [
+      "alibaba"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+  },
+  "mistralai/mixtral-8x22b-instruct": {
+    "order": [
+      "mistral"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+  },
+  "deepseek/deepseek-v3.2": {
+    "order": [
+      "baidu"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "quantizations": [
+      "fp8"
+    ]
+  }
+}
