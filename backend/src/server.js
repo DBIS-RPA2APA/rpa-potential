@@ -11,7 +11,9 @@ import { extractFromXml } from "./bpmn/extractFromXml.js";
 const app = express(); // Express-Server initialisieren
 
 app.use(cors()); // Enable CORS so that the frontend can access it
-app.use(express.json({ limit: "5mb" })); // JSON-Body-Parsing aktiv
+// evaluation results of larger datasets (e.g. Dataset4: ~25 MB) are sent back
+// to /api/evaluationHistory by the frontend, so the limit must be generous
+app.use(express.json({ limit: "200mb" })); // JSON-Body-Parsing aktiv
 
 console.log("OPENROUTER_API_KEY loaded:", !!process.env.OPENROUTER_API_KEY);
 console.log("OPENROUTER_BASE_URL:", process.env.OPENROUTER_BASE_URL);

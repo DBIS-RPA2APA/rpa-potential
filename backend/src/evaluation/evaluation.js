@@ -53,6 +53,12 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     llmProps: withoutSecrets(llmProps),
   };
 
+  // visible check in the backend terminal which model is actually evaluated
+  console.log(
+    `=== EVALUATION START: model=${llmProps.modelName ?? "(default)"}, dataset=${datasetName}, ` +
+      `models=${testCases.length}, repetitions=${numRepetitions}, inputMode=${options.inputMode} ===`,
+  );
+
   const totalRunResult = [];
   for (let i = 0; i < numRepetitions; i++) {
     totalRunResult.push(
@@ -164,6 +170,10 @@ async function evaluateSingleRun(
       report.falsePositiveIds.length;
 
     results.push(report);
+    console.log(
+      `--- progress: repetition ${runId}, BPMN model ${results.length}/${testCases.length} (${testCase.name})` +
+        (report.error ? " -> ERROR" : ""),
+    );
   }
 
   const evaluationReportSummary = calculateEvaluationReportSummary(
