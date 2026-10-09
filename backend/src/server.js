@@ -7,6 +7,7 @@ import { chat } from "./llm/chat.js";
 import { buildPreviewPrompt } from "./llm/PreviewPrompt.js";
 import { saveEvaluation, getAllEvaluations } from "./evaluation/history.js";
 import { extractFromXml } from "./bpmn/extractFromXml.js";
+import { listDatasets } from "./evaluation/loadDataset.js";
 
 const app = express(); // Express-Server initialisieren
 
@@ -73,6 +74,17 @@ app.post("/api/evaluate", async (req, res) => {
 
     const result = await evaluateDataset(evaluationConfig, llmProps || {});
     res.json(result);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
+  }
+});
+// ------- available datasets (Docker: only the mounted dataset) -------
+app.get("/api/datasets", (req, res) => {
+  try {
+    res.json(listDatasets());
   } catch (err) {
     console.error(err);
     res

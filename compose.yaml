@@ -1,0 +1,38 @@
+# Start:  docker compose up --build -d
+# Open:   http://localhost:8081
+# Logs:   docker compose logs -f backend
+# Stop:   docker compose down
+#
+# Configuration: .env next to this file (see .env.example).
+# Dataset:       put the content of ONE dataset (*.bpmn + *.labels.json) into ./dataset/
+
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file: .env
+    environment:
+      # the single dataset that is evaluated (mounted below)
+      DATASET_DIR: /app/dataset
+    volumes:
+      - ./dataset:/app/dataset:ro
+      # evaluation results are written to the repository folders on the host
+      - ./backend/src/evaluation/evaluation-history:/app/src/evaluation/evaluation-history
+      - ./backend/src/evaluation/evaluation-runs:/app/src/evaluation/evaluation-runs
+      # read-only, only used to record the git commit hash in each run log
+      - ./.git:/app/.git:ro
+    # the API is reached through the frontend (nginx proxies /api);
+    # uncomment to call it directly from the host
+    # ports:
+    #   - "8080:8080"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8081:80"
+    restart: unless-stopped

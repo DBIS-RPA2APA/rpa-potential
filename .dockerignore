@@ -1,0 +1,9 @@
+# build context of the frontend image is the repository root
+**/node_modules
+**/dist
+.git
+**/.env
+**/.env.*
+.vscode
+backend
+dataset

@@ -49,3 +49,12 @@ Thumbs.db
 # (only keep if you generate runtime files)
 # ----------------------------
 exports/
+
+# ----------------------------
+# Docker: dataset to evaluate (unpublished data, keep out of git)
+# ----------------------------
+dataset/*
+!dataset/.gitkeep
+
+# rerun datasets are copies of models from another dataset
+backend/src/data/*_rerun/

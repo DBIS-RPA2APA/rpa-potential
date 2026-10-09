@@ -76,6 +76,26 @@ npm install
 npm run dev
 ```
 
+## Docker
+
+The whole application can be run without a local Node.js/npm installation.
+
+1. Copy `.env.example` to `.env` (next to `compose.yaml`) and enter your OpenRouter API key. `DATASET_NAME` sets the name under which the dataset appears in the frontend, run logs and evaluation history.
+2. Put the content of exactly one dataset (`*.bpmn` and `*.labels.json` files) into `./dataset/`. This folder is mounted read-only into the backend container and is the only dataset that can be evaluated. Its content is ignored by git.
+3. Start from the repository root:
+
+```bash
+docker compose up --build -d
+```
+
+The application is available at http://localhost:8081. The frontend (nginx) forwards all `/api` requests to the backend container.
+
+- Logs and evaluation progress: `docker compose logs -f backend`
+- Stop: `docker compose down`
+- After code changes: `docker compose up --build -d`
+
+Evaluation results are written to `backend/src/evaluation/evaluation-history` and `backend/src/evaluation/evaluation-runs`, as in the local setup. The repository's `.git` folder is mounted read-only so that every run log records the commit hash of the code.
+
 ## Project Structure
 
 - `frontend/` -> React application

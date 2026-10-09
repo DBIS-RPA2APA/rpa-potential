@@ -17,7 +17,10 @@ import { execSync } from "child_process";
 import { buildSystemPrompt, buildUserPrompt } from "../llm/LlmPrompt.js";
 import { callStructuredLlm } from "../llm/llmClient.js";
 import { normalizeAndValidate, ACTIVITY_TYPES } from "../llm/Validation.js";
-import { loadDatasetTestCases } from "../evaluation/loadDataset.js";
+import {
+  loadDatasetTestCases,
+  resolveDataset,
+} from "../evaluation/loadDataset.js";
 import {
   calculateEvaluationReportSummary,
   getTestCaseReport,
@@ -27,7 +30,8 @@ import {
 const RUN_LOG_FOLDER = "./src/evaluation/evaluation-runs";
 
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
-  const { datasetName } = evaluationConfig;
+  // effective dataset name (in Docker: the single mounted dataset)
+  const datasetName = resolveDataset(evaluationConfig.datasetName).name;
   const numRepetitions = Number(evaluationConfig.numRepetitions) || 1;
   const options = {
     inputMode:
@@ -37,7 +41,7 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
       process.env.EVAL_EXCLUDE_SUBPROCESS_ACTIVITIES === "true",
   };
 
-  const testCases = loadDatasetTestCases(datasetName);
+  const testCases = loadDatasetTestCases(evaluationConfig.datasetName);
   if (testCases.length === 0) {
     throw new Error(`No data test cases found: ${datasetName}`);
   }
@@ -196,6 +200,7 @@ function sha256(text) {
 }
 
 function currentGitCommit() {
+  if (process.env.GIT_COMMIT) return process.env.GIT_COMMIT;
   try {
     return execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] })
       .toString()

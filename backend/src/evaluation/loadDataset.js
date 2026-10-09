@@ -9,8 +9,35 @@ import { extractFromXml } from "../bpmn/extractFromXml.js";
 
 const dataFolder = "./src/data";
 
+// Docker setup: exactly one dataset is mounted at DATASET_DIR (./dataset on the
+// host). It is evaluated regardless of the dataset name sent by the frontend and
+// labelled with DATASET_NAME (default "dataset") in run logs and history.
+export function resolveDataset(datasetName) {
+  if (process.env.DATASET_DIR) {
+    return {
+      name: process.env.DATASET_NAME || "dataset",
+      folder: process.env.DATASET_DIR,
+    };
+  }
+  return { name: datasetName, folder: `${dataFolder}/${datasetName}` };
+}
+
+// names of the datasets that can be selected in the frontend
+export function listDatasets() {
+  if (process.env.DATASET_DIR) {
+    return [process.env.DATASET_NAME || "dataset"];
+  }
+  if (!fs.existsSync(dataFolder)) return [];
+  return fs
+    .readdirSync(dataFolder, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((name) => !name.startsWith(".") && !name.includes("excluded"))
+    .sort();
+}
+
 export function loadDatasetTestCases(datasetName) {
-  const datasetFolder = `${dataFolder}/${datasetName}`;
+  const { name, folder: datasetFolder } = resolveDataset(datasetName);
 
   if (!fs.existsSync(datasetFolder)) return [];
 
@@ -35,7 +62,7 @@ export function loadDatasetTestCases(datasetName) {
     testCases.push({
       id: testCases.length + 1,
       name: fileBaseName,
-      datasetId: datasetName,
+      datasetId: name,
       bpmnXml,
       elements,
       expectedValues: labelContent?.expectedValues ?? [],

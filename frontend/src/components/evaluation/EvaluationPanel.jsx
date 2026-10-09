@@ -5,6 +5,7 @@ import "../../styles/index.css";
 import EvaluationResult from "./EvaluationResult";
 import {
   evaluateDataset,
+  getDatasets,
   getEvaluationHistory,
   saveEvaluationHistory,
 } from "../../services/api/analyzeApi";
@@ -12,7 +13,8 @@ import {
 const EvaluationPanel = ({ llmProps }) => {
   const [evaluationData, setEvaluationData] = useState(null);
   const [showEvaluationResult, setShowEvaluationResult] = useState(false);
-  const [dataset, setDataset] = useState("Dataset0");
+  const [dataset, setDataset] = useState("");
+  const [datasetOptions, setDatasetOptions] = useState([]);
   const [numRepetitions, setNumRepetitions] = useState("");
 
   const [evaluationStatus, setEvaluationStatus] = useState("available"); // Status zu speichern
@@ -23,7 +25,21 @@ const EvaluationPanel = ({ llmProps }) => {
   const progressIntervalRef = useRef(null);
   useEffect(() => {
     loadHistory();
+    loadDatasets();
   }, []);
+
+  // datasets come from the backend (Docker: only the mounted ./dataset)
+  async function loadDatasets() {
+    try {
+      const names = (await getDatasets()) ?? [];
+      setDatasetOptions(names);
+      setDataset((current) =>
+        names.includes(current) ? current : (names[0] ?? ""),
+      );
+    } catch (error) {
+      console.error("Could not load datasets:", error);
+    }
+  }
 
   useEffect(() => {
     // cleanup function to clear progerss interval on unmount
@@ -107,7 +123,7 @@ const EvaluationPanel = ({ llmProps }) => {
       const result = await evaluateDataset(evaluationConfig, llmProps);
 
       const evaluationResultObject = {
-        datasetName: dataset,
+        datasetName: result.datasetName ?? dataset,
         timestamp: new Date().toISOString(),
         numRepetitions: numRepetitions || 1,
         defaultEvaluationEndpoint: "/api/evaluate",
@@ -188,11 +204,11 @@ const EvaluationPanel = ({ llmProps }) => {
               onChange={(e) => setDataset(e.target.value)}
               className="w-full rounded border  text-slate-900 bg-white/30 focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
             >
-              <option value="Dataset0">Dataset 0</option>
-              <option value="Dataset1">Dataset 1</option>
-              <option value="Dataset2">Dataset 2</option>
-              <option value="Dataset3">Dataset 3</option>
-              <option value="Dataset4">Dataset 4</option>
+              {datasetOptions.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
           </div>
 

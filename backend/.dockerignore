@@ -1,0 +1,8 @@
+node_modules
+.env
+.env.*
+# datasets and evaluation results are mounted as volumes (docker-compose.yml),
+# so unpublished data never ends up in an image
+src/data
+src/evaluation/evaluation-history
+src/evaluation/evaluation-runs

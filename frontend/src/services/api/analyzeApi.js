@@ -1,7 +1,8 @@
 // Service function who communicates with the backend API
 // task is to send the BPMN elements for analysis to the backend
 
-const API_BASE = "http://localhost:8080";
+// local development: backend on port 8080; Docker: VITE_API_BASE="" (same origin, nginx proxies /api)
+const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8080";
 
 export async function analyzeElements(elements, llmProps = {}) {
   return postJson("/api/analyze", { elements, llmProps });
@@ -23,8 +24,16 @@ export async function saveEvaluationHistory(evaluationResultObject) {
   return postJson("/api/evaluationHistory", evaluationResultObject);
 }
 
+export async function getDatasets() {
+  return getJson("/api/datasets");
+}
+
 export async function getEvaluationHistory() {
-  const res = await fetch(`${API_BASE}/api/evaluationHistory`, {
+  return getJson("/api/evaluationHistory");
+}
+
+async function getJson(path) {
+  const res = await fetch(`${API_BASE}${path}`, {
     method: "GET",
   });
   const text = await res.text();
