@@ -57,6 +57,9 @@ const LLMSettingsPanel = ({
             <option value="google/gemma-3-12b-it">gemma-3 12b-it</option>
             <option value="deepseek/deepseek-v3.2">Deepseek-v3.2</option>
 
+            <option value="qwen/qwen3-vl-30b-a3b-instruct">
+              qwen3-vl-30b-a3b-instruct
+            </option>
             <option value="qwen/qwen3-vl-32b-instruct">
               qwen3-vl-32b-instruct
             </option>

@@ -56,5 +56,15 @@
     "quantizations": [
       "fp8"
     ]
+  },
+  "qwen/qwen3-vl-30b-a3b-instruct": {
+    "order": [
+      "deepinfra"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "quantizations": [
+      "fp8"
+    ]
   }
 }
