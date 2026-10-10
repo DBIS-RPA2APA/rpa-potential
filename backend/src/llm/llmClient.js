@@ -201,11 +201,33 @@ export async function callStructuredLlm({
       );
       retryPrompt =
         "The previous response could not be parsed. Return only valid JSON that conforms to the required structure.";
+      // rate limits and other transient provider errors: wait before the next
+      // attempt instead of retrying immediately (RETRY_BACKOFF_SECONDS, e.g. "30,90")
+      if (i < maxRetries - 1 && isTransientError(error)) {
+        const waitSeconds = RETRY_BACKOFF_SECONDS[i] ?? RETRY_BACKOFF_SECONDS.at(-1) ?? 0;
+        if (waitSeconds > 0) {
+          console.warn(`Transient error, waiting ${waitSeconds}s before retry ${i + 2}/${maxRetries}`);
+          await new Promise((resolve) => setTimeout(resolve, waitSeconds * 1000));
+        }
+      }
     }
   }
   const error = lastError ?? new Error("Structured LLM call failed");
   error.failedAttempts = failedAttempts;
   throw error;
+}
+
+const RETRY_BACKOFF_SECONDS = (process.env.RETRY_BACKOFF_SECONDS ?? "30,90")
+  .split(",")
+  .map((value) => Number(value.trim()))
+  .filter((value) => Number.isFinite(value) && value >= 0);
+
+// 429 (rate limit), 5xx, connection problems and malformed provider responses
+function isTransientError(error) {
+  const status = error?.status ?? error?.error?.code;
+  if (status === 429 || (status >= 500 && status < 600)) return true;
+  const message = String(error?.message ?? "");
+  return /connection|timeout|ECONNRESET|ETIMEDOUT|Cannot read properties of undefined/i.test(message);
 }
 
 function summarizeRaw(raw) {
