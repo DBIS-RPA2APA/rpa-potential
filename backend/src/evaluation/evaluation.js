@@ -18,6 +18,7 @@ import { buildSystemPrompt, buildUserPrompt } from "../llm/LlmPrompt.js";
 import { callStructuredLlm, getModelRouting } from "../llm/llmClient.js";
 import { normalizeAndValidate, ACTIVITY_TYPES } from "../llm/Validation.js";
 import {
+  loadDatasetConfig,
   loadDatasetTestCases,
   resolveDataset,
 } from "../evaluation/loadDataset.js";
@@ -33,11 +34,16 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
   // effective dataset name (in Docker: the single mounted dataset)
   const datasetName = resolveDataset(evaluationConfig.datasetName).name;
   const numRepetitions = Number(evaluationConfig.numRepetitions) || 1;
+  const datasetConfig = loadDatasetConfig(evaluationConfig.datasetName);
   const options = {
     inputMode:
-      evaluationConfig.inputMode ?? process.env.EVAL_INPUT_MODE ?? "full",
+      evaluationConfig.inputMode ??
+      datasetConfig.inputMode ??
+      process.env.EVAL_INPUT_MODE ??
+      "full",
     excludeSubprocessActivities:
       evaluationConfig.excludeSubprocessActivities ??
+      datasetConfig.excludeSubprocessActivities ??
       process.env.EVAL_EXCLUDE_SUBPROCESS_ACTIVITIES === "true",
   };
 

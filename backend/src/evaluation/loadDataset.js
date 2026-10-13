@@ -36,6 +36,21 @@ export function listDatasets() {
     .sort();
 }
 
+// Optional dataset settings in <dataset folder>/dataset.json, e.g.
+// { "inputMode": "labelsOnly" } for an ablation dataset. They take precedence
+// over environment variables, values sent with the request over both.
+export function loadDatasetConfig(datasetName) {
+  const { folder } = resolveDataset(datasetName);
+  const file = `${folder}/dataset.json`;
+  if (!fs.existsSync(file)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf-8"));
+  } catch (error) {
+    console.warn(`Could not read ${file}:`, error.message);
+    return {};
+  }
+}
+
 export function loadDatasetTestCases(datasetName) {
   const { name, folder: datasetFolder } = resolveDataset(datasetName);
 

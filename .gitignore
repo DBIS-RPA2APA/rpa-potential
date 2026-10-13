@@ -58,3 +58,7 @@ dataset/*
 
 # rerun datasets are copies of models from another dataset
 backend/src/data/*_rerun/
+
+# ablation datasets are copies of Dataset4 with a dataset.json
+backend/src/data/*_labelsOnly/
+backend/src/data/*_structureOnly/
