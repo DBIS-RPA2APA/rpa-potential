@@ -38,6 +38,12 @@ const BpmnAnalysisResult = z.object({
 // See https://openrouter.ai/docs (provider routing).
 const PROVIDER_ROUTING = loadProviderRouting();
 
+// routing / extra request parameters configured for a model (or null)
+export function getModelRouting(model) {
+  const entry = PROVIDER_ROUTING[model];
+  return entry ? JSON.parse(JSON.stringify(entry)) : null;
+}
+
 function loadProviderRouting() {
   try {
     const file = new URL("./providers.json", import.meta.url);
@@ -103,9 +109,18 @@ function buildModelConfig(llmProps = {}) {
     }
     modelConfig.seed = seed;
   }
-  const provider = llmProps.provider ?? PROVIDER_ROUTING[modelConfig.model];
-  if (provider) {
-    modelConfig.modelKwargs = { provider };
+  // providers.json: OpenRouter provider routing per model. An optional
+  // "request" entry holds additional request parameters for that model
+  // (e.g. reasoning effort) and is sent at the top level of the request.
+  const routing = llmProps.provider
+    ? { ...llmProps.provider }
+    : getModelRouting(modelConfig.model);
+  if (routing) {
+    const { request, ...provider } = routing;
+    modelConfig.modelKwargs = {
+      ...(Object.keys(provider).length > 0 ? { provider } : {}),
+      ...(request ?? {}),
+    };
   }
   return modelConfig;
 }

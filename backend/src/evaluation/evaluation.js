@@ -15,7 +15,7 @@ import crypto from "crypto";
 import fs from "fs";
 import { execSync } from "child_process";
 import { buildSystemPrompt, buildUserPrompt } from "../llm/LlmPrompt.js";
-import { callStructuredLlm } from "../llm/llmClient.js";
+import { callStructuredLlm, getModelRouting } from "../llm/llmClient.js";
 import { normalizeAndValidate, ACTIVITY_TYPES } from "../llm/Validation.js";
 import {
   loadDatasetTestCases,
@@ -55,6 +55,10 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
     systemPromptSha256: sha256(systemPrompt),
     gitCommit: currentGitCommit(),
     llmProps: withoutSecrets(llmProps),
+    // provider routing and extra request parameters from providers.json
+    modelRouting: getModelRouting(
+      llmProps.modelName || process.env.DEFAULT_MODEL || "openai/gpt-4o-mini",
+    ),
   };
 
   // visible check in the backend terminal which model is actually evaluated

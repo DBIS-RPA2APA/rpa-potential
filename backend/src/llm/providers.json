@@ -66,5 +66,27 @@
     "quantizations": [
       "fp8"
     ]
+  },
+  "openai/gpt-6-astra": {
+    "order": [
+      "openai/flex"
+    ],
+    "allow_fallbacks": false,
+    "request": {
+      "reasoning": {
+        "effort": "low"
+      }
+    }
+  },
+  "openai/gpt-6.1-sol": {
+    "order": [
+      "openai"
+    ],
+    "allow_fallbacks": false,
+    "request": {
+      "reasoning": {
+        "effort": "low"
+      }
+    }
   }
 }

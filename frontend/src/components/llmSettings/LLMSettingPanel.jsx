@@ -44,6 +44,8 @@ const LLMSettingsPanel = ({
             className="w-full rounded-xl border text-slate-900 bg-white/30 focus:ring-2 focus:ring-[#FF6200] focus:border-transparent"
           >
             <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+            <option value="openai/gpt-6-astra">GPT-6 Astra</option>
+            <option value="openai/gpt-6.1-sol">GPT-6.1 Sol</option>
 
             <option value="qwen/qwen3-vl-8b-instruct">
               qwen3-vl-8b-instruct
