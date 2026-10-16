@@ -3,7 +3,7 @@ import Button from "../../ui/button";
 import AccordionSection from "../../ui/AccordionSection";
 import DiagramCard from "../../ui/DiagrammSection";
 import ModelResultAccordion from "../../ui/ModelResultAccordion";
-import BarPlot from "../../ui/Barplot";
+import BarPlot from "../../ui/BarPlot";
 import PieChart from "../../ui/PieChart";
 import Radar from "../../ui/RadarChart/Radar";
 import { LuDownload, LuBadgeInfo, LuX } from "react-icons/lu";
