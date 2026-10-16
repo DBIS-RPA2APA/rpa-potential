@@ -30,7 +30,13 @@ import {
 
 const RUN_LOG_FOLDER = "./src/evaluation/evaluation-runs";
 
-export async function evaluateDataset(evaluationConfig, llmProps = {}) {
+// onProgress (optional) is called after every evaluated BPMN model with
+// { done, total, repetition, numRepetitions, bpmnModel, error }.
+export async function evaluateDataset(
+  evaluationConfig,
+  llmProps = {},
+  onProgress = () => {},
+) {
   // effective dataset name (in Docker: the single mounted dataset)
   const datasetName = resolveDataset(evaluationConfig.datasetName).name;
   const numRepetitions = Number(evaluationConfig.numRepetitions) || 1;
@@ -73,6 +79,10 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
       `models=${testCases.length}, repetitions=${numRepetitions}, inputMode=${options.inputMode} ===`,
   );
 
+  const total = testCases.length * numRepetitions;
+  let done = 0;
+  onProgress({ done, total, repetition: 1, numRepetitions });
+
   const totalRunResult = [];
   for (let i = 0; i < numRepetitions; i++) {
     totalRunResult.push(
@@ -83,6 +93,17 @@ export async function evaluateDataset(evaluationConfig, llmProps = {}) {
         i + 1,
         systemPrompt,
         options,
+        (bpmnModel, error) => {
+          done += 1;
+          onProgress({
+            done,
+            total,
+            repetition: i + 1,
+            numRepetitions,
+            bpmnModel,
+            error,
+          });
+        },
       ),
     );
   }
@@ -109,6 +130,7 @@ async function evaluateSingleRun(
   runId,
   systemPrompt,
   options,
+  onTestCaseDone = () => {},
 ) {
   let totalTruePositives = 0;
   let totalFalsePositives = 0;
@@ -188,6 +210,7 @@ async function evaluateSingleRun(
       `--- progress: repetition ${runId}, BPMN model ${results.length}/${testCases.length} (${testCase.name})` +
         (report.error ? " -> ERROR" : ""),
     );
+    onTestCaseDone(testCase.name, Boolean(report.error));
   }
 
   const evaluationReportSummary = calculateEvaluationReportSummary(

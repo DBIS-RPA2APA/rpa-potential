@@ -91,7 +91,9 @@ function buildModelConfig(llmProps = {}) {
     topP: llmProps.topP ?? 1,
     apiKey: llmProps.apiKey || process.env.OPENROUTER_API_KEY,
     configuration: {
+      // the frontend sends "baseUrl"; "baseURL" is accepted for compatibility
       baseURL:
+        llmProps.baseUrl ||
         llmProps.baseURL ||
         process.env.OPENROUTER_BASE_URL ||
         "https://openrouter.ai/api/v1",

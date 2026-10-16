@@ -13,6 +13,10 @@ export async function extractBpmnElements(xml) {
 export async function evaluateDataset(evaluationConfig, llmProps = {}) {
   return postJson("/api/evaluate", { evaluationConfig, llmProps });
 }
+// progress of a running evaluation (id is sent as evaluationConfig.evaluationId)
+export async function getEvaluationProgress(evaluationId) {
+  return getJson(`/api/evaluate/progress/${encodeURIComponent(evaluationId)}`);
+}
 export async function getPromptPreview(elements) {
   return postJson("/api/preview", { elements });
 }

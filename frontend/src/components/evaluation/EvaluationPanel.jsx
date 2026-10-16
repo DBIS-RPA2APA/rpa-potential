@@ -6,6 +6,7 @@ import EvaluationResult from "./EvaluationResult";
 import {
   evaluateDataset,
   getDatasets,
+  getEvaluationProgress,
   getEvaluationHistory,
   saveEvaluationHistory,
 } from "../../services/api/analyzeApi";
@@ -19,6 +20,7 @@ const EvaluationPanel = ({ llmProps }) => {
 
   const [evaluationStatus, setEvaluationStatus] = useState("available"); // Status zu speichern
   const [progress, setProgress] = useState(0); // progress zu speichern
+  const [progressInfo, setProgressInfo] = useState(null); // done/total from the backend
   const [evaluationError, setEvaluationError] = useState(null); // Error-Message zu speichern
   const [evaluationHistory, setEvaluationHistory] = useState([]);
 
@@ -86,23 +88,28 @@ const EvaluationPanel = ({ llmProps }) => {
   const currentStatus = // Change the UI depending on what happens and what the status is
     statusConfig[evaluationStatus] || statusConfig.available;
 
-  const startProgressSimulation = () => {
+  // Polls the backend for the real progress: evaluated BPMN models out of
+  // (BPMN models x repetitions).
+  const startProgressPolling = (evaluationId) => {
     if (progressIntervalRef.current) {
       clearInterval(progressIntervalRef.current);
     }
-    setProgress(3);
-    progressIntervalRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 97) return prev;
-
-        const remaining = 97 - prev;
-        const increment = Math.max(1, remaining * 0.05); // faster at first, then slower
-        return Math.min(97, prev + increment);
-      });
-    }, 1800);
+    setProgress(0);
+    setProgressInfo(null);
+    progressIntervalRef.current = setInterval(async () => {
+      try {
+        const state = await getEvaluationProgress(evaluationId);
+        if (state?.total) {
+          setProgressInfo(state);
+          setProgress((100 * state.done) / state.total);
+        }
+      } catch {
+        // not registered yet or temporarily unreachable: try again next tick
+      }
+    }, 2000);
   };
 
-  const stopProgressSimulation = () => {
+  const stopProgressPolling = () => {
     if (progressIntervalRef.current) {
       clearInterval(progressIntervalRef.current);
       progressIntervalRef.current = null;
@@ -112,12 +119,17 @@ const EvaluationPanel = ({ llmProps }) => {
   const handleEvaluation = async () => {
     setEvaluationError("");
 
+    // crypto.randomUUID is only available in secure contexts (https/localhost)
+    const evaluationId =
+      globalThis.crypto?.randomUUID?.() ??
+      `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const evaluationConfig = {
       datasetName: dataset,
       numRepetitions: numRepetitions || 1,
+      evaluationId,
     };
     setEvaluationStatus("running");
-    startProgressSimulation();
+    startProgressPolling(evaluationId);
 
     try {
       const result = await evaluateDataset(evaluationConfig, llmProps);
@@ -135,7 +147,7 @@ const EvaluationPanel = ({ llmProps }) => {
       };
       console.log("Evaluatjion Result:", evaluationResultObject);
 
-      stopProgressSimulation();
+      stopProgressPolling();
       setProgress(100);
       setEvaluationStatus("finished");
       await new Promise((resolve) => setTimeout(resolve, 800));
@@ -145,7 +157,7 @@ const EvaluationPanel = ({ llmProps }) => {
       setShowEvaluationResult(true);
     } catch (error) {
       console.error("Evaluation failed:", error);
-      stopProgressSimulation();
+      stopProgressPolling();
       setEvaluationStatus("error");
       setProgress(0);
       setEvaluationError("An error occurred during evaluation.");
@@ -269,7 +281,18 @@ const EvaluationPanel = ({ llmProps }) => {
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          <p className="text-xs text-slate-900">{Math.round(progress)}%</p>
+          <p className="text-xs text-slate-900">
+            {Math.round(progress)}%
+            {evaluationStatus === "running" && progressInfo && (
+              <>
+                {" "}
+                ({progressInfo.done}/{progressInfo.total} BPMN models,
+                repetition {progressInfo.repetition}/
+                {progressInfo.numRepetitions}
+                {progressInfo.errors > 0 && `, ${progressInfo.errors} errors`})
+              </>
+            )}
+          </p>
           {evaluationError && (
             <p className="text-sm text-red-700">{evaluationError}</p>
           )}

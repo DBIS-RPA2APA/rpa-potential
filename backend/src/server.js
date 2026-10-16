@@ -8,6 +8,12 @@ import { buildPreviewPrompt } from "./llm/PreviewPrompt.js";
 import { saveEvaluation, getAllEvaluations } from "./evaluation/history.js";
 import { extractFromXml } from "./bpmn/extractFromXml.js";
 import { listDatasets } from "./evaluation/loadDataset.js";
+import {
+  startProgress,
+  updateProgress,
+  finishProgress,
+  getProgress,
+} from "./evaluation/progress.js";
 
 const app = express(); // Express-Server initialisieren
 
@@ -69,17 +75,35 @@ app.post("/api/analyze", async (req, res) => {
 });
 // ------- Evaluation endpoint -------
 app.post("/api/evaluate", async (req, res) => {
+  let progressId;
   try {
     const { evaluationConfig, llmProps } = req.body;
+    // the frontend generates the id and polls /api/evaluate/progress/:id
+    progressId = evaluationConfig?.evaluationId;
+    startProgress(progressId);
 
-    const result = await evaluateDataset(evaluationConfig, llmProps || {});
+    const result = await evaluateDataset(
+      evaluationConfig,
+      llmProps || {},
+      (state) => updateProgress(progressId, state),
+    );
+    finishProgress(progressId);
     res.json(result);
   } catch (err) {
+    finishProgress(progressId, err.message);
     console.error(err);
     res
       .status(500)
       .json({ error: err.message || "Server error", code: "SERVER_ERROR" });
   }
+});
+// ------- progress of a running evaluation -------
+app.get("/api/evaluate/progress/:id", (req, res) => {
+  const state = getProgress(req.params.id);
+  if (!state) {
+    return res.status(404).json({ error: "Unknown evaluation id" });
+  }
+  res.json(state);
 });
 // ------- available datasets (Docker: only the mounted dataset) -------
 app.get("/api/datasets", (req, res) => {
